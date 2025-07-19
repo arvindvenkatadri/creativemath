@@ -2072,7 +2072,7 @@
     "href": "content/courses/MathModelsDesign/Modules/25-Geometry/listing.html",
     "title": "Geometry",
     "section": "",
-    "text": "Title\n\n\n\nReading Time\n\n\n\n\n\n\n\n\n  Circles\n\n\n25 min\n\n\n\n\n\n\n Complex Numbers\n\n\n6 min\n\n\n\n\n\n\nFractals\n\n\n10 min\n\n\n\n\n\n\n  Iterated Functions\n\n\n7 min\n\n\n\n\n\n\n  Affine Transformation Fractals\n\n\n16 min\n\n\n\n\n\n\n  Chaos Games\n\n\n7 min\n\n\n\n\n\n\nL-Systems\n\n\n17 min\n\n\n\n\n\n\nKolams and Lusona\n\n\n4 min\n\n\n\n\n\n\nNon-Euclidean Geometry\n\n\n37 min\n\n\n\n\n\n\nNon-Euclidean Geometry\n\n\n37 min\n\n\n\n\n\n\nGenerative Art\n\n\n1 min\n\n\n\n\n\n\nNo matching items\n Back to top",
+    "text": "Title\n\n\n\nReading Time\n\n\n\n\n\n\n\n\n  Circles\n\n\n25 min\n\n\n\n\n\n\n Complex Numbers\n\n\n6 min\n\n\n\n\n\n\nFractals\n\n\n10 min\n\n\n\n\n\n\n  Affine Transformation Fractals\n\n\n16 min\n\n\n\n\n\n\nL-Systems\n\n\n17 min\n\n\n\n\n\n\nKolams and Lusona\n\n\n4 min\n\n\n\n\n\n\nNo matching items\n Back to top",
     "crumbs": [
       "Teaching",
       "Math Models for Creative Coders",
@@ -2351,54 +2351,5 @@
     "title": "Applied Math for Creative Coders",
     "section": "",
     "text": "Preparatory Work to moving my full website to Quarto!"
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html",
-    "href": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html",
-    "title": "\n Iterated Functions",
-    "section": "",
-    "text": "Topics that may be covered here:\n\nIterated Function Systems and Fractals\n\nSymmetries in Space\n\nL Systems, Mandalas and Kolams\n\nLogistic Functions\n\nProjections"
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#introduction",
-    "href": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#introduction",
-    "title": "\n Iterated Functions",
-    "section": "",
-    "text": "Topics that may be covered here:\n\nIterated Function Systems and Fractals\n\nSymmetries in Space\n\nL Systems, Mandalas and Kolams\n\nLogistic Functions\n\nProjections"
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#inspiration",
-    "href": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#inspiration",
-    "title": "\n Iterated Functions",
-    "section": "\n Inspiration",
-    "text": "Inspiration\nThis equation will change how you see the world. It’s about the Logistic Map, bifurcation diagrams, the Mandelbrot set, animal populations, dripping faucets, neuron firing rates and more.\n\nSo let us see how we can construct this algorithmically, the different parts of it. And of course why we should bother!"
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#what-is-an-iterated-function",
-    "href": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#what-is-an-iterated-function",
-    "title": "\n Iterated Functions",
-    "section": "What is an Iterated Function?",
-    "text": "What is an Iterated Function?\nWell, we know what a function is don’t we? A relationship between numbers. One varies as the others, and the relationship is specified by the function. E.g. \\(y = \\sin(x)\\).\nSo what is iteration then, and how do you do that to a function? It is applying the same function over and over again, by piping the results of the previous step i.e. iteration back into the function. Let us hear from Ron Eglash, the author of African Fractals: Modern Computing and Indigenous Design"
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#some-examples-of-iterated-functions",
-    "href": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#some-examples-of-iterated-functions",
-    "title": "\n Iterated Functions",
-    "section": "Some Examples of Iterated Functions",
-    "text": "Some Examples of Iterated Functions"
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#wait-but-why",
-    "href": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#wait-but-why",
-    "title": "\n Iterated Functions",
-    "section": "\n Wait, But Why?",
-    "text": "Wait, But Why?"
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#references",
-    "href": "content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html#references",
-    "title": "\n Iterated Functions",
-    "section": "\n References",
-    "text": "References\n\n\n\n\n\n\n R Package Citations\n\n\n\n\nPackage\nVersion\nCitation\n\n\n\nambient\n1.0.2\nPedersen and Peck (2022)\n\n\nmosaicCalc\n0.6.4\nKaplan, Pruim, and Horton (2024)\n\n\nplot3D\n1.4.1\nSoetaert (2024)\n\n\n\n\n\n\nKaplan, Daniel T., Randall Pruim, and Nicholas J. Horton. 2024. mosaicCalc: R-Language Based Calculus Operations for Teaching. https://doi.org/10.32614/CRAN.package.mosaicCalc.\n\n\nPedersen, Thomas Lin, and Jordan Peck. 2022. ambient: A Generator of Multidimensional Noise. https://doi.org/10.32614/CRAN.package.ambient.\n\n\nSoetaert, Karline. 2024. plot3D: Plotting Multi-Dimensional Data. https://doi.org/10.32614/CRAN.package.plot3D."
   }
 ]
