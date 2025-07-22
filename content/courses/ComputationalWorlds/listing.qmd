@@ -58,7 +58,6 @@ contemplating? What might such a course plan look like?
     - Extracting Attributes from Objects and Phenomena
     - Measurable and Imaginary Attributes and their properties
     - Values, Units, Scales, Variations, and Relationships
-
 1. Generating Parallel Worlds
     - Simulating the Phenomena in Code (straightforward)
     - Does it represent something else?
@@ -83,7 +82,7 @@ contemplating? What might such a course plan look like?
 
 1. Lakoff and Johnson
 2. D'Arcy Wentworth Thompson "On Growth and Form"
-2. BCG's Metaphor Lab. ( Can we create one in SMI?)
+2. BCG's Metaphor Lab. (Can we create one in SMI?)
 3. Robert Lucky's **Six Human Dreams**
 4. Lewis Carroll. "Alice in Wonderland".
 

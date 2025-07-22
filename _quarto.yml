@@ -55,11 +55,6 @@ website:
     search: true
     logo: "content/materials/images/Catterpillar.jpg"
     contents:
-
-      - section: "Teaching"
-        href: content/courses/listing.qmd
-        contents: 
-         
           - section: "Math Models for Creative Coders"
             href: content/courses/MathModelsDesign/listing.qmd
             contents: 

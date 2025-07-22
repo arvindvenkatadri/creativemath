@@ -6,11 +6,15 @@
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/index.html</loc>
-    <lastmod>2025-07-17T14:16:42.859Z</lastmod>
+    <lastmod>2025-07-21T23:12:33.752Z</lastmod>
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/500-Tech/20-AddingLibrariesToP5Js/index.html</loc>
     <lastmod>2025-07-17T14:04:43.389Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/500-Tech/50-OSC/index.html</loc>
+    <lastmod>2025-07-21T23:40:13.832Z</lastmod>
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.html</loc>
@@ -21,148 +25,152 @@
     <lastmod>2025-07-17T14:04:42.893Z</lastmod>
   </url>
   <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.806Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.092Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/1000-Projects/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.804Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/10-Physics/listing.html</loc>
-    <lastmod>2025-07-17T14:04:42.778Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/55-Connections/listing.html</loc>
-    <lastmod>2025-07-17T14:04:43.426Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.805Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/60-Convnet/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.802Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/55-HandCalculation/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.800Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/listing.html</loc>
-    <lastmod>2025-07-17T14:04:42.804Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.778Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/50-GradientDescent/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.793Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/20-Chaos/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.373Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/listing.html</loc>
-    <lastmod>2025-07-17T14:04:43.382Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/50-Thoughts/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.378Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/10-FourierSeries/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.202Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/12-AdditiveSynth/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.212Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.370Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/listing.html</loc>
-    <lastmod>2025-07-17T14:04:43.372Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/listing.html</loc>
-    <lastmod>2025-07-17T14:16:45.333Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/listing.html</loc>
-    <lastmod>2025-07-17T14:04:43.427Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/20-MakingNoise/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.234Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/40-Time/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.374Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/10-Chance/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.373Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/30-Agents/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.374Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/200-LLMs/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.783Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/20-Perceptron/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/40-BackProp/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.791Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/30-MLP/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.785Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/listing.html</loc>
-    <lastmod>2025-07-17T14:04:42.806Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/55-Connections/10-GraphNetworks/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.426Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/05-Maths/listing.html</loc>
-    <lastmod>2025-07-17T14:04:42.778Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.773Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.771Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/10-Physics/01-Movement/index.html</loc>
-    <lastmod>2025-07-17T14:04:42.778Z</lastmod>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/listing.html</loc>
+    <lastmod>2025-07-21T23:42:19.376Z</lastmod>
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/50-LSystems/index.html</loc>
     <lastmod>2025-07-17T14:04:43.084Z</lastmod>
   </url>
   <url>
-    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/listing.html</loc>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/10-Physics/01-Movement/index.html</loc>
+    <lastmod>2025-07-22T02:12:36.130Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.771Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html</loc>
+    <lastmod>2025-07-21T23:42:25.549Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/05-Maths/listing.html</loc>
+    <lastmod>2025-07-17T14:04:42.778Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/55-Connections/10-GraphNetworks/index.html</loc>
+    <lastmod>2025-07-17T14:04:43.426Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/listing.html</loc>
+    <lastmod>2025-07-17T14:04:42.806Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/30-MLP/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.785Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/40-BackProp/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.791Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/20-Perceptron/index.html</loc>
+    <lastmod>2025-07-21T23:42:20.319Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/200-LLMs/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.783Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/30-Agents/index.html</loc>
+    <lastmod>2025-07-17T14:04:43.374Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/10-Chance/index.html</loc>
+    <lastmod>2025-07-21T23:42:17.418Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/40-Time/index.html</loc>
+    <lastmod>2025-07-17T14:04:43.374Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/20-MakingNoise/index.html</loc>
+    <lastmod>2025-07-22T02:16:09.878Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/listing.html</loc>
+    <lastmod>2025-07-21T23:42:26.952Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/listing.html</loc>
+    <lastmod>2025-07-21T23:14:54.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/listing.html</loc>
+    <lastmod>2025-07-17T14:04:43.372Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html</loc>
+    <lastmod>2025-07-22T02:17:08.245Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/12-AdditiveSynth/index.html</loc>
+    <lastmod>2025-07-17T14:04:43.212Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/10-FourierSeries/index.html</loc>
     <lastmod>2025-07-17T14:04:43.202Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/50-Thoughts/index.html</loc>
+    <lastmod>2025-07-17T14:04:43.378Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/listing.html</loc>
+    <lastmod>2025-07-17T14:04:43.382Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/45-Uncertainty/20-Chaos/index.html</loc>
+    <lastmod>2025-07-17T14:04:43.373Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/50-GradientDescent/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.793Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.778Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/listing.html</loc>
+    <lastmod>2025-07-17T14:04:42.804Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/55-HandCalculation/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.800Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/100-AI/60-Convnet/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.802Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.805Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/55-Connections/listing.html</loc>
+    <lastmod>2025-07-17T14:04:43.426Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.html</loc>
+    <lastmod>2025-07-21T23:42:24.472Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/10-Physics/listing.html</loc>
+    <lastmod>2025-07-17T14:04:42.778Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/1000-Projects/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.804Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html</loc>
+    <lastmod>2025-07-17T14:04:43.092Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html</loc>
+    <lastmod>2025-07-17T14:04:42.806Z</lastmod>
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.html</loc>
@@ -170,7 +178,7 @@
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/500-Tech/listing.html</loc>
-    <lastmod>2025-07-17T14:04:43.389Z</lastmod>
+    <lastmod>2025-07-21T23:39:27.326Z</lastmod>
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html</loc>
@@ -178,7 +186,7 @@
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/500-Tech/30-Constructors/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.389Z</lastmod>
+    <lastmod>2025-07-21T23:42:22.412Z</lastmod>
   </url>
   <url>
     <loc>https://mathforcoders.netlify.app/readme.html</loc>

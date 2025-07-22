@@ -31,21 +31,6 @@ knitr::knit_hooks$set(webgl = hook_webgl)
 library(downloadthis)
 library(knitr)
 library(kableExtra)
-## Markdown boiler plate stuff!!
-# ![An Elephant](elephant.png){#fig-elephant}
-# This is illustrated well by @fig-elephant.
-# 
-# ### Figure Panel Divs
-#     ::: {#fig-elephants layout-ncol=2}
-#     ![Surus](surus.png){#fig-surus}
-#     ![Hanno](hanno.png){#fig-hanno}
-#      Famous Elephants
-#     :::
-#     Adding download buttons
-#     data that has been read in
-#     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
-#    existing file
-#    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
 
 ```
 
@@ -70,24 +55,32 @@ library(downloadthis)
 library(embedr) # Embed multimedia in HTML files
 ```
 
-
 ```{r}
-#| label: Plot Sizing and theming
+#| label: plot-theme
 #| echo: false
-#| message: false
-#| results: hide
+#| cache: false
+#| messages: false
+#| warning: false
 
-# https://stackoverflow.com/questions/74491138/ggplot-custom-fonts-not-working-in-quarto
+library(systemfonts)
+library(showtext)
+## Clean the slate
+systemfonts::clear_local_fonts()
+systemfonts::clear_registry()
+##
+showtext_opts(dpi = 96) #set DPI for showtext
+sysfonts::font_add(family = "Alegreya",
+  regular = "../../../../../../fonts/Alegreya-Regular.ttf",
+  bold = "../../../../../../fonts/Alegreya-Bold.ttf",
+  italic = "../../../../../../fonts/Alegreya-Italic.ttf",
+  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf")
 
-# Chunk options
-knitr::opts_chunk$set(
- fig.width = 7,
- fig.asp = 0.618, # Golden Ratio
- #out.width = "80%",
- fig.align = "center"
-)
-### Ggplot Theme
-### https://rpubs.com/mclaire19/ggplot2-custom-themes
+sysfonts::font_add(family = "Roboto Condensed", 
+  regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
+  bold = "../../../../../../fonts/RobotoCondensed-Bold.ttf",
+  italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
+  bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
+showtext_auto(enable = TRUE) #enable showtext
 
 theme_custom <- function(){ 
     font <- "Roboto Condensed"   #assign font family up front
@@ -135,6 +128,7 @@ theme_set(new = theme_custom())
 #
 ```
 
+
 ## Inspiration!
 
 Here is the GUI for a guitar created in JavaScript (not p5.js). 
@@ -147,8 +141,6 @@ Here is the GUI for a guitar created in JavaScript (not p5.js).
 
 
 ## What is a Delay Line?
-
-
 
 
 ## What is Feedback Oscillation?

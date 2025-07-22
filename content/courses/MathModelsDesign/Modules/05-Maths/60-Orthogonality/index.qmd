@@ -1,5 +1,5 @@
 ---
-title: <iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles
+title: <iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles
 subtitle: ""
 subject: ""
 abstract: ""
@@ -13,7 +13,6 @@ categories:
 - Vector
 - Dot Product
 citation: true
-draft: true
 editor: 
   markdown: 
     wrap: 72
@@ -176,12 +175,18 @@ So where do we see this idea popping up?
 ### Machine Learning and Deep Learning
 - In a [Perceptron](../../100-AI/20-Perceptron/index.qmd), we have a `vector dot product` between the input and the weight vectors. 
 - In an ML-Classification problem, we consider a dataset of points containing say two classes. Each row in the data is a vector, with $length = n(columns)$. We take a `vector` of ***weights*** of the same length, and take the vector dot-product of this fixed weight vector with each of the rwo-observations. The result of this operation is one dot-product number per observation in the data.\
-    Now consider the values of these dot products. Is the dot product negative, or positive in value? Can we use that polarity to decide on which observation belongs to which class? This is at the heart of an ML algorithm called [Support Vector Machines](). 
-- 
+- Now consider the values of these dot products. Is the dot product negative, or positive in value? Can we use that polarity to decide on which observation belongs to which class? This is at the heart of an ML algorithm called [Support Vector Machines](). 
+
 
 ### Technology
 - GPS / CDMA: See here for a quick intro to [GPS](https://arvindvenkatadri.com/teaching/3-order-and-chaos/modules/5b-voronoi/#proximities-in-the-gps-system-1). The codes used in GPS are a *family* of digital sequences called **Gold codes**. These are also an orthogonal set with near-zero cross-correlation between any pair of sequences from the set. 
 - Bluetooth
+
+### HR
+
+- Brainstorming: If all members of a team **sit together** to brainstorm, ***GroupThink** ensues very quickly, and people will be *aligning* themselves with each other, by way of opinion or ideas. 
+- In a team, we need to have people who are **orthogonal** to each other, in the sense that they have different skill sets, and different ways of looking at the same problem. This is what makes a team effective.
+
 
 ## References
 

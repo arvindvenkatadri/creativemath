@@ -1,6 +1,5 @@
 ---
-title: "Math Models for Creative Coders"
-subtitle: "Using matters of ~~Life and Death~~ Math and  Code to Create Novel Experiences"
+title: "Using matters of ~~Life and Death~~ Math and  Code to Create Novel Experiences"
 date: '2022-12-31'
 abstract: ""
 image: "preview.jpeg"
@@ -170,7 +169,7 @@ become reality!
 ## Other Interesting Websites and Works
 
 1.  *The Book of Shaders* by Patricio Gonzalez Vivo and Jen
-    Lowe<https://thebookofshaders.com/>
+    Lowe. <https://thebookofshaders.com/>
 2.  Scott Murray's D3 Art page: <https://scottmurray.org/>
 3.  Inigo Quilez, Digital Artist: <https://iquilezles.org/>
     (*ShaderToy*, *GraphToy*, and *MadeThisThing*)

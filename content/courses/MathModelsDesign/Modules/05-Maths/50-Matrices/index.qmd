@@ -176,14 +176,15 @@ Samosas cost 20 and chai costs 10. How much do they pay?
 
 ```{r}
 #| echo: false
-A <- matrix_(c(2,3,0,1,0,2),3,2) 
-B <- matrix_(c(20, 10), 2,1) 
-C <- A %*% B
+Orders <- matrix_(c(2,3,0,1,0,2),3,2) 
+Prices <- matrix_(c(20, 10), 2,1) 
+Bills <- Orders %*% Prices
 #A;B;C
 # tex(A)
 # tex(B)
 #tex(C)
 ```
+
 :::: {.columns}
 ::: {.column width=30%}
 $$
@@ -204,15 +205,16 @@ $$
 
 :::: {.columns}
 ::: {.column width=30%}
-$$A$$
+$$Orders$$
 :::
 ::: {.column width=30%}
-$$B$$
+$$Prices$$
 :::
 ::: {.column width=30%}
-$$C$$
+$$Bills$$
 :::
 ::::
+
 
 We see that the first number $20$ in B multiplies the entire first column in A, and the second number $10$ multiplies the entire second column in A. These two multiplied columns are added to get the matrix C.
 
@@ -223,14 +225,15 @@ Suppose they had two options for shops? And the prices were different?
 
 ```{r}
 #| echo: false
-A2 <- matrix_(c(2,3,0,1,0,2),3,2) 
-B2 <- matrix_(c(20, 10, 15,15), 2,2) 
-C2 <- A2 %*% B2
+Orders <- matrix_(c(2,3,0,1,0,2),3,2) 
+Menus <- matrix_(c(20, 10, 15,15), 2,2) 
+Amounts <- Orders %*% Menus
 # A2;B2;C2
 # tex(A2)
 # tex(B2)
 # tex(C2)
 ```
+
 :::: {.columns}
 ::: {.column width=30%}
 $$
@@ -251,13 +254,13 @@ $$
 
 :::: {.columns}
 ::: {.column width=30%}
-$$A2$$
+$$Orders$$
 :::
 ::: {.column width=30%}
-$$B2$$
+$$Menus$$
 :::
 ::: {.column width=30%}
-$$C2$$
+$$Amounts$$
 :::
 ::::
 
@@ -278,6 +281,7 @@ As shown in Gilbert Strang's book, there are 4 ways of thinking about matrix mul
 - Multiplying rows in A and columns in B. ( A *vectorized* version of the previous method).
 
 For now, this one method should suffice. 
+:::
 
 ## References
 1. Gilbert Strang. Linear Algebra and its Applications. Thomson/Brooks-Cole.

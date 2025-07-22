@@ -25,10 +25,14 @@ and methods. I also blog about TRIZ and Data Science on occasion.
 
 To get started, you can check out my courses on this website. 
 
-My other teaching websites are:\
-- [Foundation Courses at Srishti](https://arvindvenkatadri.com)\
-- [Teaching R to Artists and Designers](https://r-for-artists.netlify.app)\
-- [Using AI in R](https://ai-in-r.netlify.app)\
+My teaching websites are:\
+
+- [Maths for Creative Coders](https://mathsforcoders.netlify.app)(This one!!)
+- [Model Thinking in Design](https://arvindvenkatadri.com/teaching/3-order-and-chaos/)\
+- [The Mad Hatter's Guide to Data Viz and Stats in R](https:://madhatterguide.netlify.app)\ 
+- [TRIZ for Problem Solvers](https://teaching-triz.netlify.app)\
+- [Literary Jukebox: Design Thinking from Short Fiction](https://literary-jukebox.netlify.app)\
+
 
 My student portfolios are here:\
 <https://we-r-us.netlify.app/portfolio/>\
@@ -39,4 +43,3 @@ You can find me on
 [GitHub](https://github.com/arvindvenkatadri), and on
 [LinkedIn](https://www.linkedin.com/in/arvindvenkatadri)! Feel free to
 reach out to me via [mail](mailto:arvind.venkatadri@gmail.com) too!
-
