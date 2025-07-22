@@ -22,7 +22,10 @@ editor:
 draft: true
 ---
 
-```{r setup, include=FALSE}
+```{r}
+#| label: setup
+#| include: true
+#| echo: false
 library(blogdown)
 library(tidyverse)
 library(ggformula)
@@ -31,27 +34,13 @@ library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
 library(rgl) # Interactive 3D plots for explanation
 library(plotly)
-library(gm)
 knitr::knit_hooks$set(webgl = hook_webgl)
 #library(caracas)
 library(downloadthis)
 library(knitr)
 library(kableExtra)
-## Markdown boiler plate stuff!!
-# ![An Elephant](elephant.png){#fig-elephant}
-# This is illustrated well by @fig-elephant.
-# 
-# ### Figure Panel Divs
-#     ::: {#fig-elephants layout-ncol=2}
-#     ![Surus](surus.png){#fig-surus}
-#     ![Hanno](hanno.png){#fig-hanno}
-#      Famous Elephants
-#     :::
-#     Adding download buttons
-#     data that has been read in
-#     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
-#    existing file
-#    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
+library(gm) # Grammar of Music
+# Install https://musescore.org/en
 
 ```
 
@@ -78,22 +67,31 @@ library(embedr) # Embed multimedia in HTML files
 
 
 ```{r}
-#| label: Plot Sizing and theming
+#| label: plot-theme
 #| echo: false
-#| message: false
-#| results: hide
+#| cache: false
+#| messages: false
+#| warning: false
 
-# https://stackoverflow.com/questions/74491138/ggplot-custom-fonts-not-working-in-quarto
+library(systemfonts)
+library(showtext)
+## Clean the slate
+systemfonts::clear_local_fonts()
+systemfonts::clear_registry()
+##
+showtext_opts(dpi = 96) #set DPI for showtext
+sysfonts::font_add(family = "Alegreya",
+  regular = "../../../../../../fonts/Alegreya-Regular.ttf",
+  bold = "../../../../../../fonts/Alegreya-Bold.ttf",
+  italic = "../../../../../../fonts/Alegreya-Italic.ttf",
+  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf")
 
-# Chunk options
-knitr::opts_chunk$set(
- fig.width = 7,
- fig.asp = 0.618, # Golden Ratio
- #out.width = "80%",
- fig.align = "center"
-)
-### Ggplot Theme
-### https://rpubs.com/mclaire19/ggplot2-custom-themes
+sysfonts::font_add(family = "Roboto Condensed", 
+  regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
+  bold = "../../../../../../fonts/RobotoCondensed-Bold.ttf",
+  italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
+  bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
+showtext_auto(enable = TRUE) #enable showtext
 
 theme_custom <- function(){ 
     font <- "Roboto Condensed"   #assign font family up front
@@ -145,7 +143,7 @@ theme_set(new = theme_custom())
 
 So we understand the Fourier Transform: we can express any waveform as a sum of sinusoids that are appropriately weighted and are at discrete multiples of a chosen "fundamental frequency".
 
-In the module [Additive Synthesis](../12-AdditiveSynth/index.qmd), we learnt about how a sum of properly tuned and weighted frequency components can be used to synthesize sounds. Here is another approach: of **modulating** or changing the *frequency* of a *carrier* wave to generate a large multiple of harmonic and in-harmonic sidetones to synthesize sound. 
+In the module [Additive Synthesis](../12-AdditiveSynth/index.qmd), we learnt about how a sum of properly tuned and weighted frequency components can be used to synthesize sounds. Here is another approach: of **frequency-modulation**, or changing the *frequency* of a base *carrier* wave to generate a large multiple of harmonic and in-harmonic sidetones to synthesize sound. 
 
 ## {{< iconify icons8 idea >}} Inspiration
 To be Found!!

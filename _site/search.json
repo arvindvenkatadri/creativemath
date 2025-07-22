@@ -815,158 +815,6 @@
     ]
   },
   {
-    "objectID": "content/courses/MathModelsDesign/listing.html#introduction",
-    "href": "content/courses/MathModelsDesign/listing.html#introduction",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "Introduction",
-    "text": "Introduction\nWe will study several Mathematical Models and apply them to Art and Design. The algorithms will be examined and then coded in p5.js / q5.js / p5play.js; however other open source tools (FOSS) and Javascript libraries may also be introduced as and when needed and as and when I learn and get excited about them.\nThis course stands on “three legs”: Maths, Code + Tech, and Artifacts, as shown below. As this course grows and hopefully becomes more un-popular ;-D, more and more of these modules below will become reality!\n\nMath Experiments with Code\n\n\nMaths\nCode + Tech\nArtifacts\n\n\n\n\nIterated FunctionsComplex NumbersRandom NumbersVector AlgebraPerlin Noise\np5.js / q5.js / p5play.jsShapesStack, Push and Pull, TranslateVectorsRecursionConstructors and OOP\nFractalsKolamsAngolan Sona PatternsL-Systems SymmetriesTextures\n\n\nLinear Systems  Impulse ResponsesConvolutionElectrical System Theory (poles; zeroes; resonance…)?DSP basics?AM/FM/PM Modulation?Fourier SeriesBessel Functions? Waves; Echoes ?Non-linearities; Saturation; Hysteresis ?\nAdding External Physics and Sound Librariesp5.soundCamera, Sound and MicHandphone based InteractionsOSP Protocol based interactions with external hardware over WiFi / BT\nSoundVideoTextCrowd-Sourced acts (jam session; flash-techno mob…)?Mouse - Touchpad Orchestra?\n\n\nNeural Net Basics Matrix AlgebraTrainingBackpropagationGradient DescentClassification, Regression, Clustering\nml5.js libraries\nMulti-Layer PerceptronsConvolutional Neural NetworksPose, Gesture, and Face Detection\n\n\nComplexity and Emergent Phenomena?\nInterfacing p5.js with Makey-Makey / Arduino / Raspberry Pi?Sensors?Working with other materials like sand, water, paper, wood, cloth, balloons ?“Action at a Distance” using say quantum entanglement IFTTT?\nFriendship Networks? Games?Public Space InstallationsSimulationsRemote Education with Gesture tracking and live Coding?“Literary” Events with Tech?\n\n\nI’ll\nBe\nBack",
-    "crumbs": [
-      "Math Models for Creative Coders"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/listing.html#references",
-    "href": "content/courses/MathModelsDesign/listing.html#references",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "References",
-    "text": "References\n\nCourse Abstract written by Arnold Schwarzenegger.\n\n\nGeneral\n\nBret Victor. Learnable Programming. https://worrydream.com/LearnableProgramming/\nMichael Nielsen.(February 2016). Toward an exploratory medium for mathematics. https://cognitivemedium.com/emm/emm.html\nRune Madsen. Programming Design Systems. https://programmingdesignsystems.com. A free digital book that teaches a practical introduction to the new foundations of graphic design.\nColah’s ( not Kolha’s 🦊 ) Blog. https://colah.github.io/https://colah.github.io/\n\n\n\np5.js, p5play.js, q5.js, and Processing\n\nGetting Started with p5.js https://p5js.org/tutorials/setting-up-your-environment/\nCoding Rainbow: Basic-est set of videos on p5.js &lt;https://youtube.com/playlist?list=PLglp04UYZK_PrN6xWo_nJ-8kzyXDyFUwi&si=BWSDVX9-Bt85KXdO&gt;\nCoding Train with Dan Shiffman:\n\nWebsite: https://thecodingtrain.com/\nGithub: https://github.com/CodingTrain/website-archive\n\np5.js Wiki. https://github.com/processing/p5.js/wiki\np5.js at CodeAcademy https://www.codecademy.com/learn/learn-p5js\np5.js at HappyCoding https://happycoding.io/tutorials/p5js/\nOpenProcessing https://openprocessing.org\nhttps://www.codecademy.com/content-items/5e5c0d2a7b20535fbe8aed05e739e027\np5play Game Engine https://p5play.org/ p5play is for creating interactive art and games with the Box2D physics engine.\nq5.js Home https://q5js.org/home/\n\n\n\nR-language-related Resources\n\nThomas Lin Pedersen:\n\nWebsite: https://www.data-imaginist.com/art\nWebsite: https://ambient.data-imaginist.com/index.html (R package ambient)\nGithub:\n\nAntonio Sánchez Chinchón:\n\nWebsite: https://fronkonstin.com\nGithub: https://github.com/aschinchon/abstractions\n\nDanielle Navarro’s Generative Art:\n\nWebsite: https://art-from-code.netlify.app\nGithub: https://github.com/arvindvenkatadri/art-from-code (forked by me)\nWebsite: https://art-from-code.netlify.app\n\nClaus Wilke:\n\nWebsite: https://clauswilke.com/art/\n\nGenerative Art by Katharina Brunner:\n\nGithub:https://github.com/cutterkom/generativeart\nWebpage:https://katharinabrunner.de/generativeart/\n\nWilliam Chase:\n\nWebsite: https://www.williamrchase.com/\nGithub: https://github.com/will-r-chase\nBlog Posts: https://www.williamrchase.com/writing/\n\nhttps://buttondown.email/willchase/archive/the-generative-art-dataviz-spectrum/\nhttps://www.williamrchase.com/post/strange-attractors-12-months-of-art-february/\nhttps://www.williamrchase.com/writing/2019-09-30-flow-fields-12-months-of-art-september/\nhttps://www.williamrchase.com/writing/2019-08-30-12-months-of-art-august/\nPoisson Disc sampling https://www.williamrchase.com/writing/2019-07-29-textues-and-geometric-shapes-12-months-of-art-july/ and the poissoned R package by @coolbutuseless\n\n\nMarcus Volz:\n\nWebsite: https://marcusvolz.com\nGithub: https://github.com/marcusvolz\n\nhttps://generative.substack.com/p/generative-art-and-r\nGenerative Art. https://paulvanderlaken.com/2020/05/02/generative-art-computer-design-painting/\nR-tistry with ggplot: https://www.bigbookofr.com/art.html#thinking-outside-the-grid---a-bare-bones-intro-to-rtistry-concepts-in-r-using-ggplot\nhttps://www.rforscience.com/scientific-computing.html\n\n\n\nDeep Learning and AI\n\nPractical Deep Learning for Coders. https://course.fast.ai/\nMichael Nielsen. http://neuralnetworksanddeeplearning.com/index.html\nIan Goodfellow and Yoshua Bengio and Aaron Courville. Deep Learning Book. https://www.deeplearningbook.org/\nDive into Deep Learning. Interactive deep learning book with code, math, and discussions. Implemented with PyTorch, NumPy/MXNet, JAX, and TensorFlowUsing Other Tools. https://www.d2l.ai/index.html\nSimon Scardapane. Alice’s Adventures in Differentiable Wonderland. https://www.sscardapane.it/assets/alice/Alice_book_volume_1.pdf\nFrançois Fleuret. The Little Book of Deep Learning. https://fleuret.org/public/lbdl.pdf\nFrank Rosenblatt. Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms. https://gwern.net/doc/ai/nn/1962-rosenblatt-principlesofneurodynamics.pdf\nWarren S. McCulloch, Walter Pitts (1943). A Logical Calculus of the Ideas of Immanent in Nervous Activity. BULLETIN OF MATHEMATICAL BIOPHYSICS VOLUME 5, 1943. &lt;https://www.aemea.org/math/McCulloch_Pitts_1943.pdfhttps://www.aemea.org/math/McCulloch_Pitts_1943.pdf\n\n\n\nOther Tools\n\nhttps://generatecoll.medium.com/how-i-used-excel-to-create-abstract-album-artwork-fee740d4414f\nRandom Digital Beauty. https://anaselk.com/p/generative-r/\nMaking Explanations (tools): https://explorabl.es/tools/\nUsing p5 in R. Yeah. https://alistaire.rbind.io/blog/p5-in-r/\ncreateCanvas Podcast. https://soundcloud.com/processingfoundation\nhttps://processingfoundation.org/education\nhttps://nannou.cc\nhttps://openframeworks.cc/\nhttps://libcinder.org\nSophia Crespo: (makes speculative biological creatures using neural networks)\n\nWebsite: https://sofiacrespo.com/\nWebsite: https://entangledothers.studio/\nGithub:\n\nR for Scientific Visualization. https://www.rforscience.com/visualisation.html\nR for Scientific Computing. https://www.rforscience.com/scientific-computing.html",
-    "crumbs": [
-      "Math Models for Creative Coders"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/listing.html#other-interesting-websites-and-works",
-    "href": "content/courses/MathModelsDesign/listing.html#other-interesting-websites-and-works",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "Other Interesting Websites and Works",
-    "text": "Other Interesting Websites and Works\n\nThe Book of Shaders by Patricio Gonzalez Vivo and Jen Lowe. https://thebookofshaders.com/\nScott Murray’s D3 Art page: https://scottmurray.org/\nInigo Quilez, Digital Artist: https://iquilezles.org/ (ShaderToy, GraphToy, and MadeThisThing)\nReddit Generative Art Forum. https://www.reddit.com/r/generative/\nAI tools for Journalists. https://journaliststoolbox.ai/ A vast list of tools for every purpose you can think of.",
-    "crumbs": [
-      "Math Models for Creative Coders"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/listing.html#creative-coding-courses-elsewhere",
-    "href": "content/courses/MathModelsDesign/listing.html#creative-coding-courses-elsewhere",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "Creative Coding Courses Elsewhere",
-    "text": "Creative Coding Courses Elsewhere\n\nAllison Parrish. https://creative-coding.decontextualize.com\nMatthew Bardin. https://pdm.lsupathways.org\nTim Cortina at Carnegie Mellon Univ2. https://www.cs.cmu.edu/~tcortina/15104-f20/lectures/",
-    "crumbs": [
-      "Math Models for Creative Coders"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/listing.html#learning-modules",
-    "href": "content/courses/MathModelsDesign/listing.html#learning-modules",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "Learning Modules",
-    "text": "Learning Modules",
-    "crumbs": [
-      "Math Models for Creative Coders"
-    ]
-  },
-  {
-    "objectID": "content/courses/listing.html",
-    "href": "content/courses/listing.html",
-    "title": "Teaching",
-    "section": "",
-    "text": "Here are the courses that I teach:\n\n\n\n\n\n\n\n\n\n\n \n\n\n\nTitle\n\n\n\nSubtitle\n\n\n\nDate\n\n\n\n\n\n\n\n\n\n\n\nUsing matters of Life and Death Math and Code to Create Novel Experiences\n\n\n \n\n\nDec 31, 2022\n\n\n\n\n\n\nNo matching items\n Back to top"
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/listing.html",
-    "href": "content/courses/MathModelsDesign/Modules/35-Media/listing.html",
-    "title": "Media",
-    "section": "",
-    "text": "Title\n\n\n\nReading Time\n\n\n\n\n\n\n\n\nFourier Series\n\n\n11 min\n\n\n\n\n\n\nAdditive Sound Synthesis\n\n\n9 min\n\n\n\n\n\n\n Making Noise Predictably\n\n\n20 min\n\n\n\n\n\n\nThe Karplus-Strong Guitar Algorithm\n\n\n6 min\n\n\n\n\n\n\nNo matching items\n Back to top",
-    "crumbs": [
-      "Math Models for Creative Coders",
-      "Media"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html",
-    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html",
-    "title": "The Karplus-Strong Guitar Algorithm",
-    "section": "",
-    "text": "Here is the GUI for a guitar created in JavaScript (not p5.js).",
-    "crumbs": [
-      "Math Models for Creative Coders",
-      "Media",
-      "The Karplus-Strong Guitar Algorithm"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#inspiration",
-    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#inspiration",
-    "title": "The Karplus-Strong Guitar Algorithm",
-    "section": "",
-    "text": "Here is the GUI for a guitar created in JavaScript (not p5.js).",
-    "crumbs": [
-      "Math Models for Creative Coders",
-      "Media",
-      "The Karplus-Strong Guitar Algorithm"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-the-karplus-strong-algorithm",
-    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-the-karplus-strong-algorithm",
-    "title": "The Karplus-Strong Guitar Algorithm",
-    "section": "What is the Karplus-Strong Algorithm?",
-    "text": "What is the Karplus-Strong Algorithm?",
-    "crumbs": [
-      "Math Models for Creative Coders",
-      "Media",
-      "The Karplus-Strong Guitar Algorithm"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-a-delay-line",
-    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-a-delay-line",
-    "title": "The Karplus-Strong Guitar Algorithm",
-    "section": "What is a Delay Line?",
-    "text": "What is a Delay Line?",
-    "crumbs": [
-      "Math Models for Creative Coders",
-      "Media",
-      "The Karplus-Strong Guitar Algorithm"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-feedback-oscillation",
-    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-feedback-oscillation",
-    "title": "The Karplus-Strong Guitar Algorithm",
-    "section": "What is Feedback Oscillation?",
-    "text": "What is Feedback Oscillation?",
-    "crumbs": [
-      "Math Models for Creative Coders",
-      "Media",
-      "The Karplus-Strong Guitar Algorithm"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#karplus-strong-guitar-in-code",
-    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#karplus-strong-guitar-in-code",
-    "title": "The Karplus-Strong Guitar Algorithm",
-    "section": "Karplus-Strong Guitar in Code",
-    "text": "Karplus-Strong Guitar in Code\nLet us code up our guitar and see how it works!\n\n\n p5.js\n R",
-    "crumbs": [
-      "Math Models for Creative Coders",
-      "Media",
-      "The Karplus-Strong Guitar Algorithm"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#references",
-    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#references",
-    "title": "The Karplus-Strong Guitar Algorithm",
-    "section": "References",
-    "text": "References\n\nKarplus, K., & Strong, A. (1983). Digital Synthesis of Plucked-String and Drum Timbres. Computer Music Journal, 7(2), 43. doi:10.2307/3680062. https://sci-hub.se/https://doi.org/10.2307/3680062\n\nJulius O. Smith. PHYSICAL AUDIO SIGNAL PROCESSING FOR VIRTUAL MUSICAL INSTRUMENTS AND AUDIO EFFECTS. https://ccrma.stanford.edu/~jos/pasp/pasp.html\n\n\nEuphonics: The Science of Musical Instruments.https://euphonics.org/about/\n\nKarplus-Strong Guitar in PureData (pD). https://youtu.be/xEpbMWpz65E?si=Mkz-eQ4UTMrYR3Fu\n\nAmid Fish.(May 2017). Karplus Strong String Synthesis. http://amid.fish/karplus-strong\n\n\n\n\n R Package Citations\n\n\n\n\nPackage\nVersion\nCitation\n\n\n\nambient\n1.0.2\nPedersen and Peck (2022)\n\n\nmosaicCalc\n0.6.4\nKaplan, Pruim, and Horton (2024)\n\n\nplot3D\n1.4.1\nSoetaert (2024)\n\n\n\n\n\n\nKaplan, Daniel T., Randall Pruim, and Nicholas J. Horton. 2024. mosaicCalc: R-Language Based Calculus Operations for Teaching. https://doi.org/10.32614/CRAN.package.mosaicCalc.\n\n\nPedersen, Thomas Lin, and Jordan Peck. 2022. ambient: A Generator of Multidimensional Noise. https://doi.org/10.32614/CRAN.package.ambient.\n\n\nSoetaert, Karline. 2024. plot3D: Plotting Multi-Dimensional Data. https://doi.org/10.32614/CRAN.package.plot3D.",
-    "crumbs": [
-      "Math Models for Creative Coders",
-      "Media",
-      "The Karplus-Strong Guitar Algorithm"
-    ]
-  },
-  {
     "objectID": "content/courses/MathModelsDesign/Modules/35-Media/12-AdditiveSynth/index.html",
     "href": "content/courses/MathModelsDesign/Modules/35-Media/12-AdditiveSynth/index.html",
     "title": "Additive Sound Synthesis",
@@ -1085,6 +933,158 @@
       "Media",
       "Additive Sound Synthesis"
     ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html",
+    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html",
+    "title": "The Karplus-Strong Guitar Algorithm",
+    "section": "",
+    "text": "Here is the GUI for a guitar created in JavaScript (not p5.js).",
+    "crumbs": [
+      "Math Models for Creative Coders",
+      "Media",
+      "The Karplus-Strong Guitar Algorithm"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#inspiration",
+    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#inspiration",
+    "title": "The Karplus-Strong Guitar Algorithm",
+    "section": "",
+    "text": "Here is the GUI for a guitar created in JavaScript (not p5.js).",
+    "crumbs": [
+      "Math Models for Creative Coders",
+      "Media",
+      "The Karplus-Strong Guitar Algorithm"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-the-karplus-strong-algorithm",
+    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-the-karplus-strong-algorithm",
+    "title": "The Karplus-Strong Guitar Algorithm",
+    "section": "What is the Karplus-Strong Algorithm?",
+    "text": "What is the Karplus-Strong Algorithm?",
+    "crumbs": [
+      "Math Models for Creative Coders",
+      "Media",
+      "The Karplus-Strong Guitar Algorithm"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-a-delay-line",
+    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-a-delay-line",
+    "title": "The Karplus-Strong Guitar Algorithm",
+    "section": "What is a Delay Line?",
+    "text": "What is a Delay Line?",
+    "crumbs": [
+      "Math Models for Creative Coders",
+      "Media",
+      "The Karplus-Strong Guitar Algorithm"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-feedback-oscillation",
+    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#what-is-feedback-oscillation",
+    "title": "The Karplus-Strong Guitar Algorithm",
+    "section": "What is Feedback Oscillation?",
+    "text": "What is Feedback Oscillation?",
+    "crumbs": [
+      "Math Models for Creative Coders",
+      "Media",
+      "The Karplus-Strong Guitar Algorithm"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#karplus-strong-guitar-in-code",
+    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#karplus-strong-guitar-in-code",
+    "title": "The Karplus-Strong Guitar Algorithm",
+    "section": "Karplus-Strong Guitar in Code",
+    "text": "Karplus-Strong Guitar in Code\nLet us code up our guitar and see how it works!\n\n\n p5.js\n R",
+    "crumbs": [
+      "Math Models for Creative Coders",
+      "Media",
+      "The Karplus-Strong Guitar Algorithm"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#references",
+    "href": "content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html#references",
+    "title": "The Karplus-Strong Guitar Algorithm",
+    "section": "References",
+    "text": "References\n\nKarplus, K., & Strong, A. (1983). Digital Synthesis of Plucked-String and Drum Timbres. Computer Music Journal, 7(2), 43. doi:10.2307/3680062. https://sci-hub.se/https://doi.org/10.2307/3680062\n\nJulius O. Smith. PHYSICAL AUDIO SIGNAL PROCESSING FOR VIRTUAL MUSICAL INSTRUMENTS AND AUDIO EFFECTS. https://ccrma.stanford.edu/~jos/pasp/pasp.html\n\n\nEuphonics: The Science of Musical Instruments.https://euphonics.org/about/\n\nKarplus-Strong Guitar in PureData (pD). https://youtu.be/xEpbMWpz65E?si=Mkz-eQ4UTMrYR3Fu\n\nAmid Fish.(May 2017). Karplus Strong String Synthesis. http://amid.fish/karplus-strong\n\n\n\n\n R Package Citations\n\n\n\n\nPackage\nVersion\nCitation\n\n\n\nambient\n1.0.2\nPedersen and Peck (2022)\n\n\nmosaicCalc\n0.6.4\nKaplan, Pruim, and Horton (2024)\n\n\nplot3D\n1.4.1\nSoetaert (2024)\n\n\n\n\n\n\nKaplan, Daniel T., Randall Pruim, and Nicholas J. Horton. 2024. mosaicCalc: R-Language Based Calculus Operations for Teaching. https://doi.org/10.32614/CRAN.package.mosaicCalc.\n\n\nPedersen, Thomas Lin, and Jordan Peck. 2022. ambient: A Generator of Multidimensional Noise. https://doi.org/10.32614/CRAN.package.ambient.\n\n\nSoetaert, Karline. 2024. plot3D: Plotting Multi-Dimensional Data. https://doi.org/10.32614/CRAN.package.plot3D.",
+    "crumbs": [
+      "Math Models for Creative Coders",
+      "Media",
+      "The Karplus-Strong Guitar Algorithm"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/Modules/35-Media/listing.html",
+    "href": "content/courses/MathModelsDesign/Modules/35-Media/listing.html",
+    "title": "Media",
+    "section": "",
+    "text": "Title\n\n\n\nReading Time\n\n\n\n\n\n\n\n\nFourier Series\n\n\n11 min\n\n\n\n\n\n\nAdditive Sound Synthesis\n\n\n9 min\n\n\n\n\n\n\n Making Noise Predictably\n\n\n20 min\n\n\n\n\n\n\nThe Karplus-Strong Guitar Algorithm\n\n\n6 min\n\n\n\n\n\n\nNo matching items\n Back to top",
+    "crumbs": [
+      "Math Models for Creative Coders",
+      "Media"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/listing.html#introduction",
+    "href": "content/courses/MathModelsDesign/listing.html#introduction",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "Introduction",
+    "text": "Introduction\nWe will study several Mathematical Models and apply them to Art and Design. The algorithms will be examined and then coded in p5.js / q5.js / p5play.js; however other open source tools (FOSS) and Javascript libraries may also be introduced as and when needed and as and when I learn and get excited about them.\nThis course stands on “three legs”: Maths, Code + Tech, and Artifacts, as shown below. As this course grows and hopefully becomes more un-popular ;-D, more and more of these modules below will become reality!\n\nMath Experiments with Code\n\n\nMaths\nCode + Tech\nArtifacts\n\n\n\n\nIterated FunctionsComplex NumbersRandom NumbersVector AlgebraPerlin Noise\np5.js / q5.js / p5play.jsShapesStack, Push and Pull, TranslateVectorsRecursionConstructors and OOP\nFractalsKolamsAngolan Sona PatternsL-Systems SymmetriesTextures\n\n\nLinear Systems  Impulse ResponsesConvolutionElectrical System Theory (poles; zeroes; resonance…)?DSP basics?AM/FM/PM Modulation?Fourier SeriesBessel Functions? Waves; Echoes ?Non-linearities; Saturation; Hysteresis ?\nAdding External Physics and Sound Librariesp5.soundCamera, Sound and MicHandphone based InteractionsOSP Protocol based interactions with external hardware over WiFi / BT\nSoundVideoTextCrowd-Sourced acts (jam session; flash-techno mob…)?Mouse - Touchpad Orchestra?\n\n\nNeural Net Basics Matrix AlgebraTrainingBackpropagationGradient DescentClassification, Regression, Clustering\nml5.js libraries\nMulti-Layer PerceptronsConvolutional Neural NetworksPose, Gesture, and Face Detection\n\n\nComplexity and Emergent Phenomena?\nInterfacing p5.js with Makey-Makey / Arduino / Raspberry Pi?Sensors?Working with other materials like sand, water, paper, wood, cloth, balloons ?“Action at a Distance” using say quantum entanglement IFTTT?\nFriendship Networks? Games?Public Space InstallationsSimulationsRemote Education with Gesture tracking and live Coding?“Literary” Events with Tech?\n\n\nI’ll\nBe\nBack",
+    "crumbs": [
+      "Math Models for Creative Coders"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/listing.html#references",
+    "href": "content/courses/MathModelsDesign/listing.html#references",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "References",
+    "text": "References\n\nCourse Abstract written by Arnold Schwarzenegger.\n\n\nGeneral\n\nBret Victor. Learnable Programming. https://worrydream.com/LearnableProgramming/\nMichael Nielsen.(February 2016). Toward an exploratory medium for mathematics. https://cognitivemedium.com/emm/emm.html\nRune Madsen. Programming Design Systems. https://programmingdesignsystems.com. A free digital book that teaches a practical introduction to the new foundations of graphic design.\nColah’s ( not Kolha’s 🦊 ) Blog. https://colah.github.io/https://colah.github.io/\n\n\n\np5.js, p5play.js, q5.js, and Processing\n\nGetting Started with p5.js https://p5js.org/tutorials/setting-up-your-environment/\nCoding Rainbow: Basic-est set of videos on p5.js &lt;https://youtube.com/playlist?list=PLglp04UYZK_PrN6xWo_nJ-8kzyXDyFUwi&si=BWSDVX9-Bt85KXdO&gt;\nCoding Train with Dan Shiffman:\n\nWebsite: https://thecodingtrain.com/\nGithub: https://github.com/CodingTrain/website-archive\n\np5.js Wiki. https://github.com/processing/p5.js/wiki\np5.js at CodeAcademy https://www.codecademy.com/learn/learn-p5js\np5.js at HappyCoding https://happycoding.io/tutorials/p5js/\nOpenProcessing https://openprocessing.org\nhttps://www.codecademy.com/content-items/5e5c0d2a7b20535fbe8aed05e739e027\np5play Game Engine https://p5play.org/ p5play is for creating interactive art and games with the Box2D physics engine.\nq5.js Home https://q5js.org/home/\n\n\n\nR-language-related Resources\n\nThomas Lin Pedersen:\n\nWebsite: https://www.data-imaginist.com/art\nWebsite: https://ambient.data-imaginist.com/index.html (R package ambient)\nGithub:\n\nAntonio Sánchez Chinchón:\n\nWebsite: https://fronkonstin.com\nGithub: https://github.com/aschinchon/abstractions\n\nDanielle Navarro’s Generative Art:\n\nWebsite: https://art-from-code.netlify.app\nGithub: https://github.com/arvindvenkatadri/art-from-code (forked by me)\nWebsite: https://art-from-code.netlify.app\n\nClaus Wilke:\n\nWebsite: https://clauswilke.com/art/\n\nGenerative Art by Katharina Brunner:\n\nGithub:https://github.com/cutterkom/generativeart\nWebpage:https://katharinabrunner.de/generativeart/\n\nWilliam Chase:\n\nWebsite: https://www.williamrchase.com/\nGithub: https://github.com/will-r-chase\nBlog Posts: https://www.williamrchase.com/writing/\n\nhttps://buttondown.email/willchase/archive/the-generative-art-dataviz-spectrum/\nhttps://www.williamrchase.com/post/strange-attractors-12-months-of-art-february/\nhttps://www.williamrchase.com/writing/2019-09-30-flow-fields-12-months-of-art-september/\nhttps://www.williamrchase.com/writing/2019-08-30-12-months-of-art-august/\nPoisson Disc sampling https://www.williamrchase.com/writing/2019-07-29-textues-and-geometric-shapes-12-months-of-art-july/ and the poissoned R package by @coolbutuseless\n\n\nMarcus Volz:\n\nWebsite: https://marcusvolz.com\nGithub: https://github.com/marcusvolz\n\nhttps://generative.substack.com/p/generative-art-and-r\nGenerative Art. https://paulvanderlaken.com/2020/05/02/generative-art-computer-design-painting/\nR-tistry with ggplot: https://www.bigbookofr.com/art.html#thinking-outside-the-grid---a-bare-bones-intro-to-rtistry-concepts-in-r-using-ggplot\nhttps://www.rforscience.com/scientific-computing.html\n\n\n\nDeep Learning and AI\n\nPractical Deep Learning for Coders. https://course.fast.ai/\nMichael Nielsen. http://neuralnetworksanddeeplearning.com/index.html\nIan Goodfellow and Yoshua Bengio and Aaron Courville. Deep Learning Book. https://www.deeplearningbook.org/\nDive into Deep Learning. Interactive deep learning book with code, math, and discussions. Implemented with PyTorch, NumPy/MXNet, JAX, and TensorFlowUsing Other Tools. https://www.d2l.ai/index.html\nSimon Scardapane. Alice’s Adventures in Differentiable Wonderland. https://www.sscardapane.it/assets/alice/Alice_book_volume_1.pdf\nFrançois Fleuret. The Little Book of Deep Learning. https://fleuret.org/public/lbdl.pdf\nFrank Rosenblatt. Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms. https://gwern.net/doc/ai/nn/1962-rosenblatt-principlesofneurodynamics.pdf\nWarren S. McCulloch, Walter Pitts (1943). A Logical Calculus of the Ideas of Immanent in Nervous Activity. BULLETIN OF MATHEMATICAL BIOPHYSICS VOLUME 5, 1943. &lt;https://www.aemea.org/math/McCulloch_Pitts_1943.pdfhttps://www.aemea.org/math/McCulloch_Pitts_1943.pdf\n\n\n\nOther Tools\n\nhttps://generatecoll.medium.com/how-i-used-excel-to-create-abstract-album-artwork-fee740d4414f\nRandom Digital Beauty. https://anaselk.com/p/generative-r/\nMaking Explanations (tools): https://explorabl.es/tools/\nUsing p5 in R. Yeah. https://alistaire.rbind.io/blog/p5-in-r/\ncreateCanvas Podcast. https://soundcloud.com/processingfoundation\nhttps://processingfoundation.org/education\nhttps://nannou.cc\nhttps://openframeworks.cc/\nhttps://libcinder.org\nSophia Crespo: (makes speculative biological creatures using neural networks)\n\nWebsite: https://sofiacrespo.com/\nWebsite: https://entangledothers.studio/\nGithub:\n\nR for Scientific Visualization. https://www.rforscience.com/visualisation.html\nR for Scientific Computing. https://www.rforscience.com/scientific-computing.html",
+    "crumbs": [
+      "Math Models for Creative Coders"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/listing.html#other-interesting-websites-and-works",
+    "href": "content/courses/MathModelsDesign/listing.html#other-interesting-websites-and-works",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "Other Interesting Websites and Works",
+    "text": "Other Interesting Websites and Works\n\nThe Book of Shaders by Patricio Gonzalez Vivo and Jen Lowe. https://thebookofshaders.com/\nScott Murray’s D3 Art page: https://scottmurray.org/\nInigo Quilez, Digital Artist: https://iquilezles.org/ (ShaderToy, GraphToy, and MadeThisThing)\nReddit Generative Art Forum. https://www.reddit.com/r/generative/\nAI tools for Journalists. https://journaliststoolbox.ai/ A vast list of tools for every purpose you can think of.",
+    "crumbs": [
+      "Math Models for Creative Coders"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/listing.html#creative-coding-courses-elsewhere",
+    "href": "content/courses/MathModelsDesign/listing.html#creative-coding-courses-elsewhere",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "Creative Coding Courses Elsewhere",
+    "text": "Creative Coding Courses Elsewhere\n\nAllison Parrish. https://creative-coding.decontextualize.com\nMatthew Bardin. https://pdm.lsupathways.org\nTim Cortina at Carnegie Mellon Univ2. https://www.cs.cmu.edu/~tcortina/15104-f20/lectures/",
+    "crumbs": [
+      "Math Models for Creative Coders"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathModelsDesign/listing.html#learning-modules",
+    "href": "content/courses/MathModelsDesign/listing.html#learning-modules",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "Learning Modules",
+    "text": "Learning Modules",
+    "crumbs": [
+      "Math Models for Creative Coders"
+    ]
+  },
+  {
+    "objectID": "content/courses/listing.html",
+    "href": "content/courses/listing.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "Here are the courses that I teach:\n\n\n\n\n\n\n\n\n\n\n \n\n\n\nTitle\n\n\n\nSubtitle\n\n\n\nDate\n\n\n\n\n\n\n\n\n\n\n\nUsing matters of Life and Death Math and Code to Create Novel Experiences\n\n\n \n\n\nDec 31, 2022\n\n\n\n\n\n\nNo matching items\n Back to top"
   },
   {
     "objectID": "content/courses/MathModelsDesign/Modules/35-Media/10-FourierSeries/index.html",
