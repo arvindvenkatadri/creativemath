@@ -4,3 +4,8 @@ scales
 ggridges
 ggformula
 matlib
+ggiraph
+armadillo4r
+RcppArmadillo
+RcppEigen
+reticulate

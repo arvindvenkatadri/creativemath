@@ -1,0 +1,23 @@
+---
+title: "Filters"
+order: 30
+date: 11/Dec/2025
+date-modified: " `r Sys.Date()` "
+
+---
+
+```{r}
+#| label: setup
+#| echo: false
+
+library(gsignal)
+library(ggdiagram)
+```
+
+
+
+
+## References
+
+1. <https://ccrma.stanford.edu/~jos/filters/> 
+

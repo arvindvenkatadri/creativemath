@@ -4,15 +4,15 @@ subtitle: ""
 date: '2025-03-05'
 order: 20
 listing:
-  type: grid
+  type: table
   sort: "order"
   sort-ui: false
   filter-ui: false
-  contents: "Modules/*/*.qmd"
+  contents: "*/*.qmd"
   fields: [title,reading-time]
   table-striped: true
   table-hover: true
   categories: numbered
-draft: false
+
 ---
 

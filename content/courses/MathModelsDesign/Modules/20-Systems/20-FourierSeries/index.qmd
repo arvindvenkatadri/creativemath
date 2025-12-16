@@ -1,0 +1,443 @@
+---
+title: Fourier Series and Fourier Transform
+subtitle: ""
+subject: "Shapes, Code, and Sound"
+abstract: ""
+date: 02/May/2024
+date-modified: "`r Sys.Date()`"
+order: 20
+categories:
+- Euler Formula
+- Fourier Series
+- Harmonics
+bibliography: 
+  - grateful-refs.bib
+citation: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+library(blogdown)
+library(tidyverse)
+library(ggformula)
+library(mosaicCalc) # Analytic Calculus
+library(ambient) # Noise generation in R
+library(plot3D) # 3D plots for explanation
+library(rgl) # Interactive 3D plots for explanation
+library(plotly)
+knitr::knit_hooks$set(webgl = hook_webgl)
+#library(caracas)
+library(downloadthis)
+library(knitr)
+library(kableExtra)
+## Markdown boiler plate stuff!!
+# ![An Elephant](elephant.png){#fig-elephant}
+# This is illustrated well by @fig-elephant.
+# 
+# ### Figure Panel Divs
+#     ::: {#fig-elephants layout-ncol=2}
+#     ![Surus](surus.png){#fig-surus}
+#     ![Hanno](hanno.png){#fig-hanno}
+#      Famous Elephants
+#     :::
+#     Adding download buttons
+#     data that has been read in
+#     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
+#    existing file
+#    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
+
+```
+
+```{r}
+#| label: Extra Pedagogical Packages
+#| echo: false
+#| message: false
+
+library(checkdown)
+library(epoxy)
+library(grateful)
+library(MKdescr)
+library(shinylive) # To create a Shiny app in a Quarto HTML doc
+# Will not work if webr is also used in the SAME Quarto doc!
+library(sysfonts)
+library(gfonts)
+library(kableExtra)
+# library(conflicted)
+# conflicted::conflicts_prefer(dplyr::filter, dplyr::count, dplyr::last, dplyr::glimpse, base::max)
+library(downloadthis)
+#devtools::install_github("mccarthy-m-g/embedr")
+library(embedr) # Embed multimedia in HTML files
+```
+
+
+```{r}
+#| label: plot-theme-ggplot4
+#| cache: false
+#| echo: false
+#| messages: false
+#| warning: false
+#| 
+library(systemfonts)
+library(showtext)
+library(marquee)
+library(ggtext)
+library(ggrepel)
+## Clean the slate
+systemfonts::clear_local_fonts()
+systemfonts::clear_registry()
+##
+showtext_opts(dpi = 96) #set DPI for showtext
+sysfonts::font_add(family = "Alegreya",
+  regular = "../../../../../../fonts/Alegreya-Regular.ttf",
+  bold = "../../../../../../fonts/Alegreya-Bold.ttf",
+  italic = "../../../../../../fonts/Alegreya-Italic.ttf",
+  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf")
+
+sysfonts::font_add(family = "Roboto Condensed", 
+  regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
+  bold = "../../../../../../fonts/RobotoCondensed-Bold.ttf",
+  italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
+  bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
+showtext_auto(enable = TRUE) #enable showtext
+##
+theme_custom <- function(){ 
+
+    theme_bw(base_size = 10) + 
+    
+    # theme(panel.widths = unit(11, "cm"), 
+    #       panel.heights = unit(6.79, "cm")) + # Golden Ratio
+    
+    theme(plot.margin = margin_auto(t = 1, r = 2, b = 1, l = 1, unit = "cm"),
+          plot.background = element_rect(fill = "bisque",
+                                         colour = "black",
+                                         linewidth = 1)) + 
+            
+    theme_sub_axis(title = element_text(family = "Roboto Condensed", 
+                                       size = 10),
+                   text = element_text(family = "Roboto Condensed", 
+                                       size = 8)) + 
+    
+    theme_sub_legend(text = element_text(family = "Roboto Condensed", 
+                                         size = 6),
+                     title = element_text(family = "Alegreya", 
+                                          size = 8)) + 
+    
+    theme_sub_plot(title = element_text(family = "Alegreya", 
+                                        size = 14, face = "bold"),
+                   title.position = "plot",
+                   subtitle = element_text(family = "Alegreya", 
+                                           size = 10),
+                   caption = element_text(family = "Alegreya", 
+                                          size = 6),
+                   caption.position = "plot") 
+    
+}
+
+## Use available fonts in ggplot text geoms too!
+ggplot2::update_geom_defaults(geom = "text", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "label", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+
+ggplot2::update_geom_defaults(geom = "marquee", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "text_repel", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "label_repel", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+
+## Set the theme
+ggplot2::theme_set(new = theme_custom())
+
+## tinytable options
+options("tinytable_tt_digits" = 2)
+options("tinytable_format_num_fmt" = "significant_cell")
+options(tinytable_html_mathjax = TRUE)
+
+
+## Set defaults for flextable
+flextable::set_flextable_defaults(font.family = "Roboto Condensed")
+
+```
+
+
+## Introduction
+
+Can [Circles](../../25-Geometry/10-Circles/index.qmd) do more for us than draw these lovely patterns? Can they give us an *alphabet*, a universal way of generating and representing many forms of interest? Can we treat them like a bunch of kitchen ingredients, that we throw into a recipe to conjure up new dishes that look different?
+
+
+## {{< iconify icons8 idea >}} Inspiration
+
+Take a look at these paintings:
+
+<centre> <iframe 
+width = 600 height = 600
+src="https://editor.p5js.org/arvindv/full/OKJD6E7qL">
+</iframe>
+</centre> 
+
+Also see:
+<https://x.com/jagarikin/status/962449509782495232>
+
+## What is the Fourier Series?
+
+::: callout-important
+A Fourier Series is a way of composing/decomposing a continuous complex waveform into a set of harmonically related sine Oscillations, which are summed up to create the original waveform.
+:::
+
+In [Circles](../../25-Geometry/10-Circles/index.qmd), we saw how we could make symmetric patterns from rotating circles. We did not have a pattern in mind, except for the symmetry order. So, when we *chose* number of circles $M$ and their complex amplitudes $a_j$, $j={1..M}$ relying on our (hopefully growing) intuition, we could systematically generate symmetric patterns based on the idea of rolling circles. By trial and error, we can design both the value of $M$ and the values for $a_j$, $j={1..M}$. So far, so good.
+
+But how about the other way around? What if we had a **pattern** in mind,
+and wanted to compute the circles, their number and amplitudes, that
+would generate that pattern? This is where the Fourier Series comes in.
+
+The best way to form this intuition is to play some of the **Wave Game** that is available on the [University of Colorado PHET Simulations website](https://phet.colorado.edu): 
+
+::: {.column-page-inset-right}
+<iframe src="https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_en.html"
+        width="800"
+        height="600"
+        allowfullscreen>
+</iframe>
+:::
+
+## Rolling Circles and the Fourier Series
+
+By sliding the amplitudes of various sine Oscillators (whose number you could choose), you were hopefully able to visually create a waveform that looked very close the one on the screen. This was a way of doing ***waveform synthesis***. How did you know, visually speaking, how to set the amplitude?
+
+A. **Correlation of Time waveforms**: We adjusted the slider on each sine wave when the selected sine Oscillation that you were manipulating had the ***best possible correlation*** with the target waveform!! But how does this correlation work here, with *waveforms*, instead of data variables? 
+
+We all know what [Pearson Correlations](https://madhatterguide.netlify.app/content/courses/analytics/10-descriptive/modules/30-change/#pearson-correlation-coefficient) are: we take the *product* of two (scaled and centered) quantitative variables, value by value, and take the average of these products. With waveforms, we can intuitively do the same thing to determine the **coefficient** of each *component*  of the Fourier Series:
+
+$$
+Fourier~coeff~for~sin(\omega_c*t) = \\
+$$
+$$
+\begin{align*} 
+\\&= Average\Big(sin(\omega_c*t) \times target.waveform\Big)\\
+\\&= \frac{1}{Waveform~Period} * \displaystyle{\int}_{0}^{Waveform~Period} sin(\omega_c*t) \times target.waveform * dt
+\end{align*} 
+$${#eq-fourier-coeff-intuitive}
+
+OK, but how does one make use of these *time-waveform correlations*? By using many of them!
+
+B. **Orthogonal Waveforms**: We need one more concept here: that of an "orthogonal family of waveforms": these are waveforms whose mutual correlations, as defined above, are zero! But which are these? Our good old sine and cosine waves!!
+
+When we take sine/cosine waves whose frequencies are **integer multiples** of some base frequency, then **all** such waveforms are orthogonal. 
+
+$$
+\frac{1}{Waveform~Period} * \int sin(m*\omega_c*t) \times sin(n*\omega_c*t)* dt = 0\\
+$$
+$$
+\text{where m and n are multiples of some base frequency}
+$${#eq-orthogonal-functions}
+
+
+C: **"Base Frequency"**: So what is this [base frequency]{.bg-gold .black} we have been assuming? It is determined by the target waveform:
+
+$$
+Base~ Frequency = \frac{1}{Period~of~Target~Waveform}
+$${#eq-base-frequency}
+
+::: callout-note
+### Arvind V on Quora
+For more on Orthogonality, see here: <https://qr.ae/pATe4W>
+:::
+
+
+## How does the Fourier Series Compute?
+
+So now we are ready to define the steps in computing the Fourier Series:
+
+1. Compute the `base-time-period` $T$ of the target waveform, and calculate the `base frequency` $f_c = \frac{1}{T}$ using @eq-base-frequency.
+
+1. Take say $M$ integer multiples of this `base frequency` ($n = 1.....M$) and create sine/cosine waves with these. These are called ***harmonics***. 
+
+1. Compute the *correlations* of each harmonic with the target waveform, as indicated in @eq-fourier-coeff-intuitive. These are the coefficients (i.e. amplitudes) for each of these harmonics. Let's call these $corr(i)$ for the $i^{th}$ harmonic.
+
+1. Write the Fourier Series for the target waveform as:
+
+$$
+target~waveform \sim \sum_{i=1}^{M} corr(i) \times sin/cos(2\pi*i*f_c*t)
+$$
+
+
+
+
+
+## Videos
+
+Let us now hear from Dan Schiffman, and also from 3Blue1Brown!
+
+{{< video https://youtu.be/Mm2eYfj0SgA >}}
+<br>
+{{< video https://youtu.be/r6sGWTCMz2k >}}
+
+## Fourier Series in Code
+
+How if we just enter a series of numbers, ***representing our waveform***, or pick up sounds off the micrphone, and then make up a Fourier Series for that? We will use pretty much the techique used in creating the rolling circles for the drawing that we saw at first. 
+
+::: {.panel-tabset .nav-pills style="background: whitesmoke; "}
+
+### {{< iconify skill-icons p5js >}} p5.js
+
+### {{< iconify la r-project >}} R
+
+
+:::
+
+
+## And what of the Fourier **Transform**?
+
+In short layman's terms, a Fourier Transform is what we compute when our waveform is **not periodic**. Since the input waveform **is** aperiodic, or has **infinite period** effectively, the base frequency $f_c$ becomes infinitesimally small, and the harmonics become a **continuous spectrum** of frequencies.
+
+How should we understand the two?
+
+### An Analogy
+
+An analogy may help here: Recall [this discussion on Frequency Density Plots](https://madhatterguide.netlify.app/content/courses/analytics/10-descriptive/modules/26-distributions/#what-is-a-density-plot). There we said that a Frequency Density Plot was like a Histogram with infinitely small frequency bins. In a similar fashion, we could say that a Fourier Transform is a Fourier Series with "infinitely small bins", and hence is a **continuous function** of frequency and not discrete like the Fourier Series.
+
+Let us examine this analogy in detail
+
+#### Histogram (Discrete, Sampled View):
+
+A histogram takes a continuous dataset (e.g., the heights of thousands of people). It divides this data into discrete bins (e.g., 150-155cm, 155-160cm, etc.).  It then counts how many data points fall into each bin. This results in a bar chart showing discrete counts in discrete intervals. It's a discrete representation of a continuous dataset.
+
+#### Density Plot (Continuous View):
+
+A density plot is a smoother, continuous version of a histogram.
+It uses the same binning concept (or kernel smoothing) but aims to represent the underlying probability density function of the continuous data. The height of the density plot at any point represents the density of data points around that value, providing a continuous curve that describes the distribution much more smoothly and informatively than the discrete counts of a histogram.
+
+#### Fourier Series (Discrete, Sampled View):
+
+The Fourier Series represents periodic signals.
+It decomposes the periodic signal into a discrete sum of sine and cosine waves (the Fourier basis functions).
+It calculates discrete coefficients for these specific frequencies (the fundamental frequency and its harmonics).
+This results in a discrete set of amplitudes and phases for discrete frequencies. It's a sampled view of the frequency content, specifically tailored for periodic signals.
+
+#### Fourier Transform (Continuous View):
+
+The Fourier Transform generalizes the Fourier Series to represent any signal, including non-periodic ones.
+It decomposes the signal into a continuous spectrum of frequencies.
+It calculates a continuous function describing the amplitude and phase contribution of every possible frequency in the signal continuum.
+This provides a continuous, infinitely detailed view of the frequency content, analogous to the density plot revealing the true underlying distribution rather than just discrete counts.
+The Similarity:
+
+#### Discrete to Continuous
+
+Both pairs involve a transformation from a discrete, sampled, or finite view to a continuous, infinite-resolution view.
+Nature of the Input: Both transformations start with something that, in its basic form, involves discrete elements (bins in a histogram, coefficients in a Fourier Series) representing underlying continuous phenomena (the data distribution, the signal).
+
+Both aim to provide a more complete, detailed, and often smoother representation of the underlying continuous quantity being analyzed (the data distribution or the signal's frequency content).
+
+
+The analogy between **histograms and density plots** and between **Fourier Series and the Fourier Transform** captures the fundamental idea that a Fourier Series provides a discrete "histogram" of frequency content for periodic signals, while the Fourier Transform provides the continuous "density plot" of frequency content for general (aperiodic) signals.
+
+::: callout-tip
+### Fourier Transform Analogy
+$$
+Histogram \sim Frequency~Density <=> Fourier~Series \sim Fourier~Transform
+$$
+:::
+
+What is done in practice is the take the sample *aperiodic* input waveform and pretend that we can **repeat it** over and over again. Then we compute the Fourier Transform in a similar way as the Fourier Series, using a fine **comb** of sine/cosines: anything between 64 to 2048 is not uncommon. 
+
+
+## {{< iconify mingcute thought-line >}} Wait, But Why?
+
+- The (infinite) set of sines and cosines are a waveform `alphabet`.
+- We can decompose any periodic continuous waveform using this alphabet. 
+- The set of sines/consines in the alphabet are integer multiples of a fundamental frequency.
+- How are their amplitudes calculated? By taking a **correlation** between the original waveform and the given sine/cosine wave from the alphabet (unit amplitude)
+- How is this accurate? By minimizing a "least square error" between the original waveform and the sum of sinusoids. 
+
+
+## {{< iconify ooui references-ltr >}} References
+
+1. Jez Swanson. *An Interactive Introduction to Fourier Transforms*
+<https://www.jezzamon.com/fourier/index.html>
+1.  Alex Miller. (2018). *Fourier Series and Spinning Circles*. <https://alex.miller.im/posts/fourier-series-spinning-circles-visualization/>
+1. Better Explained. *An Interactive Guide to the Fourier Transform*. <http://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/>
+1. Aatish Bhatia (November 6, 2013). The Math Trick Behind MP3s, JPEGs, and Homer Simpson’s Face. <https://nautil.us/the-math-trick-behind-mp3s-jpegs-and-homer-simpsons-face-234629/>
+
+
+## Resources
+
+1.  <https://mathlets.org/mathlets/fourier-coefficients/>
+2.  Working with Audio in `p5.js`.
+    <https://pdm.lsupathways.org/3_audio/>
+3.  Violet Whitney. (Sep 28, 2023) *Sounds: Working with sounds and
+    speech in P5.js*.
+    <https://medium.spatialpixel.com/sounds-bd05429aba38>
+4.  Mister Bomb. *p5.Sound project tutorials*.
+    <https://www.youtube.com/playlist?list=PLIsdHp2z9wFl7A1wWb2VmQUUojEGsKELE>
+5.  <https://musiclab.chromeexperiments.com/oscillators>
+6.  <https://www.electronicbeats.net/the-feed/excel-drum-machine/>
+7.  <https://junshern.github.io/algorithmic-music-tutorial/>
+8.  <https://blackwhiskercult.com/visual-music-in-p5-js-i/>
+9. Jason Sigal.*Visualizing Music with p5.js* <https://therewasaguy.github.io/p5-music-viz/>
+10. Doga Kurkcuoglu. <https://bilimneguzellan.net/en/?s=Fourier>
+11. <https://ccrma.stanford.edu/~jos/mdft/>
+
+
+### Other tools to explore
+
+1.  Strudel REPL <https://strudel.cc>
+2.  Introducing Jukebox, a neural net that generates music, including
+    rudimentary singing, as raw audio in a variety of genres and artist
+    styles. We're releasing a tool for everyone to explore the generated
+    samples, as well as the model and code:
+    <https://openai.com/index/jukebox/> (OpenAI, April 30,
+    2020,via Twitter https://twitter.com/OpenAI)
+3.  <https://algorithmicpattern.org/2023/05/15/strudel-live-coding-patterns-on-the-web/>
+4.  <https://betterexplained.com/articles/vector-calculus-understanding-the-dot-product/>
+5.  Freesound: Find Any Sound you Like. <https://freesound.org>
+6.  WebSpeech API.
+    <https://developer.chrome.com/blog/voice-driven-web-apps-introduction-to-the-web-speech-api/>
+7.  <https://dogbotic.com>
+8. <https://gjmvanboxtel.r-universe.dev/gsignal>
+
+
+::: {#refs style="font-size: 60%;"}
+###### {{< iconify lucide package-check >}} R Package Citations
+
+```{r}
+#| echo: false
+#scan_packages()
+cite_packages(
+  output = "table",
+  out.dir = ".",
+  out.format = "html",
+  pkgs = c("ambient", "mosaicCalc", "gsignal")
+) %>%
+  knitr::kable(format = "simple")
+
+```
+:::

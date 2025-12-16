@@ -1,0 +1,19 @@
+{
+  "hash": "4ebc8e74f34c5710a4384ef00adf1ddd",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Frequency and Time Domains\"\norder: 10\ndate: 11/Dec/2025\ndate-modified: \" 2025-12-15 \"\n---\n\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell messages='false'}\n\n:::\n\n\n## Introduction\n\nWe have seen what is the `amplitude` and `period` of a waveform or signal. \n\nNow, there is more than one way of looking at  waveform. Depending upon the problem of interest (more shortly), we can look at the signal in two main ways:\n\n- Amplitude vs Time\n- Amplitude vs Frequency\n\nThese two ways of looking at the same signal are called the **Time Domain** and the **Frequency Domain** representations of the signal.\n\n## Time Domain\n\n::: {.panel-tabset .nav-pills style=\"background: whitesmoke; \"}\n\n### {{< iconify skill-icons p5js >}} p5.js\n\n### {{< iconify la r-project >}} R\n\n\n:::\n\n\n## Frequency Domain\n\n::: {.panel-tabset .nav-pills style=\"background: whitesmoke; \"}\n\n### {{< iconify skill-icons p5js >}} p5.js\n\n### {{< iconify la r-project >}} R\n\n\n:::\n\n\n## How are these Useful?\n\n\n\n## Your Turn\n\n\n\n## {{< iconify mingcute thought-line >}} Wait, But Why?\n\n\n\n## {{< iconify fluent-mdl2 decision-solid >}} Conclusion\n\n\n\n## {{< iconify ooui references-ltr >}} References\n\n1. \n\n\n::: {#refs style=\"font-size: 60%;\"}\n###### {{< iconify lucide package-check >}} R Package Citations\n\n\n::: {.cell}\n::: {.cell-output-display}\n\n\nPackage     Version   Citation   \n----------  --------  -----------\nggformula   1.0.0     @ggformula \n\n\n:::\n:::\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

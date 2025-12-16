@@ -1,0 +1,19 @@
+{
+  "hash": "ec36afffa7334de56b4e548dd736c375",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: <iconify-icon icon=\"ph:circles-three-fill\" width=\"1.2em\" height=\"1.2em\"></iconify-icon> <iconify-icon icon=\"gravity-ui:function\" width=\"1.2em\" height=\"1.2em\"></iconify-icon> Dancing With Newton\nabstract: \"\"\ndate: 07/Feb/2025\ndate-modified: \"2025-12-11\"\norder: 10\ncode-fold: true\ncategories:\n- mechanics\ncitation: true\neditor: \n  markdown: \n    wrap: 72\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Introduction\n\nWhat do we recall from our school-time encounter with Newtonian Physics?\n\nWe have several aspects to movement, e.g.:\n\n- position\n- velocity\n- acceleration\n- rotation\n- oscillation\n- friction\n- precession\n\nAnd here are some more terms from the spacecraft/rocket science domain:\n\n- roll\n- pitch\n- yaw\n- jerk\n\nAnything else?\n\nWe need to think of a way in which these aspects can be modelled and coded to suit our creative needs. Let us define these terms once again, so that we know what we are talking about!\n\n### Position\n::: callout-note\nWhere an object is, say in {x,y} coordinates.\n:::\n\nIn `p5.js` we can create the coordinates of an object separately, as `x` and `y`, OR create a `p5.Vector` ***object*** that can manipulate both coordinates together.\n\nWhy would we manipulate coordinates? Because we want things to move! Movement is manipulation of `position`. \n\n\n### Velocity\n::: callout-note\n### Velocity\nRate of change of distance travelled. So $velocity \\sim distance/time$. We can have movement in the `x` or `y` direction independently, or both movements can be simultaneous ( but not necessarily equal!) using the `p5.Vector` objects. \n:::\n\nHow do we model this in code? `p5.js` has a `FrameRate` (60 frames/second. Check this!!); this is the rate at which the code computes and refreshes the display. We can take individual `x` and `y` positions and add something to them each frame, causing the object to move. \nIf the object is a `p5.Vector` object, we manipulate these coordinates using *Vector arithmetic*, which we will peep into shortly. \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -46,8 +46,8 @@ become reality!
 
 ## References
 
-1.  [Course Abstract written by Arnold
-    Schwarzenegger.](../../materials/pdfs/MathExperiments-Abstract.pdf)
+1.  [Course Abstract written by Arnold Schwarzenegger.](../../materials/pdfs/MathExperiments-Abstract.pdf).
+1.  [And how?](https://californiaglobe.com/fr/the-story-of-arnold-schwarzeneggers-infamous-hidden-expletive-veto/)
 
 ### General
 
@@ -59,8 +59,8 @@ become reality!
     <https://programmingdesignsystems.com>. A free digital book that
     teaches a practical introduction to the new foundations of graphic
     design.
-4.  Colah's ( not ~~Kolha's~~ 🦊 ) Blog.
-    [https://colah.github.io/https://colah.github.io/](https://colah.github.io/)
+4.  Colah's ( not [~~Kolha's~~🦊, you dear Marathi pests!](https://kolhapur.gov.in/en/about-district/) ) Blog.
+    <https://colah.github.io/>
 
 ### p5.js, p5play.js, q5.js, and Processing
 

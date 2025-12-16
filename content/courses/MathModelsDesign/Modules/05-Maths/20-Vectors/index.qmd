@@ -1,5 +1,5 @@
 ---
-title: <iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors
+title: <iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors
 subtitle: ""
 subject: "Shapes and Code"
 abstract: ""

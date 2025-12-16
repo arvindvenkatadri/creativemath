@@ -1,18 +1,18 @@
 ---
-title: "Math Concepts"
+title: "Basic Math Concepts"
 subtitle: "Dinner with Euler and Gauss"
 date: '2025-02-06'
 order: 05
 listing:
-  type: grid
+  type: table
   sort: "order"
   sort-ui: false
   filter-ui: false
-  contents: "Modules/*/*.qmd"
+  contents: "*/*.qmd"
   fields: [title,reading-time]
   table-striped: true
   table-hover: true
   categories: numbered
-draft: false
+
 ---
 

@@ -1,0 +1,34 @@
+---
+title: "A Sound Glossary"
+date: 10/Dec/2025
+date-modified: "`r Sys.Date()`"
+---
+
+```{r}
+#| label: setup
+```
+
+## {{< iconify mingcute thought-line >}} A Sound Vocabulary
+
+Some terms will show up repeatedly in our work and we should be clear what they mean:
+
+1. `Oscillation`: Any periodic change in amplitude. <https://natureofcode.com/oscillation/>
+1. `Sinusoid`: A Sine Wave Oscillation, created typically with `p5.Oscillator`
+1. `Waveform/Signal`: A graph of amplitude vs time
+1. `Frequency`: The rate of the oscillation, in cycles per second. Look for a repeating pattern, and measure its time period. $1/time.period$ will give you `frequency` in Hertz(Hz)
+1. `Amplitude`: The height, or scaling factor of the oscillation. Often measured in `dB`. Easiest to decipher for a simple repeating pattern like `sine`, `square`, or `triangle`.
+1. `Phase`: The instantaneous angle-position of a rotating vector which generates the wave: Remember the [Euler's Formula](../../25-Geometry/10-Circles/index.qmd#how-about-the-euler-formula). Also the instantaneous angle-value of a repeating wave at a certain amplitude.
+1. `Periodic/Aperiodic`: A `waveform` whose amplitude repeats at a fixed period T is called a `periodic` waveform. Else, `aperiodic`.
+1. `Harmonic`: A (usually) Sine `Oscillation` that is at some integer multiple frequency of a reference Sine Oscillation. 2X = `octave`; 10X = `decade`.
+1. `Attenuation`: Reduction in `amplitude` of a `waveform`, usually as result of `filter`-ing. Measured in dBs. 
+1. `Transient`: TBW
+1. `Alias`: TBW
+1. `Nyquist Frequency`: TBW
+1. `Sampling Rate`: TBW
+1. `Low Pass`: TBW
+1. `High Pass`: TBW
+1. `Band Pass`: TBW
+1. `Notch Filter`: TBW
+1. `Transient`: TBW
+1. `In-harmonic`: TBW
+1. `Partials`: TBW

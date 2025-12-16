@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.11">
+<meta name="generator" content="quarto-1.9.8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2025-04-15">
-<title>What is Convolution? – Applied Math for Creative Coders</title>
+<title>Convolution – Applied Math for Creative Coders</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,6 +17,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -46,6 +81,8 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../../../">
+<link href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" rel="next">
+<link href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html" rel="prev">
 <link href="../../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
 <script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -54,10 +91,10 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-2b6495f7ddc21fa4b617d4bbc77b8bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-9afb2adbe3790f1849c32ba3c79c48e4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-e6dac8aaac713c61faa44fb322424151.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-64fddea93c8694cc59b800d1960a76cc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -117,13 +154,13 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<meta property="og:title" content="What is Convolution? – Applied Math for Creative Coders">
+<meta property="og:title" content="Convolution – Applied Math for Creative Coders">
 <meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
 <meta property="og:image" content="https://mathforcoders.netlify.app/content/materials/images/Convolution.drawio.png">
 <meta property="og:site_name" content="Applied Math for Creative Coders">
 <meta property="og:image:height" content="505">
 <meta property="og:image:width" content="699">
-<meta name="twitter:title" content="What is Convolution? – Applied Math for Creative Coders">
+<meta name="twitter:title" content="Convolution – Applied Math for Creative Coders">
 <meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
 <meta name="twitter:image" content="https://mathforcoders.netlify.app/content/materials/images/Convolution.drawio.png">
 <meta name="twitter:image-height" content="505">
@@ -179,7 +216,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">What is Convolution?</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html">Convolution</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -190,7 +227,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../../../../../index.html" class="sidebar-logo-link">
-      <img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -210,45 +247,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Maths Basics</span></a>
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tech</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matrix Algebra Whirlwind Tour</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
- <span class="menu-text">content/courses/MathModelsDesign/Modules/05-Maths/70-MultiDimensionGeometry/index.qmd</span>
-  </li>
-      </ul>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tech</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html" class="sidebar-item-text sidebar-link">
@@ -277,13 +282,83 @@ window.Quarto = {
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geometry</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maths</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/10-Complex/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Complex Numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Matrix Algebra Whirlwind Tour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Frequency and Time Domains</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fourier Series and Fourier Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filters</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Convolution</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geometry</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html" class="sidebar-item-text sidebar-link">
@@ -304,8 +379,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Iterated Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Affine Transformation Fractals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/44-ChaosGames/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Chaos Games</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -326,32 +413,35 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/listing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Media</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/10-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Series</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/12-AdditiveSynth/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Additive Sound Synthesis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/20-MakingNoise/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> FM based Sound Synthesis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">content/courses/MathModelsDesign/Modules/35-Media/65-GrainSynth/index.qmd</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/70-MakingNoise/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><iconify-icon icon="arcticons:noise-reducer" width="1.2em" height="1.2em"></iconify-icon> Making Noise Predictably</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/100-KarplusStrong/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Karplus-Strong Guitar Algorithm</span></a>
   </div>
 </li>
@@ -361,11 +451,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/listing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html" class="sidebar-item-text sidebar-link">
@@ -402,11 +492,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
@@ -426,14 +516,15 @@ window.Quarto = {
    
   <ul>
 <li><a href="#inspiration" id="toc-inspiration" class="nav-link active" data-scroll-target="#inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
+  <li><a href="#a-wedding-lunch-metaphor" id="toc-a-wedding-lunch-metaphor" class="nav-link" data-scroll-target="#a-wedding-lunch-metaphor">A Wedding Lunch Metaphor</a></li>
   <li><a href="#convolution-in-code" id="toc-convolution-in-code" class="nav-link" data-scroll-target="#convolution-in-code">Convolution in Code</a></li>
   <li><a href="#wait-but-why" id="toc-wait-but-why" class="nav-link" data-scroll-target="#wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">What is Convolution?</h1>
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html">Convolution</a></li></ol></nav><div class="quarto-title">
+<h1 class="title">Convolution</h1>
 </div>
 
 
@@ -451,7 +542,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 19, 2025</p>
+      <p class="date-modified">December 16, 2025</p>
     </div>
   </div>
     
@@ -461,7 +552,7 @@ window.Quarto = {
 
 </header><section id="inspiration" class="level2"><h2 class="anchored" data-anchor-id="inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
-<p>Consider that you live in a high rise apartment complex. Have you heard an ambulance go by? How does the sound of the siren change as the ambulance approaches towards your dwelling and then goes past it to get lost amidst the surrounding buildings again?</p>
+<p>Consider that you live in a high rise apartment complex. Did you hear that ambulance go by? How did the sound of the siren change as the ambulance approached towards your dwelling and then went past it to get lost amidst the surrounding buildings again?</p>
 <p>The siren’s <strong>emitted</strong> sound is always the <strong>same</strong>. It is the local surroundings and the <em>geometry of the echoes</em> that brings the <strong>same</strong> sound to your ears again and again, but in altered/weighted form. The sound from the ambulance goes all around, hits on or other of the buildings, reflects, and comes back to your ears <strong>after a delay</strong> and <strong>weighted</strong> by the <em>strength</em> of the echo geometry.</p>
 <p>What you hear is the <strong><em>overlapping</em></strong> of multiple, weighted copies of the sound emitted by the ambulance. As long as you have direct, i.e.&nbsp;non-reflected path from the ambulance to your ears, the echoes are <em>relatively subdued</em>. Once the vehicle gets right into your building complex and you lose the direct line-of-sight path, the echoes take over and the sound becomes a very confused mass that is barely recognizable.</p>
 <section id="what-is-convolution" class="level4"><h4 class="anchored" data-anchor-id="what-is-convolution">What is Convolution?</h4>
@@ -476,7 +567,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The free-space medium plus the buildings and other things that reflect sound in our environment, are called the “Channel”. The channel ascts as a conduit between a source (transmitter) and a receiver.</p>
+<p>The free-space medium plus the buildings and other things that reflect sound in our environment, are called the “Channel”. The channel acts as a conduit between a source (transmitter) and a receiver.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -492,7 +583,19 @@ window.Quarto = {
 <p>The geometry of the echoes that connect transmitter to receiver, including the bounces of the walls, the resulting path-delays, and weighting are together denoted as the <strong>impulse response</strong> of the <em>channel</em>. This is what the <em>channel</em> would put out at the receiver if the source transmitter were to emit a very-short-duration signal, like the squeak of a mouse.</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Impulse
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Now, most signals emitted by a source are usually not “squeak-like”: the ambulance has a siren that continuously emits the wellknown sound. Such a continuous signal is capable of mathematically decomposed into a series of “squeak-like” signals, which we call <strong><em>impulses</em></strong>.</p>
+</div>
+</div>
 <p>So finally:</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -513,7 +616,7 @@ window.Quarto = {
 Figure&nbsp;1: Convolution
 </figcaption></figure>
 </div>
-<p>We see that impulses in the <em>input waveform</em> that arrive <strong><em>later</em></strong> undergo wieghting by the <strong><em>earliest</em></strong> of path-delays and path-weightings. This should give you an intuition, that mathematically, this is like taking a <strong><em>weighted average</em></strong> but with the sequence of weights <strong><em>inverted in time</em></strong>!!!</p>
+<p>We see that impulses in the <em>input waveform</em> that arrive <strong><em>later</em></strong> undergo weighting by the <strong><em>earliest</em></strong> of path-delays and path-weightings. This should give you the intuition, that mathematically, this is like taking a <strong><em>weighted average</em></strong> but with the sequence of weights <strong><em>inverted in time</em></strong>!!! (This will become more obvious when we speak of the Wedding Lunch Metaphor below!)</p>
 <p>If <span class="math inline">\(in(t)\)</span> is the emitted sound waveform, and <span class="math inline">\(f(t)\)</span> is the channel impulse response, we write the output of the channel as:</p>
 <p><span id="eq-convolution"><span class="math display">\[
 \Large{out(t) = \int_{-\infty}^{\infty} in(t) * f(t-\tau) *d\tau}
@@ -521,18 +624,106 @@ Figure&nbsp;1: Convolution
 <p>Note that we are integrating wrt <strong><em>delay</em></strong> <span class="math inline">\(\tau\)</span>; and <span class="math inline">\(f\)</span> uses negative <span class="math inline">\(\tau\)</span> as its variable. Hence it is hence inverted in time, as shown in the bottom left of the <a href="#fig-convolution" class="quarto-xref">Figure&nbsp;1</a>.</p>
 </div>
 </div>
-</section></section><section id="convolution-in-code" class="level2"><h2 class="anchored" data-anchor-id="convolution-in-code">Convolution in Code</h2>
+</section></section><section id="a-wedding-lunch-metaphor" class="level2"><h2 class="anchored" data-anchor-id="a-wedding-lunch-metaphor">A Wedding Lunch Metaphor</h2>
+<p>Let us develop a better intuition for Convolution.</p>
+<p>Consider a …nice fat South Indian Wedding. Lots of food, music, relatives, gossip, and of course the bride and groom. The main events are of course the Kashi Yatra, the Oonjal, the Tying of the Thaali, followed by Saptapadhi and so on. Let us say there are some 100 guests who are present and that it being a weekday, they wish to bless the couple and get back to work. So they wait for the the Tying of the Thaali, toss the rice into the air in the general direction of the couple, and…off they go to the huge Dining Hall, where the Marriage Feast of a meal awaits them. Since they are the first to enter the Dining Hall, they are referred to as the first <strong>pankti</strong> for the meal. With a large number of invitees, there would be 3-4 panktis before everyone has eaten.</p>
+<p>Very well, 100 <code>Guests</code> enter the Dining Hall, and are briskly served by the smart serving staff. A South Indian Wedding Feast has many <code>Courses</code> and saatvik dishes, starting with paayasam, rice, pulses, ghee, sambhaar, more rice, rasam, veggies, paapad, curd, pickles, and finally dessert, with very many small side dishes in between. Each course is served in sequence, one after the other. The first pankti gets the first serving of each course, then the second pankti, and so on.</p>
+<p>Let us say that the Dining Hall has a capacity for 150 people, and that there are 50 seats still vacant. When all the wedding ceremonies are done, some 50 Late Guests now would approach the pandal, bestow gifts on the couple, and THEN head for the Dining Hall. Now these 50 will be seated in the 50 vacant seats, and serving begins for them.</p>
+<p>So after a while the Head Cook appears majestically at the doorway of the Kitchen, to survey the Hall and to determine what the <code>State of the Meal</code> is. He (usually a he, people) decides that 100 guests who arrived early are more advanced in their meal, and are nearing the final Curd Rice course, which he should send in next. The Late Comers are yet to be served the Saambhaar course.</p>
+<p>Now, here is the interesting part. If we recognize that the Meal has a <strong>sequence</strong> of Courses, then the <code>Sequence of Courses</code> and the <code>Sequence of Guests</code> are <strong><em>mutually inverted</em></strong>: the EARLY people are eating the LATER course, and the LATER people are eating the EARLY course!!</p>
+<p>So here we complete the metaphor: (whew!):</p>
+<ul>
+<li>The (Meal) Course Sequence is our <code>Impulse Response</code>
+</li>
+<li>All Guests are the <code>Input</code> Sequence</li>
+<li>The State of the Meal is the <code>Output</code> of the System, and is the <code>Convolution</code> of the Course Sequence with the Guest Sequence.</li>
+</ul>
+<p>To obtain the proper Output, we need to <strong>time-invert the Meal Sequence</strong> so that the State of the Meal is a weighted count/sum/integral of the two.</p>
+<p>Now we are ready for the Code!!</p>
+</section><section id="convolution-in-code" class="level2"><h2 class="anchored" data-anchor-id="convolution-in-code">Convolution in Code</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills" style="background: whitesmoke;">
 <ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Using p5.js</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Using R</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Using p5.js</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Using R</a></li>
 </ul>
 <div class="tab-content nav-pills" style="background: whitesmoke;">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>We’ll see</p>
+<p>In R, we can use a terrific package called <code>gsignal</code> that allows us to a lot of Signal Processing stuff.</p>
+<p>In the following, we will generate a [Butterworth Lowpass filter] that filters out everything that is above 10Hz. We will plot its <code>Impulse Response</code> and then give it an iput of a 2.3Hz sinewave + Noise.</p>
+<p>We will then observe the input and the output and compare them.</p>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># library(gsignal)</span></span>
+<span><span class="va">fs</span> <span class="op">&lt;-</span> <span class="fl">4096</span> <span class="co"># sampling frequency</span></span>
+<span><span class="va">bf</span> <span class="op">&lt;-</span> <span class="fu">butter</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, w <span class="op">=</span> <span class="fl">10</span> <span class="op">/</span> <span class="op">(</span><span class="va">fs</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"low"</span><span class="op">)</span> <span class="co"># 10 Hz low-pass filter (10/fs</span></span>
+<span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, len <span class="op">=</span> <span class="va">fs</span><span class="op">)</span> <span class="co"># 1 second sample</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">t</span> <span class="op">*</span> <span class="fl">2.3</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">)</span> <span class="co"># 2.3 Hz sinusoid+noise</span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">bf</span>, <span class="va">x</span><span class="op">)</span> <span class="co"># apply filter</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Outputs</span></span>
+<span><span class="va">btr</span> <span class="op">&lt;-</span> <span class="fu">impz</span><span class="op">(</span><span class="va">bf</span>, fs <span class="op">=</span> <span class="va">fs</span><span class="op">)</span></span>
+<span><span class="va">bfr</span> <span class="op">&lt;-</span> <span class="fu">freqz</span><span class="op">(</span>filt <span class="op">=</span> <span class="va">bf</span>, fs <span class="op">=</span> <span class="va">fs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Make Plots</span></span>
+<span><span class="co">## Frequency Response</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bfr</span><span class="op">$</span><span class="va">w</span>, <span class="fl">20</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">bfr</span><span class="op">$</span><span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"l"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">50</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Frequency Response of 10Hz Lowpass Butterworth Filter"</span>, ylab <span class="op">=</span> <span class="st">"Magnitude in dB"</span>, xlab <span class="op">=</span> <span class="st">"Frequency"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">## Impulse Response</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">btr</span><span class="op">$</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"l"</span>, main <span class="op">=</span> <span class="st">"Impulse Response of 10Hz Lowpass Butterworth Filter"</span>, ylab <span class="op">=</span> <span class="st">"Amplitude"</span>, xlab <span class="op">=</span> <span class="st">"Samples"</span><span class="op">)</span></span>
+<span><span class="co">## input and Output</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">x</span>, type <span class="op">=</span> <span class="st">"l"</span>, main <span class="op">=</span> <span class="st">"Input Signal: 2.3Hz Sine + Noise"</span>, ylab <span class="op">=</span> <span class="st">"Amplitude"</span>, xlab <span class="op">=</span> <span class="st">"Time (s)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">z</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"l"</span>,</span>
+<span>  main <span class="op">=</span> <span class="st">"Output Signal: Filtered Output"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Amplitude"</span>, xlab <span class="op">=</span> <span class="st">"Time (s)"</span>, col <span class="op">=</span> <span class="st">"red"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>,</span>
+<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Input"</span>, <span class="st">"Output"</span><span class="op">)</span>,</span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell quarto-layout-panel" data-layout="[[45,-5,45],[100]]">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 47.4%;justify-content: flex-start;">
+<div id="fig-conv-using-gsignal-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-conv-using-gsignal-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-conv-using-gsignal-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Filter Frequency Response (LPF)"><img src="index_files/figure-html/fig-conv-using-gsignal-1.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conv-using-gsignal-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Filter Frequency Response (LPF)
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 5.3%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 47.4%;justify-content: flex-start;">
+<div id="fig-conv-using-gsignal-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-conv-using-gsignal-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-conv-using-gsignal-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Filter Impulse Response"><img src="index_files/figure-html/fig-conv-using-gsignal-2.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conv-using-gsignal-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Filter Impulse Response
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-conv-using-gsignal-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-conv-using-gsignal-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-conv-using-gsignal-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: Input and Output"><img src="index_files/figure-html/fig-conv-using-gsignal-3.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conv-using-gsignal-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Input and Output
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -542,7 +733,7 @@ Figure&nbsp;1: Convolution
 <li>
 <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/30-MLP/index.html">Perceptrons</a> are a standard convolution operation.</li>
 <li>Convolution is an operation that is crucial to the operation of <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/60-Convnet/index.html">Convolutional Neural Networks</a>. The early <em>(spatial) filter layers</em> in a CNN implement a convolution with impulse responses that learn to look for edges, curves and similar <em>canonical</em> pieces in an input image.</li>
-<li>When we generate guitar-like sounds using the <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.html">Karplus-Strong Guitar Algorithm</a>, we are using a set of filters (with low-pass/band-pass impulse responses) in the feedback loop of a delay-line primed with random noise.</li>
+<li>When we generate guitar-like sounds using the <a href="../../35-Media/99-KarplusStrong/index.qmd">Karplus-Strong Guitar Algorithm</a>, we are using a set of filters (with low-pass/band-pass impulse responses) in the feedback loop of a delay-line primed with random noise.</li>
 <li>Convolution can be seen as a series of <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html#what-is-the-inner-product">Vector Dot Products</a> between two vectors sliding past each other.</li>
 </ul></section><section id="references" class="level2"><h2 class="anchored" data-anchor-id="references">
 <iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</h2>
@@ -550,7 +741,7 @@ Figure&nbsp;1: Convolution
 <div id="refs" style="font-size: 60%;" role="list">
 <section id="r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="r-package-citations">
 <iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -561,17 +752,17 @@ Figure&nbsp;1: Convolution
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">keras</td>
-<td style="text-align: left;">2.15.0</td>
+<td style="text-align: left;">2.16.0</td>
 <td style="text-align: left;"><span class="citation" data-cites="keras">@keras</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">safetensors</td>
-<td style="text-align: left;">0.1.2</td>
+<td style="text-align: left;">0.2.0</td>
 <td style="text-align: left;"><span class="citation" data-cites="safetensors">@safetensors</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">tensorflow</td>
-<td style="text-align: left;">2.16.0.9000</td>
+<td style="text-align: left;">2.20.0</td>
 <td style="text-align: left;"><span class="citation" data-cites="tensorflow">@tensorflow</span></td>
 </tr>
 </tbody>
@@ -633,13 +824,14 @@ Figure&nbsp;1: Convolution
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -987,7 +1179,17 @@ Figure&nbsp;1: Convolution
       }
     }
   });
-  </script>
+  </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html" class="pagination-link" aria-label="Filters">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Filters</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" class="pagination-link" aria-label="Geometry">
+        <span class="nav-page-text">Geometry</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">

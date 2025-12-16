@@ -13,6 +13,11 @@ editor:
     wrap: 72
 ---
 
+```{r}
+#| label: setup
+#| echo: false
+```
+
 ## Introduction
 
 What do we recall from our school-time encounter with Newtonian Physics?
@@ -25,6 +30,7 @@ We have several aspects to movement, e.g.:
 - rotation
 - oscillation
 - friction
+- precession
 
 And here are some more terms from the spacecraft/rocket science domain:
 

@@ -1,5 +1,19 @@
 ---
-title: "Matrix Algebra Whirlwind Tour"
+title: <iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Matrix Algebra Whirlwind Tour
+subtitle: ""
+subject: ""
+abstract: ""
+date: 12/April/2025
+date-modified: "`r Sys.Date()`"
+order: 50
+code-fold: true
+categories:
+- Matrices
+- Matrix Operations
+citation: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r}
@@ -7,9 +21,15 @@ title: "Matrix Algebra Whirlwind Tour"
 #| echo: false
 #| message: false
 #| warning: false
+
+library(reticulate)
+reticulate::use_virtualenv("creative_math")
 library(matlib)
 library(caracas)
 library(ggformula)
+library(armadillo4r)
+library(RcppArmadillo)
+library(RcppEigen)
 ###
 #reticulate::use_virtualenv("arvind-python")
 #caracas::install_sympy()
@@ -77,7 +97,7 @@ $$ {#eq-3-by-1-matrix}
 ::::
 
 ## Transpose
-A matrix transpose is accomplished by writing rows as columns and vice versa. Hence an $r~ x ~ c$ matrix becomes transposed into a $c~ x ~ r$ matrix, as shown below:
+A matrix transpose is accomplished by writing rows as columns and vice versa. Hence an $r~ \times ~ c$ matrix becomes transposed into a $c~ \times ~ r$ matrix, as shown below:
 
 :::: {.columns}
 ::: {.column width=48%}
@@ -216,7 +236,7 @@ $$Bills$$
 ::::
 
 
-We see that the first number $20$ in B multiplies the entire first column in A, and the second number $10$ multiplies the entire second column in A. These two multiplied columns are added to get the matrix C.
+We see that the first number $20$ in B multiplies the entire first column in A, and the second number $10$ multiplies the entire second column in A. These two multiplied columns are **added** to get the matrix C.
 
 Suppose they had two options for shops? And the prices were different?
 
@@ -264,7 +284,7 @@ $$Amounts$$
 :::
 ::::
 
-Shop#2 is cheaper. Drag peasant#3 and go there, peasants#1 and #2.
+Shop#2 is cheaper. Drag *peasant#3* and go there, *peasant#1* and *peasant#2*.
 
 How did this multiplication happen?
 Same story as with one shop/prices, repeated to handle the second shop.

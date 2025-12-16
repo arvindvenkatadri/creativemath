@@ -31,8 +31,8 @@ website:
   reader-mode: true
   
   navbar:
-    background: info
-    foreground: secondary
+    # background: info
+    # foreground: secondary
     pinned: false
     collapse: true
     collapse-below: lg
@@ -58,7 +58,20 @@ website:
           - section: "Math Models for Creative Coders"
             href: content/courses/MathModelsDesign/listing.qmd
             contents: 
-              - section: "Maths Basics"
+            
+#######################################
+              - section: "Tech"
+                href: content/courses/MathModelsDesign/Modules/500-Tech/listing.qmd
+                contents:
+                - content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.qmd
+                - content/courses/MathModelsDesign/Modules/500-Tech/20-AddingLibrariesToP5Js/index.qmd
+                - content/courses/MathModelsDesign/Modules/500-Tech/30-Constructors/index.qmd
+                - content/courses/MathModelsDesign/Modules/500-Tech/50-OSC/index.qmd         
+                
+            
+            
+ ######################################
+              - section: "Maths"
                 href: content/courses/MathModelsDesign/Modules/05-Maths/listing.qmd
                 contents:
                 - content/courses/MathModelsDesign/Modules/05-Maths/10-Complex/index.qmd
@@ -66,24 +79,29 @@ website:
 #               - content/courses/MathModelsDesign/Modules/05-Maths/30-Probability/index.qmd
                 - content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.qmd            
                 - content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.qmd            
-                - content/courses/MathModelsDesign/Modules/05-Maths/70-MultiDimensionGeometry/index.qmd            
-
-              - section: "Tech"
-                href: content/courses/MathModelsDesign/Modules/500-Tech/listing.qmd
+#                - content/courses/MathModelsDesign/Modules/05-Maths/70-MultiDimensionGeometry/index.qmd    
+   
+ ######################################             
+              - section: "Systems"
+                href: content/courses/MathModelsDesign/Modules/20-Systems/listing.qmd
                 contents:
-                - content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.qmd
-                - content/courses/MathModelsDesign/Modules/500-Tech/20-AddingLibrariesToP5Js/index.qmd
-                - content/courses/MathModelsDesign/Modules/500-Tech/30-Constructors/index.qmd
-                - content/courses/MathModelsDesign/Modules/500-Tech/50-OSC/index.qmd            
+                - content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.qmd
+                - content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.qmd
+                - content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.qmd
+                - content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.qmd
+
+
+
+ ######################################              
               - section: "Geometry"
                 href: content/courses/MathModelsDesign/Modules/25-Geometry/listing.qmd
                 contents:
                 - content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.qmd
                 - content/courses/MathModelsDesign/Modules/25-Geometry/20-ComplexNumbers/index.qmd
                 - content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.qmd
-#               - content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.qmd 
+                - content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.qmd 
                 - content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.qmd 
-#               - content/courses/MathModelsDesign/Modules/25-Geometry/44-ChaosGames/index.qmd 
+                - content/courses/MathModelsDesign/Modules/25-Geometry/44-ChaosGames/index.qmd 
                 - content/courses/MathModelsDesign/Modules/25-Geometry/50-LSystems/index.qmd 
                 - content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.qmd 
 #               - content/courses/MathModelsDesign/Modules/25-Geometry/70-NonEuclidean/index.qmd 
@@ -92,13 +110,13 @@ website:
               - section: "Media"
                 href: content/courses/MathModelsDesign/Modules/35-Media/listing.qmd
                 contents:
-                - content/courses/MathModelsDesign/Modules/35-Media/10-FourierSeries/index.qmd
-                - content/courses/MathModelsDesign/Modules/35-Media/12-AdditiveSynth/index.qmd
-#               - content/courses/MathModelsDesign/Modules/35-Media/14-GrainSynth/index.qmd
+                - content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.qmd
+                - content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.qmd
+                - content/courses/MathModelsDesign/Modules/35-Media/65-GrainSynth/index.qmd
 #               - content/courses/MathModelsDesign/Modules/35-Media/16-ModulationSynth/index.qmd
 #               - content/courses/MathModelsDesign/Modules/35-Media/18-NonlinearSynth/index.qmd
-                - content/courses/MathModelsDesign/Modules/35-Media/20-MakingNoise/index.qmd
-                - content/courses/MathModelsDesign/Modules/35-Media/99-KarplusStrong/index.qmd
+                - content/courses/MathModelsDesign/Modules/35-Media/70-MakingNoise/index.qmd
+                - content/courses/MathModelsDesign/Modules/35-Media/100-KarplusStrong/index.qmd
 #               - content/courses/MathModelsDesign/Modules/35-Media/30-Video/index.qmd 
 #               - content/courses/MathModelsDesign/Modules/35-Media/40-Text/index.qmd 
                 
@@ -144,9 +162,9 @@ format:
   html:
     smooth-scroll: true
     fontsize: "medium"
-    theme: yeti
-    # css: 
-    #   - css/fira.css
+    theme: lux
+    # css:
+    #   - css/brite.scss
     #   - css/roboto-condensed.css
     #   - css/vollkorn.css
     #   - css/fraunces.css
