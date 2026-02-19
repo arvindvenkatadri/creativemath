@@ -37,3 +37,4 @@ safetensors
 torch
 torchaudio
 torchdatasets
+ggiraph

@@ -1,8 +1,8 @@
 {
-  "hash": "2624e59fc0b7b2a2f413f92253a23470",
+  "hash": "7b14838b838a74a6a0880aadd3157ab3",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Filters\"\norder: 30\ndate: 11/Dec/2025\ndate-modified: \" 2025-12-15 \"\n\n---\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n\n```\n\nAttaching package: 'gsignal'\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nThe following objects are masked from 'package:stats':\n\n    filter, gaussian, poly\n```\n\n\n:::\n:::\n\n\n\n\n\n## References\n\n1. <https://ccrma.stanford.edu/~jos/filters/> \n\n",
+    "markdown": "---\ntitle: \"Filters\"\norder: 30\ndate: 11/Dec/2025\ndate-modified: \" 2026-02-18 \"\n\n---\n\n\n::: {.cell}\n\n:::\n\n\n\n\n\n## References\n\n1. <https://ccrma.stanford.edu/~jos/filters/> \n\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

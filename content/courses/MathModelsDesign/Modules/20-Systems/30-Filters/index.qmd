@@ -9,6 +9,8 @@ date-modified: " `r Sys.Date()` "
 ```{r}
 #| label: setup
 #| echo: false
+#| message: false
+#| warning: false
 
 library(gsignal)
 library(ggdiagram)

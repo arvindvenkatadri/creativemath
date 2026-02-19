@@ -198,6 +198,7 @@ Risset and Mathews, [@risset1969a] and
 1. The number of such parameters and their control over time could pose a formidable data management challenge. This leads to the idea of *data reduction* in order to have a manageable number of these, and generate the sound in its essentials. 
 1. One essential part of this is to use **envelopes** around the amplitudes of several sine waves, what is called the [ADSR]() method. This could also lead to several oscillators being turned on or off based on need. 
 1. So one needs to break down the sound into "principal components" that are harmonically related ( as with the Fourier series) and then fill in [**inharmonic tones**]() using additional oscillators. 
+1. Adding these components allows us to synthesize authentic-sounding musical instruments, with the appropriate [timbre](TO BE ADDED).
 
 ## What is ADSR?
 
@@ -226,7 +227,10 @@ show(music)
 
 ## {{< iconify mingcute thought-line >}} Wait, But Why?
 
-To be Written Up.
+- Sometimes we wish to reproduce a sound that we have encountered in the wild
+- We may have managed to capture a recording, or have access to a similar-sounding sound
+- We wish to reproduce this sound in sync with other events, to create an experience for the viewer / user
+- The Fourier Series expansion helps us with *reliably* breaking down the sound into components, which we can `controllably` synthesize in `p5.js` using the `p5.sound` library
 
 ## {{< iconify ooui references-ltr >}} References
 
@@ -251,10 +255,15 @@ To be Written Up.
     Approach* <https://musicandcomputersbook.com>
 1. Julius O. Smith. *PHYSICAL AUDIO SIGNAL PROCESSING
 FOR VIRTUAL MUSICAL INSTRUMENTS AND AUDIO EFFECTS* <https://ccrma.stanford.edu/~jos/pasp/pasp.html>
+1. Tutorials on WebSoundArt. <https://websoundart.org/blog>
+
+## Resources
+
+1. Thomas John Martinez. *A collection of p5.sound sketches that demonstrate the new p5 sound library*. <https://editor.p5js.org/thomasjohnmartinez/collections/Dp0zGclVL> 
 
 ## Other Tools
 
-1. Strudel
+1. Strudel<https://strudel.cc>
 1. Pure Data
 1. Envion <https://www.peamarte.it/env/envion_v3.6.html>
 

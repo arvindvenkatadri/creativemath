@@ -186,11 +186,11 @@ A - B
 
 Matrix multiplication can be visualized in many ways!! According to Gilbert Strang's famous book on Linear Algebra, there are no less than 4 very useful ways. Let us understand perhaps the easiest one, *Linear combination of Columns*.
 
-Suppose there are three students who bought two kinds of food and drink:
+Suppose there are three SMI peasants who bought two kinds of food and drink:
 
-- Student A: 2 samosas and 1 chai
-- Student B: 3 samosas and 0 chai
-- Student C: 0 samosa and 2 chai-s (Just before Arvind's R class.)
+- Peasant A: 2 samosas and 1 chai
+- Peasant B: 3 samosas and 0 chai
+- Peasant C: 0 samosa and 2 chai-s (Just before Arvind's R class.)
 
 Samosas cost 20 and chai costs 10. How much do they pay?
 
@@ -284,9 +284,10 @@ $$Amounts$$
 :::
 ::::
 
-Shop#2 is cheaper. Drag *peasant#3* and go there, *peasant#1* and *peasant#2*.
+Shop#2 is cheaper. Drag *Peasant#3* and go there, *Peasant#1* and *Peasant#2*.
 
 How did this multiplication happen?
+
 Same story as with one shop/prices, repeated to handle the second shop.
 Matrix B2 now has *two* columns for prices, for Shop#1 and Shop#2.
 Multiplication takes each column in B2 and does the same weighted-column-addition with A2. Hence two columns of answers in C2.
@@ -304,6 +305,7 @@ For now, this one method should suffice.
 :::
 
 ## References
+
 1. Gilbert Strang. Linear Algebra and its Applications. Thomson/Brooks-Cole.
 1. Glenn Henshaw.(Sep 28, 2019) *Three Ways to Understand Matrix Multiplication*. <https://ghenshaw-work.medium.com/3-ways-to-understand-matrix-multiplication-fe8a007d7b26>
 

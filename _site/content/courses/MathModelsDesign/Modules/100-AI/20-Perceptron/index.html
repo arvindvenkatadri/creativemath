@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.8">
+<meta name="generator" content="quarto-1.9.16">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2024-11-20">
 <title>The Perceptron – Applied Math for Creative Coders</title>
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-9afb2adbe3790f1849c32ba3c79c48e4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-792aea850e7e5573310f85939a37799b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-64fddea93c8694cc59b800d1960a76cc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-93ad3e07253cb8ce00162cc303228b16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -327,11 +327,8 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Series and Fourier Transform</span></a>
-  </div>
-</li>
+ <span class="menu-text">content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.qmd</span>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html" class="sidebar-item-text sidebar-link">
@@ -493,7 +490,7 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#inspiration" id="toc-inspiration" class="nav-link active" data-scroll-target="#inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
+<li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="nav-link active" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
   <li><a href="#what-is-a-perceptron" id="toc-what-is-a-perceptron" class="nav-link" data-scroll-target="#what-is-a-perceptron">What is a Perceptron?</a></li>
   <li><a href="#perceptrons-in-code" id="toc-perceptrons-in-code" class="nav-link" data-scroll-target="#perceptrons-in-code">Perceptrons in Code</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -519,7 +516,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 5, 2025</p>
+      <p class="date-modified">December 30, 2025</p>
     </div>
   </div>
     
@@ -527,7 +524,7 @@ window.Quarto = {
   
 
 
-</header><section id="inspiration" class="level2"><h2 class="anchored" data-anchor-id="inspiration">
+</header><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
 </section><section id="what-is-a-perceptron" class="level2"><h2 class="anchored" data-anchor-id="what-is-a-perceptron">What is a Perceptron?</h2>
 <p>The <a href="../../../../../materials/pdfs/Rosenblatt1958.pdf">perceptron</a> was invented by Frank Rosenblatt is considered one of the foundational pieces of neural network structures. The output is viewed as a <em>decision</em> from the neuron and is usually propagated as an input to other neurons inside the neural network.</p>
@@ -589,7 +586,7 @@ y_k = sign~(~\sum_{k=1}^n W_k*x_k + b~)
 <div class="tab-content nav-pills" style="background: whitesmoke;">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Let us try a simple single layer NN in R. We will use the R package <code>neuralnet</code>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load the package</span></span>
 <span><span class="co"># library(neuralnet)</span></span>
 <span></span>
@@ -684,9 +681,9 @@ y_k = sign~(~\sum_{k=1}^n W_k*x_k + b~)
 </li>
 </ol>
 <div id="refs" style="font-size: 60%;" role="list">
-<section id="r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="r-package-citations">
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations">
 <iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">

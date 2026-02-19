@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.8">
+<meta name="generator" content="quarto-1.9.16">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2024-12-03">
 <title>  Working with Neural Nets – Applied Math for Creative Coders</title>
@@ -57,10 +57,10 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-9afb2adbe3790f1849c32ba3c79c48e4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-792aea850e7e5573310f85939a37799b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-64fddea93c8694cc59b800d1960a76cc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-93ad3e07253cb8ce00162cc303228b16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -262,11 +262,8 @@ div.csl-indent {
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Series and Fourier Transform</span></a>
-  </div>
-</li>
+ <span class="menu-text">content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.qmd</span>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html" class="sidebar-item-text sidebar-link">
@@ -430,10 +427,10 @@ div.csl-indent {
   <ul>
 <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#but-wait-how-does-classification-work" id="toc-but-wait-how-does-classification-work" class="nav-link" data-scroll-target="#but-wait-how-does-classification-work">But Wait! How does Classification Work?</a></li>
-  <li><a href="#wait-but-why" id="toc-wait-but-why" class="nav-link" data-scroll-target="#wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
   <li><a href="#how-to-train-your-dragon-neural-network" id="toc-how-to-train-your-dragon-neural-network" class="nav-link" data-scroll-target="#how-to-train-your-dragon-neural-network">How to Train your <del>Dragon</del> Neural Network</a></li>
   <li>
-<a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a>
+<a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a>
   <ul class="collapse">
 <li><a href="#convolutional-neural-networks" id="toc-convolutional-neural-networks" class="nav-link" data-scroll-target="#convolutional-neural-networks">Convolutional Neural Networks</a></li>
   </ul>
@@ -469,7 +466,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 5, 2025</p>
+      <p class="date-modified">December 30, 2025</p>
     </div>
   </div>
     
@@ -533,12 +530,12 @@ Figure&nbsp;1: Bharat Natyam Poses
 </li>
 </ol>
 <p>Here, we will also try to build an intuitive sense of some of the technical terminology involved: <code>convolution</code>, <code>regression</code>, <code>activation</code>, <code>weighting</code>…and such terms that generally elude peasants.</p>
-</section><section id="wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="wait-but-why">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why">
 <iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</h2>
 <p>Understanding the underlying math inside of Neural Nets can help us appreciate better how to apply them design with them, and even keep them as simple as needed.</p>
 </section><section id="how-to-train-your-dragon-neural-network" class="level2"><h2 class="anchored" data-anchor-id="how-to-train-your-dragon-neural-network">How to Train your <del>Dragon</del> Neural Network</h2>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/8HEgeAbYphA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section><section id="references" class="level2"><h2 class="anchored" data-anchor-id="references">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references">
 <iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</h2>
 <ol type="1">
 <li>Colah’s Blog.(Apr 6, 2014). <em>Neural Networks, Manifolds, and Topology</em>. <a href="https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/" class="uri">https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/</a>. Very simple and readable article.</li>
@@ -623,9 +620,9 @@ Figure&nbsp;1: Bharat Natyam Poses
 </li>
 </ol>
 <div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" data-entry-spacing="0" role="list">
-<section id="r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="r-package-citations">
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations">
 <iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -636,22 +633,22 @@ Figure&nbsp;1: Bharat Natyam Poses
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">keras</td>
-<td style="text-align: left;">2.15.0</td>
-<td style="text-align: left;"><span class="citation" data-cites="keras">Allaire and Chollet (<a href="#ref-keras" role="doc-biblioref">2024</a>)</span></td>
+<td style="text-align: left;">2.16.0</td>
+<td style="text-align: left;"><span class="citation" data-cites="keras">Allaire and Chollet (<a href="#ref-keras" role="doc-biblioref">2025</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">safetensors</td>
-<td style="text-align: left;">0.1.2</td>
-<td style="text-align: left;"><span class="citation" data-cites="safetensors">Falbel (<a href="#ref-safetensors" role="doc-biblioref">2023</a>)</span></td>
+<td style="text-align: left;">0.2.0</td>
+<td style="text-align: left;"><span class="citation" data-cites="safetensors">Falbel (<a href="#ref-safetensors" role="doc-biblioref">2025</a>)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">tensorflow</td>
-<td style="text-align: left;">2.16.0.9000</td>
+<td style="text-align: left;">2.20.0</td>
 <td style="text-align: left;"><span class="citation" data-cites="tensorflow">Allaire and Tang (<a href="#ref-tensorflow" role="doc-biblioref">2025</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">torch</td>
-<td style="text-align: left;">0.15.1</td>
+<td style="text-align: left;">0.16.3</td>
 <td style="text-align: left;"><span class="citation" data-cites="torch">Falbel and Luraschi (<a href="#ref-torch" role="doc-biblioref">2025</a>)</span></td>
 </tr>
 </tbody>
@@ -659,13 +656,13 @@ Figure&nbsp;1: Bharat Natyam Poses
 </div>
 </div>
 <div id="ref-keras" class="csl-entry" role="listitem">
-Allaire, JJ, and François Chollet. 2024. <em><span class="nocase">keras</span>: R Interface to <span>“<span>Keras</span>”</span></em>. <a href="https://doi.org/10.32614/CRAN.package.keras">https://doi.org/10.32614/CRAN.package.keras</a>.
+Allaire, JJ, and François Chollet. 2025. <em><span class="nocase">keras</span>: R Interface to <span>“<span>Keras</span>”</span></em>. <a href="https://doi.org/10.32614/CRAN.package.keras">https://doi.org/10.32614/CRAN.package.keras</a>.
 </div>
 <div id="ref-tensorflow" class="csl-entry" role="listitem">
-Allaire, JJ, and Yuan Tang. 2025. <em><span class="nocase">tensorflow</span>: R Interface to <span>“<span>TensorFlow</span>”</span></em>. <a href="https://github.com/rstudio/tensorflow">https://github.com/rstudio/tensorflow</a>.
+Allaire, JJ, and Yuan Tang. 2025. <em><span class="nocase">tensorflow</span>: R Interface to <span>“<span>TensorFlow</span>”</span></em>. <a href="https://doi.org/10.32614/CRAN.package.tensorflow">https://doi.org/10.32614/CRAN.package.tensorflow</a>.
 </div>
 <div id="ref-safetensors" class="csl-entry" role="listitem">
-Falbel, Daniel. 2023. <em><span class="nocase">safetensors</span>: Safetensors File Format</em>. <a href="https://doi.org/10.32614/CRAN.package.safetensors">https://doi.org/10.32614/CRAN.package.safetensors</a>.
+Falbel, Daniel. 2025. <em><span class="nocase">safetensors</span>: Safetensors File Format</em>. <a href="https://doi.org/10.32614/CRAN.package.safetensors">https://doi.org/10.32614/CRAN.package.safetensors</a>.
 </div>
 <div id="ref-torch" class="csl-entry" role="listitem">
 Falbel, Daniel, and Javier Luraschi. 2025. <em><span class="nocase">torch</span>: Tensors and Neural Networks with <span>“<span>GPU</span>”</span> Acceleration</em>. <a href="https://doi.org/10.32614/CRAN.package.torch">https://doi.org/10.32614/CRAN.package.torch</a>.

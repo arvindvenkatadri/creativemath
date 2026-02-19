@@ -23,11 +23,10 @@ listing:
 ## Introduction
 
 We will study several Mathematical Models and apply them to Art and
-Design. The algorithms will be examined and then coded in
-[`p5.js`](https://q5js.org/home/) / [`q5.js`](https://q5js.org/home/) /
-[`p5play.js`](https://p5play.org/); however other open source tools
+Design. The algorithms will be examined and then coded in [p5.js V2.0.0](https://beta.p5js.org/) to implement projects of interest. ( We might on a later occasion try to use [q5.js](https://q5js.org/home/) /
+[p5play.js](https://p5play.org/). Other open source tools
 (FOSS) and Javascript libraries may also be introduced as and when
-needed and as and when I learn and get excited about them.
+needed and as and when I learn and get excited about them. )
 
 This course stands on "three legs": **Maths**, **Code + Tech**, and
 **Artifacts**, as shown below. As this course grows and hopefully
@@ -48,6 +47,7 @@ become reality!
 
 1.  [Course Abstract written by Arnold Schwarzenegger.](../../materials/pdfs/MathExperiments-Abstract.pdf).
 1.  [And how?](https://californiaglobe.com/fr/the-story-of-arnold-schwarzeneggers-infamous-hidden-expletive-veto/)
+1. p5.js Educational Resources. <https://beta.p5js.org/education-resources/>
 
 ### General
 
@@ -64,10 +64,11 @@ become reality!
 
 ### p5.js, p5play.js, q5.js, and Processing
 
+1.  Older versions of p5.js <[`p5.js`](https://p5js.org/).>
 1.  Getting Started with p5.js
     <https://p5js.org/tutorials/setting-up-your-environment/>
 2.  Coding Rainbow: Basic-est set of videos on p5.js
-    \<<https://youtube.com/playlist?list=PLglp04UYZK_PrN6xWo_nJ-8kzyXDyFUwi&si=BWSDVX9-Bt85KXdO>\>
+    <https://youtube.com/playlist?list=PLglp04UYZK_PrN6xWo_nJ-8kzyXDyFUwi&si=BWSDVX9-Bt85KXdO>
 3.  Coding Train with Dan Shiffman:
     -   Website: <https://thecodingtrain.com/>
     -   Github: <https://github.com/CodingTrain/website-archive>

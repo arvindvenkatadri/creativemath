@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.8">
+<meta name="generator" content="quarto-1.9.16">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2025-01-28">
 <title>  Affine Transformation Fractals – Applied Math for Creative Coders</title>
@@ -92,10 +92,10 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-9afb2adbe3790f1849c32ba3c79c48e4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-792aea850e7e5573310f85939a37799b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-64fddea93c8694cc59b800d1960a76cc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-93ad3e07253cb8ce00162cc303228b16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/videojs/video.min.js"></script>
@@ -324,11 +324,8 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Series and Fourier Transform</span></a>
-  </div>
-</li>
+ <span class="menu-text">content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.qmd</span>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html" class="sidebar-item-text sidebar-link">
@@ -490,13 +487,13 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#inspiration" id="toc-inspiration" class="nav-link active" data-scroll-target="#inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
+<li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="nav-link active" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#what-is-an-affine-transformation" id="toc-what-is-an-affine-transformation" class="nav-link" data-scroll-target="#what-is-an-affine-transformation">What is an Affine Transformation?</a></li>
   <li><a href="#some-examples-of-affine-transformations" id="toc-some-examples-of-affine-transformations" class="nav-link" data-scroll-target="#some-examples-of-affine-transformations">Some Examples of Affine Transformations</a></li>
   <li><a href="#designing-with-affine-transformations" id="toc-designing-with-affine-transformations" class="nav-link" data-scroll-target="#designing-with-affine-transformations">Designing with Affine Transformations</a></li>
-  <li><a href="#wait-but-why" id="toc-wait-but-why" class="nav-link" data-scroll-target="#wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -527,7 +524,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 5, 2025</p>
+      <p class="date-modified">December 30, 2025</p>
     </div>
   </div>
     
@@ -624,10 +621,11 @@ window.Quarto = {
 <span><span class="co">## Set the theme</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html">theme_set</a></span><span class="op">(</span>new <span class="op">=</span> <span class="fu">theme_custom</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in theme_classic(base_size = 14, base_family = font): could not find function "theme_classic"</code></pre>
+<pre data-code-line-numbers=""><code>Error in `theme_classic()`:
+! could not find function "theme_classic"</code></pre>
 </div>
 </div>
-</section><section id="inspiration" class="level2"><h2 class="anchored" data-anchor-id="inspiration">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -798,28 +796,32 @@ AF_i = A_i * X + B_i, ~ i = 1...4
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in ensure_sympy(): Both Python3 and 'SymPy' &gt;= 1.4 must be available.
+<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
+! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
 Please verify Python version with 'reticulate::py_config()'.
 Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
 To install SymPy, please run this command:
 caracas::install_sympy()</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in ensure_sympy(): Both Python3 and 'SymPy' &gt;= 1.4 must be available.
+<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
+! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
 Please verify Python version with 'reticulate::py_config()'.
 Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
 To install SymPy, please run this command:
 caracas::install_sympy()</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in ensure_sympy(): Both Python3 and 'SymPy' &gt;= 1.4 must be available.
+<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
+! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
 Please verify Python version with 'reticulate::py_config()'.
 Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
 To install SymPy, please run this command:
 caracas::install_sympy()</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in ensure_sympy(): Both Python3 and 'SymPy' &gt;= 1.4 must be available.
+<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
+! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
 Please verify Python version with 'reticulate::py_config()'.
 Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
 To install SymPy, please run this command:
@@ -1052,7 +1054,7 @@ caracas::install_sympy()</code></pre>
 </div>
 </div>
 </div>
-</section><section id="wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="wait-but-why">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why">
 <iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</h2>
 <p>OK, so <strong>why</strong> did this become a fern??</p>
 <p>If we look at the list of affine transformations, we see that there are essentially 4 movements possible: <a href="https://en.wikipedia.org/wiki/Barnsley_fern" class="uri">https://en.wikipedia.org/wiki/Barnsley_fern</a></p>
@@ -1064,7 +1066,7 @@ caracas::install_sympy()</code></pre>
 </ul>
 <p>The second transformation is the one most commonly used!! The others are relatively rarely used! So the points slowly slope to the right and do now get squashed up close to the start: they retain sufficient size in (x,y) coordinates for the fern to slowly spread to the right.</p>
 <p>So we can design the affine transformations based on an intuition of how <strong>we might draw</strong> the fractal by hand, say larger strokes to the right, smaller to the left etc, and and decide on the frequency of strokes based on how often these strokes might be used in drawing.</p>
-</section><section id="references" class="level2"><h2 class="anchored" data-anchor-id="references">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references">
 <iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</h2>
 <ol type="1">
 <li>Ryan Bradley-Evans. (Oct 7, 2020). <em>Barnsley’s Fern Fractal in R</em>. <a href="https://astro-ryan.medium.com/barnsleys-fern-fractal-in-r-e52a357e23db" class="uri">https://astro-ryan.medium.com/barnsleys-fern-fractal-in-r-e52a357e23db</a>
@@ -1081,7 +1083,7 @@ caracas::install_sympy()</code></pre>
 </li>
 </ol>
 <div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" data-entry-spacing="0" role="list">
-<section id="r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="r-package-citations">
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations">
 <iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
 <div class="cell">
 <div class="cell-output-display">

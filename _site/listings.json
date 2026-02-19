@@ -13,7 +13,6 @@
   {
     "listing": "/content/courses/MathModelsDesign/Modules/05-Maths/listing.html",
     "items": [
-      "/content/courses/MathModelsDesign/Modules/05-Maths/10-Complex/index.html",
       "/content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html",
       "/content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html",
       "/content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.html"
@@ -80,7 +79,7 @@
     "listing": "/content/courses/MathModelsDesign/Modules/20-Systems/listing.html",
     "items": [
       "/content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html",
       "/content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html",
       "/content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html"
     ]

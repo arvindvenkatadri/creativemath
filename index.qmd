@@ -1,6 +1,6 @@
 ---
 title: "Arvind V." # if using a built-in template, this title appears under your photo
-image: content/materials/images/avatar.jpg # a great spot for your professional headshot :) 
+image: content/materials/images/AV-portrait.jpeg # a great spot for your professional headshot :) 
 toc: false # disable table of contents for this page
 about: 
   template: trestles 
@@ -18,8 +18,10 @@ about:
       href: mailto:arvind.venkatadri@gmail.com
 ---
 
-I'm an an external Faculty Member at the [Srishti Manipal Institute of Art, Design, and Technology (SMI)](https://srishtimanipalinstitute.in), in Bangalore, INDIA. I am passionate about working on R,
-Data Visualization, Complexity Science, and Creative Thinking and
+I'm external Faculty at the [Srishti Manipal Institute of Art and Design](https://srishtimanipalinstitute.in), and Engineering Manager at [MMRFIC](https://mmrfic.com), both in Bangalore, INDIA, and a [Certified Level #1 TRIZ Professional](https://www.matriz-official.net). 
+
+I am passionate about working on R,
+Data Visualization, Complexity Science, Applied (and Explained) Mathematics, and Creative Thinking and
 Problem Solving with TRIZ. On this website, I share my course materials
 and methods. I also blog about TRIZ and Data Science on occasion.
 
@@ -32,6 +34,7 @@ My teaching websites are:\
 - [The Mad Hatter's Guide to Data Viz and Stats in R](https://madhatterguide.netlify.app)\ 
 - [TRIZ for Problem Solvers](https://teaching-triz.netlify.app)\
 - [Literary Jukebox: Design Thinking from Short Fiction](https://literary-jukebox.netlify.app)\
+- [Intro to Design of Experiments in R](https://doe-a-deer.netlify.app)\ (Extreme Work in Progress!)
 
 
 My student portfolios are here:\

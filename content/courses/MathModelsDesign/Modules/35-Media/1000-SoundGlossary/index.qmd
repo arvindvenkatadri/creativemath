@@ -20,6 +20,10 @@ Some terms will show up repeatedly in our work and we should be clear what they 
 1. `Phase`: The instantaneous angle-position of a rotating vector which generates the wave: Remember the [Euler's Formula](../../25-Geometry/10-Circles/index.qmd#how-about-the-euler-formula). Also the instantaneous angle-value of a repeating wave at a certain amplitude.
 1. `Periodic/Aperiodic`: A `waveform` whose amplitude repeats at a fixed period T is called a `periodic` waveform. Else, `aperiodic`.
 1. `Harmonic`: A (usually) Sine `Oscillation` that is at some integer multiple frequency of a reference Sine Oscillation. 2X = `octave`; 10X = `decade`.
+1. `Inharmonic`: A (usually) Sine `Oscillation` that is NOT at some integer multiple frequency of a reference Sine Oscillation.
+1. `Fundamental Frequency`: The lowest frequency component of a `waveform` or `signal`.
+1. `Overtone`: Any frequency component of a `waveform` or `signal` that is higher than the `fundamental frequency`.
+1. `Spectrum`: A graph of `amplitude` vs `frequency` for a `waveform` or `signal`.
 1. `Attenuation`: Reduction in `amplitude` of a `waveform`, usually as result of `filter`-ing. Measured in dBs. 
 1. `Transient`: TBW
 1. `Alias`: TBW

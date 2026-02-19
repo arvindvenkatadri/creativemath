@@ -2,7 +2,7 @@
   "hash": "af7b537b30f8c1dc2e2e127107a8638b",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: <iconify-icon icon=\"ph:vector-three\" width=\"1.2em\" height=\"1.2em\"></iconify-icon> <iconify-icon icon=\"gravity-ui:function\" width=\"1.2em\" height=\"1.2em\"></iconify-icon> Vectors\nsubtitle: \"\"\nsubject: \"Shapes and Code\"\nabstract: \"\"\ndate: 03/March/2025\ndate-modified: \"2025-12-10\"\norder: 20\ncode-fold: true\ncategories:\n- Complex\ncitation: true\neditor: \n  markdown: \n    wrap: 72\n---\n\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n::: {.cell}\n\n:::\n\n\n\n## Introduction\n\n\n\n\n## References\n\n1. <https://www.math.hkust.edu.hk/~machas/vector-calculus-for-engineers.pdf>\n",
+    "markdown": "---\ntitle: <iconify-icon icon=\"ph:vector-three\" width=\"1.2em\" height=\"1.2em\"></iconify-icon> <iconify-icon icon=\"gravity-ui:function\" width=\"1.2em\" height=\"1.2em\"></iconify-icon> Vectors\nsubtitle: \"\"\nsubject: \"Shapes and Code\"\nabstract: \"\"\ndate: 03/March/2025\ndate-modified: \"2026-01-02\"\norder: 20\ncode-fold: true\ncategories:\n- Complex\ncitation: true\neditor: \n  markdown: \n    wrap: 72\n---\n\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n::: {.cell}\n\n:::\n\n\n\n## Introduction\n\n\n\n\n## References\n\n1. <https://www.math.hkust.edu.hk/~machas/vector-calculus-for-engineers.pdf>\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

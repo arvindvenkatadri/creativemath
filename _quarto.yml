@@ -10,9 +10,9 @@ page-layout: full
 execute:
   freeze: auto
   cache: true
-  echo: true
-  warning: true
-  message: true
+  # echo: true
+  # warning: true
+  # message: true
   error: true # errors will not stop rendering!
 
 website:

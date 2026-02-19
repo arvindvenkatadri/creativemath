@@ -9,7 +9,7 @@ listing:
   sort: "order"
   sort-ui: false
   filter-ui: false
-  contents: "*/listing.qmd"
+  contents: "Modules/*/*.qmd"
   fields: [image, title, date]
   table-striped: true
   table-hover: true
