@@ -1,0 +1,312 @@
+---
+title: "Phasor Diagrams"
+subtitle: ""
+subject: ""
+abstract: ""
+date: 20/Feb/2026
+date-modified: "`r Sys.Date()`"
+order: 15
+categories:
+  - Phasors
+  - Sidebands
+  - Rotation
+bibliography: 
+  - grateful-refs.bib
+citation: true
+editor: 
+  markdown: 
+    wrap: 72
+format:
+  html:
+    include-in-header: includes.html
+
+---
+
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+library(tidyverse)
+library(ggformula)
+library(ggplot2)
+
+```
+
+
+```{r}
+#| label: Extra Pedagogical Packages
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+library(kableExtra)
+library(grateful)
+library(sysfonts)
+library(systemfonts)
+library(showtext)
+library(gfonts)
+library(downloadthis)
+#remotes::install_github("mccarthy-m-g/embedr")
+library(embedr) # Embed multimedia in HTML files
+library(marquee)
+library(ggrepel)
+library(ggdiagram)
+library(ggarrow)
+##
+# {style="background-color: yellow;"}
+
+```
+
+
+```{r}
+#| label: plot-theme-ggplot
+#| cache: false
+#| echo: false
+#| messages: false
+#| warning: false
+
+## Clean the slate
+systemfonts::clear_local_fonts()
+systemfonts::clear_registry()
+##
+showtext::showtext_opts(dpi = 96) #set DPI for showtext
+sysfonts::font_add(family = "Alegreya",
+  regular = "../../../../../../fonts/Alegreya-Regular.ttf",
+  bold = "../../../../../../fonts/Alegreya-Bold.ttf",
+  italic = "../../../../../../fonts/Alegreya-Italic.ttf",
+  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf"
+  )
+
+sysfonts::font_add(family = "Roboto Condensed", 
+  regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
+  bold = "../../../../../../fonts/RobotoCondensed-Bold.ttf",
+  italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
+  bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
+showtext::showtext_auto(enable = TRUE) #enable showtext
+##
+theme_custom <- function(){ 
+
+    ggplot2::theme_bw(base_size = 10) + 
+    
+    # theme(panel.widths = unit(11, "cm"), 
+    #       panel.heights = unit(6.79, "cm")) + # Golden Ratio
+    
+    ggplot2::theme(plot.margin = margin_auto(t = 1, r = 2, b = 1, l = 1, unit = "cm"),
+          plot.background = element_rect(fill = "bisque",
+                                         colour = "black",
+                                         linewidth = 1)) + 
+            
+    theme_sub_axis(title = element_text(family = "Roboto Condensed", 
+                                       size = 10),
+                   text = element_text(family = "Roboto Condensed", 
+                                       size = 8)) + 
+    
+    theme_sub_legend(text = element_text(family = "Roboto Condensed", 
+                                         size = 6),
+                     title = element_text(family = "Alegreya", 
+                                          size = 8)) + 
+    
+    theme_sub_plot(title = element_text(family = "Alegreya", 
+                                        size = 14, face = "bold"),
+                   title.position = "plot",
+                   subtitle = element_text(family = "Alegreya", 
+                                           size = 10),
+                   caption = element_text(family = "Alegreya", 
+                                          size = 6),
+                   caption.position = "plot") 
+    
+}
+
+## Use available fonts in ggplot text geoms too!
+ggplot2::update_geom_defaults(geom = "text", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "label", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+
+ggplot2::update_geom_defaults(geom = "marquee", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "text_repel", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "label_repel", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+
+## Set the theme
+ggplot2::theme_set(new = theme_custom())
+
+## tinytable options
+options("tinytable_tt_digits" = 2)
+options("tinytable_format_num_fmt" = "significant_cell")
+options(tinytable_html_mathjax = TRUE)
+
+
+## Set defaults for flextable
+flextable::set_flextable_defaults(font.family = "Roboto Condensed")
+##
+# rgl::rgl.useNULL()
+
+```
+
+<div class="mathcell" style="height: 6in">
+<script>
+
+var parent = document.currentScript.parentNode;
+
+var id = generateId();
+parent.id = id;
+
+MathCell( id, [ { type: 'slider', min: -20, max: 20, default: 1,
+                                  name: 'a', label: 'a' },
+                { type: 'slider', min: -20, max: 20, default: 6,
+                                  name: 'b', label: 'b' },
+                { type: 'slider', min: -20, max: 20, default: -14,
+                                  name: 'c', label: 'c' },
+                { type: 'slider', min: -20, max: 20, default: 0,
+                                  name: 'd', label: 'd' } ] );
+
+parent.update = function( id ) {
+
+  var a = getVariable( id, 'a' );
+  var b = getVariable( id, 'b' );
+  var c = getVariable( id, 'c' );
+  var d = getVariable( id, 'd' );
+
+  function x( t ) {
+    return Math.cos(a*t) - Math.cos(b*t)/2 - Math.sin(c*t)/3 + Math.cos(d*t)/4;
+  }
+
+  function y( t ) {
+    return Math.sin(a*t) - Math.sin(b*t)/2 + Math.cos(c*t)/3 + Math.sin(d*t)/4;
+  }
+
+  var p = parametric( t => [ x(t), y(t) ], [0, 2*Math.PI, 1000] );
+
+  var data = [ p ];
+
+  var config = { type: 'svg', axes: false };
+
+  evaluate( id, data, config );
+
+}
+
+parent.update( id );
+
+</script>
+</div>
+
+## What is a Phasor?
+
+Recall our discussion on vectors: they are quantities with `magnitude` and `direction`. 
+
+A `phasor` is another useful mathematical concept, and in like fashion as with vectors, it has `magnitude` and...`rotation`! 
+
+Why do we need them??
+
+## The Famous Rotating Vector
+
+Look at the figure below:
+
+<center>
+<iframe width = 500 height = 500
+src="https://editor.p5js.org/arvindv/full/zco4vJ3Pl">
+</iframe>
+</center>
+
+We have the white-pointed line rotating CC, generating two `projections` on the x and y axes. These are the `cosine` and `sine` components respectively. 
+
+The rotating line is our ***phasor***: a vector that has a variable `phase` due to rotation. 
+
+
+## Why is this Useful?
+
+In sound synthesis projects, we need to generate sounds with multiple frequencies **simultaneously**. It is useful to view these are a set of rotating phasors, and see how they add up vectorially. This vector sum may be easier to understand and may lead to better understanding of the physics involved. Some phasors may rotate CC and others may rotate CCW, as we will see. 
+
+::: callout-important
+### Frames of Reference under Rotation
+
+Sometimes, when we have several components represented as `phasors`, it is useful to freeze one of the important ones, and let the others rotate ***relative*** to this frozen component. See for example the figure below:
+
+```{r}
+#| label: fig-amp-modulation
+#| code-fold: true
+#| fig-cap: "FM Spectrum"
+#| echo: false
+
+wc <-  440
+wm <- 200
+n <- -2:2
+my_data <- tibble(
+  order = as_factor(n * sign(n)),
+  freqs = wc + n*wm,
+  oddneg = ifelse(n %% 2 == 1 & n < 0, -1, 1),
+  #amps = besselJ(nu = abs(n), x = 2) * oddneg
+  amps = c(0.2, 0.4, 1, 0.4, 0.2))
+
+my_data %>%
+  ggplot(aes(x = freqs, y = amps, label = paste0("J_", order, " = ", round(amps,3)))) +
+  geom_linerange(aes(ymin = 0, ymax = amps, colour = order), 
+                 linewidth = 1.2) +
+  geom_point(aes(colour = order), size = 3) +
+  # geom_text_repel(nudge_y = 0.05, size = 3) + 
+  geom_vline(xintercept = 0) + 
+  labs(
+    title = "Main Component with two Sidebands on either side",
+    x = "Frequency (Hz)",
+    y = "Amplitude"
+  ) +
+  scale_colour_brewer(palette = "Set1") + 
+  theme_custom()
+
+```
+In a phasor diagram representation, we would "freeze" the main [red]{style="color: red;"} component, and then observe the others rotate around it.
+It should become obvious that keeping the [red]{style="color: red;"} component steady is tantamount to reducing **all frequencies** by the [red]{style="color: red;"} component's frequency! This means that components at frequencies *lower* than the [red]{style="color: red;"} component will effectively have negative frequencies and will rotate CW, with the others will rotate CCW. (Angle increases CCW)
+
+
+:::
+
+
+
+::: {#refs style="font-size: 60%;"}
+###### {{< iconify lucide package-check >}} R Package Citations
+
+```{r}
+#| echo: false
+#scan_packages()
+cite_packages(
+  output = "table",
+  out.dir = ".",
+  out.format = "html",
+  pkgs = c("ambient", "gm","mosaicCalc", "plot3D")
+) %>%
+  knitr::kable(format = "simple")
+
+```
+:::

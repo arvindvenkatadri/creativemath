@@ -197,11 +197,12 @@ Can [Circles](../../25-Geometry/10-Circles/index.qmd) do more for us than draw t
 
 Take a look at these paintings:
 
-<centre> <iframe 
+<center> 
+<iframe 
 width = 600 height = 600
 src="https://editor.p5js.org/arvindv/full/OKJD6E7qL">
 </iframe>
-</centre> 
+</center> 
 
 Also see:
 <https://x.com/jagarikin/status/962449509782495232>
@@ -218,15 +219,28 @@ But how about the other way around? What if we had a **pattern** in mind,
 and wanted to compute the circles, their number and amplitudes, that
 would generate that pattern? This is where the Fourier Series comes in.
 
-The best way to form this intuition is to play some of the **Wave Game** that is available on the [University of Colorado PHET Simulations website](https://phet.colorado.edu): 
+### Fourier Series: Intuitive
 
-::: {.column-page-inset-right}
+Take a look at this picture below:
+
+```{r}
+#| echo: false
+#| label: fig-Fourier-smoothie
+#| out-width: "80%"
+#| fig-cap: "Fourier Series as a Smoothie Recipe. Source: [Better Explained](https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/)"
+
+knitr::include_graphics("https://betterexplained.com/wp-content/webp-express/webp-images/uploads/images/smoothie-to-recipe-20121030-223058.png.webp")
+```
+Another good way to form this intuition is to play some of the **Wave Game** that is available on the [University of Colorado PHET Simulations website](https://phet.colorado.edu): 
+
+<center>
 <iframe src="https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_en.html"
         width="800"
         height="600"
         allowfullscreen>
 </iframe>
-:::
+</center>
+
 
 ## Rolling Circles and the Fourier Series
 

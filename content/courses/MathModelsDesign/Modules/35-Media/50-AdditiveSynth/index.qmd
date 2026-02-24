@@ -172,12 +172,10 @@ from Mr Shiffman again:
 In general, we can write a sum of sine/cos waves as:
 
 $$
-f(\theta) = \frac{1}{a_0} + \sum_{k=0}^{\infty} a_k*sin(k\theta) + b_k*cos(k\theta)
+g(t) = \frac{1}{a_0} + \sum_{k=0}^{\infty} \Big[ a_k*sin(k* 2\pi *f *t) + b_k*cos(k* 2\pi *f *t) \Big]
 $$ {#eq-additive-synthesis}
 
-$f$ is the desired time-waveform, the
-$\theta = 2\pi\times fundamental~frequency \times t$, and the $a_k$ and
-$b_k$ are weights for the individual components that are to be designed.
+$g(t)$ is the desired time-waveform, $\omega = 2\pi\times f$ is the fundamental frequency in radians/sec, and the $a_k$ and $b_k$ are weights for the individual components that are to be designed.
 
 How does this look like? Mr. Shiffman again:
 
@@ -196,15 +194,48 @@ Risset and Mathews, [@risset1969a] and
 1. The idea is to take an original sound, analyze that using the Fourier Series, and then use those coefficients to synthesize the sound with code.
 1. The coefficients, or parameters, need to be manipulated and transformed with time, in order for the synthesized sound to have a "live" feel. 
 1. The number of such parameters and their control over time could pose a formidable data management challenge. This leads to the idea of *data reduction* in order to have a manageable number of these, and generate the sound in its essentials. 
-1. One essential part of this is to use **envelopes** around the amplitudes of several sine waves, what is called the [ADSR]() method. This could also lead to several oscillators being turned on or off based on need. 
-1. So one needs to break down the sound into "principal components" that are harmonically related ( as with the Fourier series) and then fill in [**inharmonic tones**]() using additional oscillators. 
-1. Adding these components allows us to synthesize authentic-sounding musical instruments, with the appropriate [timbre](TO BE ADDED).
+1. One essential part of this is to use **envelopes** around the amplitudes of several sine waves, what is called the [ADSR](https://zaksound.com/what-is-adsr/) method. This could also lead to several oscillators being turned on or off based on need. 
 
-## What is ADSR?
+
+
+::: callout-note
+### What is ADSR?
 
 *ADSR* stands for "Attack Decay Sustain Release". These related to the way a note of music varies over time in a typical piece of music. 
 
 {{< video https://www.youtube.com/watch?v=wUSva_BnedA&pp=ygURQURTUiBjb2RpbmcgdHJhaW4%3D >}}
+
+:::
+
+
+4. So one needs to break down the sound into "principal components" that are harmonically related ( as with the Fourier series) and then fill in [**inharmonic tones**](TO BE ADDED) using additional oscillators. 
+5. Adding these components allows us to synthesize authentic-sounding musical instruments, with the appropriate [timbre](https://timbreandorchestration.org/learn-about-timbre).
+
+::: callout-note
+## What is Timbre?
+
+When different instruments play the **same** note, we always know that they sound different. It is impossible to mistake a violin for a flute or saxophone for a piano! So how does this work?
+
+Each musical instrument has a characteristic set of frequencies (harmonics and in-harmonics) that it generates when a specific note is played. Think of this a an audio signature. These drop off in amplitude over frequency and are a function of the structure, resonances, and even playing technique ( e.g. bowing of a violin) of the intstrument. 
+
+```{r screenshot.opts=list(vwidth=400,cliprect = c(0, 0, 400, 300))}
+#| label: tbl-basic-wave-table-sounds
+#| out-width: "100%"
+#| tbl-cap: "Basic-wave-table-sounds. Source: Andrew Olney <https://olney.ai>"
+#| cache: TRUE
+#| echo: FALSE
+
+
+# first pass, use local file, build html, and deploy html
+# knitr::include_url("images/basic-wave-sound-table.html", height = "250px")
+# second pass, use deployed url so pdf will also build
+knitr::include_url("https://olney.ai/ct-modular-book/images/basic-wave-sound-table.html", height = "300px")
+```
+
+Another way to view the multiple spectral components of a musical sound is using a *spectrogram*: <https://musiclab.chromeexperiments.com/Spectrogram>
+
+
+:::
 
 
 ## Additive Synthesis with Code
@@ -240,6 +271,20 @@ show(music)
 1.  Jean-Claude Risset, Max V. Matthews. (Feb 1969). *Analysis of
     Musical Instrument Tones*. Physics Today.
     <https://sci-hub.se/https://doi.org/10.1063/1.3035399>
+1. <https://www.cs.cmu.edu/~tcortina/15104-f20/lectures/24-MoreSound.pdf>
+1.  *R package `gm`: the grammar of Music*.
+    <https://cran.r-project.org/web/packages/gm/vignettes/gm.html>
+1.  Phil Burk,Larry Polansky, Douglas Repetto, Mary Roberts Dan
+    Rockmore. *Music and Computers: A Theoretical and Historical
+    Approach* <https://musicandcomputersbook.com>
+1. Julius O. Smith. *Physical Audio Signal Processing for Virtual Musical Instruments and Audio Effects*. <https://ccrma.stanford.edu/~jos/pasp/pasp.html>
+1. Tutorials on WebSoundArt. <https://websoundart.org/blog>
+1. Andrew Olney.*Computational Thinking through Modular Sound Synthesis* <https://olney.ai/ct-modular-book/index.html> 
+1. Michael McCarthy. *A Musician's Compendium*. <https://musicianscompendium.netlify.app/>
+
+## Resources
+
+1. Thomas John Martinez. *A collection of p5.sound sketches that demonstrate the new p5 sound library*. <https://editor.p5js.org/thomasjohnmartinez/collections/Dp0zGclVL> 
 1.  p5.Sound
     Tutorial.<https://pdm.lsupathways.org/6_resources/7_soundandmusic/p5.sound/>
 1.  Sound in p5.js Playlist.
@@ -247,19 +292,7 @@ show(music)
 1.  *Sounds with Tone.js*. <https://pdm.lsupathways.org/3_audio/>
 1.  Mister Bomb. *p5.Sound project tutorials*
     <https://www.youtube.com/playlist?list=PLIsdHp2z9wFl7A1wWb2VmQUUojEGsKELE>
-1. <https://www.cs.cmu.edu/~tcortina/15104-f20/lectures/24-MoreSound.pdf>
-1.  *R package `gm`: the grammar of Music*.
-    <https://cran.r-project.org/web/packages/gm/vignettes/gm.html>
-1.  Phil Burk,Larry Polansky, Douglas Repetto, Mary Roberts Dan
-    Rockmore. *Music and Computers: A Theoretical and Historical
-    Approach* <https://musicandcomputersbook.com>
-1. Julius O. Smith. *PHYSICAL AUDIO SIGNAL PROCESSING
-FOR VIRTUAL MUSICAL INSTRUMENTS AND AUDIO EFFECTS* <https://ccrma.stanford.edu/~jos/pasp/pasp.html>
-1. Tutorials on WebSoundArt. <https://websoundart.org/blog>
-
-## Resources
-
-1. Thomas John Martinez. *A collection of p5.sound sketches that demonstrate the new p5 sound library*. <https://editor.p5js.org/thomasjohnmartinez/collections/Dp0zGclVL> 
+    
 
 ## Other Tools
 

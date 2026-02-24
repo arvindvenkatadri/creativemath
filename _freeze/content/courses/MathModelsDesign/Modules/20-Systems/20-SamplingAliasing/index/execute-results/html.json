@@ -1,0 +1,19 @@
+{
+  "hash": "0373e0e6d5bf7324dc8d15313fb658d2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Sampling And Aliasing\"\nauthor: Arvind V.\nsubtitle: \"\"\nsubject: \"\"\nabstract: \"\"\ndate: 20/Feb/2026\ndate-modified: \"2026-02-20\"\norder: 20\ncategories:\n  - A to D conversion\n  - Sampling\n  - Aliasing\n  - Rotation\nbibliography: \n  - grateful-refs.bib\ncitation: true\neditor: \n  markdown: \n    wrap: 72\n---\n\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell messages='false'}\n::: {.cell-output .cell-output-error}\n\n```\nError in `update_defaults()`:\n! Can't find geom called \"marquee\".\n```\n\n\n:::\n\n::: {.cell-output .cell-output-error}\n\n```\nError in `update_defaults()`:\n! Can't find geom called \"text_repel\".\n```\n\n\n:::\n\n::: {.cell-output .cell-output-error}\n\n```\nError in `update_defaults()`:\n! Can't find geom called \"label_repel\".\n```\n\n\n:::\n\n::: {.cell-output .cell-output-error}\n\n```\nError in `theme_bw()`:\n! could not find function \"theme_bw\"\n```\n\n\n:::\n:::\n\n\n## Introduction\n\nWhat do you think is happening here?\n\n{{< video https://youtu.be/Ce_jRfM9b4k >}}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n::: {#refs style=\"font-size: 60%;\"}\n###### {{< iconify lucide package-check >}} R Package Citations\n\n\n::: {.cell}\n::: {.cell-output-display}\n\n\nPackage      Version   Citation    \n-----------  --------  ------------\nambient      1.0.3     @ambient    \ngm           2.0.0     @gm         \nmosaicCalc   0.6.4     @mosaicCalc \nplot3D       1.4.2     @plot3D     \n\n\n:::\n:::\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -19,16 +19,37 @@ citation: true
 editor: 
   markdown: 
     wrap: 72
-draft: true
 ---
 
-```{r}
-#| label: setup
-#| echo: false
-#| message: false
-#| warning: false
+```{r setup, include=FALSE}
+library(blogdown)
 library(tidyverse)
 library(ggformula)
+library(mosaicCalc) # Analytic Calculus
+library(ambient) # Noise generation in R
+library(plot3D) # 3D plots for explanation
+library(rgl) # Interactive 3D plots for explanation
+library(plotly)
+knitr::knit_hooks$set(webgl = hook_webgl)
+#library(caracas)
+library(downloadthis)
+library(knitr)
+library(kableExtra)
+## Markdown boiler plate stuff!!
+# ![An Elephant](elephant.png){#fig-elephant}
+# This is illustrated well by @fig-elephant.
+# 
+# ### Figure Panel Divs
+#     ::: {#fig-elephants layout-ncol=2}
+#     ![Surus](surus.png){#fig-surus}
+#     ![Hanno](hanno.png){#fig-hanno}
+#      Famous Elephants
+#     :::
+#     Adding download buttons
+#     data that has been read in
+#     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
+#    existing file
+#    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
 
 ```
 
@@ -36,31 +57,36 @@ library(ggformula)
 #| label: Extra Pedagogical Packages
 #| echo: false
 #| message: false
-#| warning: false
 
-library(knitr)
-library(kableExtra)
+library(checkdown)
+library(epoxy)
 library(grateful)
+library(MKdescr)
+library(shinylive) # To create a Shiny app in a Quarto HTML doc
+# Will not work if webr is also used in the SAME Quarto doc!
 library(sysfonts)
-library(systemfonts)
-library(showtext)
 library(gfonts)
+library(kableExtra)
+# library(conflicted)
+# conflicted::conflicts_prefer(dplyr::filter, dplyr::count, dplyr::last, dplyr::glimpse, base::max)
 library(downloadthis)
-#remotes::install_github("mccarthy-m-g/embedr")
+#devtools::install_github("mccarthy-m-g/embedr")
 library(embedr) # Embed multimedia in HTML files
-library(marquee)
-library(ggrepel)
-# {style="background-color: yellow;"}
 ```
 
+
 ```{r}
-#| label: plot-theme-ggplot
+#| label: plot-theme-ggplot4
 #| cache: false
 #| echo: false
 #| messages: false
 #| warning: false
 #| 
-
+library(systemfonts)
+library(showtext)
+library(marquee)
+library(ggtext)
+library(ggrepel)
 ## Clean the slate
 systemfonts::clear_local_fonts()
 systemfonts::clear_registry()
@@ -70,8 +96,7 @@ sysfonts::font_add(family = "Alegreya",
   regular = "../../../../../../fonts/Alegreya-Regular.ttf",
   bold = "../../../../../../fonts/Alegreya-Bold.ttf",
   italic = "../../../../../../fonts/Alegreya-Italic.ttf",
-  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf"
-  )
+  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf")
 
 sysfonts::font_add(family = "Roboto Condensed", 
   regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
@@ -162,10 +187,9 @@ options(tinytable_html_mathjax = TRUE)
 
 ## Set defaults for flextable
 flextable::set_flextable_defaults(font.family = "Roboto Condensed")
-##
-# rgl::rgl.useNULL()
 
 ```
+
 
 ## Introduction
 
@@ -192,15 +216,15 @@ signal. There is no change in amplitude, just the instantaneous
 frequency. We write this change as:
 
 $$
-\omega_i(t) = \omega_c + \Delta_{\omega}\
-cos(\omega_mt)
+\Large\omega_i(t) = \omega_c + \Delta_{\omega}\
+cos(\omega_mt)\Large
 $$ {#eq-fm-freq}
 
 where
 
--   $\omega_i(t)$ is the Instantaneous Frequency of the carrier wave
--   $\omega_c$ is the *center* (undeviated) Frequency of the carrier wave
--   $\omega_m$ is the Frequency of the modulation wave, the `rate` at which FM changes the `carrier's` frequency
+-   $\omega_i(t)$ is the Instantaneous Frequency of the `carrier` wave
+-   $\omega_c$ is the *center* (undeviated) Frequency of the `carrier` wave
+-   $\omega_m$ is the Frequency of the `modulation` wave, the `rate` at which FM changes the `carrier's` frequency
 -   $\Delta_{\omega}$ is an amplitude-like parameter, which controls the
     `amount` of frequency deviation.
 
@@ -231,6 +255,9 @@ carrier wave, and the hand moving it up and down is the modulating wave.
 
 ## FM Wave Instantaneous Frequency and Phase
 
+::: {.grid}
+
+::: {.g-col-6}
 As we know, we need the instantaneous phase of the carrier wave to write
 out the equation for the FM wave, and analyze it further. The instantaneous phase is the [*integral of the instantaneous frequency*]{style="background-color: yellow;"}
 
@@ -242,6 +269,8 @@ cos(\omega_m \tau) \right] d\tau\\
 &= \omega_c t + \frac{\Delta_{\omega}}{\color{red}{{\omega_m}}} {\color{red}{\sin}}(\omega_m t)
 \end{align}
 $$
+
+
 
 Writing out the equation for the resulting FM-wave, we have:
 
@@ -257,7 +286,10 @@ where
 
 -   $A_c$ is the Amplitude of the carrier wave
 -   $I =  \large{\frac{\Delta_{\omega}}{\omega_m}}$ is the `Modulation Index`, or `Peak Phase Deviation`.
-    
+
+:::
+
+::: {.g-col-6}
 This looks like the phase of the carrier (the portion inside parentheses in @eq-fm-1) is like:
 
 ```{r}
@@ -273,6 +305,8 @@ lines(t,t)
 
 ```
 
+    
+
 There is a linear portion from the original unmodulated carrier (slope = $\omega_c$) with an added-on ***sine wave*** that tends to increase and reduce the phase periodically. 
 
 ::: callout-note
@@ -280,6 +314,12 @@ There is a linear portion from the original unmodulated carrier (slope = $\omega
 The **net phase** at any time still is increasing monotonically! Slope is always positive!
 Hmm...what if it was not ????
 :::
+
+:::
+
+:::
+
+
 ## FM Spectrum
 
 So much for time waveforms.
@@ -287,22 +327,23 @@ So much for time waveforms.
 What we *hear* is more easily understood using the frequency spectrum. To understand the spectrum of the FM wave, we need to expand the @eq-fm-1. Doing so, we would obtain a rather intimidating, but ultimately rewarding expansion:
 
 $$
-x_{fm}(t) = A_c \Bigg[ cos(\omega_ct)*\color{orange}{cos(Isin(\omega_mt))} {-} \\
-sin(\omega_ct)*{\color{red}{sin(Isin(\omega_mt))}}\Bigg]
+\Large{x_{fm}(t) = A_c \Bigg[ cos(\omega_ct)*\color{orange}{cos(Isin(\omega_mt))} \color{black}{-} \\
+sin(\omega_ct)*{\color{red}{sin(Isin(\omega_mt))}}\Bigg]}\Large
 $${#eq-simple-trig-expansion}
 
 [A $sin$ and a $cos$ ***inside*** a $sin$ and a $cos$]{style="background-color: yellow;"} ??!! How do we expand that?? Well, we have two identities:
 
 $$
-\color{orange}{cos(Isin(\omega_mt))} = {J_0(I) + 2 \sum_{n=1}^{\infty} J_{2n}(I)~ * ~ cos(2n \omega_m t)}
+\Large\color{orange}{cos(Isin(\omega_mt))} = {J_0(I) + 2 \sum_{n=1}^{\infty} J_{2n}(I)~ * ~ cos(2n \omega_m t)}\Large
 $$ {#eq-bessel-expansion-1}
 
 and
 
 $$
-\color{red}{sin(Isin(\omega_mt))} = {2 \sum_{n=0}^{\infty} J_{2n+1}(I)~ * ~ sin((2n+1) \omega_m t)}
+\Large\color{red}{sin(Isin(\omega_mt))} = {2 \sum_{n=0}^{\infty} J_{2n+1}(I)~ * ~ sin((2n+1) \omega_m t)}\Large
 $$ {#eq-bessel-expansion-2}
-where the $\color{red}{J_n(I)}$ are the [Bessel functions of the first kind of order n.]{style="background-color: yellow;"} (More on these beautiful creatures shortly!)
+
+where the $\color{blue}{J_n(I)}$ are the [Bessel functions of the first kind of order n.]{style="background-color: yellow;"} (More on these beautiful creatures shortly!)
 
 Plugging these into the @eq-simple-trig-expansion, we get:
 
@@ -312,7 +353,7 @@ $$
 x_{fm}(t) &= A_c \Bigg[\cos(\omega_ct) \Bigg( J_0(I) + 2 \sum_{n=1}^{\infty} J_{2n}(I) cos(2n \omega_m t) \Bigg) - 
 sin(\omega_ct) \Bigg( 2 \sum_{n=0}^{\infty} J_{2n+1}(I) sin((2n+1) \omega_m t) \Bigg) \Bigg]\\
 &= A_c \Bigg[ J_0(I) cos(\omega_ct) +
-2 \sum_{n=1}^{\infty} J_{2n}(I) {\color{red}{cos(\omega_ct) cos(2n \omega_m t)}} {\color{green}{~\pmb{---}}}
+2 \sum_{n=1}^{\infty} J_{2n}(I) {\color{red}{cos(\omega_ct) cos(2n \omega_m t)}} {\color{green}{~\pmb{---}~}}
 2 \sum_{n=0}^{\infty} J_{2n+1}(I) {\color{blue}{sin(\omega_ct) sin((2n+1) \omega_m t)}} \Bigg]\\
 \end{flalign}
 $$
@@ -329,10 +370,13 @@ x_{fm}(t) &= A_c \Bigg[ J_0(I) cos(\omega_ct) +
 \sum_{n=1}^{\infty} J_{2n}(I) {\color{red}{\Big( cos((\omega_c + 2n \omega_m)t) + cos((\omega_c - 2n \omega_m)t) \Big)}} {\color{green}{~\pmb{+++}}}
 \sum_{n=0}^{\infty} J_{2n+1}(I) {\color{blue}{\Big( cos((\omega_c + (2n+1) \omega_m)t) - cos((\omega_c - (2n+1) \omega_m)t) \Big)}} \Bigg]\\
 &= A_c \Bigg[ J_0(I) cos(\omega_ct) +
-\sum_{n=1}^{\infty} J_{n}(I) \Big( cos((\omega_c + n \omega_m)t) + (-1)^n*cos((\omega_c - n \omega_m)t) \Big) \Bigg] //What?? How???
+\sum_{n=1}^{\infty} J_{n}(I) \Big( cos((\omega_c + n \omega_m)t) + (-1)^n*cos((\omega_c - n \omega_m)t) \Big) \Bigg] //What?? How??? Where?? When??
 \end{flalign}
 $$
-:::
+
+::: {.grid}
+
+::: {.g-col-6}
 
 And so finally:
 
@@ -347,9 +391,9 @@ x_{fm}(t) = A_c \bigg[ {J_0(I)} {\cos(\omega_c t) ~ \text{//carrier}}\\
 \end{multline*}}}
 $${#eq-fm-2}
 
+:::
 
-### FM Spectrum 
-
+::: {.g-col-6}
 We can plot a graph of FM carrier + sideband amplitudes vs frequency. What does this look like?
 
 ```{r}
@@ -367,14 +411,14 @@ my_data <- tibble(
   amps = besselJ(nu = abs(n), x = 2) * oddneg)
 
 my_data %>%
-  ggplot(aes(x = freqs, y = amps, label = paste0("J_", order, "=", round(amps,3)))) +
+  ggplot(aes(x = freqs, y = amps, label = paste0("J_", order, " = ", round(amps,3)))) +
   geom_linerange(aes(ymin = 0, ymax = amps, colour = order), 
                  linewidth = 1.2) +
   geom_point(aes(colour = order), size = 3) +
   geom_text_repel(nudge_y = 0.05, size = 3) + 
   geom_vline(xintercept = 0) + 
   labs(
-    title = "FM Synthesis Sidebands",
+    title = "FM Spectrum",
     x = "Frequency (Hz)",
     y = "Amplitude (Bessel Function Value)"
   ) +
@@ -383,18 +427,386 @@ my_data %>%
 
 ```
 
+:::
+
+:::
+
+:::
+
+
 In FM, the modulation process takes power from the carrier and distributes it into the sidebands. Since the instantaneous frequency is proportional to the modulating signal, we get a mathematical structure that looks like $cos(\omega_c t + I*cos(\omega_m t))$. Expanding this using trigonometric identities and Taylor series leads to the Bessel functions as weights for the sidebands. 
 
-The spectrum is symmetric of course, with `sidebands` going off in both directions in pairs. The carrier also not necessarily the highest component, as expected. 
+The spectrum is symmetric of course, with `sidebands` going off in both directions in pairs. The carrier also not necessarily the highest component, as expected. To recap, we see that with FM:
+
+-   We have a `carrier` component (weighted by $\color{red}{J_0(I)}$). The carrier **disappear** for certain values of $I$ when $\color{red}{J_0(I)} = 0$;
+-   Pairs of `sidebands` around the carrier at a separation of n-multiples of $\omega_m$, weighted by $\color{red}{J_n(I)}$. In like fashion these pairs can also disappear at the zeroes of $\color{red}{J_n(I)}$. 
+- In general, the larger the `order` $n$, the larger the $I$ needed to produce sidebands of that `order`, since $\color{red}{J_n(I)}$ are *slow starters* when $n$ is large. 
 
 So...there are `sidebands` that go into *negative frequency territory*...what could that mean?? That is where Chowning's insight must have come from! 
 
 
+## What is Chowning's Method for FM-based Synthesis?
+
+John Chowning, in 1973, proposed a method of sound synthesis using
+Frequency Modulation. The method is based on the following ideas:
+
+1.  The carrier frequency $\omega_c$ is chosen to be the *fundamental frequency* of the desired sound.
+2.  [The carrier frequency and the modulation frequency are both in the *audio band *]{style="background-color: yellow;"}! As opposed to *conventional FM transmission* where carriers are in the MHz range, with audio-range modulation signals. 
+3.  The modulation index $I$ is chosen to control the *timbre* of the
+    sound, i.e., the relative amplitudes of the sidebands.
+4.  The amplitude $A_c$ of the carrier wave is chosen to control the
+    *loudness* of the sound.
+    
+Consider what happens when we choose different values of $k$, with these ideas in mind: We will first choose $\omega_c$ and $\omega_m$ that have an integer ratio, and then later an *irrational ratio* (e.g. $\sqrt(2)$) to see the effect on the `harmonicity` of the resulting sound spectrum.
+
+```{r}
+#| layout-ncol: 2
+#| label: fig-chowning-1
+#| echo: false
+#| fig-cap: FM with varying index - harmonic sidebands
+
+theme_set(new = theme_custom())
+wc <-  440
+wm <- 220
+mod_index <- seq(0,5,1)
+n <- -6:6
+my_data <- tibble(
+  order = as_factor(abs(n)),
+  freqs = wc + n*wm,
+  amp1 = besselJ(nu = abs(n), x = mod_index[1]),
+  amp2 = besselJ(nu = abs(n), x = mod_index[2]),
+  amp3 = besselJ(nu = abs(n), x = mod_index[3]),
+  amp4 = besselJ(nu = abs(n), x = mod_index[4]),
+  amp5 = besselJ(nu = abs(n), x = mod_index[5]),
+  amp6 = besselJ(nu = abs(n), x = mod_index[6]))
+
+my_fm_plot <- function(my_data, amps, mod_index){
+  my_data %>%
+    ggplot(aes(x = freqs, y = !!sym(amps), label = paste0("J_", order, "=", round(!!sym(amps),3)))) +
+    geom_linerange(aes(ymin = 0, ymax = !!sym(amps), colour = order), 
+                   linewidth = 1.2) +
+    geom_point(aes(colour = order), size = 3) +
+    geom_text_repel(nudge_y = 0.05, size = 3) +
+    geom_vline(xintercept = 0, colour = "grey40", linewidth = 0.2) +
+    labs(
+      title = paste0("FM Synthesis Sidebands (Modulation Index I = ", mod_index, ")"),
+      x = "Frequency (Hz)",
+      y = "Amplitude (Bessel Function Value)"
+    ) +
+    scale_colour_brewer(palette = "Set1") }
+
+##
+my_fm_plot(my_data, "amp1", mod_index[1])
+my_fm_plot(my_data, "amp2", mod_index[2])
+my_fm_plot(my_data, "amp3", mod_index[3])
+my_fm_plot(my_data, "amp4", mod_index[4])
+my_fm_plot(my_data, "amp5", mod_index[5])
+my_fm_plot(my_data, "amp6", mod_index[6])
+
+# FM with varying index - inharmonic sidebands needs to be done?? Think!!
+```
+
+### Dealing with `negative frequency` sidebands
+
+Note that several sidebands go past $0$ Hz into negative territory!! How do we understand these??
+
+::: callout-note
+### Negative Frequencies
+What could a negative frequency sideband mean??
+In reality, negative frequencies are a mathematical construct that arise from the Fourier Transform and complex exponentials. A negative frequency component can be interpreted as a positive frequency component with a phase inversion. In the context of FM synthesis, negative frequency sidebands can be thought of as contributing to the overall waveform in a way that affects its shape and timbre, but they do not correspond to physically realizable sound waves. Instead, they influence the constructive and destructive interference patterns that shape the audible spectrum.
+
+We can imagine these negative-frequency sidebands as phasors with opposite rotation direction, which when combined with positive-frequency components, yield the final time-domain signal.
+
+So we ***reflect*** them at $0$ with a phase inversion. Here they might combine with spectral components at positive frequencies, either constructively or destructively, depending on their relative phases and amplitudes. 
+This generates the final sound with its final *timbre*. 
+
+:::
+
+Let us take one example from the graphs above, say $I=4$ and see what the final spectrum looks like. Then we will code this in `p5.js` and `R` and make some noise!!
+
+```{r}
+#| layout-ncol: 2
+#| label: fig-chowning-2
+#| echo: false
+#| fig-cap: Reflecting negative frequency sidebands
+#| layout-nrow: 2
+
+theme_set(new = theme_custom())
+wc <-  440
+wm <- 440/sqrt(2)
+mod_index <- 2
+n <- -6:6
+my_data <- tibble(
+  order = as_factor(abs(n)),
+  freqs = wc + n*wm,
+  amp1 = besselJ(nu = abs(n), x = mod_index))
+
+my_fm_plot <- function(my_data, amps, mod_index){
+  my_data %>%
+    ggplot(aes(x = freqs, y = !!sym(amps), label = paste0("J_", order, "=", round(!!sym(amps),3)))) +
+    geom_linerange(aes(ymin = 0, ymax = !!sym(amps), colour = order), 
+                   linewidth = 1.2) +
+    geom_point(aes(colour = order), size = 3) +
+    geom_text_repel(nudge_y = 0.05, size = 3) +
+    geom_vline(xintercept = 0, colour = "grey40", linewidth = 0.2) +
+    labs(
+      title = paste0("FM Synthesis Sidebands (Modulation Index I=", mod_index, ")"),
+      x = "Frequency (Hz)",
+      y = "Amplitude (Bessel Function Value)"
+    ) +
+    scale_colour_brewer(palette = "Set1") }
+
+## No need to plot this again
+## my_fm_plot(my_data, "amp1", mod_index)
+
+```
+
+```{r}
+#| layout-ncol: 2
+#| label: fig-chowning-3
+#| echo: false
+#| fig-cap: Reflecting negative frequency sidebands
+#| fig-subcap: 
+#|   - "Harmonic Sidebands (wm = wc /n)"
+#|   - "Inharmonic Sidebands (wm = wc / sqrt(n))"
+
+theme_set(new = theme_custom())
+
+wc <-  440
+wm <- 440/3
+mod_index <- 2
+n <- -6:6
+my_data <- tibble(
+  order = as_factor(abs(n)),
+  freqs = wc + n * wm,
+  amp1 = besselJ(nu = abs(n), x = mod_index))
+my_data_negative <- my_data %>% 
+  filter(freqs < 0) %>% 
+  mutate(amp1 = - amp1, freqs = abs(freqs))
+
+my_inverted_plot <- function(my_data, my_data_negative, amps, mod_index){
+  my_data %>%
+    ggplot(aes(x = freqs, y = !!sym(amps), label = paste0("J_", order, "=", round(!!sym(amps),3)))) +
+    geom_linerange(aes(ymin = 0, ymax = !!sym(amps), colour = order), 
+                   linewidth = 1.2) +
+    geom_point(aes(colour = order), size = 3) +
+##
+    geom_linerange(aes(x = abs(freqs), ymin = 0, ymax = amp1, colour = order), linewidth = 1.2, linetype = "dashed",
+                   data = my_data_negative) +
+    geom_point(aes(colour = order), size = 3, data = my_data_negative) +
+##
+    geom_text_repel(nudge_y = 0.05, size = 3) +
+    geom_vline(xintercept = 0, colour = "grey40", linewidth = 0.2) +
+    labs(
+      title = paste0("FM Synthesis Sidebands (Modulation Index I = ", mod_index, ")"),
+      subtitle = "With Negative Sidebands Reflected",
+      x = "Frequency (Hz)",
+      y = "Amplitude (Bessel Function Value)"
+    ) +
+    scale_colour_brewer(palette = "Set1") }
+##
+
+##
+my_inverted_plot(my_data, my_data_negative, "amp1", mod_index)
+
+
+##
+wm2 <- 440/sqrt(3)
+my_data_2 <- tibble(
+  order = as_factor(abs(n)),
+  freqs = wc + n * wm2,
+  amp1 = besselJ(nu = abs(n), x = mod_index))
+my_data_negative_2 <- my_data %>% 
+  filter(freqs < 0) %>% 
+  mutate(amp1 = - amp1, freqs = abs(freqs))
+
+my_inverted_plot(my_data_2, my_data_negative_2, "amp1", mod_index)
+
+```
+FIGURES TO BE CHECKED!!!!
+
+
+## Design Principles for FM (Chowning) synthesis
+
+FM (Chowning) synthesis is built from a small set of parameters—carrier frequency, modulator frequency, modulation index, and envelopes—that together determine where spectral components fall and how strong they are over time. 
+
+  - By choosing a rational carrier‑to‑modulator ratio, spectra are harmonic; 
+  - By choosing an irrational or odd ratio, spectra become inharmonic.[1][2][3]
+
+### Core FM steps
+
+- Choose target pitch (fundamental) in the audible range, and set the **carrier** frequency $c$ to that or a related harmonic. For example, for the note A3 choose $c = 220~Hz$.[2]
+- Choose a **modulator** frequency $m$. Its value and its ratio $c/m$ determine the spacing and harmonic/inharmonic character of the sidebands at $c \pm k * m$.[1][2]
+- Choose a peak **frequency deviation** $d$ and modulation **index** $I = d/m$; this controls how far the instantaneous frequency swings and how many sidebands have significant amplitude.[2][1]
+- Compute or intuit the approximate bandwidth using Carson’s rule $B \approx 2(m*(I+1))$ to ensure audible components stay within the desired spectrum and avoid aliasing for given sample rate.[1]
+- Design amplitude and index **envelopes** so that loudness and brightness evolve together (e.g., high index at attack, decaying over time), yielding dynamic spectra that resemble many natural sounds.[4][2]
+- Implement the FM signal as $x(t) = A \sin(2\pi c*t + I \sin(2\pi m*t))$, optionally making $A$ and $I$ time‑varying through envelopes, or based on human input!! [2][1]
+
+## Design parameters and how to set them
+
+- **Carrier frequency $c$**  
+  - Meaning: Average frequency and perceived pitch if the spectrum is harmonic.[2]
+  - How to set:  
+    - For harmonic tones, set $c$ equal to the desired fundamental (e.g., 440 Hz) or an integer multiple if the ear will still infer the missing fundamental.[2]
+    - For inharmonic “pitched noise” or bells, $c$ need not match a musical pitch exactly; it sets a central region of energy.[3]
+
+- **Modulator frequency $m$**  
+  - Meaning: Spacing between sidebands $c \pm k*m$ and, through $c/m$, the harmonic or inharmonic pattern.[1][2]
+  - How to set:  
+    - Harmonic: choose a rational ratio $c/m = p/q$ (often integers, like $1:1, ~ 2:1, ~ 3:2$), so sidebands fall on a harmonic series of some fundamental.[1][2]
+    - Inharmonic: choose irrational or “odd” ratios such as $c/m = \sqrt{2}$ or similar non‑integer relations so sidebands fall between harmonic positions.[3][1]
+
+- **Modulation index $I = d/m$**  
+  - Meaning: Ratio of peak deviation $d$ to modulator frequency; determines number and relative amplitude of significant sidebands.[1][2]
+  - How to set:  
+    - Small $I$ (near 0) yields almost pure sine tones with very few sidebands (soft timbre).[2]
+    - Moderate $I$ gives a few strong sidebands (clarinet‑like or brass‑like spectra). Practical musical values often lie roughly between 1 and 10 for simple single‑operator examples.[1][2]
+    - Larger $I$ produces many sidebands and brighter, more complex or noisy timbres until aliasing or excessive roughness appears.[1]
+
+- **Amplitude $A$ and envelopes**  
+  - Meaning: Overall loudness and time evolution of loudness and brightness, since envelopes can modulate both $A(t)$ and $I(t)$.[4][2]
+  - How to set:  
+    - Use an amplitude envelope with attack, decay, sustain, and release appropriate to the instrument (e.g., fast attack/decay for percussive sounds, slower for pads).[4]
+    - Tie the index envelope to the amplitude envelope so that when amplitude decays, the index decreases, causing the spectrum to lose high‑frequency content over time, as in many acoustic sounds.[4][2]
+
+- **Carrier–modulator ratio $c/m$**  
+  - Meaning: Positions of spectral components; with reflection from negative frequencies, this ratio still controls whether the pattern is harmonic or inharmonic.[3][2]
+  - How to set:  
+    - Choose low integer ratios (e.g., 1:1, 2:1, 3:1) for clear, consonant harmonic spectra.[2][1]
+    - Use more complex ratios (e.g., 5:2, 7:3) for richer but still roughly harmonic tones, or irrational ratios (e.g., 1:$\sqrt{2}$) for bell‑like inharmonic spectra.[3]
+
+## Example: harmonic FM tone
+
+Design a harmonic spectrum centered on A4 with clearly related overtones, all within audible range.
+
+- Choose **fundamental and carrier**: Target pitch A4, fundamental 440 Hz; use $c = 440$ Hz so the carrier itself is the fundamental.[2]
+- Choose **modulator** with harmonic ratio: Take $c/m = 2/1$, so set $m = 220$ Hz. This yields sidebands at $440 \pm k\cdot 220$ Hz: 220, 440, 660, 880, 1100 Hz, etc., which lie on the harmonic series of 220 Hz (harmonics 1, 2, 3, 4, 5…).[1][2]
+- Choose **index**: Let $I = 4$; this provides several strong sidebands before amplitudes taper, giving a bright harmonic timbre without extreme spectral width.[2][1]
+- Check **bandwidth**: With $m = 220~Hz$ and $I = 4$, Carson’s rule gives $B \approx 2(m(I+1)) = 2 \cdot 220 \cdot 5 = 2200~Hz$, so significant components lie roughly between about 0 and 2600 Hz, safely inside the audible band.[1]
+- Define **signal and envelopes**:  
+  - Audio formula: $x(t) = A(t)\,\sin(2\pi\cdot 440\, t + I(t)\,\sin(2\pi\cdot 220\, t))$.[2][1]
+  - Set $A(t)$ with fast attack (5–10 ms), moderate decay, small sustain, and short release for a plucked‑string‑like sound; let $I(t)$ start near 4 at attack and decay toward 1 or 0.5 to mimic natural bright‑then‑dull behavior.[4][2]
+
+Result: A clearly pitched harmonic tone at 440 Hz with controllable brightness, where timbral evolution is governed mainly by the index envelope while pitch remains set by the carrier.[1][2]
+
+## Example: inharmonic FM tone
+
+Design a bell‑like inharmonic sound centered in the midrange, with components still clearly audible.
+
+- Choose **central carrier**: Use $c = 600~ Hz$ to keep energy in the middle of the spectrum.[3]
+- Choose **modulator** with inharmonic ratio: Let $c/m = \sqrt{2}$; solve $m = c/\sqrt{2} \approx 600/1.414 \approx 424.3~Hz$.[3]
+  - Sidebands appear at $600 \pm k\cdot 424.3~Hz$, giving components such as about 176, 1024, 1448 Hz, etc., which do not align with any simple harmonic series, creating an inharmonic spectrum.[3][1]
+- Choose **index**: Set $I = 6$ for a dense, bright spectrum typical of struck metal, with many lateral components before amplitudes fade.[2][1]
+- Check **bandwidth**: With $(m \approx 424 ~ Hz$ and $I = 6$, Carson’s estimate gives $B \approx 2\cdot 424\cdot(6+1) \approx 5936~Hz$, so important components range roughly from near 0 up to around 6500 Hz, entirely in the audible band.[1]
+- Define **signal and envelopes**:  
+  - Audio formula: $x(t) = A(t)\,\sin(2\pi\cdot 600\, t + I(t)\,\sin(2\pi\cdot 424.3\, t))$.[2][1]
+  - Use a percussive envelope: very fast attack, no real sustain, and a long exponential decay on both amplitude and index so the sound starts bright and metallic then gradually loses high‑frequency content like a bell.[3][2]
+
+Result: An inharmonic, bell‑like tone whose energy is centered around 600 Hz but whose partials form a non‑integer pattern determined by the irrational carrier–modulator ratio and relatively high index.[3][1]
+
+
+
+## FM Synthesis with Code
+
+::: {.panel-tabset .nav-pills style="background: whitesmoke; "}
+### Using p5.js
+
+### Using R
+:::
+
+## {{< iconify mingcute thought-line >}} Wait, But Why?
+
+-   With [Additive Synthesis](../50-AdditiveSynth/index.qmd), we have a
+    large number of oscillators, one for each component derived from
+    [Fourier Analysis](../../20-Systems/20-FourierSeries/index.qmd)
+-   These give rise to a lot of controllable/settable parameters which
+    may be hard to manage, and to tweak if interactivity is desired
+-   It m-a-y be computationally intensive...
+-   FM Synthesis has relatively fewer parameters and is very flexible
+-   Tuning the parameters for on-the-fly composition is easier
+-   Adding ADSR and timbre-related envelopes give rise to very authentic
+    sounding musical instruments
+
+## {{< iconify ooui references-ltr >}} References
+
+1.  John Chowning.(September 1973). *The Synthesis of Complex Audio
+    Spectra by Means of Frequency Modulation*. Journal of the Audio
+    Society.
+    [PDF](../../../../../materials/pdfs/Chowning-Synthesis-using-FM.pdf)
+2.  Chapter 4: The Synthesis of Sound by Computer; Section 4.7: FM
+    Synthesis.
+    <http://sites.music.columbia.edu/cmc/MusicAndComputers/chapter4/04_07.php>
+3.  <https://archive.p5js.org/examples/sound-frequency-modulation.html>
+1. <https://multimed.org/student/eim/en/04-FM.pdf>
+2. <http://black.winny.free.fr/MAO/Books/John%20Chowning%20-%201973%20-%20The%20Synthesis%20of%20Complex%20Audio%20Spectra%20by%20Means%20of%20Frequency%20Modulation.pdf>
+3. <https://yamahasynth.com/wp-content/uploads/images/fm_synthesispaper-2.pdf>
+4. <https://www.perfectcircuit.com/signal/what-is-fm-synthesis>
+5. <https://web.uvic.ca/~aschloss/course_mat/MU307/MUS307_MATERIALS/Chowning_FM.pdf>
+6. <http://netmedia.zju.edu.cn/multimedia2013/books/Sound_Synthesis_Sampling.pdf>
+7. <https://articles.roland.com/ultimate-guide-fm-synthesis/>
+8. <https://cdsassets.apple.com/live/6GJYWVAV/user/ma1926_logic-pro-10-6-instruments-user-guide.pdf>
+9. <https://thewolfsound.com/fm-synthesis-explained-for-audio-programmers-art-and-science/>
+10. <https://www.scribd.com/document/512116578/Synthesis>
+
+
+## Other Tools
+
+1.  Strudel
+2.  Pure Data
+3.  Envion <https://www.peamarte.it/env/envion_v3.6.html>
+
+::: {#refs style="font-size: 60%;"}
+###### {{< iconify lucide package-check >}} R Package Citations
+
+```{r}
+#| echo: false
+#scan_packages()
+cite_packages(
+  output = "table",
+  out.dir = ".",
+  out.format = "html",
+  pkgs = c("ambient", "gm","mosaicCalc", "plot3D")
+) %>%
+  knitr::kable(format = "simple")
+
+```
+:::
+
+## Appendices
+
+### Why is Modulation Index inversely proportional to modulation frequency?
+
+From equation {eq-fm-freq}, we see that the instantaneous frequency
+deviation is given by $\delta_f \sin(2 \pi f_m t)$. The maximum
+deviation is $\delta_f$.
+
+Consider two cars running along parallel race tracks. And that they are
+at the same speed and running neck-and-neck. Now, one car starts to
+`speed up and slow down` repeatedly. If it speeds up and slows down very
+`quickly`, then the `distance` gained or lost by this car in front is
+small. If it speeds up and slows down slowly, then the distance gained
+or lost by the car in front is large.
+
+So, for a given frequency deviation $\delta_f$ , if the modulation
+frequency $f_m$ is high, then the distance gained or lost (i.e the effect
+of modulation) is small. If the modulation frequency $f_m$ is low, then
+the distance gained or lost (i.e the effect of modulation) is large.
+
+Hence the FM modulation index is *inversely proportional* to the
+modulation frequency.
+
+$$
+% Left alignment of multiline equations
+\begin{flalign}
+f(u) & =\sum_{j=1}^{n} x_jf(u_j)&\\
+     & =\sum_{j=1}^{n} x_j \sum_{i=1}^{m} a_{ij}v_i&\\
+     & =\sum_{j=1}^{n} \sum_{i=1}^{m} a_{ij}x_jv_i
+\end{flalign}
+$$
 
 ::: callout-important
 
 ### What are Bessel Functions?
-
 
 Let us plot them: Bessel functions ( the ones we want anyway ) are written as $J_{order}(parameter)$. So for the `carrier` we need $J_0(I)$ and for any `n-order` sidebands at spacing $n*\omega_m$ we need $J_n(I)$. In the @fig-bessel-functions below, we plot Bessel function *amplitude* vs *modulation index*, for orders 0 to 6. The vertical black line shows the *chosen* modulation index $I = 2$ in @fig-fm-spectrum. We can read off the values of the different Bessel functions at this value of $I$ to obtain the sideband amplitudes. Note here that these are all positive; if $I$ were larger, then the amplitudes can go to $0$ or even $negative$. What would that mean??
 
@@ -478,373 +890,7 @@ gf_fun(
   gf_labs(x = "Modulation Index", y = "Amplitude", title = "Bessel Functions", subtitle = "Weights of FM harmonic sidebands")
 
 ```
-
-To recap, we see that with FM:
-
--   we have a `carrier` component (weighted by $\color{red}{J_0(I)}$). The carrier **disappear** for certain values of $I$ when $\color{red}{J_0(I)} = 0$;
--   pairs of `sidebands` around the carrier at a separation of n-multiples of $\omega_m$, weighted by $\color{red}{J_n(I)}$. In like fashion these pairs can also disappear at the zeroes of $\color{red}{J_n(I)}$. 
-- In general, the larger the `order` $n$, the larger the $I$ needed to produce sidebands of that `order`, since $\color{red}{J_n(I)}$ are *slow starters* when $n$ is large. 
-
-
-
 :::
-
-## What is Chowning's Method for FM-based Synthesis?
-
-John Chowning, in 1973, proposed a method of sound synthesis using
-Frequency Modulation. The method is based on the following ideas:
-
-1.  The carrier frequency $\omega_c$ is chosen to be the *fundamental frequency* of the desired sound.
-2.  [The carrier frequency and the modulation frequency are both in the *audio band*]{style="background-color: yellow;"}! As opposed to *conventional FM transmission* where carriers are in the MHz range with audio-range modulation signals. 
-3.  The modulation index $I$ is chosen to control the *timbre* of the
-    sound, i.e., the relative amplitudes of the sidebands.
-4.  The amplitude $A_c$ of the carrier wave is chosen to control the
-    *loudness* of the sound.
-    
-Consider what happens when we choose different values of k, with these ideas in mind: We will first choose $\omega_c$ and $\omega_m$ that have an integer ratio, and then later an irrational ratio (e.g. $\sqrt(2)$) to see the effect on the harmonicity of the resulting sound spectrum.
-
-```{r}
-#| layout-ncol: 2
-#| label: fig-chowning-1
-#| echo: false
-#| fig-cap: FM with varying index - harmonic sidebands
-
-theme_set(new = theme_custom())
-wc <-  440
-wm <- 220
-mod_index <- seq(0,5,1)
-n <- -6:6
-my_data <- tibble(
-  order = as_factor(abs(n)),
-  freqs = wc + n*wm,
-  amp1 = besselJ(nu = abs(n), x = mod_index[1]),
-  amp2 = besselJ(nu = abs(n), x = mod_index[2]),
-  amp3 = besselJ(nu = abs(n), x = mod_index[3]),
-  amp4 = besselJ(nu = abs(n), x = mod_index[4]),
-  amp5 = besselJ(nu = abs(n), x = mod_index[5]),
-  amp6 = besselJ(nu = abs(n), x = mod_index[6]))
-
-my_fm_plot <- function(my_data, amps, mod_index){
-  my_data %>%
-    ggplot(aes(x = freqs, y = !!sym(amps), label = paste0("J_", order, "=", round(!!sym(amps),3)))) +
-    geom_linerange(aes(ymin = 0, ymax = !!sym(amps), colour = order), 
-                   linewidth = 1.2) +
-    geom_point(aes(colour = order), size = 3) +
-    geom_text_repel(nudge_y = 0.05, size = 3) +
-    geom_vline(xintercept = 0, colour = "grey40", linewidth = 0.2) +
-    labs(
-      title = paste0("FM Synthesis Sidebands (Modulation Index I=", mod_index, ")"),
-      x = "Frequency (Hz)",
-      y = "Amplitude (Bessel Function Value)"
-    ) +
-    scale_colour_brewer(palette = "Set1") }
-
-##
-my_fm_plot(my_data, "amp1", mod_index[1])
-my_fm_plot(my_data, "amp2", mod_index[2])
-my_fm_plot(my_data, "amp3", mod_index[3])
-my_fm_plot(my_data, "amp4", mod_index[4])
-my_fm_plot(my_data, "amp5", mod_index[5])
-my_fm_plot(my_data, "amp6", mod_index[6])
-
-# FM with varying index - inharmonic sidebands needs to be done?? Think!!
-```
-### Dealing with `negative frequency` sidebands
-
-Note that several sidebands go past $0$ Hz into negative territory!! How do we understand these??
-
-::: callout-note
-### Negative Frequencies
-What could a negative frequency sideband mean??
-In reality, negative frequencies are a mathematical construct that arise from the Fourier Transform and complex exponentials. A negative frequency component can be interpreted as a positive frequency component with a phase inversion. In the context of FM synthesis, negative frequency sidebands can be thought of as contributing to the overall waveform in a way that affects its shape and timbre, but they do not correspond to physically realizable sound waves. Instead, they influence the constructive and destructive interference patterns that shape the audible spectrum.
-
-We can imagine these negative-frequency sidebands as phasors with opposite rotation direction, which when combined with positive-frequency components, yield the final time-domain signal.
-
-So we ***reflect*** them at $0$ with a phase inversion. Here they might combine with spectral components at positive frequencies, either constructively or destructively, depending on their relative phases and amplitudes. 
-This generates the final sound with its final *timbre*. 
-
-:::
-
-Let us take one example from the graphs above, say $I=4$ and see what the final spectrum looks like. Then we will code this in `p5.js` and `R` and make some noise!!
-
-```{r}
-#| layout-ncol: 2
-#| label: fig-chowning-2
-#| echo: false
-#| fig-cap: Reflecting negative frequency sidebands
-#| layout-nrow: 2
-
-theme_set(new = theme_custom())
-wc <-  440
-wm <- 440/sqrt(2)
-mod_index <- 2
-n <- -6:6
-my_data <- tibble(
-  order = as_factor(abs(n)),
-  freqs = wc + n*wm,
-  amp1 = besselJ(nu = abs(n), x = mod_index))
-
-my_fm_plot <- function(my_data, amps, mod_index){
-  my_data %>%
-    ggplot(aes(x = freqs, y = !!sym(amps), label = paste0("J_", order, "=", round(!!sym(amps),3)))) +
-    geom_linerange(aes(ymin = 0, ymax = !!sym(amps), colour = order), 
-                   linewidth = 1.2) +
-    geom_point(aes(colour = order), size = 3) +
-    geom_text_repel(nudge_y = 0.05, size = 3) +
-    geom_vline(xintercept = 0, colour = "grey40", linewidth = 0.2) +
-    labs(
-      title = paste0("FM Synthesis Sidebands (Modulation Index I=", mod_index, ")"),
-      x = "Frequency (Hz)",
-      y = "Amplitude (Bessel Function Value)"
-    ) +
-    scale_colour_brewer(palette = "Set1") }
-
-##
-my_fm_plot(my_data, "amp1", mod_index)
-
-```
-
-```{r}
-#| layout-ncol: 2
-#| label: fig-chowning-3
-#| echo: false
-#| fig-cap: Reflecting negative frequency sidebands
-#| fig-subcap: 
-#|   - "Harmonic Sidebands (wm = wc /n)"
-#|   - "Inharmonic Sidebands (wm = wc / sqrt(n))"
-
-theme_set(new = theme_custom())
-
-wc <-  440
-wm <- 440/3
-mod_index <- 2
-n <- -6:6
-my_data <- tibble(
-  order = as_factor(abs(n)),
-  freqs = wc + n * wm,
-  amp1 = besselJ(nu = abs(n), x = mod_index))
-my_data_negative <- my_data %>% 
-  filter(freqs < 0) %>% 
-  mutate(amp1 = - amp1, freqs = abs(freqs))
-
-my_inverted_plot <- function(my_data, my_data_negative, amps, mod_index){
-  my_data %>%
-    ggplot(aes(x = freqs, y = !!sym(amps), label = paste0("J_", order, "=", round(!!sym(amps),3)))) +
-    geom_linerange(aes(ymin = 0, ymax = !!sym(amps), colour = order), 
-                   linewidth = 1.2) +
-    geom_point(aes(colour = order), size = 3) +
-##
-    geom_linerange(aes(x = abs(freqs), ymin = 0, ymax = amp1, colour = order), linewidth = 1.2, linetype = "dashed",
-                   data = my_data_negative) +
-    geom_point(aes(colour = order), size = 3, data = my_data_negative) +
-##
-    geom_text_repel(nudge_y = 0.05, size = 3) +
-    geom_vline(xintercept = 0, colour = "grey40", linewidth = 0.2) +
-    labs(
-      title = paste0("FM Synthesis Sidebands (Modulation Index I=", mod_index, ")", " ","with Negative Sidebands Reflected"),
-      x = "Frequency (Hz)",
-      y = "Amplitude (Bessel Function Value)"
-    ) +
-    scale_colour_brewer(palette = "Set1") }
-##
-
-##
-my_inverted_plot(my_data, my_data_negative, "amp1", mod_index)
-
-
-##
-wm2 <- 440/sqrt(3)
-my_data_2 <- tibble(
-  order = as_factor(abs(n)),
-  freqs = wc + n * wm2,
-  amp1 = besselJ(nu = abs(n), x = mod_index))
-my_data_negative_2 <- my_data %>% 
-  filter(freqs < 0) %>% 
-  mutate(amp1 = - amp1, freqs = abs(freqs))
-
-my_inverted_plot(my_data_2, my_data_negative_2, "amp1", mod_index)
-
-```
-
-
-
-## Design Principles for FM (Chowning) synthesis
-
-FM (Chowning) synthesis is built from a small set of parameters—carrier frequency, modulator frequency, modulation index, and envelopes—that together determine where spectral components fall and how strong they are over time. By choosing a rational carrier‑to‑modulator ratio, spectra are harmonic; by choosing an irrational or odd ratio, spectra become inharmonic.[1][2][3]
-
-By choosing a rational carrier‑to‑modulator ratio, spectra are harmonic; by choosing an irrational or odd ratio, spectra become inharmonic.[1][2][3]
-
-### Core FM steps
-
-- Choose target pitch (fundamental) in the audible range, and set the **carrier** frequency \(c\) to that or a related harmonic. For example, for A3 choose \(c = 220\) Hz.[2]
-- Choose a **modulator** frequency \(m\). Its value and its ratio \(c/m\) determine the spacing and harmonic/inharmonic character of the sidebands at \(c \pm k m\).[1][2]
-- Choose a peak **frequency deviation** \(d\) and modulation **index** \(I = d/m\); this controls how far the instantaneous frequency swings and how many sidebands have significant amplitude.[2][1]
-- Compute or intuit the approximate bandwidth using Carson’s rule \(B \approx 2(m(I+1))\) to ensure audible components stay within the desired spectrum and avoid aliasing for given sample rate.[1]
-- Design amplitude and index **envelopes** so that loudness and brightness evolve together (e.g., high index at attack, decaying over time), yielding dynamic spectra that resemble many natural sounds.[4][2]
-- Implement the FM signal as \(x(t) = A \sin(2\pi c t + I \sin(2\pi m t))\), optionally making \(A\) and \(I\) time‑varying through envelopes.[2][1]
-
-## Design parameters and how to set them
-
-- **Carrier frequency \(c\)**  
-  - Meaning: Average frequency and perceived pitch if the spectrum is harmonic.[2]
-  - How to set:  
-    - For harmonic tones, set \(c\) equal to the desired fundamental (e.g., 440 Hz) or an integer multiple if the ear will still infer the missing fundamental.[2]
-    - For inharmonic “pitched noise” or bells, \(c\) need not match a musical pitch exactly; it sets a central region of energy.[3]
-
-- **Modulator frequency \(m\)**  
-  - Meaning: Spacing between sidebands \(c \pm k m\) and, through \(c/m\), the harmonic or inharmonic pattern.[1][2]
-  - How to set:  
-    - Harmonic: choose a rational ratio \(c/m = p/q\) (often integers, like \(1:1, 2:1, 3:2\)), so sidebands fall on a harmonic series of some fundamental.[1][2]
-    - Inharmonic: choose irrational or “odd” ratios such as \(c/m = \sqrt{2}\) or similar non‑integer relations so sidebands fall between harmonic positions.[3][1]
-
-- **Modulation index \(I = d/m\)**  
-  - Meaning: Ratio of peak deviation \(d\) to modulator frequency; determines number and relative amplitude of significant sidebands.[1][2]
-  - How to set:  
-    - Small \(I\) (near 0) yields almost pure sine tones with very few sidebands (soft timbre).[2]
-    - Moderate \(I\) gives a few strong sidebands (clarinet‑like or brass‑like spectra). Practical musical values often lie roughly between 1 and 10 for simple single‑operator examples.[1][2]
-    - Larger \(I\) produces many sidebands and brighter, more complex or noisy timbres until aliasing or excessive roughness appears.[1]
-
-- **Amplitude \(A\) and envelopes**  
-  - Meaning: Overall loudness and time evolution of loudness and brightness, since envelopes can modulate both \(A(t)\) and \(I(t)\).[4][2]
-  - How to set:  
-    - Use an amplitude envelope with attack, decay, sustain, and release appropriate to the instrument (e.g., fast attack/decay for percussive sounds, slower for pads).[4]
-    - Tie the index envelope to the amplitude envelope so that when amplitude decays, the index decreases, causing the spectrum to lose high‑frequency content over time, as in many acoustic sounds.[4][2]
-
-- **Carrier–modulator ratio \(c/m\)**  
-  - Meaning: Positions of spectral components; with reflection from negative frequencies, this ratio still controls whether the pattern is harmonic or inharmonic.[3][2]
-  - How to set:  
-    - Choose low integer ratios (e.g., 1:1, 2:1, 3:1) for clear, consonant harmonic spectra.[2][1]
-    - Use more complex ratios (e.g., 5:2, 7:3) for richer but still roughly harmonic tones, or irrational ratios (e.g., 1:\(\sqrt{2}\)) for bell‑like inharmonic spectra.[3]
-
-## Example: harmonic FM tone
-
-Design a harmonic spectrum centered on A4 with clearly related overtones, all within audible range.
-
-- Choose **fundamental and carrier**: Target pitch A4, fundamental 440 Hz; use \(c = 440\) Hz so the carrier itself is the fundamental.[2]
-- Choose **modulator** with harmonic ratio: Take \(c/m = 2/1\), so set \(m = 220\) Hz. This yields sidebands at \(440 \pm k\cdot 220\) Hz: 220, 440, 660, 880, 1100 Hz, etc., which lie on the harmonic series of 220 Hz (harmonics 1, 2, 3, 4, 5…).[1][2]
-- Choose **index**: Let \(I = 4\); this provides several strong sidebands before amplitudes taper, giving a bright harmonic timbre without extreme spectral width.[2][1]
-- Check **bandwidth**: With \(m = 220\) Hz and \(I = 4\), Carson’s rule gives \(B \approx 2(m(I+1)) = 2 \cdot 220 \cdot 5 = 2200\) Hz, so significant components lie roughly between about 0 and 2600 Hz, safely inside the audible band.[1]
-- Define **signal and envelopes**:  
-  - Audio formula: \(x(t) = A(t)\,\sin(2\pi\cdot 440\, t + I(t)\,\sin(2\pi\cdot 220\, t))\).[2][1]
-  - Set \(A(t)\) with fast attack (5–10 ms), moderate decay, small sustain, and short release for a plucked‑string‑like sound; let \(I(t)\) start near 4 at attack and decay toward 1 or 0.5 to mimic natural bright‑then‑dull behavior.[4][2]
-
-Result: A clearly pitched harmonic tone at 440 Hz with controllable brightness, where timbral evolution is governed mainly by the index envelope while pitch remains set by the carrier.[1][2]
-
-## Example: inharmonic FM tone
-
-Design a bell‑like inharmonic sound centered in the midrange, with components still clearly audible.
-
-- Choose **central carrier**: Use \(c = 600\) Hz to keep energy in the middle of the spectrum.[3]
-- Choose **modulator** with inharmonic ratio: Let \(c/m = \sqrt{2}\); solve \(m = c/\sqrt{2} \approx 600/1.414 \approx 424.3\) Hz.[3]
-  - Sidebands appear at \(600 \pm k\cdot 424.3\) Hz, giving components such as about 176, 1024, 1448 Hz, etc., which do not align with any simple harmonic series, creating an inharmonic spectrum.[3][1]
-- Choose **index**: Set \(I = 6\) for a dense, bright spectrum typical of struck metal, with many lateral components before amplitudes fade.[2][1]
-- Check **bandwidth**: With \(m \approx 424\) Hz and \(I = 6\), Carson’s estimate gives \(B \approx 2\cdot 424\cdot(6+1) \approx 5936\) Hz, so important components range roughly from near 0 up to around 6500 Hz, entirely in the audible band.[1]
-- Define **signal and envelopes**:  
-  - Audio formula: \(x(t) = A(t)\,\sin(2\pi\cdot 600\, t + I(t)\,\sin(2\pi\cdot 424.3\, t))\).[2][1]
-  - Use a percussive envelope: very fast attack, no real sustain, and a long exponential decay on both amplitude and index so the sound starts bright and metallic then gradually loses high‑frequency content like a bell.[3][2]
-
-Result: An inharmonic, bell‑like tone whose energy is centered around 600 Hz but whose partials form a non‑integer pattern determined by the irrational carrier–modulator ratio and relatively high index.[3][1]
-
-
-
-## FM Synthesis with Code
-
-::: {.panel-tabset .nav-pills style="background: whitesmoke; "}
-### Using p5.js
-
-### Using R
-:::
-
-## {{< iconify mingcute thought-line >}} Wait, But Why?
-
--   With [Additive Synthesis](../50-AdditiveSynth/index.qmd), we have a
-    large number of oscillators, one for each component derived from
-    [Fourier Analysis](../../20-Systems/20-FourierSeries/index.qmd)
--   These give rise to a lot of controllable/settable parameters which
-    may be hard to manage, and to tweak if interactivity is desired
--   It m-a-y be computationally intensive...
--   FM Synthesis has relatively fewer parameters and is very flexible
--   Tuning the parameters for on-th-fly composition is easier
--   Adding ADSR and timbre-related envelopes give rise to very authentic
-    sounding musical instruments
-
-## {{< iconify ooui references-ltr >}} References
-
-1.  John Chowning.(September 1973). *The Synthesis of Complex Audio
-    Spectra by Means of Frequency Modulation*. Journal of the Audio
-    Society.
-    [PDF](../../../../../materials/pdfs/Chowning-Synthesis-using-FM.pdf)
-2.  Chapter 4: The Synthesis of Sound by Computer; Section 4.7: FM
-    Synthesis.
-    <http://sites.music.columbia.edu/cmc/MusicAndComputers/chapter4/04_07.php>
-3.  <https://archive.p5js.org/examples/sound-frequency-modulation.html>
-1. <https://multimed.org/student/eim/en/04-FM.pdf>
-2. <http://black.winny.free.fr/MAO/Books/John%20Chowning%20-%201973%20-%20The%20Synthesis%20of%20Complex%20Audio%20Spectra%20by%20Means%20of%20Frequency%20Modulation.pdf>
-3. <https://yamahasynth.com/wp-content/uploads/images/fm_synthesispaper-2.pdf>
-4. <https://www.perfectcircuit.com/signal/what-is-fm-synthesis>
-5. <https://web.uvic.ca/~aschloss/course_mat/MU307/MUS307_MATERIALS/Chowning_FM.pdf>
-6. <http://netmedia.zju.edu.cn/multimedia2013/books/Sound_Synthesis_Sampling.pdf>
-7. <https://articles.roland.com/ultimate-guide-fm-synthesis/>
-8. <https://cdsassets.apple.com/live/6GJYWVAV/user/ma1926_logic-pro-10-6-instruments-user-guide.pdf>
-9. <https://thewolfsound.com/fm-synthesis-explained-for-audio-programmers-art-and-science/>
-10. <https://www.scribd.com/document/512116578/Synthesis>
-
-
-## Other Tools
-
-1.  Strudel
-2.  Pure Data
-3.  Envion <https://www.peamarte.it/env/envion_v3.6.html>
-
-::: {#refs style="font-size: 60%;"}
-###### {{< iconify lucide package-check >}} R Package Citations
-
-```{r}
-#| echo: false
-#scan_packages()
-cite_packages(
-  output = "table",
-  out.dir = ".",
-  out.format = "html",
-  pkgs = c("ambient", "gm","mosaicCalc", "plot3D")
-) %>%
-  knitr::kable(format = "simple")
-
-```
-:::
-
-## Appendix
-
-### Why is Modulation Index inversely proportional to modulation frequency?
-
-From equation {eq-fm-freq}, we see that the instantaneous frequency
-deviation is given by \$ \delta\_f \sin(2 \pi f_m t) \$. The maximum
-deviation is \$\delta\_f \$.
-
-Consider two cars running along parallel race tracks. And that they are
-at the same speed and running neck-and-neck. Now, one car starts to
-`speed up and slow down` repeatedly. If it speeds up and slows down very
-`quickly`, then the `distance` gained or lost by this car in front is
-small. If it speeds up and slows down slowly, then the distance gained
-or lost by the car in front is large.
-
-So, for a given frequency deviation \$ \delta\_f \$ , if the modulation
-frequency f_m is high, then the distance gained or lost (i.e the effect
-of modulation) is small. If the modulation frequency f_m is low, then
-the distance gained or lost (i.e the effect of modulation) is large.
-
-Hence the FM modulation index is *inversely proportional* to the
-modulation frequency.
-
-$$
-% Left alignment of multiline equations
-\begin{flalign}
-f(u) & =\sum_{j=1}^{n} x_jf(u_j)&\\
-     & =\sum_{j=1}^{n} x_j \sum_{i=1}^{m} a_{ij}v_i&\\
-     & =\sum_{j=1}^{n} \sum_{i=1}^{m} a_{ij}x_jv_i
-\end{flalign}
-$$
-
 
 
 

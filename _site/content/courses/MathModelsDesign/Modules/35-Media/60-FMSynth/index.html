@@ -1,2 +1,1587 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.16">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="dcterms.date" content="2025-01-23">
+<title>  FM based Sound Synthesis – Applied Math for Creative Coders</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="../../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../../">
+<link href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/70-MakingNoise/index.html" rel="next">
+<link href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html" rel="prev">
+<link href="../../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
+<script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-792aea850e7e5573310f85939a37799b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-2856685bdecccf42c98e8f6b75d000ba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<link href="../../../../../../site_libs/quarto-contrib/tachyons-4.12.0/tachyons.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<link href="../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+<meta property="og:title" content=" FM based Sound Synthesis – Applied Math for Creative Coders">
+<meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
+<meta property="og:image" content="https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index_files/figure-html/fig-fm-waveform-1.png">
+<meta property="og:site_name" content="Applied Math for Creative Coders">
+<meta property="og:image:height" content="3000">
+<meta property="og:image:width" content="4200">
+<meta name="twitter:title" content=" FM based Sound Synthesis – Applied Math for Creative Coders">
+<meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
+<meta name="twitter:image" content="https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index_files/figure-html/fig-fm-waveform-1.png">
+<meta name="twitter:image-height" content="3000">
+<meta name="twitter:image-width" content="4200">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../../../index.html">
+    <span class="navbar-title">Applied Math for Creative Coders</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/arvindvenkatadri/creativemath"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/arvind_v"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/arvindvenkatadri"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:arvind.venkatadri@gmail.com"> <i class="bi bi-envelope" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/listing.html">Media</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.html"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> FM based Sound Synthesis</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../../../../../index.html" class="sidebar-logo-link">
+      <img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Math Models for Creative Coders</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tech</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tools and Installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/20-AddingLibrariesToP5Js/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding Libraries to p5.js</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/30-Constructors/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Constructor Objects in p5.js</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/50-OSC/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Open Sound Protocol</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maths</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/10-ComplexNumbers/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="tabler:math-xy" width="1.2em" height="1.2em"></iconify-icon> Complex Numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Matrix Algebra Whirlwind Tour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Systems</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Frequency and Time Domains</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/15-PhasorDiagrams/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phasor Diagrams</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/20-SamplingAliasing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling And Aliasing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fourier Series and Fourier Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filters</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Convolution</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geometry</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fractals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Affine Transformation Fractals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/50-LSystems/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L-Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kolams and Lusona</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Media</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Additive Sound Synthesis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> FM based Sound Synthesis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/70-MakingNoise/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="arcticons:noise-reducer" width="1.2em" height="1.2em"></iconify-icon> Making Noise Predictably</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/100-KarplusStrong/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Karplus-Strong Guitar Algorithm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/1000-SoundGlossary/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A Sound Glossary</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/listing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="lucide:person-standing" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="mdi:human-female-dance" width="1.2em" height="1.2em"></iconify-icon> Working with Neural Nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/20-Perceptron/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Perceptron</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/30-MLP/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Multilayer Perceptron</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/40-BackProp/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MLPs and Backpropagation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/50-GradientDescent/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient Descent</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
+  <li><a href="#what-is-frequency-modulation" id="toc-what-is-frequency-modulation" class="nav-link" data-scroll-target="#what-is-frequency-modulation">What is Frequency Modulation?</a></li>
+  <li><a href="#fm-wave-instantaneous-frequency-and-phase" id="toc-fm-wave-instantaneous-frequency-and-phase" class="nav-link" data-scroll-target="#fm-wave-instantaneous-frequency-and-phase">FM Wave Instantaneous Frequency and Phase</a></li>
+  <li><a href="#fm-spectrum" id="toc-fm-spectrum" class="nav-link" data-scroll-target="#fm-spectrum">FM Spectrum</a></li>
+  <li>
+<a href="#what-is-chownings-method-for-fm-based-synthesis" id="toc-what-is-chownings-method-for-fm-based-synthesis" class="nav-link" data-scroll-target="#what-is-chownings-method-for-fm-based-synthesis">What is Chowning’s Method for FM-based Synthesis?</a>
+  <ul class="collapse">
+<li><a href="#dealing-with-negative-frequency-sidebands" id="toc-dealing-with-negative-frequency-sidebands" class="nav-link" data-scroll-target="#dealing-with-negative-frequency-sidebands">Dealing with <code>negative frequency</code> sidebands</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#design-principles-for-fm-chowning-synthesis" id="toc-design-principles-for-fm-chowning-synthesis" class="nav-link" data-scroll-target="#design-principles-for-fm-chowning-synthesis">Design Principles for FM (Chowning) synthesis</a>
+  <ul class="collapse">
+<li><a href="#core-fm-steps" id="toc-core-fm-steps" class="nav-link" data-scroll-target="#core-fm-steps">Core FM steps</a></li>
+  </ul>
+</li>
+  <li><a href="#design-parameters-and-how-to-set-them" id="toc-design-parameters-and-how-to-set-them" class="nav-link" data-scroll-target="#design-parameters-and-how-to-set-them">Design parameters and how to set them</a></li>
+  <li><a href="#example-harmonic-fm-tone" id="toc-example-harmonic-fm-tone" class="nav-link" data-scroll-target="#example-harmonic-fm-tone">Example: harmonic FM tone</a></li>
+  <li><a href="#example-inharmonic-fm-tone" id="toc-example-inharmonic-fm-tone" class="nav-link" data-scroll-target="#example-inharmonic-fm-tone">Example: inharmonic FM tone</a></li>
+  <li><a href="#fm-synthesis-with-code" id="toc-fm-synthesis-with-code" class="nav-link" data-scroll-target="#fm-synthesis-with-code">FM Synthesis with Code</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
+  <li><a href="#other-tools" id="toc-other-tools" class="nav-link" data-scroll-target="#other-tools">Other Tools</a></li>
+  <li>
+<a href="#appendices" id="toc-appendices" class="nav-link" data-scroll-target="#appendices">Appendices</a>
+  <ul class="collapse">
+<li><a href="#why-is-modulation-index-inversely-proportional-to-modulation-frequency" id="toc-why-is-modulation-index-inversely-proportional-to-modulation-frequency" class="nav-link" data-scroll-target="#why-is-modulation-index-inversely-proportional-to-modulation-frequency">Why is Modulation Index inversely proportional to modulation frequency?</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/listing.html">Media</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.html"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> FM based Sound Synthesis</a></li></ol></nav><div class="quarto-title">
+<h1 class="title">
+<iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> FM based Sound Synthesis</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Frequency Modulation</div>
+    <div class="quarto-category">Bessel Functions</div>
+    <div class="quarto-category">Chowning Method</div>
+    <div class="quarto-category">Aliasing</div>
+    <div class="quarto-category">Harmonic Synth</div>
+    <div class="quarto-category">Inharmonic Synth</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 23, 2025</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 25, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>So we understand the Fourier Transform: we can express any waveform as a sum of sinusoids that are appropriately weighted and are at discrete multiples of a chosen “fundamental frequency”.</p>
+<p>In the module <a href="../12-AdditiveSynth/index.qmd">Additive Synthesis</a>, we learnt about how a sum of properly tuned and weighted frequency components can be used to synthesize sounds. Here is another approach: of <strong>frequency-modulation</strong>, or changing the <em>frequency</em> of a base <em>carrier</em> wave to generate a large multiple of <code>harmonic</code> and <code>in-harmonic</code> sidetones to synthesize sound.</p>
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration">
+<iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
+<p>To be Found!!</p>
+</section><section id="what-is-frequency-modulation" class="level2"><h2 class="anchored" data-anchor-id="what-is-frequency-modulation">What is Frequency Modulation?</h2>
+<p>In Frequency Modulation, we take a <em>carrier</em> oscillator and change its <code>frequency</code> in accordance with <em>another</em> signal called the <em>modulation</em> signal. There is no change in amplitude, just the instantaneous frequency. We write this change as:</p>
+<p><span id="eq-fm-freq"><span class="math display">\[
+\Large\omega_i(t) = \omega_c + \Delta_{\omega}\
+cos(\omega_mt)\Large
+\tag{1}\]</span></span></p>
+<p>where</p>
+<ul>
+<li>
+<span class="math inline">\(\omega_i(t)\)</span> is the Instantaneous Frequency of the <code>carrier</code> wave</li>
+<li>
+<span class="math inline">\(\omega_c\)</span> is the <em>center</em> (undeviated) Frequency of the <code>carrier</code> wave</li>
+<li>
+<span class="math inline">\(\omega_m\)</span> is the Frequency of the <code>modulation</code> wave, the <code>rate</code> at which FM changes the <code>carrier's</code> frequency</li>
+<li>
+<span class="math inline">\(\Delta_{\omega}\)</span> is an amplitude-like parameter, which controls the <code>amount</code> of frequency deviation.</li>
+</ul>
+<p>So what does an FM signal look like?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fm-waveform" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fm-waveform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-fm-waveform-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: FM Waveforms"><img src="index_files/figure-html/fig-fm-waveform-1.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fm-waveform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: FM Waveforms
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Metaphorically, this resembles the Slinky toy, where the slinky is the carrier wave, and the hand moving it up and down is the modulating wave.</p>
+</section><section id="fm-wave-instantaneous-frequency-and-phase" class="level2"><h2 class="anchored" data-anchor-id="fm-wave-instantaneous-frequency-and-phase">FM Wave Instantaneous Frequency and Phase</h2>
+<div class="grid">
+<div class="g-col-6">
+<p>As we know, we need the instantaneous phase of the carrier wave to write out the equation for the FM wave, and analyze it further. The instantaneous phase is the <span style="background-color: yellow;"><em>integral of the instantaneous frequency</em></span></p>
+<p><span class="math display">\[
+\begin{align}
+\theta_i(t) &amp;= \int_0^t \omega_i(\tau) d\tau\\
+&amp;= \int_0^t \left[ \omega_c + \Delta_{\omega}\
+cos(\omega_m \tau) \right] d\tau\\
+&amp;= \omega_c t + \frac{\Delta_{\omega}}{\color{red}{{\omega_m}}} {\color{red}{\sin}}(\omega_m t)
+\end{align}
+\]</span></p>
+<p>Writing out the equation for the resulting FM-wave, we have:</p>
+<p><span id="eq-fm-1"><span class="math display">\[
+\begin{align}
+x_{fm}(t) &amp;= A_c \cos \left(\omega_c t + \frac{\Delta_{\omega}}{\omega_m} \sin(\omega_m t) \right)\\
+\\
+&amp;= A_c \cos \left(\omega_c t + I \cdot \sin(\omega_m t) \right)\\
+\end{align}
+\tag{2}\]</span></span></p>
+<p>where</p>
+<ul>
+<li>
+<span class="math inline">\(A_c\)</span> is the Amplitude of the carrier wave</li>
+<li>
+<span class="math inline">\(I =  \large{\frac{\Delta_{\omega}}{\omega_m}}\)</span> is the <code>Modulation Index</code>, or <code>Peak Phase Deviation</code>.</li>
+</ul>
+</div>
+<div class="g-col-6">
+<p>This looks like the phase of the carrier (the portion inside parentheses in <a href="#eq-fm-1" class="quarto-xref">Equation&nbsp;2</a>) is like:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fm-phase" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fm-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-fm-phase-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: FM Wave Instantaneous Phase"><img src="index_files/figure-html/fig-fm-phase-1.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fm-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: FM Wave Instantaneous Phase
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>There is a linear portion from the original unmodulated carrier (slope = <span class="math inline">\(\omega_c\)</span>) with an added-on <strong><em>sine wave</em></strong> that tends to increase and reduce the phase periodically.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Phase vs Time
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>net phase</strong> at any time still is increasing monotonically! Slope is always positive! Hmm…what if it was not ????</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="fm-spectrum" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="fm-spectrum">FM Spectrum</h2>
+<p>So much for time waveforms.</p>
+<p>What we <em>hear</em> is more easily understood using the frequency spectrum. To understand the spectrum of the FM wave, we need to expand the <a href="#eq-fm-1" class="quarto-xref">Equation&nbsp;2</a>. Doing so, we would obtain a rather intimidating, but ultimately rewarding expansion:</p>
+<p><span id="eq-simple-trig-expansion"><span class="math display">\[
+\Large{x_{fm}(t) = A_c \Bigg[ cos(\omega_ct)*\color{orange}{cos(Isin(\omega_mt))} \color{black}{-} \\
+sin(\omega_ct)*{\color{red}{sin(Isin(\omega_mt))}}\Bigg]}\Large
+\tag{3}\]</span></span></p>
+<p><span style="background-color: yellow;">A <span class="math inline">\(sin\)</span> and a <span class="math inline">\(cos\)</span> <strong><em>inside</em></strong> a <span class="math inline">\(sin\)</span> and a <span class="math inline">\(cos\)</span></span> ??!! How do we expand that?? Well, we have two identities:</p>
+<p><span id="eq-bessel-expansion-1"><span class="math display">\[
+\Large\color{orange}{cos(Isin(\omega_mt))} = {J_0(I) + 2 \sum_{n=1}^{\infty} J_{2n}(I)~ * ~ cos(2n \omega_m t)}\Large
+\tag{4}\]</span></span></p>
+<p>and</p>
+<p><span id="eq-bessel-expansion-2"><span class="math display">\[
+\Large\color{red}{sin(Isin(\omega_mt))} = {2 \sum_{n=0}^{\infty} J_{2n+1}(I)~ * ~ sin((2n+1) \omega_m t)}\Large
+\tag{5}\]</span></span></p>
+<p>where the <span class="math inline">\(\color{blue}{J_n(I)}\)</span> are the <span style="background-color: yellow;">Bessel functions of the first kind of order n.</span> (More on these beautiful creatures shortly!)</p>
+<p>Plugging these into the <a href="#eq-simple-trig-expansion" class="quarto-xref">Equation&nbsp;3</a>, we get:</p>
+<div class="column-page-right">
+<p><span class="math display">\[
+\begin{flalign}
+x_{fm}(t) &amp;= A_c \Bigg[\cos(\omega_ct) \Bigg( J_0(I) + 2 \sum_{n=1}^{\infty} J_{2n}(I) cos(2n \omega_m t) \Bigg) -
+sin(\omega_ct) \Bigg( 2 \sum_{n=0}^{\infty} J_{2n+1}(I) sin((2n+1) \omega_m t) \Bigg) \Bigg]\\
+&amp;= A_c \Bigg[ J_0(I) cos(\omega_ct) +
+2 \sum_{n=1}^{\infty} J_{2n}(I) {\color{red}{cos(\omega_ct) cos(2n \omega_m t)}} {\color{green}{~\pmb{---}~}}
+2 \sum_{n=0}^{\infty} J_{2n+1}(I) {\color{blue}{sin(\omega_ct) sin((2n+1) \omega_m t)}} \Bigg]\\
+\end{flalign}
+\]</span></p>
+</div>
+<p>And using the <em>much-loved-and-much-feared</em> <span class="math inline">\(\color{red}{cosAcosB}\)</span> and <span class="math inline">\(\color{blue}{sinAsinB}\)</span> expansions:</p>
+<div class="column-page">
+<p><span class="math display">\[
+\begin{flalign}
+x_{fm}(t) &amp;= A_c \Bigg[ J_0(I) cos(\omega_ct) +
+\sum_{n=1}^{\infty} J_{2n}(I) {\color{red}{\Big( cos((\omega_c + 2n \omega_m)t) + cos((\omega_c - 2n \omega_m)t) \Big)}} {\color{green}{~\pmb{+++}}}
+\sum_{n=0}^{\infty} J_{2n+1}(I) {\color{blue}{\Big( cos((\omega_c + (2n+1) \omega_m)t) - cos((\omega_c - (2n+1) \omega_m)t) \Big)}} \Bigg]\\
+&amp;= A_c \Bigg[ J_0(I) cos(\omega_ct) +
+\sum_{n=1}^{\infty} J_{n}(I) \Big( cos((\omega_c + n \omega_m)t) + (-1)^n*cos((\omega_c - n \omega_m)t) \Big) \Bigg] //What?? How??? Where?? When??
+\end{flalign}
+\]</span></p>
+<div class="grid">
+<div class="g-col-6">
+<p>And so finally:</p>
+<p><span id="eq-fm-2"><span class="math display">\[
+{\boxed{\begin{multline*}
+x_{fm}(t) = A_c \bigg[ {J_0(I)} {\cos(\omega_c t) ~ \text{//carrier}}\\
++ {J_1(I)} \bigg(cos(\omega_c + \omega_m)t - cos(\omega_c - \omega_m)t\bigg) ~ \text{//first order sidebands}\\
++ {J_2(I)}\bigg(cos(\omega_c + 2\omega_m)t + cos(\omega_c - 2\omega_m)t\bigg) ~ \text{//second order sidebands}\\
++ {J_3(I)}\bigg(cos(\omega_c + 3\omega_m)t - cos(\omega_c - 3\omega_m)t\bigg) ~ \text{//third order sidebands}\\
+...\\
++ {J_n(I)}\bigg(cos(\omega_c + n\omega_m)t + cos(\omega_c - n\omega_m)t\bigg)\bigg] ~ \text{//nth order sidebands}
+\end{multline*}}}
+\tag{6}\]</span></span></p>
+</div>
+<div class="g-col-6">
+<p>We can plot a graph of FM carrier + sideband amplitudes vs frequency. What does this look like?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fm-spectrum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fm-spectrum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-fm-spectrum-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: FM Spectrum"><img src="index_files/figure-html/fig-fm-spectrum-1.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fm-spectrum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: FM Spectrum
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>In FM, the modulation process takes power from the carrier and distributes it into the sidebands. Since the instantaneous frequency is proportional to the modulating signal, we get a mathematical structure that looks like <span class="math inline">\(cos(\omega_c t + I*cos(\omega_m t))\)</span>. Expanding this using trigonometric identities and Taylor series leads to the Bessel functions as weights for the sidebands.</p>
+<p>The spectrum is symmetric of course, with <code>sidebands</code> going off in both directions in pairs. The carrier also not necessarily the highest component, as expected. To recap, we see that with FM:</p>
+<ul>
+<li>We have a <code>carrier</code> component (weighted by <span class="math inline">\(\color{red}{J_0(I)}\)</span>). The carrier <strong>disappear</strong> for certain values of <span class="math inline">\(I\)</span> when <span class="math inline">\(\color{red}{J_0(I)} = 0\)</span>;</li>
+<li>Pairs of <code>sidebands</code> around the carrier at a separation of n-multiples of <span class="math inline">\(\omega_m\)</span>, weighted by <span class="math inline">\(\color{red}{J_n(I)}\)</span>. In like fashion these pairs can also disappear at the zeroes of <span class="math inline">\(\color{red}{J_n(I)}\)</span>.</li>
+<li>In general, the larger the <code>order</code> <span class="math inline">\(n\)</span>, the larger the <span class="math inline">\(I\)</span> needed to produce sidebands of that <code>order</code>, since <span class="math inline">\(\color{red}{J_n(I)}\)</span> are <em>slow starters</em> when <span class="math inline">\(n\)</span> is large.</li>
+</ul>
+<p>So…there are <code>sidebands</code> that go into <em>negative frequency territory</em>…what could that mean?? That is where Chowning’s insight must have come from!</p>
+</section><section id="what-is-chownings-method-for-fm-based-synthesis" class="level2"><h2 class="anchored" data-anchor-id="what-is-chownings-method-for-fm-based-synthesis">What is Chowning’s Method for FM-based Synthesis?</h2>
+<p>John Chowning, in 1973, proposed a method of sound synthesis using Frequency Modulation. The method is based on the following ideas:</p>
+<ol type="1">
+<li>The carrier frequency <span class="math inline">\(\omega_c\)</span> is chosen to be the <em>fundamental frequency</em> of the desired sound.</li>
+<li>
+<span style="background-color: yellow;">The carrier frequency and the modulation frequency are both in the <em>audio band </em></span>! As opposed to <em>conventional FM transmission</em> where carriers are in the MHz range, with audio-range modulation signals.</li>
+<li>The modulation index <span class="math inline">\(I\)</span> is chosen to control the <em>timbre</em> of the sound, i.e., the relative amplitudes of the sidebands.</li>
+<li>The amplitude <span class="math inline">\(A_c\)</span> of the carrier wave is chosen to control the <em>loudness</em> of the sound.</li>
+</ol>
+<p>Consider what happens when we choose different values of <span class="math inline">\(k\)</span>, with these ideas in mind: We will first choose <span class="math inline">\(\omega_c\)</span> and <span class="math inline">\(\omega_m\)</span> that have an integer ratio, and then later an <em>irrational ratio</em> (e.g.&nbsp;<span class="math inline">\(\sqrt(2)\)</span>) to see the effect on the <code>harmonicity</code> of the resulting sound spectrum.</p>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-chowning-1-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chowning-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-chowning-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: FM with varying index - harmonic sidebands"><img src="index_files/figure-html/fig-chowning-1-1.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chowning-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: FM with varying index - harmonic sidebands
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-chowning-1-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chowning-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-chowning-1-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: FM with varying index - harmonic sidebands"><img src="index_files/figure-html/fig-chowning-1-2.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chowning-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: FM with varying index - harmonic sidebands
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-chowning-1-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chowning-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-chowning-1-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: FM with varying index - harmonic sidebands"><img src="index_files/figure-html/fig-chowning-1-3.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chowning-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: FM with varying index - harmonic sidebands
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-chowning-1-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chowning-1-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-chowning-1-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: FM with varying index - harmonic sidebands"><img src="index_files/figure-html/fig-chowning-1-4.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chowning-1-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: FM with varying index - harmonic sidebands
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-chowning-1-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chowning-1-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-chowning-1-5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;8: FM with varying index - harmonic sidebands"><img src="index_files/figure-html/fig-chowning-1-5.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chowning-1-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: FM with varying index - harmonic sidebands
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-chowning-1-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chowning-1-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-chowning-1-6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;9: FM with varying index - harmonic sidebands"><img src="index_files/figure-html/fig-chowning-1-6.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chowning-1-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: FM with varying index - harmonic sidebands
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<section id="dealing-with-negative-frequency-sidebands" class="level3"><h3 class="anchored" data-anchor-id="dealing-with-negative-frequency-sidebands">Dealing with <code>negative frequency</code> sidebands</h3>
+<p>Note that several sidebands go past <span class="math inline">\(0\)</span> Hz into negative territory!! How do we understand these??</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Negative Frequencies
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What could a negative frequency sideband mean?? In reality, negative frequencies are a mathematical construct that arise from the Fourier Transform and complex exponentials. A negative frequency component can be interpreted as a positive frequency component with a phase inversion. In the context of FM synthesis, negative frequency sidebands can be thought of as contributing to the overall waveform in a way that affects its shape and timbre, but they do not correspond to physically realizable sound waves. Instead, they influence the constructive and destructive interference patterns that shape the audible spectrum.</p>
+<p>We can imagine these negative-frequency sidebands as phasors with opposite rotation direction, which when combined with positive-frequency components, yield the final time-domain signal.</p>
+<p>So we <strong><em>reflect</em></strong> them at <span class="math inline">\(0\)</span> with a phase inversion. Here they might combine with spectral components at positive frequencies, either constructively or destructively, depending on their relative phases and amplitudes. This generates the final sound with its final <em>timbre</em>.</p>
+</div>
+</div>
+<p>Let us take one example from the graphs above, say <span class="math inline">\(I=4\)</span> and see what the final spectrum looks like. Then we will code this in <code>p5.js</code> and <code>R</code> and make some noise!!</p>
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-nrow="2">
+
+</div>
+<div id="fig-chowning-3" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chowning-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-chowning-3" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-chowning-3-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-chowning-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-chowning-3-1.png" class="lightbox" data-gallery="fig-chowning-3" title="Figure&nbsp;10&nbsp;(a): Harmonic Sidebands (wm = wc /n)"><img src="index_files/figure-html/fig-chowning-3-1.png" class="img-fluid figure-img" data-ref-parent="fig-chowning-3" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chowning-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Harmonic Sidebands (wm = wc /n)
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-chowning-3" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-chowning-3-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-chowning-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-chowning-3-2.png" class="lightbox" data-gallery="fig-chowning-3" title="Figure&nbsp;10&nbsp;(b): Inharmonic Sidebands (wm = wc / sqrt(n))"><img src="index_files/figure-html/fig-chowning-3-2.png" class="img-fluid figure-img" data-ref-parent="fig-chowning-3" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chowning-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Inharmonic Sidebands (wm = wc / sqrt(n))
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chowning-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Reflecting negative frequency sidebands
+</figcaption></figure>
+</div>
+<p>FIGURES TO BE CHECKED!!!!</p>
+</section></section><section id="design-principles-for-fm-chowning-synthesis" class="level2"><h2 class="anchored" data-anchor-id="design-principles-for-fm-chowning-synthesis">Design Principles for FM (Chowning) synthesis</h2>
+<p>FM (Chowning) synthesis is built from a small set of parameters—carrier frequency, modulator frequency, modulation index, and envelopes—that together determine where spectral components fall and how strong they are over time.</p>
+<ul>
+<li>By choosing a rational carrier‑to‑modulator ratio, spectra are harmonic;</li>
+<li>By choosing an irrational or odd ratio, spectra become inharmonic.[1][2][3]</li>
+</ul>
+<section id="core-fm-steps" class="level3"><h3 class="anchored" data-anchor-id="core-fm-steps">Core FM steps</h3>
+<ul>
+<li>Choose target pitch (fundamental) in the audible range, and set the <strong>carrier</strong> frequency <span class="math inline">\(c\)</span> to that or a related harmonic. For example, for the note A3 choose <span class="math inline">\(c = 220~Hz\)</span>.[2]</li>
+<li>Choose a <strong>modulator</strong> frequency <span class="math inline">\(m\)</span>. Its value and its ratio <span class="math inline">\(c/m\)</span> determine the spacing and harmonic/inharmonic character of the sidebands at <span class="math inline">\(c \pm k * m\)</span>.[1][2]</li>
+<li>Choose a peak <strong>frequency deviation</strong> <span class="math inline">\(d\)</span> and modulation <strong>index</strong> <span class="math inline">\(I = d/m\)</span>; this controls how far the instantaneous frequency swings and how many sidebands have significant amplitude.[2][1]</li>
+<li>Compute or intuit the approximate bandwidth using Carson’s rule <span class="math inline">\(B \approx 2(m*(I+1))\)</span> to ensure audible components stay within the desired spectrum and avoid aliasing for given sample rate.[1]</li>
+<li>Design amplitude and index <strong>envelopes</strong> so that loudness and brightness evolve together (e.g., high index at attack, decaying over time), yielding dynamic spectra that resemble many natural sounds.[4][2]</li>
+<li>Implement the FM signal as <span class="math inline">\(x(t) = A \sin(2\pi c*t + I \sin(2\pi m*t))\)</span>, optionally making <span class="math inline">\(A\)</span> and <span class="math inline">\(I\)</span> time‑varying through envelopes, or based on human input!! [2][1]</li>
+</ul></section></section><section id="design-parameters-and-how-to-set-them" class="level2"><h2 class="anchored" data-anchor-id="design-parameters-and-how-to-set-them">Design parameters and how to set them</h2>
+<ul>
+<li>
+<strong>Carrier frequency <span class="math inline">\(c\)</span></strong>
+<ul>
+<li>Meaning: Average frequency and perceived pitch if the spectrum is harmonic.[2]</li>
+<li>How to set:
+<ul>
+<li>For harmonic tones, set <span class="math inline">\(c\)</span> equal to the desired fundamental (e.g., 440 Hz) or an integer multiple if the ear will still infer the missing fundamental.[2]</li>
+<li>For inharmonic “pitched noise” or bells, <span class="math inline">\(c\)</span> need not match a musical pitch exactly; it sets a central region of energy.[3]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>Modulator frequency <span class="math inline">\(m\)</span></strong>
+<ul>
+<li>Meaning: Spacing between sidebands <span class="math inline">\(c \pm k*m\)</span> and, through <span class="math inline">\(c/m\)</span>, the harmonic or inharmonic pattern.[1][2]</li>
+<li>How to set:
+<ul>
+<li>Harmonic: choose a rational ratio <span class="math inline">\(c/m = p/q\)</span> (often integers, like <span class="math inline">\(1:1, ~ 2:1, ~ 3:2\)</span>), so sidebands fall on a harmonic series of some fundamental.[1][2]</li>
+<li>Inharmonic: choose irrational or “odd” ratios such as <span class="math inline">\(c/m = \sqrt{2}\)</span> or similar non‑integer relations so sidebands fall between harmonic positions.[3][1]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>Modulation index <span class="math inline">\(I = d/m\)</span></strong>
+<ul>
+<li>Meaning: Ratio of peak deviation <span class="math inline">\(d\)</span> to modulator frequency; determines number and relative amplitude of significant sidebands.[1][2]</li>
+<li>How to set:
+<ul>
+<li>Small <span class="math inline">\(I\)</span> (near 0) yields almost pure sine tones with very few sidebands (soft timbre).[2]</li>
+<li>Moderate <span class="math inline">\(I\)</span> gives a few strong sidebands (clarinet‑like or brass‑like spectra). Practical musical values often lie roughly between 1 and 10 for simple single‑operator examples.[1][2]</li>
+<li>Larger <span class="math inline">\(I\)</span> produces many sidebands and brighter, more complex or noisy timbres until aliasing or excessive roughness appears.[1]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>Amplitude <span class="math inline">\(A\)</span> and envelopes</strong>
+<ul>
+<li>Meaning: Overall loudness and time evolution of loudness and brightness, since envelopes can modulate both <span class="math inline">\(A(t)\)</span> and <span class="math inline">\(I(t)\)</span>.[4][2]</li>
+<li>How to set:
+<ul>
+<li>Use an amplitude envelope with attack, decay, sustain, and release appropriate to the instrument (e.g., fast attack/decay for percussive sounds, slower for pads).[4]</li>
+<li>Tie the index envelope to the amplitude envelope so that when amplitude decays, the index decreases, causing the spectrum to lose high‑frequency content over time, as in many acoustic sounds.[4][2]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>Carrier–modulator ratio <span class="math inline">\(c/m\)</span></strong>
+<ul>
+<li>Meaning: Positions of spectral components; with reflection from negative frequencies, this ratio still controls whether the pattern is harmonic or inharmonic.[3][2]</li>
+<li>How to set:
+<ul>
+<li>Choose low integer ratios (e.g., 1:1, 2:1, 3:1) for clear, consonant harmonic spectra.[2][1]</li>
+<li>Use more complex ratios (e.g., 5:2, 7:3) for richer but still roughly harmonic tones, or irrational ratios (e.g., 1:<span class="math inline">\(\sqrt{2}\)</span>) for bell‑like inharmonic spectra.[3]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section><section id="example-harmonic-fm-tone" class="level2"><h2 class="anchored" data-anchor-id="example-harmonic-fm-tone">Example: harmonic FM tone</h2>
+<p>Design a harmonic spectrum centered on A4 with clearly related overtones, all within audible range.</p>
+<ul>
+<li>Choose <strong>fundamental and carrier</strong>: Target pitch A4, fundamental 440 Hz; use <span class="math inline">\(c = 440\)</span> Hz so the carrier itself is the fundamental.[2]</li>
+<li>Choose <strong>modulator</strong> with harmonic ratio: Take <span class="math inline">\(c/m = 2/1\)</span>, so set <span class="math inline">\(m = 220\)</span> Hz. This yields sidebands at <span class="math inline">\(440 \pm k\cdot 220\)</span> Hz: 220, 440, 660, 880, 1100 Hz, etc., which lie on the harmonic series of 220 Hz (harmonics 1, 2, 3, 4, 5…).[1][2]</li>
+<li>Choose <strong>index</strong>: Let <span class="math inline">\(I = 4\)</span>; this provides several strong sidebands before amplitudes taper, giving a bright harmonic timbre without extreme spectral width.[2][1]</li>
+<li>Check <strong>bandwidth</strong>: With <span class="math inline">\(m = 220~Hz\)</span> and <span class="math inline">\(I = 4\)</span>, Carson’s rule gives <span class="math inline">\(B \approx 2(m(I+1)) = 2 \cdot 220 \cdot 5 = 2200~Hz\)</span>, so significant components lie roughly between about 0 and 2600 Hz, safely inside the audible band.[1]</li>
+<li>Define <strong>signal and envelopes</strong>:
+<ul>
+<li>Audio formula: <span class="math inline">\(x(t) = A(t)\,\sin(2\pi\cdot 440\, t + I(t)\,\sin(2\pi\cdot 220\, t))\)</span>.[2][1]</li>
+<li>Set <span class="math inline">\(A(t)\)</span> with fast attack (5–10 ms), moderate decay, small sustain, and short release for a plucked‑string‑like sound; let <span class="math inline">\(I(t)\)</span> start near 4 at attack and decay toward 1 or 0.5 to mimic natural bright‑then‑dull behavior.[4][2]</li>
+</ul>
+</li>
+</ul>
+<p>Result: A clearly pitched harmonic tone at 440 Hz with controllable brightness, where timbral evolution is governed mainly by the index envelope while pitch remains set by the carrier.[1][2]</p>
+</section><section id="example-inharmonic-fm-tone" class="level2"><h2 class="anchored" data-anchor-id="example-inharmonic-fm-tone">Example: inharmonic FM tone</h2>
+<p>Design a bell‑like inharmonic sound centered in the midrange, with components still clearly audible.</p>
+<ul>
+<li>Choose <strong>central carrier</strong>: Use <span class="math inline">\(c = 600~ Hz\)</span> to keep energy in the middle of the spectrum.[3]</li>
+<li>Choose <strong>modulator</strong> with inharmonic ratio: Let <span class="math inline">\(c/m = \sqrt{2}\)</span>; solve <span class="math inline">\(m = c/\sqrt{2} \approx 600/1.414 \approx 424.3~Hz\)</span>.[3]
+<ul>
+<li>Sidebands appear at <span class="math inline">\(600 \pm k\cdot 424.3~Hz\)</span>, giving components such as about 176, 1024, 1448 Hz, etc., which do not align with any simple harmonic series, creating an inharmonic spectrum.[3][1]</li>
+</ul>
+</li>
+<li>Choose <strong>index</strong>: Set <span class="math inline">\(I = 6\)</span> for a dense, bright spectrum typical of struck metal, with many lateral components before amplitudes fade.[2][1]</li>
+<li>Check <strong>bandwidth</strong>: With <span class="math inline">\((m \approx 424 ~ Hz\)</span> and <span class="math inline">\(I = 6\)</span>, Carson’s estimate gives <span class="math inline">\(B \approx 2\cdot 424\cdot(6+1) \approx 5936~Hz\)</span>, so important components range roughly from near 0 up to around 6500 Hz, entirely in the audible band.[1]</li>
+<li>Define <strong>signal and envelopes</strong>:
+<ul>
+<li>Audio formula: <span class="math inline">\(x(t) = A(t)\,\sin(2\pi\cdot 600\, t + I(t)\,\sin(2\pi\cdot 424.3\, t))\)</span>.[2][1]</li>
+<li>Use a percussive envelope: very fast attack, no real sustain, and a long exponential decay on both amplitude and index so the sound starts bright and metallic then gradually loses high‑frequency content like a bell.[3][2]</li>
+</ul>
+</li>
+</ul>
+<p>Result: An inharmonic, bell‑like tone whose energy is centered around 600 Hz but whose partials form a non‑integer pattern determined by the irrational carrier–modulator ratio and relatively high index.[3][1]</p>
+</section><section id="fm-synthesis-with-code" class="level2"><h2 class="anchored" data-anchor-id="fm-synthesis-with-code">FM Synthesis with Code</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills" style="background: whitesmoke; ">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Using p5.js</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Using R</a></li>
+</ul>
+<div class="tab-content nav-pills" style="background: whitesmoke; ">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+
+</div>
+</div>
+</div>
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why">
+<iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</h2>
+<ul>
+<li>With <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html">Additive Synthesis</a>, we have a large number of oscillators, one for each component derived from <a href="../../20-Systems/20-FourierSeries/index.qmd">Fourier Analysis</a>
+</li>
+<li>These give rise to a lot of controllable/settable parameters which may be hard to manage, and to tweak if interactivity is desired</li>
+<li>It m-a-y be computationally intensive…</li>
+<li>FM Synthesis has relatively fewer parameters and is very flexible</li>
+<li>Tuning the parameters for on-the-fly composition is easier</li>
+<li>Adding ADSR and timbre-related envelopes give rise to very authentic sounding musical instruments</li>
+</ul></section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references">
+<iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</h2>
+<ol type="1">
+<li>John Chowning.(September 1973). <em>The Synthesis of Complex Audio Spectra by Means of Frequency Modulation</em>. Journal of the Audio Society. <a href="../../../../../materials/pdfs/Chowning-Synthesis-using-FM.pdf">PDF</a>
+</li>
+<li>Chapter 4: The Synthesis of Sound by Computer; Section 4.7: FM Synthesis. <a href="http://sites.music.columbia.edu/cmc/MusicAndComputers/chapter4/04_07.php" class="uri">http://sites.music.columbia.edu/cmc/MusicAndComputers/chapter4/04_07.php</a>
+</li>
+<li><a href="https://archive.p5js.org/examples/sound-frequency-modulation.html" class="uri">https://archive.p5js.org/examples/sound-frequency-modulation.html</a></li>
+<li><a href="https://multimed.org/student/eim/en/04-FM.pdf" class="uri">https://multimed.org/student/eim/en/04-FM.pdf</a></li>
+<li><a href="http://black.winny.free.fr/MAO/Books/John%20Chowning%20-%201973%20-%20The%20Synthesis%20of%20Complex%20Audio%20Spectra%20by%20Means%20of%20Frequency%20Modulation.pdf" class="uri">http://black.winny.free.fr/MAO/Books/John%20Chowning%20-%201973%20-%20The%20Synthesis%20of%20Complex%20Audio%20Spectra%20by%20Means%20of%20Frequency%20Modulation.pdf</a></li>
+<li><a href="https://yamahasynth.com/wp-content/uploads/images/fm_synthesispaper-2.pdf" class="uri">https://yamahasynth.com/wp-content/uploads/images/fm_synthesispaper-2.pdf</a></li>
+<li><a href="https://www.perfectcircuit.com/signal/what-is-fm-synthesis" class="uri">https://www.perfectcircuit.com/signal/what-is-fm-synthesis</a></li>
+<li><a href="https://web.uvic.ca/~aschloss/course_mat/MU307/MUS307_MATERIALS/Chowning_FM.pdf" class="uri">https://web.uvic.ca/~aschloss/course_mat/MU307/MUS307_MATERIALS/Chowning_FM.pdf</a></li>
+<li><a href="http://netmedia.zju.edu.cn/multimedia2013/books/Sound_Synthesis_Sampling.pdf" class="uri">http://netmedia.zju.edu.cn/multimedia2013/books/Sound_Synthesis_Sampling.pdf</a></li>
+<li><a href="https://articles.roland.com/ultimate-guide-fm-synthesis/" class="uri">https://articles.roland.com/ultimate-guide-fm-synthesis/</a></li>
+<li><a href="https://cdsassets.apple.com/live/6GJYWVAV/user/ma1926_logic-pro-10-6-instruments-user-guide.pdf" class="uri">https://cdsassets.apple.com/live/6GJYWVAV/user/ma1926_logic-pro-10-6-instruments-user-guide.pdf</a></li>
+<li><a href="https://thewolfsound.com/fm-synthesis-explained-for-audio-programmers-art-and-science/" class="uri">https://thewolfsound.com/fm-synthesis-explained-for-audio-programmers-art-and-science/</a></li>
+<li><a href="https://www.scribd.com/document/512116578/Synthesis" class="uri">https://www.scribd.com/document/512116578/Synthesis</a></li>
+</ol></section><section id="other-tools" class="level2"><h2 class="anchored" data-anchor-id="other-tools">Other Tools</h2>
+<ol type="1">
+<li>Strudel</li>
+<li>Pure Data</li>
+<li>Envion <a href="https://www.peamarte.it/env/envion_v3.6.html" class="uri">https://www.peamarte.it/env/envion_v3.6.html</a>
+</li>
+</ol>
+<div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" data-entry-spacing="0" role="list">
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations">
+<iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Citation</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ambient</td>
+<td style="text-align: left;">1.0.3</td>
+<td style="text-align: left;"><span class="citation" data-cites="ambient">Pedersen and Peck (<a href="#ref-ambient" role="doc-biblioref">2025</a>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gm</td>
+<td style="text-align: left;">2.0.0</td>
+<td style="text-align: left;"><span class="citation" data-cites="gm">Mao (<a href="#ref-gm" role="doc-biblioref">2024</a>)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mosaicCalc</td>
+<td style="text-align: left;">0.6.4</td>
+<td style="text-align: left;"><span class="citation" data-cites="mosaicCalc">Kaplan, Pruim, and Horton (<a href="#ref-mosaicCalc" role="doc-biblioref">2024</a>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">plot3D</td>
+<td style="text-align: left;">1.4.2</td>
+<td style="text-align: left;"><span class="citation" data-cites="plot3D">Soetaert (<a href="#ref-plot3D" role="doc-biblioref">2025</a>)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="ref-mosaicCalc" class="csl-entry" role="listitem">
+Kaplan, Daniel T., Randall Pruim, and Nicholas J. Horton. 2024. <em><span class="nocase">mosaicCalc</span>: R-Language Based Calculus Operations for Teaching</em>. <a href="https://doi.org/10.32614/CRAN.package.mosaicCalc">https://doi.org/10.32614/CRAN.package.mosaicCalc</a>.
+</div>
+<div id="ref-gm" class="csl-entry" role="listitem">
+Mao, Renfei. 2024. <em><span class="nocase">gm</span>: Create Music with Ease</em>. <a href="https://doi.org/10.32614/CRAN.package.gm">https://doi.org/10.32614/CRAN.package.gm</a>.
+</div>
+<div id="ref-ambient" class="csl-entry" role="listitem">
+Pedersen, Thomas Lin, and Jordan Peck. 2025. <em><span class="nocase">ambient</span>: A Generator of Multidimensional Noise</em>. <a href="https://doi.org/10.32614/CRAN.package.ambient">https://doi.org/10.32614/CRAN.package.ambient</a>.
+</div>
+<div id="ref-plot3D" class="csl-entry" role="listitem">
+Soetaert, Karline. 2025. <em>plot3D: Plotting Multi-Dimensional Data</em>. <a href="https://doi.org/10.32614/CRAN.package.plot3D">https://doi.org/10.32614/CRAN.package.plot3D</a>.
+</div>
+</section>
+</div>
+</section><section id="appendices" class="level2"><h2 class="anchored" data-anchor-id="appendices">Appendices</h2>
+<section id="why-is-modulation-index-inversely-proportional-to-modulation-frequency" class="level3"><h3 class="anchored" data-anchor-id="why-is-modulation-index-inversely-proportional-to-modulation-frequency">Why is Modulation Index inversely proportional to modulation frequency?</h3>
+<p>From equation {eq-fm-freq}, we see that the instantaneous frequency deviation is given by <span class="math inline">\(\delta_f \sin(2 \pi f_m t)\)</span>. The maximum deviation is <span class="math inline">\(\delta_f\)</span>.</p>
+<p>Consider two cars running along parallel race tracks. And that they are at the same speed and running neck-and-neck. Now, one car starts to <code>speed up and slow down</code> repeatedly. If it speeds up and slows down very <code>quickly</code>, then the <code>distance</code> gained or lost by this car in front is small. If it speeds up and slows down slowly, then the distance gained or lost by the car in front is large.</p>
+<p>So, for a given frequency deviation <span class="math inline">\(\delta_f\)</span> , if the modulation frequency <span class="math inline">\(f_m\)</span> is high, then the distance gained or lost (i.e the effect of modulation) is small. If the modulation frequency <span class="math inline">\(f_m\)</span> is low, then the distance gained or lost (i.e the effect of modulation) is large.</p>
+<p>Hence the FM modulation index is <em>inversely proportional</em> to the modulation frequency.</p>
+<p><span class="math display">\[
+% Left alignment of multiline equations
+\begin{flalign}
+f(u) &amp; =\sum_{j=1}^{n} x_jf(u_j)&amp;\\
+     &amp; =\sum_{j=1}^{n} x_j \sum_{i=1}^{m} a_{ij}v_i&amp;\\
+     &amp; =\sum_{j=1}^{n} \sum_{i=1}^{m} a_{ij}x_jv_i
+\end{flalign}
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>What are Bessel Functions?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let us plot them: Bessel functions ( the ones we want anyway ) are written as <span class="math inline">\(J_{order}(parameter)\)</span>. So for the <code>carrier</code> we need <span class="math inline">\(J_0(I)\)</span> and for any <code>n-order</code> sidebands at spacing <span class="math inline">\(n*\omega_m\)</span> we need <span class="math inline">\(J_n(I)\)</span>. In the <a href="#fig-bessel-functions" class="quarto-xref">Figure&nbsp;11</a> below, we plot Bessel function <em>amplitude</em> vs <em>modulation index</em>, for orders 0 to 6. The vertical black line shows the <em>chosen</em> modulation index <span class="math inline">\(I = 2\)</span> in <a href="#fig-fm-spectrum" class="quarto-xref">Figure&nbsp;3</a>. We can read off the values of the different Bessel functions at this value of <span class="math inline">\(I\)</span> to obtain the sideband amplitudes. Note here that these are all positive; if <span class="math inline">\(I\)</span> were larger, then the amplitudes can go to <span class="math inline">\(0\)</span> or even <span class="math inline">\(negative\)</span>. What would that mean??</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bessel-functions" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-bessel-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-bessel-functions-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure&nbsp;11: Bessel Functions"><img src="index_files/figure-html/fig-bessel-functions-1.png" class="img-fluid figure-img" width="2100"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bessel-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Bessel Functions
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{2025,
+  author = {},
+  title = {\textless Iconify-Icon Icon=“mdi:reiterate” Width=“1.2em”
+    Height=“1.2em”\textgreater\textless/Iconify-Icon\textgreater{}
+    \textless Iconify-Icon Icon=“gravity-Ui:function” Width=“1.2em”
+    Height=“1.2em”\textgreater\textless/Iconify-Icon\textgreater{} {FM}
+    Based {Sound} {Synthesis}},
+  date = {2025-01-23},
+  url = {https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+<span>“&lt;Iconify-Icon Icon=<span>‘mdi:reiterate’</span>
+Width=<span>‘1.2em’</span>
+Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; &lt;Iconify-Icon
+Icon=<span>‘gravity-Ui:function’</span> Width=<span>‘1.2em’</span>
+Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; FM Based Sound
+Synthesis.”</span> 2025. January 23, 2025. <a href="https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/">https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/</a>.
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mathforcoders\.netlify\.app");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html" class="pagination-link" aria-label="Additive Sound Synthesis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Additive Sound Synthesis</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/70-MakingNoise/index.html" class="pagination-link" aria-label="<iconify-icon icon=&quot;arcticons:noise-reducer&quot; width=&quot;1.2em&quot; height=&quot;1.2em&quot;></iconify-icon> Making Noise Predictably">
+        <span class="nav-page-text"><iconify-icon icon="arcticons:noise-reducer" width="1.2em" height="1.2em"></iconify-icon> Making Noise Predictably</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>License: <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p>Website made with ❤️ and <a href="https://quarto.org/">Quarto</a>, by Arvind V.</p>
+</div>
+    <div class="nav-footer-right">
+<p>Hosted by Netlify <a href="https://www.netlify.com"><iconify-icon inline="" icon="simple-icons:netlify" aria-label="Icon netlify from simple-icons Iconify.design set." title="Icon netlify from simple-icons Iconify.design set."></iconify-icon></a>.</p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"right","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+<script src="../../../../../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
+</body></html>

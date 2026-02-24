@@ -220,9 +220,11 @@ data %>%
 
 ```
 
-<centre> <iframe 
+<centre> 
+<iframe 
 width = 680 height = 680
-src="https://editor.p5js.org/arvindv/full/lEqfT1GBq"> </iframe>
+src="https://editor.p5js.org/arvindv/full/lEqfT1GBq"> 
+</iframe>
 </centre>
 
 ## What is a Parametric Equation?
@@ -503,7 +505,7 @@ Here is the plot of the frequency components:
 # Set graph theme
 theme_set(new = theme_custom())
 #
-set.seed(42)
+set.seed(1973)
 M <- 5 # Number of circles
 m <- 7 # Prime Modulus
 k = 2 # Type of Symmetry
@@ -567,7 +569,7 @@ Let us now plot this:
 
 ```{r}
 #| label: mystery-curve-2
-#| layout-ncol: 2
+#| layout-ncol: 1
 #| code-fold: true
 
 # remainder = 2 from 7
@@ -586,16 +588,16 @@ data_mystery_2 %>%
   gf_refine(coord_equal()) %>% 
   gf_theme(theme_void())
 ###
-data2 <- tibble::tibble(t = seq(0, 2*pi, 0.001),
-                        
-    x = cos(2*t) + 0.2222*cos(9*t) + 0.125*cos(16*t)                                       - 0.4*cos(5*t) - 0.1667*cos(12*t),
-                       
-    y = sin(2*t) + 0.2222*sin(9*t) + 0.125*sin(16*t)                                      + 0.4*sin(5*t) + 0.1667*sin(12*t)
-                       )
-data2 %>% 
-  gf_point(y ~ x, title = "Parametric Equation Rendering") %>% 
-  gf_refine(coord_equal()) %>% 
-  gf_theme(theme_void())
+# data2 <- tibble::tibble(t = seq(0, 2*pi, 0.001),
+#                         
+#     x = cos(2*t) + 0.2222*cos(9*t) + 0.125*cos(16*t)                                       - 0.4*cos(5*t) - 0.1667*cos(12*t),
+#                        
+#     y = sin(2*t) + 0.2222*sin(9*t) + 0.125*sin(16*t)                                      + 0.4*sin(5*t) + 0.1667*sin(12*t)
+#                        )
+# data2 %>% 
+#   gf_point(y ~ x, title = "Parametric Equation Rendering") %>% 
+#   gf_refine(coord_equal()) %>% 
+#   gf_theme(theme_void())
   
 
 ```
@@ -740,6 +742,7 @@ plot(f6(x), asp = 1)
 #| label: fun-stuff-ggformula
 #| layout-ncol: 2
 #| code-fold: true
+#| eval: false
 
 # t <- seq(0, 2 * pi, by = 0.001) # Already computed
 data1 <- tibble(t, pattern = f1(t))

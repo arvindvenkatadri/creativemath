@@ -74,7 +74,7 @@ website:
               - section: "Maths"
                 href: content/courses/MathModelsDesign/Modules/05-Maths/listing.qmd
                 contents:
-                - content/courses/MathModelsDesign/Modules/05-Maths/10-Complex/index.qmd
+                - content/courses/MathModelsDesign/Modules/05-Maths/10-ComplexNumbers/index.qmd
                 - content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.qmd
 #               - content/courses/MathModelsDesign/Modules/05-Maths/30-Probability/index.qmd
                 - content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.qmd            
@@ -86,7 +86,9 @@ website:
                 href: content/courses/MathModelsDesign/Modules/20-Systems/listing.qmd
                 contents:
                 - content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.qmd
-                - content/courses/MathModelsDesign/Modules/20-Systems/20-FourierSeries/index.qmd
+                - content/courses/MathModelsDesign/Modules/20-Systems/15-PhasorDiagrams/index.qmd
+                - content/courses/MathModelsDesign/Modules/20-Systems/20-SamplingAliasing/index.qmd
+                - content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.qmd
                 - content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.qmd
                 - content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.qmd
 
@@ -97,7 +99,6 @@ website:
                 href: content/courses/MathModelsDesign/Modules/25-Geometry/listing.qmd
                 contents:
                 - content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.qmd
-                - content/courses/MathModelsDesign/Modules/25-Geometry/20-ComplexNumbers/index.qmd
                 - content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.qmd
                 - content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.qmd 
                 - content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.qmd 
@@ -106,20 +107,23 @@ website:
                 - content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.qmd 
 #               - content/courses/MathModelsDesign/Modules/25-Geometry/70-NonEuclidean/index.qmd 
 #               - content/courses/MathModelsDesign/Modules/25-Geometry/200-Art/index.qmd
- 
+
+######################################################
               - section: "Media"
                 href: content/courses/MathModelsDesign/Modules/35-Media/listing.qmd
                 contents:
                 - content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.qmd
                 - content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.qmd
-                - content/courses/MathModelsDesign/Modules/35-Media/65-GrainSynth/index.qmd
+                # - content/courses/MathModelsDesign/Modules/35-Media/65-GrainSynth/index.qmd
 #               - content/courses/MathModelsDesign/Modules/35-Media/16-ModulationSynth/index.qmd
 #               - content/courses/MathModelsDesign/Modules/35-Media/18-NonlinearSynth/index.qmd
                 - content/courses/MathModelsDesign/Modules/35-Media/70-MakingNoise/index.qmd
                 - content/courses/MathModelsDesign/Modules/35-Media/100-KarplusStrong/index.qmd
 #               - content/courses/MathModelsDesign/Modules/35-Media/30-Video/index.qmd 
 #               - content/courses/MathModelsDesign/Modules/35-Media/40-Text/index.qmd 
-                
+                - content/courses/MathModelsDesign/Modules/35-Media/1000-SoundGlossary/index.qmd
+ 
+###################################################               
               # - section: "Uncertainty"
               #   href: content/courses/MathModelsDesign/Modules/45-Uncertainty/listing.qmd
               #   contents:                 
@@ -135,6 +139,7 @@ website:
               #   - content/courses/MathModelsDesign/Modules/55-Connections/10-GraphNetworks/index.qmd
               #   - content/courses/MathModelsDesign/Modules/55-Connections/20-Communities/index.qmd
 
+################################################################
               - section: "AI"
                 href: content/courses/MathModelsDesign/Modules/100-AI/listing.qmd
                 contents:                        
@@ -151,7 +156,8 @@ website:
                 href: content/courses/MathModelsDesign/Modules/1000-Projects/index.qmd
                 contents:                        
                 - content/courses/MathModelsDesign/Modules/1000-Projects/index.qmd
-         
+
+#####################################################       
   page-footer:
     center: "Website made with ❤️ and [Quarto](https://quarto.org/), by Arvind V."
     right:  Hosted by Netlify [{{< iconify simple-icons netlify >}}](https://www.netlify.com).
@@ -161,7 +167,7 @@ website:
 format:
   html:
     smooth-scroll: true
-    fontsize: "medium"
+    fontsize: "large"
     theme: lux
     # css:
     #   - css/brite.scss
@@ -198,7 +204,9 @@ format:
     fig-align: center
     fig-cap-location: bottom
     # fig-asp: 0.618
-    # fig-width: 5
+    # fig-width: 4
+    out-height: "60%"  # how large it appears on the page
+    out-width: "60%"  # how large it appears on the page
     # fig-height: 4
     fig-dpi: 300
 
