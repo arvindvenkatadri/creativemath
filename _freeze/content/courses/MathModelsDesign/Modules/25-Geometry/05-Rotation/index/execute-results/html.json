@@ -1,0 +1,19 @@
+{
+  "hash": "cfa2990f58bf28e85dfd1bdcbfa66c6d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Movement and Animation\"\nauthor: Arvind V.\ndate: 28/Mar/2026\ndate-modified: \" 2026-03-01\"\norder: 05\nsummary: \"What We will Design with\"\ncategories:\n- p5.js\n---\n\n\n\n::: {.cell}\n\n:::\n\n\n## Simple Movements in `p5.js`\n\nHow do we make shapes move, rotate, and float? \n\nWe accomplish this with these tricks:\n\n- Use the `frameRate()`, `frameCount()` built-in variables to incrementally modify the coordinates of shapes;\n- Use `rotate()` to turn the **coordinate reference** orientation itself!\n- Use `translate()` to the fix center of rotation!! Else, they may fly right off the canvas!!( We can also discover `shearX()`, `shearY()` and `scale()` while we are at it! ). \n- Use `push()` and `pop()` as *wrappers* around specific pieces of code to localize the transformations to just those shapes.\n\n:::callout-note\n\nBy default, the positive x-axis points to the right and the positive y-axis points downward. The `rotate()` function changes this orientation by rotating the coordinate system about the origin. Everything drawn after `rotate()` is called will appear to be rotated.\n\n:::\n- Group the shapes and replot them each `frame`, giving a sense of movement to the eye. \n\n\n## Sketch #1\n\nTake a look at this sketch:\n\n<center>\n<iframe height=480 width=560 src=\"https://editor.p5js.org/arvindv/full/h4ol5X2v3\"></iframe>\n</center>\n\nDoes the code include our two principles above?\n\n- Inside `draw()`, we have a `for()` loop that creates multitudes of `rect()` each time the `draw()` executes.\n- Each time the `draw()` loops, we perform a `rotate()` before (over)plotting the `rect()`s!\n- The rotation is based on the `frameCount()` variable. \n\nTry the following modifications:\n\n1. The divisor in the `rotate` command;\n2. The step size in the `for` loop; (`x -= 50`);\n3. Try a different shape instead of a rectangle;\n4. How would you apply the `shear` and `scale()` functions here?\n\n\n## Sketch #2\n\n<center>\n<iframe height=480 width=560\nsrc=\"https://editor.p5js.org/arvindv/full/JIXNNNA6h\"></iframe>\n</center>\n\nAnalyze the code and see what the transformations are used. How would you creatively modify them? \n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

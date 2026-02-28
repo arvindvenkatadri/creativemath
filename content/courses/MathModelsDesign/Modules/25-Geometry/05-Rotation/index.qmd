@@ -1,0 +1,67 @@
+---
+title: "Movement and Animation"
+author: Arvind V.
+date: 28/Mar/2026
+date-modified: " `r Sys.Date()`"
+order: 05
+summary: "What We will Design with"
+categories:
+- p5.js
+---
+
+
+```{r}
+#| label: setup
+```
+
+## Simple Movements in `p5.js`
+
+How do we make shapes move, rotate, and float? 
+
+We accomplish this with these tricks:
+
+- Use the `frameRate()`, `frameCount()` built-in variables to incrementally modify the coordinates of shapes;
+- Use `rotate()` to turn the **coordinate reference** orientation itself!
+- Use `translate()` to the fix center of rotation!! Else, they may fly right off the canvas!!( We can also discover `shearX()`, `shearY()` and `scale()` while we are at it! ). 
+- Use `push()` and `pop()` as *wrappers* around specific pieces of code to localize the transformations to just those shapes.
+
+:::callout-note
+
+By default, the positive x-axis points to the right and the positive y-axis points downward. The `rotate()` function changes this orientation by rotating the coordinate system about the origin. Everything drawn after `rotate()` is called will appear to be rotated.
+
+:::
+- Group the shapes and replot them each `frame`, giving a sense of movement to the eye. 
+
+
+## Sketch #1
+
+Take a look at this sketch:
+
+<center>
+<iframe height=480 width=560 src="https://editor.p5js.org/arvindv/full/h4ol5X2v3"></iframe>
+</center>
+
+Does the code include our two principles above?
+
+- Inside `draw()`, we have a `for()` loop that creates multitudes of `rect()` each time the `draw()` executes.
+- Each time the `draw()` loops, we perform a `rotate()` before (over)plotting the `rect()`s!
+- The rotation is based on the `frameCount()` variable. 
+
+Try the following modifications:
+
+1. The divisor in the `rotate` command;
+2. The step size in the `for` loop; (`x -= 50`);
+3. Try a different shape instead of a rectangle;
+4. How would you apply the `shear` and `scale()` functions here?
+
+
+## Sketch #2
+
+<center>
+<iframe height=480 width=560
+src="https://editor.p5js.org/arvindv/full/JIXNNNA6h"></iframe>
+</center>
+
+Analyze the code and see what the transformations are used. How would you creatively modify them? 
+
+
