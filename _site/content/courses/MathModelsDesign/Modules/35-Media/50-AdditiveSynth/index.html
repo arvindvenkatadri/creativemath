@@ -95,7 +95,7 @@ div.csl-indent {
 <link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-792aea850e7e5573310f85939a37799b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-2856685bdecccf42c98e8f6b75d000ba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-93ad3e07253cb8ce00162cc303228b16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../../../site_libs/quarto-contrib/tachyons-4.12.0/tachyons.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
@@ -560,7 +560,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 2, 2026</p>
+      <p class="date-modified">March 4, 2026</p>
     </div>
   </div>
     
@@ -584,7 +584,7 @@ window.Quarto = {
 </section><section id="the-math-of-waveform-addition" class="level2"><h2 class="anchored" data-anchor-id="the-math-of-waveform-addition">The Math of Waveform Addition</h2>
 <p>In general, we can write a sum of sine/cos waves as:</p>
 <p><span id="eq-additive-synthesis"><span class="math display">\[
-g(t) = \frac{1}{a_0} + \sum_{k=0}^{\infty} \Big[ a_k*sin(k* 2\pi *f *t) + b_k*cos(k* 2\pi *f *t) \Big]
+g(t) = \large{a_0 + \sum_{k=1}^{\infty} \Bigg[ a_k*sin(k* 2\pi *f *t) + b_k*cos(k* 2\pi *f *t) \Bigg]}
 \tag{1}\]</span></span></p>
 <p><span class="math inline">\(g(t)\)</span> is the desired time-waveform, <span class="math inline">\(\omega = 2\pi\times f\)</span> is the fundamental frequency in radians/sec, and the <span class="math inline">\(a_k\)</span> and <span class="math inline">\(b_k\)</span> are weights for the individual components that are to be designed.</p>
 <p>How does this look like? Mr.&nbsp;Shiffman again:</p>

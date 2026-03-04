@@ -166,7 +166,7 @@ website:
 format:
   html:
     smooth-scroll: true
-    fontsize: "large"
+    fontsize: "medium"
     theme: lux
     # css:
     #   - css/brite.scss

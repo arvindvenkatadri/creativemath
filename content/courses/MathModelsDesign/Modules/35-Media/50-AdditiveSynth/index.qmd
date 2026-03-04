@@ -172,7 +172,7 @@ from Mr Shiffman again:
 In general, we can write a sum of sine/cos waves as:
 
 $$
-g(t) = \frac{1}{a_0} + \sum_{k=0}^{\infty} \Big[ a_k*sin(k* 2\pi *f *t) + b_k*cos(k* 2\pi *f *t) \Big]
+g(t) = \large{a_0 + \sum_{k=1}^{\infty} \Bigg[ a_k*sin(k* 2\pi *f *t) + b_k*cos(k* 2\pi *f *t) \Bigg]}
 $$ {#eq-additive-synthesis}
 
 $g(t)$ is the desired time-waveform, $\omega = 2\pi\times f$ is the fundamental frequency in radians/sec, and the $a_k$ and $b_k$ are weights for the individual components that are to be designed.
