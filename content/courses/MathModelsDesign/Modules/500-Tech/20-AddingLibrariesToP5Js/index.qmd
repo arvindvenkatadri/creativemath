@@ -1,11 +1,20 @@
 ---
 title: "Adding Libraries to p5.js"
 order: 20
+author: Arvind V.
+date: 02/Dec/2025
+date-modified: " `r Sys.Date()`"
 lightbox: true
 categories:
 - p5.js
 image: images/what-we-mean-when-we-say.jpeg
 ---
+
+
+```{r}
+#| label: setup
+```
+
 
 
 ## Introduction

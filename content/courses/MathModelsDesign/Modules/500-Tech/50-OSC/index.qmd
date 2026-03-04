@@ -1,6 +1,6 @@
 ---
 title: "The Open Sound Protocol"
-order: 05
+order: 50
 lightbox: true
 summary: "Connecting Devices to p5.js"
 categories:

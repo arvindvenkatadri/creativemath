@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.16">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Arvind V">
 <meta name="dcterms.date" content="2024-07-22">
-
 <title>Projects – Applied Math for Creative Coders</title>
 <style>
 code{white-space: pre-wrap;}
@@ -24,7 +21,6 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-
 <script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
@@ -32,7 +28,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../../">
-<link href="../../../../../content/courses/MathModelsDesign/Modules/100-AI/50-GradientDescent/index.html" rel="prev">
+<link href="../../../../../content/courses/MathModelsDesign/Modules/100-AI/60-ConvNet/index.qmd" rel="prev">
 <link href="../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
 <script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -47,8 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../../../site_libs/bootstrap/bootstrap-2856685bdecccf42c98e8f6b75d000ba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="../../../../../site_libs/quarto-contrib/tachyons-4.12.0/tachyons.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../../../../site_libs/quarto-contrib/tachyons-4.12.0/tachyons.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -74,10 +69,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
-
-
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<link href="../../../../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../../../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <meta property="og:title" content="Projects – Applied Math for Creative Coders">
 <meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
 <meta property="og:site_name" content="Applied Math for Creative Coders">
@@ -85,13 +79,10 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
 <meta name="twitter:card" content="summary">
 </head>
-
 <body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../../../index.html">
     <span class="navbar-title">Applied Math for Creative Coders</span>
@@ -103,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/arvindvenkatadri/creativemath"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
@@ -124,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -133,9 +124,7 @@ ul.task-list li input[type="checkbox"] {
 </a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -146,17 +135,11 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../../../../index.html" class="sidebar-logo-link">
-      <img src="../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
+      <img src="../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -165,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../content/courses/MathModelsDesign/listing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Math Models for Creative Coders</span></a>
@@ -173,20 +156,26 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../content/courses/MathModelsDesign/Modules/500-Tech/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tech</span></a>
+ <span class="menu-text">Tools and Tech</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tools and Installation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../content/courses/MathModelsDesign/Modules/500-Tech/10-StartingSound/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Starting up Sound</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -208,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../content/courses/MathModelsDesign/Modules/05-Maths/listing.html" class="sidebar-item-text sidebar-link">
@@ -217,8 +206,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/05-Maths/10-ComplexNumbers/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><iconify-icon icon="tabler:math-xy" width="1.2em" height="1.2em"></iconify-icon> Complex Numbers</span></a>
@@ -227,23 +216,23 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</span></a>
+ <span class="menu-text"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Matrix Algebra Whirlwind Tour</span></a>
+ <span class="menu-text"><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Matrix Algebra Whirlwind Tour</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</span></a>
+ <span class="menu-text"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html" class="sidebar-item-text sidebar-link">
@@ -252,8 +241,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Frequency and Time Domains</span></a>
@@ -290,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" class="sidebar-item-text sidebar-link">
@@ -299,11 +288,17 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Movement and Animation</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</span></a>
+ <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -315,7 +310,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Affine Transformation Fractals</span></a>
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Affine Transformation Fractals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -331,7 +326,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../content/courses/MathModelsDesign/Modules/35-Media/listing.html" class="sidebar-item-text sidebar-link">
@@ -340,8 +335,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Additive Sound Synthesis</span></a>
@@ -350,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> FM based Sound Synthesis</span></a>
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> FM based Sound Synthesis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -372,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../content/courses/MathModelsDesign/Modules/100-AI/listing.html" class="sidebar-item-text sidebar-link">
@@ -381,11 +376,11 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="lucide:person-standing" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="mdi:human-female-dance" width="1.2em" height="1.2em"></iconify-icon> Working with Neural Nets</span></a>
+ <span class="menu-text"><iconify-icon icon="lucide:person-standing" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="mdi:human-female-dance" width="1.2em" height="1.2em"></iconify-icon> Working with Neural Nets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -412,8 +407,14 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Gradient Descent</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../content/courses/MathModelsDesign/Modules/100-AI/55-HandCalculation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI by Hand</span></a>
+  </div>
+</li>
       </ul>
-  </li>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link active">
@@ -422,51 +423,50 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Projects</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#project-j0-make-an-ad-for-a-wellknown-logo" id="toc-project-j0-make-an-ad-for-a-wellknown-logo" class="nav-link" data-scroll-target="#project-j0-make-an-ad-for-a-wellknown-logo">Project #J0: Make an ad for a wellknown logo</a></li>
-  <li><a href="#project-j1" id="toc-project-j1" class="nav-link" data-scroll-target="#project-j1">Project #J1:</a></li>
-  <li><a href="#project-1-kingqueen-of-the-mountain" id="toc-project-1-kingqueen-of-the-mountain" class="nav-link" data-scroll-target="#project-1-kingqueen-of-the-mountain">Project #1: King/Queen of the Mountain</a></li>
-  <li><a href="#project-2-sound-relationships" id="toc-project-2-sound-relationships" class="nav-link" data-scroll-target="#project-2-sound-relationships">Project #2: Sound Relationships</a></li>
-  <li><a href="#project-3a-and-3b-the-100-acre-wood-with-winnie-the-pooh" id="toc-project-3a-and-3b-the-100-acre-wood-with-winnie-the-pooh" class="nav-link" data-scroll-target="#project-3a-and-3b-the-100-acre-wood-with-winnie-the-pooh">Project #3A and #3B: The 100-Acre Wood with Winnie the Pooh</a>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#project-0-make-an-ad-for-a-wellknown-logo" id="toc-project-0-make-an-ad-for-a-wellknown-logo" class="nav-link" data-scroll-target="#project-0-make-an-ad-for-a-wellknown-logo">Project #0: Make an ad for a wellknown logo</a></li>
+  <li><a href="#project-1-garden-of-eden" id="toc-project-1-garden-of-eden" class="nav-link" data-scroll-target="#project-1-garden-of-eden">Project #1: Garden of Eden</a></li>
+  <li><a href="#project-2-all-good-things-begin-with-a-song" id="toc-project-2-all-good-things-begin-with-a-song" class="nav-link" data-scroll-target="#project-2-all-good-things-begin-with-a-song">Project #2: All good things begin with a Song</a></li>
+  <li><a href="#project-3-kingqueen-of-the-mountain" id="toc-project-3-kingqueen-of-the-mountain" class="nav-link" data-scroll-target="#project-3-kingqueen-of-the-mountain">Project #3: King/Queen of the Mountain</a></li>
+  <li><a href="#project-4-sound-relationships" id="toc-project-4-sound-relationships" class="nav-link" data-scroll-target="#project-4-sound-relationships">Project #4: Sound Relationships</a></li>
+  <li>
+<a href="#project-5a-and-5b-the-100-acre-wood-with-winnie-the-pooh" id="toc-project-5a-and-5b-the-100-acre-wood-with-winnie-the-pooh" class="nav-link" data-scroll-target="#project-5a-and-5b-the-100-acre-wood-with-winnie-the-pooh">Project #5A and #5B: The 100-Acre Wood with Winnie the Pooh</a>
   <ul class="collapse">
-  <li><a href="#description-2" id="toc-description-2" class="nav-link" data-scroll-target="#description-2">Description</a></li>
-  </ul></li>
-  <li><a href="#project-4-kagazi-hai-pairhan" id="toc-project-4-kagazi-hai-pairhan" class="nav-link" data-scroll-target="#project-4-kagazi-hai-pairhan">Project #4: Kagazi hai Pairhan</a>
-  <ul class="collapse">
-  <li><a href="#description-3" id="toc-description-3" class="nav-link" data-scroll-target="#description-3">Description</a></li>
-  </ul></li>
-  <li><a href="#project-4-my-face-is-a-fourier-series" id="toc-project-4-my-face-is-a-fourier-series" class="nav-link" data-scroll-target="#project-4-my-face-is-a-fourier-series">Project #4: My Face is a Fourier Series</a></li>
-  <li><a href="#project-5-music-by-hand-waving" id="toc-project-5-music-by-hand-waving" class="nav-link" data-scroll-target="#project-5-music-by-hand-waving">Project #5: Music by Hand-Waving</a></li>
-  <li><a href="#other-project-ideas" id="toc-other-project-ideas" class="nav-link" data-scroll-target="#other-project-ideas">Other Project Ideas</a></li>
+<li><a href="#description-5" id="toc-description-5" class="nav-link" data-scroll-target="#description-5">Description</a></li>
   </ul>
-</nav>
+</li>
+  <li>
+<a href="#project-6-kagazi-hai-pairhan" id="toc-project-6-kagazi-hai-pairhan" class="nav-link" data-scroll-target="#project-6-kagazi-hai-pairhan">Project #6: Kagazi hai Pairhan</a>
+  <ul class="collapse">
+<li><a href="#description-6" id="toc-description-6" class="nav-link" data-scroll-target="#description-6">Description</a></li>
+  </ul>
+</li>
+  <li><a href="#project-7-my-face-is-a-fourier-series" id="toc-project-7-my-face-is-a-fourier-series" class="nav-link" data-scroll-target="#project-7-my-face-is-a-fourier-series">Project #7: My Face is a Fourier Series</a></li>
+  <li><a href="#project-8-music-by-hand-waving" id="toc-project-8-music-by-hand-waving" class="nav-link" data-scroll-target="#project-8-music-by-hand-waving">Project #8: Music by Hand-Waving</a></li>
+  <li><a href="#project-x-other-project-ideas" id="toc-project-x-other-project-ideas" class="nav-link" data-scroll-target="#project-x-other-project-ideas">Project #X: Other Project Ideas</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html">Projects</a></li></ol></nav>
-<div class="quarto-title">
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html">Projects</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">Projects</h1>
 </div>
 
@@ -488,58 +488,66 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">March 4, 2026</p>
+    </div>
+  </div>
     
   </div>
   
 
 
-</header>
-
-
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Here are projects that we will contemplate creating at the end of the course. All the techniques, software, packages, theory, hardware…will be pieces aimed the realization of these projects. So we begin this course with the end in mind.</p>
-<p>The projects below have been grouped into two groups, one for the junior students and the other senior students, who are both paradoxically in the same class. But there is an opinion that <a href="LINK TO BE WRITTEN IN">prerequisites are irrelevant</a>.</p>
-<blockquote class="twitter-tweet blockquote">
-<p lang="en" dir="ltr">
-Do not start with fundamentals. This is an awful approach to learning. <br><br>Start with so-called "advanced" topics and ask questions until every term/concept is understood. <br><br>This is the correct, rigorous, scientific way to learn, because the advanced topics are embedded in larger,…
-</p>
-— Sean McClure (<span class="citation" data-cites="sean_a_mcclure">@sean_a_mcclure</span>) <a href="https://twitter.com/sean_a_mcclure/status/1895213068197450169?ref_src=twsrc%5Etfw">February 27, 2025</a>
+<p>The projects below have been grouped into two groups, one for the junior students and the other senior students, who are both paradoxically in the same class. But there is an opinion that <a href="https://x.com/sean_a_mcclure/status/1895213068197450169?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1895213068197450169%7Ctwgr%5Eaa19dc4d6046897671e95fec3f61ec8e92eae0b7%7Ctwcon%5Es1_c10&amp;ref_url=http%3A%2F%2Flocalhost%3A4040%2Fcontent%2Fcourses%2FMathModelsDesign%2FModules%2F1000-Projects%2Findex.html%3Fcapabilities%3D1host%3Dhttp3A2F2F127.0.0.13A34775">prerequisites are irrelevant</a>.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Do not start with fundamentals. This is an awful approach to learning. Start with so-called “advanced” topics and ask questions until every term/concept is understood. This is the correct, rigorous, scientific way to learn, because the advanced topics are embedded in larger, more convoluted, more abstracted constructs. This embedding is what gives the individual pieces their <em>meaning</em>. Foundational studies have removed this embedding, and present only the isolated, sterile pieces. They have no meaning. They have no context. <snip></snip></p>
 </blockquote>
-<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</section>
-<section id="project-j0-make-an-ad-for-a-wellknown-logo" class="level2">
-<h2 class="anchored" data-anchor-id="project-j0-make-an-ad-for-a-wellknown-logo">Project #J0: Make an ad for a wellknown logo</h2>
-</section>
-<section id="project-j1" class="level2">
-<h2 class="anchored" data-anchor-id="project-j1">Project #J1:</h2>
-</section>
-<section id="project-1-kingqueen-of-the-mountain" class="level2">
-<h2 class="anchored" data-anchor-id="project-1-kingqueen-of-the-mountain">Project #1: King/Queen of the Mountain</h2>
-<section id="description" class="level4">
-<h4 class="anchored" data-anchor-id="description">Description</h4>
+</blockquote>
+<p>Read the full tweet, and the discussion that follows at the link above.</p>
+</section><section id="project-0-make-an-ad-for-a-wellknown-logo" class="level2"><h2 class="anchored" data-anchor-id="project-0-make-an-ad-for-a-wellknown-logo">Project #0: Make an ad for a wellknown logo</h2>
+<section id="description" class="level4"><h4 class="anchored" data-anchor-id="description">Description</h4>
+<ul>
+<li>Use the logo and split it up into the geometric pieces that make it up</li>
+<li>Generate these pieces by <code>transforming</code> other well-known geometric shapes</li>
+<li>Create an animated <em>coming together</em> of the logo using these basic shapes transforming and aligning into the logo</li>
+</ul></section></section><section id="project-1-garden-of-eden" class="level2"><h2 class="anchored" data-anchor-id="project-1-garden-of-eden">Project #1: Garden of Eden</h2>
+<section id="description-1" class="level4"><h4 class="anchored" data-anchor-id="description-1">Description</h4>
+<ul>
+<li>Use simple geometric shapes, fractals, L-Systems, symmetries, colours, and animations to build a garden</li>
+<li>Create different types of biological creatures and non-biological structures</li>
+<li>Can you mathematically mimic birth-and-death processes?</li>
+<li>What about natural processes such as wind, rain, snow, or fire?</li>
+</ul></section></section><section id="project-2-all-good-things-begin-with-a-song" class="level2"><h2 class="anchored" data-anchor-id="project-2-all-good-things-begin-with-a-song">Project #2: All good things begin with a Song</h2>
+<section id="description-2" class="level4"><h4 class="anchored" data-anchor-id="description-2">Description</h4>
+<ul>
+<li>You will be , uh, given a set of very old Hindi Songs</li>
+<li>You need to generate just the initial music leading up to the point where the singer starts singing</li>
+<li>Use <code>p5.sound</code> and the sound synthesis techniques you have learnt to make this happen</li>
+<li>Play special attention to timbre and spectral depth of the sound. It needs to sound like the instrument used in the actual song!</li>
+<li>Besura? <code>Grade = Grade - 1</code> !!</li>
+</ul></section></section><section id="project-3-kingqueen-of-the-mountain" class="level2"><h2 class="anchored" data-anchor-id="project-3-kingqueen-of-the-mountain">Project #3: King/Queen of the Mountain</h2>
+<section id="description-3" class="level4"><h4 class="anchored" data-anchor-id="description-3">Description</h4>
 <ul>
 <li>Each participant in the exhibit chooses whether they want to be on a mountain or in a valley, or in a grassland/meadow. More choices if you are up to it…volcano, anyone?</li>
 <li>Their position within the space will be sensed. And they can move.</li>
 <li>A terrain map will be projected, either on the ceiling, or the screen, or on the participants themselves, with each individual being located on a specific terrain feature type that they chose at the start.</li>
-</ul>
-</section>
-<section id="pieces" class="level4">
-<h4 class="anchored" data-anchor-id="pieces">Pieces</h4>
+</ul></section><section id="pieces" class="level4"><h4 class="anchored" data-anchor-id="pieces">Pieces</h4>
 <table class="table">
-<caption>Project #1</caption>
+<caption>Project #3</caption>
 <colgroup>
 <col style="width: 23%">
 <col style="width: 33%">
 <col style="width: 33%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Theory</th>
 <th>Tool</th>
 <th>Wait, but why?</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>Terrain Generation</td>
@@ -574,36 +582,26 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 </ul></td>
 </tr>
 </tbody>
-</table>
-</section>
-</section>
-<section id="project-2-sound-relationships" class="level2">
-<h2 class="anchored" data-anchor-id="project-2-sound-relationships">Project #2: Sound Relationships</h2>
-<section id="description-1" class="level4">
-<h4 class="anchored" data-anchor-id="description-1">Description</h4>
+</table></section></section><section id="project-4-sound-relationships" class="level2"><h2 class="anchored" data-anchor-id="project-4-sound-relationships">Project #4: Sound Relationships</h2>
+<section id="description-4" class="level4"><h4 class="anchored" data-anchor-id="description-4">Description</h4>
 <ul>
 <li>The floor is divided into footprint-sized areas. Each area is mapped to a particular note in a musical scale, that can be selected. Multi-octave.</li>
 <li>Participants are told of the mapping and given a smartphone. And they can play hopscotch or dance or move, in sync with other participants to create a jam session.</li>
 <li>Can they make music / rhythms?</li>
 <li>They are given headphones?</li>
-</ul>
-</section>
-<section id="pieces-1" class="level4">
-<h4 class="anchored" data-anchor-id="pieces-1">Pieces</h4>
+</ul></section><section id="pieces-1" class="level4"><h4 class="anchored" data-anchor-id="pieces-1">Pieces</h4>
 <table class="table">
-<caption>Project #2</caption>
+<caption>Project #4</caption>
 <colgroup>
 <col style="width: 23%">
 <col style="width: 30%">
 <col style="width: 33%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Theory</th>
 <th>Tool</th>
 <th>Wait, but why?</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>Sound Generation</td>
@@ -639,13 +637,8 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 </ul></td>
 </tr>
 </tbody>
-</table>
-</section>
-</section>
-<section id="project-3a-and-3b-the-100-acre-wood-with-winnie-the-pooh" class="level2">
-<h2 class="anchored" data-anchor-id="project-3a-and-3b-the-100-acre-wood-with-winnie-the-pooh">Project #3A and #3B: The 100-Acre Wood with Winnie the Pooh</h2>
-<section id="description-2" class="level3">
-<h3 class="anchored" data-anchor-id="description-2">Description</h3>
+</table></section></section><section id="project-5a-and-5b-the-100-acre-wood-with-winnie-the-pooh" class="level2"><h2 class="anchored" data-anchor-id="project-5a-and-5b-the-100-acre-wood-with-winnie-the-pooh">Project #5A and #5B: The 100-Acre Wood with Winnie the Pooh</h2>
+<section id="description-5" class="level3"><h3 class="anchored" data-anchor-id="description-5">Description</h3>
 <ul>
 <li>Create natural shapes / images / illustrations / characters based on kolams/ lu-sona / fractals / L-Systems and graphs.</li>
 <li>A: Use grids, smoke, and mirrors to create laser diagrams in a table-top maze.
@@ -654,30 +647,30 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 <li>Movable mirrors ( 0/90 degrees only so black paper clips should work.)</li>
 <li>Single Point of entry for laser.</li>
 <li>Look from above through the smoke.</li>
-</ul></li>
+</ul>
+</li>
 <li>B: Viewers can draw their illustration on a large paper canvas to create a Hundred Acre Wood
 <ul>
 <li>Paper and Pencil / Colour / etc</li>
 <li>Check with Code and replicate by hand.</li>
 <li>Catalogue of Shapes is essential</li>
 <li>Grid, Kolam Choice for shape, changes, innovation are possible</li>
-</ul></li>
 </ul>
-<section id="pieces-2" class="level4">
-<h4 class="anchored" data-anchor-id="pieces-2">Pieces</h4>
+</li>
+</ul>
+<section id="pieces-2" class="level4"><h4 class="anchored" data-anchor-id="pieces-2">Pieces</h4>
 <table class="table">
+<caption>Project #5</caption>
 <colgroup>
 <col style="width: 20%">
 <col style="width: 38%">
 <col style="width: 39%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Theory</th>
 <th>Tool</th>
 <th>Wait, but why?</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>Shape Generation</td>
@@ -706,20 +699,14 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 <td></td>
 </tr>
 </tbody>
-</table>
-</section>
-</section>
-</section>
-<section id="project-4-kagazi-hai-pairhan" class="level2">
-<h2 class="anchored" data-anchor-id="project-4-kagazi-hai-pairhan">Project #4: Kagazi hai Pairhan</h2>
+</table></section></section></section><section id="project-6-kagazi-hai-pairhan" class="level2"><h2 class="anchored" data-anchor-id="project-6-kagazi-hai-pairhan">Project #6: Kagazi hai Pairhan</h2>
 <div class="pa4">
 <div class="athelas ml0 mt0 pl4 black-90 bl bw2 b--blue">
 <p><span class="f5 f4-m f3-l lh-copy measure mt0">“Naqsh fariyādī hai kis kī shoḳhi-e-tahrīr kā<br> Kāġhzī hai pairahan har paikar-e-tasvīr kā”</span></p>
 <p><span class="f6 ttu tracked fs-normal">— Ghalib</span></p>
 </div>
 </div>
-<section id="description-3" class="level3">
-<h3 class="anchored" data-anchor-id="description-3">Description</h3>
+<section id="description-6" class="level3"><h3 class="anchored" data-anchor-id="description-6">Description</h3>
 <ul>
 <li>Dress/Clothing design with paper</li>
 <li>Participants will turn and pirouette/turn about in front of a camera</li>
@@ -727,21 +714,18 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 <li>Paper cutout diagrams which can be fabricated to “dress up” the viewer in paper.</li>
 <li>Paper can have their favourite theorem or piece of text printed upon it!</li>
 </ul>
-<section id="pieces-3" class="level4">
-<h4 class="anchored" data-anchor-id="pieces-3">Pieces</h4>
+<section id="pieces-3" class="level4"><h4 class="anchored" data-anchor-id="pieces-3">Pieces</h4>
 <table class="table">
 <colgroup>
 <col style="width: 23%">
 <col style="width: 23%">
 <col style="width: 45%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Theory</th>
 <th>Tool</th>
 <th>Wait, but why?</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>Measurements of Fixed Points on/from Camera Image</td>
@@ -775,12 +759,7 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 <td></td>
 </tr>
 </tbody>
-</table>
-</section>
-</section>
-</section>
-<section id="project-4-my-face-is-a-fourier-series" class="level2">
-<h2 class="anchored" data-anchor-id="project-4-my-face-is-a-fourier-series">Project #4: My Face is a Fourier Series</h2>
+</table></section></section></section><section id="project-7-my-face-is-a-fourier-series" class="level2"><h2 class="anchored" data-anchor-id="project-7-my-face-is-a-fourier-series">Project #7: My Face is a Fourier Series</h2>
 <p>See this:</p>
 <p><a href="https://gofigure.impara.ai/drawing/5711774133256192" class="uri">https://gofigure.impara.ai/drawing/5711774133256192</a></p>
 <ul>
@@ -789,21 +768,18 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 <li>The code will generate a Fourier Series of their profile and present an animated version on the screen.</li>
 <li>Reset and Play should be possible</li>
 </ul>
-<section id="pieces-4" class="level4">
-<h4 class="anchored" data-anchor-id="pieces-4">Pieces</h4>
+<section id="pieces-4" class="level4"><h4 class="anchored" data-anchor-id="pieces-4">Pieces</h4>
 <table class="table">
 <colgroup>
 <col style="width: 23%">
 <col style="width: 23%">
 <col style="width: 47%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Theory</th>
 <th>Tool</th>
 <th>Wait, but why?</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>Measurements of Fixed Points on/from Camera Image</td>
@@ -831,24 +807,15 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 <td></td>
 </tr>
 </tbody>
-</table>
-</section>
-</section>
-<section id="project-5-music-by-hand-waving" class="level2">
-<h2 class="anchored" data-anchor-id="project-5-music-by-hand-waving">Project #5: Music by Hand-Waving</h2>
+</table></section></section><section id="project-8-music-by-hand-waving" class="level2"><h2 class="anchored" data-anchor-id="project-8-music-by-hand-waving">Project #8: Music by Hand-Waving</h2>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://player.vimeo.com/video/74922458" frameborder="0" title="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe></div>
-</section>
-<section id="other-project-ideas" class="level2">
-<h2 class="anchored" data-anchor-id="other-project-ideas">Other Project Ideas</h2>
+</section><section id="project-x-other-project-ideas" class="level2"><h2 class="anchored" data-anchor-id="project-x-other-project-ideas">Project #X: Other Project Ideas</h2>
 <ul>
-<li>Link IFTTT app to p5.js and make things happen over WiFi, from other classes or buildings</li>
+<li>Link the <a href="https://play.google.com/store/apps/details?id=com.ifttt.ifttt&amp;hl=en">IFTTT app</a> to p5.js using for instance <a href="../../../../../content/courses/MathModelsDesign/Modules/500-Tech/50-OSC/index.html">OSC messages</a>, and make things happen over WiFi, from other classes or buildings</li>
 </ul>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1254,19 +1221,16 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
       }
     }
   });
-  </script>
-<nav class="page-navigation column-body">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../../../content/courses/MathModelsDesign/Modules/100-AI/50-GradientDescent/index.html" class="pagination-link" aria-label="Gradient Descent">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Gradient Descent</span>
+  </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="../../../../../content/courses/MathModelsDesign/Modules/100-AI/60-ConvNet/index.qmd" class="pagination-link" aria-label="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>License: <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></p>
 </div>   
@@ -1278,8 +1242,6 @@ Do not start with fundamentals. This is an awful approach to learning. <br><br>S
 </div>
   </div>
 </footer>
-
-
 
 
 <script src="../../../../../site_libs/quarto-html/zenscroll-min.js"></script>

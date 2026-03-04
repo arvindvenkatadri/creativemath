@@ -1,0 +1,19 @@
+{
+  "hash": "8d64d569ed0d758778dc151869fb2e80",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Starting up Sound\"\nauthor: Arvind V.\ndate: 02/Mar/2026\ndate-modified: \" 2026-03-04\"\norder: 10\nabstract: \"Reliably starting up sound in p5.js\"\ncategories:\n- sound\n---\n\n\n\n## Introduction\n\nWhen using sound in `p5.js`, often one can run into an error that states something like  `Audio Context not started.` Use the ideas in the following `p5.js` sketch to reliably start and stop your sound. \n\n<center>\n<iframe height=780 width=680\nsrc=\"https://editor.p5js.org/arvindv/full/vuJfx892J\"></iframe>\n</center>\n\nTake a look at the code ( you may need to stop the sketch):\n\n- The `setup` portion simply creates a canvas, and several variables that are needed. \n- It also creates an `Oscillator` object (named `osc`)\n- In the `draw` section is just a GUI to enable audio by any user action (click/tap/keypress)\n- There are several brief `functions` thereafter, based on `mousePressed`, `touchStarted` and `keyPressed`, *all* pointing to another function called  `handleGesture`\n- `handleGesture` is an *async function* that starts audio, checks the *audio context* and only then allows the `Oscillator(osc)` to start. This is the prescribed sequence. \n\n::: callout-note\n### Asynchronous Programming in JavaScript\nAsync code allows a program to start a long-running task (like fetching data from a file). and continue with other tasks before the first one finishes.\n\nAsync code prevents the application from freezing, which is critical for user experience.\n:::\n\n- The final function `toggleTone` is just to ramp up or ramp down the `Oscillator(osc)`. You may not always need this, but this additional control may be useful. \n- The processing and other user interactivity that you wish to create can be always done in the `function draw(){}` section. \n\nWhile this may seem elaborate, this mechanism of *enabling audio -> checking context -> switching on oscillators* and then controlling them can help avoid a lot of grief in coding audio projects in p5.js. \n\n## References\n\n1. W3Schools. *Asynchronous Programming*. <https://www.w3schools.com/js/js_async.asp> \n\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

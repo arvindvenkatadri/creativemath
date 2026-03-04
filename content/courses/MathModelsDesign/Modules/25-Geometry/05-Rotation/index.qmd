@@ -1,7 +1,7 @@
 ---
 title: "Movement and Animation"
 author: Arvind V.
-date: 28/Mar/2026
+date: 28/Feb/2026
 date-modified: " `r Sys.Date()`"
 order: 05
 summary: "What We will Design with"
@@ -63,5 +63,17 @@ src="https://editor.p5js.org/arvindv/full/JIXNNNA6h"></iframe>
 </center>
 
 Analyze the code and see what the transformations are used. How would you creatively modify them? 
+
+## Resources
+
+1. <https://www.codecademy.com/courses/learn-p5js-fundamentals/articles/p5js-tips-for-creating-animations>
+
+
+
+
+
+
+
+## References
 
 

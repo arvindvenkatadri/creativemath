@@ -1,0 +1,52 @@
+---
+title: "Starting up Sound"
+author: Arvind V.
+date: 02/Mar/2026
+date-modified: " `r Sys.Date()`"
+order: 10
+abstract: "Reliably starting up sound in p5.js"
+categories:
+- sound
+---
+
+```{r}
+#| label: setup
+#| include: false
+```
+
+## Introduction
+
+When using sound in `p5.js`, often one can run into an error that states something like  `Audio Context not started.` Use the ideas in the following `p5.js` sketch to reliably start and stop your sound. 
+
+<center>
+<iframe height=780 width=680
+src="https://editor.p5js.org/arvindv/full/vuJfx892J"></iframe>
+</center>
+
+Take a look at the code ( you may need to stop the sketch):
+
+- The `setup` portion simply creates a canvas, and several variables that are needed. 
+- It also creates an `Oscillator` object (named `osc`)
+- In the `draw` section is just a GUI to enable audio by any user action (click/tap/keypress)
+- There are several brief `functions` thereafter, based on `mousePressed`, `touchStarted` and `keyPressed`, *all* pointing to another function called  `handleGesture`
+- `handleGesture` is an *async function* that starts audio, checks the *audio context* and only then allows the `Oscillator(osc)` to start. This is the prescribed sequence. 
+
+::: callout-note
+### Asynchronous Programming in JavaScript
+Async code allows a program to start a long-running task (like fetching data from a file). and continue with other tasks before the first one finishes.
+
+Async code prevents the application from freezing, which is critical for user experience.
+:::
+
+- The final function `toggleTone` is just to ramp up or ramp down the `Oscillator(osc)`. You may not always need this, but this additional control may be useful. 
+- The processing and other user interactivity that you wish to create can be always done in the `function draw(){}` section. 
+
+While this may seem elaborate, this mechanism of *enabling audio -> checking context -> switching on oscillators* and then controlling them can help avoid a lot of grief in coding audio projects in p5.js. 
+
+## References
+
+1. W3Schools. *Asynchronous Programming*. <https://www.w3schools.com/js/js_async.asp> 
+
+
+
+

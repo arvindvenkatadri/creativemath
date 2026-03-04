@@ -1,0 +1,19 @@
+{
+  "hash": "18aa27d12dbe7a549e777854f51205b9",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Adding Libraries to p5.js\"\norder: 20\nauthor: Arvind V.\ndate: 02/Dec/2025\ndate-modified: \" 2026-03-04\"\nlightbox: true\ncategories:\n- p5.js\nimage: images/what-we-mean-when-we-say.jpeg\n---\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n## Introduction\n\nWhen we wish to use some feature that is not directly available in `p5.js`, say for example creating [Voronoi Tesselations using the c2.js library](https://c2js.org/examples.html), then we need to import that JavaScript library into our `p5.js` session that allows us to do that.\n\n\n## Simple Instructions!\n\n1. On your `p5.js` web editor, click the arrow on the left side and access the `index.html` file.\n\n![Accessing index.html on p5js web editor](../../../../../materials/images/p5jsindexhtml.png){#fig-index-html}\n\n1. Go to either [jsDeliver](https://www.jsdelivr.com/) or [cdnjs]() and get the `<script>` for your chosen library: \n\n![Script for `tonejs` @ cdnjs website](../../../../../materials/images/cdnjs.png){#fig-script-tonejs}\n\n\n1. Paste that `<script>` tag and its contents into your `index.html`.\n\n1. The library will now be available in your `sketch.js` and you can use the commands and features from that library therein. \n\n\nHere is a shortish video that tells us how to do this:\n\n{{< video https://youtu.be/b9O_-SpjPGA >}}\n\n## References\n\n1. p5.js Documentation: *How to use a JS library in your p5.js sketch*. <https://archive.p5js.org/libraries/>\n1. p5.js Community Libraries. <https://p5js.org/libraries/>\n1. jsDeliver <https://www.jsdelivr.com/?query=p5play>\n1. cdnJS.<https://cdnjs.com>\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
