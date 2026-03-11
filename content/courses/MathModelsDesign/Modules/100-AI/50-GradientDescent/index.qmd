@@ -172,7 +172,7 @@ $${#eq-Back-Prop}
 
 Now what? How do we use all these errors, from the output right up to those backpropagated backwards up to the first ($l=1$) layer? To adapt the weights of the NN using these backpropagated errors, here are the steps:
 
-1. **Per-Weight Cost Gradient**: We are looking for something like $\large{\pmb{\color{red}{\frac{dC}{W_{jk}}}}}$ for all possible combos of $jk$.
+1. **Per-Weight Cost Gradient**: We are looking for something like $\Large{\pmb{\color{red}{\frac{dC}{W_{jk}}}}}$ for all possible combos of $jk$.
 1. **Learn**: Adapt the Weights in the opposite direction to its Cost-Gradient. (Why?)
 
  Are you ready? ;-D Let us do this !
@@ -366,7 +366,7 @@ layer-2.h3 -> layer-3.e32
 
 Let us take the *Weight* $Wjk$. It connects neuron $j^{l-1}$ with neuron $k^l$, using the activation $a^{l-1}_j$. The relevant output *error* ( that contributes to the Cost function) is $e^l_{k}$.
 
-- The product $\large{\color{red}{a^{l-1}_j} ~ * ~ \color{lightblue}{e^l_k}}$ is **like a correlation product** of the two quanties at the input and output of the neuron $k$. This product contributes to a sense of *slope*: the larger either of these, larger is the Cost-slope going from neuron $j$ to $k$.
+- The product $\large{\color{red}{a^{l-1}_j} ~ * ~ \color{lightblue}{e^l_k}}$ is *like a correlation product* of the two quanties at the input and output of the neuron $k$. This product contributes to a sense of *slope*: the larger either of these, larger is the Cost-slope going from neuron $j$ to $k$.
 - How do we account for the magnitude of the *Weight* $Wjk$ itself? Surely that matters! Yes, but note that $Wjk$ is entwined with the remaining inputs and weights via the $\sigma$ function term!  We must differentiate that and put that differential into the product! That gives is the two other product terms in the formula above which involve the sigmoid function.
 
 So, monster as it is, the formula is quite intuitive and even beautiful!

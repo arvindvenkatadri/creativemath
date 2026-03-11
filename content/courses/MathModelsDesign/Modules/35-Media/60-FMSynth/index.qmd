@@ -197,7 +197,7 @@ So we understand the Fourier Transform: we can express any waveform as a
 sum of sinusoids that are appropriately weighted and are at discrete
 multiples of a chosen "fundamental frequency".
 
-In the module [Additive Synthesis](../12-AdditiveSynth/index.qmd), we
+In the module [Additive Synthesis](../50-AdditiveSynth/index.qmd), we
 learnt about how a sum of properly tuned and weighted frequency
 components can be used to synthesize sounds. Here is another approach:
 of **frequency-modulation**, or changing the *frequency* of a base
@@ -718,7 +718,7 @@ Result: An inharmonic, bell‑like tone whose energy is centered around 600 Hz b
 
 -   With [Additive Synthesis](../50-AdditiveSynth/index.qmd), we have a
     large number of oscillators, one for each component derived from
-    [Fourier Analysis](../../20-Systems/20-FourierSeries/index.qmd)
+    [Fourier Analysis](../../20-Systems/25-FourierSeries/index.qmd)
 -   These give rise to a lot of controllable/settable parameters which
     may be hard to manage, and to tweak if interactivity is desired
 -   It m-a-y be computationally intensive...

@@ -15,3 +15,13 @@ listing:
   categories: numbered
 ---
 
+## References
+
+1. Forinash and Christian. *Sound - An Interactive eBook* <https://phys.libretexts.org/Bookshelves/Waves_and_Acoustics/Sound_-_An_Interactive_eBook_(Forinash_and_Christian)> 
+1. Andrew Farnell. *Designing Sound*. 
+1. <https://pmcharrison.github.io/intro-to-music-and-science/timbre.html>
+1. Sound Waves. <https://ophysics.com/w6.html>
+1. Guitar Chord Explorer. <https://ophysics.com/fs9.html> 
+1. What Music Really is <https://www.youtube.com/channel/UCgqviysh9n4dbccXlOyWIfQ> 
+1. WebSoundArt. *p5.sound tutorial*. <https://websoundart.org/articles/20231217_tutorial-6-p5sound>
+

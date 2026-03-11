@@ -238,6 +238,8 @@ Another way to view the multiple spectral components of a musical sound is using
 :::
 
 
+
+
 ## Additive Synthesis with Code
 
 ::: {.panel-tabset .nav-pills style="background: whitesmoke; "}
@@ -293,6 +295,7 @@ show(music)
 1.  Mister Bomb. *p5.Sound project tutorials*
     <https://www.youtube.com/playlist?list=PLIsdHp2z9wFl7A1wWb2VmQUUojEGsKELE>
 1. Jason Sigal. *Visualizing Music in p5.js*. <https://therewasaguy.github.io/p5-music-viz/> 
+1. WebSoundArt. *p5.sound tutorial*. <https://websoundart.org/articles/20231217_tutorial-6-p5sound> 
     
 
 ## Other Tools

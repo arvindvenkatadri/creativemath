@@ -23,7 +23,7 @@ listing:
 ## Introduction
 
 We will study several Mathematical Models and apply them to Art and
-Design. The algorithms will be examined and then coded in [p5.js V2.0.0](https://beta.p5js.org/) to implement projects of interest. ( We might on a later occasion try to use [q5.js](https://q5js.org/home/) /
+Design. The algorithms will be examined and then coded in [p5.js](https://p5js.org/) to implement projects of interest. (We might on a later occasion try to use [q5.js](https://q5js.org/home/) /
 [p5play.js](https://p5play.org/). Other open source tools
 (FOSS) and Javascript libraries may also be introduced as and when
 needed and as and when I learn and get excited about them. )

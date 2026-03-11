@@ -169,9 +169,11 @@ $${#eq-perceptron}
 
 So how does it work? Consider the interactive diagram below:
 
+<center>
 <iframe height=480 width=680
 src="https://editor.p5js.org/arvindv/full/qx7rMp3RI">
 </iframe>
+</center>
 
 - The coordinate axes are as shown [X]{.red}, [Y]{.green}, and [Z]{.blue} 
 
