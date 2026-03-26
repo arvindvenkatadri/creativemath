@@ -79,25 +79,26 @@ division in plants and other biological processes.
 
 $$
 axiom: AA
-$$ $$
+$$ 
+
+
+$$
 Production ~ Rule: A --> ABA
 $$
 
 $$
 Iterations:\\\ 
-1. A\\\ 
+1. AA\\\ 
 $$
 
 $$
-2. ~\color{magenta}{A}~\color{Black}B~\color{magenta}{A}\\\ 
+2. ~\color{magenta}{A}~\color{Black}B~\color{magenta}{A}~~ ~\color{magenta}{A}~\color{Black}B~\color{magenta}{A}\\\ 
 $$ $$
-3.~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA}\\\
-$$ $$
-4.~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA}~~\color{Black}B~~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA}
-$$
+3.~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA} ~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA}\\\
+$$ 
 
-L-system Structures thus develop through a process of **string
-rewriting**. A string of letters is transformed into a new string of
+
+L-system Structures thus develop through a process of **string rewriting**. A string of letters is transformed into a new string of
 letters using simple rules called **productions**. The process is
 repeated indefinitely, each time using the string that was just produced
 as the source for the next string. Because the strings tend to grow with
@@ -156,10 +157,6 @@ library(LearnGeom)
 library(TurtleGraphics)
 options(max.print=20)
 
-```
-
-```{r}
-
 # Lindemayer tree
 
 ## Dictionary of Symbols
@@ -200,6 +197,9 @@ A more complex, and more botanical-looking, tree or seaweed:
 
 ```{r}
 #| results: hold
+#| code-fold: true
+#| message: false
+#| warning: false
 #| 
 ## Define Axiom and Mutation Rules
 fractal_tree_rules <- data.frame(
@@ -244,51 +244,50 @@ Some suggestions!! Note the alphabet!!!
 
 ![](../../../../../materials/images/L-system-KrishnaAnklet.png)
 
-+----------------------------------+----------------------------------+
-| Col1                             | Col2                             |
-+==================================+==================================+
-| A.  Pythagorean Tree:            | ![                               |
-|                                  | ](../../../.%20./../materials/im |
-| -   Axiom: \[++!++!++!\]xy       | ages/L%20-system-pythagoras.png) |
-|                                  | \|                               |
-| -   Production Rules:            |                                  |
-|                                  |                                  |
-|     -   x =                      |                                  |
-|                                  |                                  |
-|     \[-\[!++!++!++!\]!xy         |                                  |
-|                                  |                                  |
-|     -   y =                      |                                  |
-|                                  |                                  |
-| \[+\![!++!++!++!\]!xy            |                                  |
-|                                  |                                  |
-| ```                              |                                  |
-| -   startAngle: 0                |                                  |
-| -   turnAngle: 45.0              |                                  |
-| -   growth : 1.408               |                                  |
-| ```                              |                                  |
-+----------------------------------+----------------------------------+
-| B. Krishna's Anklets:            | ![](.                            |
-|                                  | ./../../../.%20./materials/image |
-| -   Axiom: ++af-h-f+h            | s/L-sy%20stem-KrishnaAnklet.png) |
-|                                  |                                  |
-|     ```                          |                                  |
-|     -   f                        |                                  |
-|     ```                          |                                  |
-|                                  |                                  |
-|     -   \## h                    |                                  |
-|                                  |                                  |
-|         f++h++f-h-f++h++f-h-f++h |                                  |
-|                                  |                                  |
-| -   Production Rules:            |                                  |
-|                                  |                                  |
-|     -   f = f - h - f ++ h ++    |                                  |
-|         f - h - f                |                                  |
-|     -   startAngle: 0            |                                  |
-|     -   turnAngle: 45.0          |                                  |
-|     -   growth:1.0               |                                  |
-+----------------------------------+----------------------------------+
-|                                  |                                  |
-+----------------------------------+----------------------------------+
++-------------------------------------------------------------------------+-------------------------------------------------------+
+| Col1                                                                    | Col2                                                  |
++=========================================================================+=======================================================+
+| A.  Pythagorean Tree:                                                   | !                                                     |
+|                                                                         | [](/content/materials/images/L-system-pythagoras.png) |
+| -   Axiom: \[++!++!++!\]xy                                              | \|                                                    |
+|                                                                         |                                                       |
+| -   Production Rules:                                                   |                                                       |
+|                                                                         |                                                       |
+|     -   x =                                                             |                                                       |
+|                                                                         |                                                       |
+|     \[-\[!++!++!++!\]!xy                                                |                                                       |
+|                                                                         |                                                       |
+|     -   y =                                                             |                                                       |
+|                                                                         |                                                       |
+| \[+\![!++!++!++!\]!xy                                                   |                                                       |
+|                                                                         |                                                       |
+| ```                                                                     |                                                       |
+| -   startAngle: 0                                                       |                                                       |
+| -   turnAngle: 45.0                                                     |                                                       |
+| -   growth : 1.408                                                      |                                                       |
+| ```                                                                     |                                                       |
++-------------------------------------------------------------------------+-------------------------------------------------------+
+| B. Krishna's Anklets:                                                   | ![](                                                  |
+|                                                                         | /content/materials/images/L-system-KrishnaAnklet.png) |
+| -   Axiom: ++af-h-f+h                                                   | \|                                                    |
+|                                                                         |                                                       |
+|     ```                                                                 |                                                       |
+|     -   f                                                               |                                                       |
+|     ```                                                                 |                                                       |
+|                                                                         |                                                       |
+|     -   \## h                                                           |                                                       |
+|                                                                         |                                                       |
+|         f++h++f-h-f++h++f-h-f++h                                        |                                                       |
+|                                                                         |                                                       |
+| -   Production Rules:                                                   |                                                       |
+|                                                                         |                                                       |
+|     -   f = f - h - f ++ h ++ f - h - f                                 |                                                       |
+|     -   startAngle: 0                                                   |                                                       |
+|     -   turnAngle: 45.0                                                 |                                                       |
+|     -   growth:1.0                                                      |                                                       |
++-------------------------------------------------------------------------+-------------------------------------------------------+
+|                                                                         |                                                       |
++-------------------------------------------------------------------------+-------------------------------------------------------+
 :::
 
 ## Design Principles for L-Systems

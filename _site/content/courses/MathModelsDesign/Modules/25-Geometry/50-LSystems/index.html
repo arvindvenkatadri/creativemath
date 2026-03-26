@@ -545,7 +545,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 30, 2025</p>
+      <p class="date-modified">March 27, 2026</p>
     </div>
   </div>
     
@@ -589,19 +589,18 @@ But only God can make a tree.”</span></p>
 <p>You can see how a self expanding sentence can be analogous to cell division in plants and other biological processes.</p>
 <p><span class="math display">\[
 axiom: AA
-\]</span> <span class="math display">\[
+\]</span></p>
+<p><span class="math display">\[
 Production ~ Rule: A --&gt; ABA
 \]</span></p>
 <p><span class="math display">\[
 Iterations:\\\
-1. A\\\
+1. AA\\\
 \]</span></p>
 <p><span class="math display">\[
-2. ~\color{magenta}{A}~\color{Black}B~\color{magenta}{A}\\\
+2. ~\color{magenta}{A}~\color{Black}B~\color{magenta}{A}~~ ~\color{magenta}{A}~\color{Black}B~\color{magenta}{A}\\\
 \]</span> <span class="math display">\[
-3.~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA}\\\
-\]</span> <span class="math display">\[
-4.~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA}~~\color{Black}B~~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA}
+3.~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA} ~\color{magenta}{ABA}~\color{Black}B~\color{magenta}{ABA}\\\
 \]</span></p>
 <p>L-system Structures thus develop through a process of <strong>string rewriting</strong>. A string of letters is transformed into a new string of letters using simple rules called <strong>productions</strong>. The process is repeated indefinitely, each time using the string that was just produced as the source for the next string. Because the strings tend to grow with each rewrite, an L-system can become arbitrarily complex, but always guided by a simple process dictated by a fixed set of simple rules. In this respect, L-systems are a manifestation of <a href="https://www.complexityexplorer.org/courses/185-introduction-to-complexity">Complexity Phenomena</a>.</p>
 <p>All right, but how does this become a <strong>tree</strong>??</p>
@@ -643,11 +642,9 @@ Figure&nbsp;1
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">LindenmayeR</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">LearnGeom</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.gagolewski.com/software/TurtleGraphics/">TurtleGraphics</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>max.print <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Lindemayer tree</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>max.print <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Lindemayer tree</span></span>
 <span></span>
 <span><span class="co">## Dictionary of Symbols</span></span>
 <span><span class="va">dictionary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
@@ -671,7 +668,7 @@ Figure&nbsp;1
 <span>  verbose <span class="op">=</span> <span class="fl">0</span>, <span class="co"># No progress messages please...</span></span>
 <span>  retAll <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># One Vector output at the end only</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre data-code-line-numbers=""><code>[[1]]
      start end
 [1,]     1   1
@@ -692,7 +689,7 @@ Figure&nbsp;1
 2     4   4 F[+F][-F]
 3     8   8 F[+F][-F]</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Now draw the tree</span></span>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Now draw the tree</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/LindenmayeR/man/drawLsys.html">drawLsys</a></span><span class="op">(</span></span>
 <span>  string <span class="op">=</span> <span class="va">Ltree</span>,</span>
 <span>  drules <span class="op">=</span> <span class="va">dictionary</span>,</span>
@@ -700,16 +697,16 @@ Figure&nbsp;1
 <span>  ang <span class="op">=</span> <span class="fl">12</span>,</span>
 <span>  st <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">10</span>, <span class="fl">90</span><span class="op">)</span> <span class="co"># Root Position x, y, angle from bottom-left</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="2100"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/setup-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/setup-1.png" class="img-fluid figure-img" width="2100"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>A more complex, and more botanical-looking, tree or seaweed:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Define Axiom and Mutation Rules</span></span>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Define Axiom and Mutation Rules</span></span>
 <span><span class="va">fractal_tree_rules</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  inp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"F"</span><span class="op">)</span>,</span>
 <span>  out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F-[[X]+X]+F[+FX]-X"</span>, <span class="st">"FF"</span><span class="op">)</span>,</span>
@@ -736,9 +733,9 @@ Figure&nbsp;1
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/grid/grid.text.html">grid.text</a></span><span class="op">(</span><span class="st">"Fractal Seaweed (n = 4)"</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="2100"></a></p>
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="2100"></a></p>
 </figure>
 </div>
 </div>
@@ -789,7 +786,12 @@ Figure&nbsp;1
  [8,]    43  43
  [9,]    56  56
 [10,]    59  59
- [ reached 'max' / getOption("max.print") -- omitted 6 rows ]
+[11,]    66  66
+[12,]    69  69
+[13,]    76  76
+[14,]    79  79
+[15,]    86  86
+[16,]    89  89
 
 [[2]]
       start end
@@ -803,27 +805,54 @@ Figure&nbsp;1
  [8,]    39  39
  [9,]    46  46
 [10,]    47  47
- [ reached 'max' / getOption("max.print") -- omitted 8 rows ]
+[11,]    50  50
+[12,]    51  51
+[13,]    52  52
+[14,]    62  62
+[15,]    65  65
+[16,]    72  72
+[17,]    82  82
+[18,]    85  85
 
 [[1]]
-  start end             insert
-1    10  10 F-[[X]+X]+F[+FX]-X
-2    13  13 F-[[X]+X]+F[+FX]-X
-3    20  20 F-[[X]+X]+F[+FX]-X
-4    23  23 F-[[X]+X]+F[+FX]-X
-5    30  30 F-[[X]+X]+F[+FX]-X
-6    33  33 F-[[X]+X]+F[+FX]-X
- [ reached 'max' / getOption("max.print") -- omitted 10 rows ]
+   start end             insert
+1     10  10 F-[[X]+X]+F[+FX]-X
+2     13  13 F-[[X]+X]+F[+FX]-X
+3     20  20 F-[[X]+X]+F[+FX]-X
+4     23  23 F-[[X]+X]+F[+FX]-X
+5     30  30 F-[[X]+X]+F[+FX]-X
+6     33  33 F-[[X]+X]+F[+FX]-X
+7     40  40 F-[[X]+X]+F[+FX]-X
+8     43  43 F-[[X]+X]+F[+FX]-X
+9     56  56 F-[[X]+X]+F[+FX]-X
+10    59  59 F-[[X]+X]+F[+FX]-X
+11    66  66 F-[[X]+X]+F[+FX]-X
+12    69  69 F-[[X]+X]+F[+FX]-X
+13    76  76 F-[[X]+X]+F[+FX]-X
+14    79  79 F-[[X]+X]+F[+FX]-X
+15    86  86 F-[[X]+X]+F[+FX]-X
+16    89  89 F-[[X]+X]+F[+FX]-X
 
 [[2]]
-  start end insert
-1     1   1     FF
-2     2   2     FF
-3     6   6     FF
-4    16  16     FF
-5    19  19     FF
-6    26  26     FF
- [ reached 'max' / getOption("max.print") -- omitted 12 rows ]
+   start end insert
+1      1   1     FF
+2      2   2     FF
+3      6   6     FF
+4     16  16     FF
+5     19  19     FF
+6     26  26     FF
+7     36  36     FF
+8     39  39     FF
+9     46  46     FF
+10    47  47     FF
+11    50  50     FF
+12    51  51     FF
+13    52  52     FF
+14    62  62     FF
+15    65  65     FF
+16    72  72     FF
+17    82  82     FF
+18    85  85     FF
 
 [[1]]
       start end
@@ -837,7 +866,60 @@ Figure&nbsp;1
  [8,]    50  50
  [9,]    63  63
 [10,]    66  66
- [ reached 'max' / getOption("max.print") -- omitted 54 rows ]
+[11,]    73  73
+[12,]    76  76
+[13,]    83  83
+[14,]    86  86
+[15,]    93  93
+[16,]    96  96
+[17,]   108 108
+[18,]   111 111
+[19,]   118 118
+[20,]   121 121
+[21,]   128 128
+[22,]   131 131
+[23,]   138 138
+[24,]   141 141
+[25,]   154 154
+[26,]   157 157
+[27,]   164 164
+[28,]   167 167
+[29,]   174 174
+[30,]   177 177
+[31,]   184 184
+[32,]   187 187
+[33,]   209 209
+[34,]   212 212
+[35,]   219 219
+[36,]   222 222
+[37,]   229 229
+[38,]   232 232
+[39,]   239 239
+[40,]   242 242
+[41,]   255 255
+[42,]   258 258
+[43,]   265 265
+[44,]   268 268
+[45,]   275 275
+[46,]   278 278
+[47,]   285 285
+[48,]   288 288
+[49,]   300 300
+[50,]   303 303
+[51,]   310 310
+[52,]   313 313
+[53,]   320 320
+[54,]   323 323
+[55,]   330 330
+[56,]   333 333
+[57,]   346 346
+[58,]   349 349
+[59,]   356 356
+[60,]   359 359
+[61,]   366 366
+[62,]   369 369
+[63,]   376 376
+[64,]   379 379
 
 [[2]]
       start end
@@ -851,27 +933,234 @@ Figure&nbsp;1
  [8,]    23  23
  [9,]    26  26
 [10,]    33  33
- [ reached 'max' / getOption("max.print") -- omitted 74 rows ]
+[11,]    43  43
+[12,]    46  46
+[13,]    53  53
+[14,]    54  54
+[15,]    57  57
+[16,]    58  58
+[17,]    59  59
+[18,]    69  69
+[19,]    72  72
+[20,]    79  79
+[21,]    89  89
+[22,]    92  92
+[23,]    99  99
+[24,]   100 100
+[25,]   104 104
+[26,]   114 114
+[27,]   117 117
+[28,]   124 124
+[29,]   134 134
+[30,]   137 137
+[31,]   144 144
+[32,]   145 145
+[33,]   148 148
+[34,]   149 149
+[35,]   150 150
+[36,]   160 160
+[37,]   163 163
+[38,]   170 170
+[39,]   180 180
+[40,]   183 183
+[41,]   190 190
+[42,]   191 191
+[43,]   192 192
+[44,]   193 193
+[45,]   196 196
+[46,]   197 197
+[47,]   198 198
+[48,]   199 199
+[49,]   200 200
+[50,]   201 201
+[51,]   205 205
+[52,]   215 215
+[53,]   218 218
+[54,]   225 225
+[55,]   235 235
+[56,]   238 238
+[57,]   245 245
+[58,]   246 246
+[59,]   249 249
+[60,]   250 250
+[61,]   251 251
+[62,]   261 261
+[63,]   264 264
+[64,]   271 271
+[65,]   281 281
+[66,]   284 284
+[67,]   291 291
+[68,]   292 292
+[69,]   296 296
+[70,]   306 306
+[71,]   309 309
+[72,]   316 316
+[73,]   326 326
+[74,]   329 329
+[75,]   336 336
+[76,]   337 337
+[77,]   340 340
+[78,]   341 341
+[79,]   342 342
+[80,]   352 352
+[81,]   355 355
+[82,]   362 362
+[83,]   372 372
+[84,]   375 375
 
 [[1]]
-  start end             insert
-1    17  17 F-[[X]+X]+F[+FX]-X
-2    20  20 F-[[X]+X]+F[+FX]-X
-3    27  27 F-[[X]+X]+F[+FX]-X
-4    30  30 F-[[X]+X]+F[+FX]-X
-5    37  37 F-[[X]+X]+F[+FX]-X
-6    40  40 F-[[X]+X]+F[+FX]-X
- [ reached 'max' / getOption("max.print") -- omitted 58 rows ]
+   start end             insert
+1     17  17 F-[[X]+X]+F[+FX]-X
+2     20  20 F-[[X]+X]+F[+FX]-X
+3     27  27 F-[[X]+X]+F[+FX]-X
+4     30  30 F-[[X]+X]+F[+FX]-X
+5     37  37 F-[[X]+X]+F[+FX]-X
+6     40  40 F-[[X]+X]+F[+FX]-X
+7     47  47 F-[[X]+X]+F[+FX]-X
+8     50  50 F-[[X]+X]+F[+FX]-X
+9     63  63 F-[[X]+X]+F[+FX]-X
+10    66  66 F-[[X]+X]+F[+FX]-X
+11    73  73 F-[[X]+X]+F[+FX]-X
+12    76  76 F-[[X]+X]+F[+FX]-X
+13    83  83 F-[[X]+X]+F[+FX]-X
+14    86  86 F-[[X]+X]+F[+FX]-X
+15    93  93 F-[[X]+X]+F[+FX]-X
+16    96  96 F-[[X]+X]+F[+FX]-X
+17   108 108 F-[[X]+X]+F[+FX]-X
+18   111 111 F-[[X]+X]+F[+FX]-X
+19   118 118 F-[[X]+X]+F[+FX]-X
+20   121 121 F-[[X]+X]+F[+FX]-X
+21   128 128 F-[[X]+X]+F[+FX]-X
+22   131 131 F-[[X]+X]+F[+FX]-X
+23   138 138 F-[[X]+X]+F[+FX]-X
+24   141 141 F-[[X]+X]+F[+FX]-X
+25   154 154 F-[[X]+X]+F[+FX]-X
+26   157 157 F-[[X]+X]+F[+FX]-X
+27   164 164 F-[[X]+X]+F[+FX]-X
+28   167 167 F-[[X]+X]+F[+FX]-X
+29   174 174 F-[[X]+X]+F[+FX]-X
+30   177 177 F-[[X]+X]+F[+FX]-X
+31   184 184 F-[[X]+X]+F[+FX]-X
+32   187 187 F-[[X]+X]+F[+FX]-X
+33   209 209 F-[[X]+X]+F[+FX]-X
+34   212 212 F-[[X]+X]+F[+FX]-X
+35   219 219 F-[[X]+X]+F[+FX]-X
+36   222 222 F-[[X]+X]+F[+FX]-X
+37   229 229 F-[[X]+X]+F[+FX]-X
+38   232 232 F-[[X]+X]+F[+FX]-X
+39   239 239 F-[[X]+X]+F[+FX]-X
+40   242 242 F-[[X]+X]+F[+FX]-X
+41   255 255 F-[[X]+X]+F[+FX]-X
+42   258 258 F-[[X]+X]+F[+FX]-X
+43   265 265 F-[[X]+X]+F[+FX]-X
+44   268 268 F-[[X]+X]+F[+FX]-X
+45   275 275 F-[[X]+X]+F[+FX]-X
+46   278 278 F-[[X]+X]+F[+FX]-X
+47   285 285 F-[[X]+X]+F[+FX]-X
+48   288 288 F-[[X]+X]+F[+FX]-X
+49   300 300 F-[[X]+X]+F[+FX]-X
+50   303 303 F-[[X]+X]+F[+FX]-X
+51   310 310 F-[[X]+X]+F[+FX]-X
+52   313 313 F-[[X]+X]+F[+FX]-X
+53   320 320 F-[[X]+X]+F[+FX]-X
+54   323 323 F-[[X]+X]+F[+FX]-X
+55   330 330 F-[[X]+X]+F[+FX]-X
+56   333 333 F-[[X]+X]+F[+FX]-X
+57   346 346 F-[[X]+X]+F[+FX]-X
+58   349 349 F-[[X]+X]+F[+FX]-X
+59   356 356 F-[[X]+X]+F[+FX]-X
+60   359 359 F-[[X]+X]+F[+FX]-X
+61   366 366 F-[[X]+X]+F[+FX]-X
+62   369 369 F-[[X]+X]+F[+FX]-X
+63   376 376 F-[[X]+X]+F[+FX]-X
+64   379 379 F-[[X]+X]+F[+FX]-X
 
 [[2]]
-  start end insert
-1     1   1     FF
-2     2   2     FF
-3     3   3     FF
-4     4   4     FF
-5     8   8     FF
-6     9   9     FF
- [ reached 'max' / getOption("max.print") -- omitted 78 rows ]</code></pre>
+   start end insert
+1      1   1     FF
+2      2   2     FF
+3      3   3     FF
+4      4   4     FF
+5      8   8     FF
+6      9   9     FF
+7     13  13     FF
+8     23  23     FF
+9     26  26     FF
+10    33  33     FF
+11    43  43     FF
+12    46  46     FF
+13    53  53     FF
+14    54  54     FF
+15    57  57     FF
+16    58  58     FF
+17    59  59     FF
+18    69  69     FF
+19    72  72     FF
+20    79  79     FF
+21    89  89     FF
+22    92  92     FF
+23    99  99     FF
+24   100 100     FF
+25   104 104     FF
+26   114 114     FF
+27   117 117     FF
+28   124 124     FF
+29   134 134     FF
+30   137 137     FF
+31   144 144     FF
+32   145 145     FF
+33   148 148     FF
+34   149 149     FF
+35   150 150     FF
+36   160 160     FF
+37   163 163     FF
+38   170 170     FF
+39   180 180     FF
+40   183 183     FF
+41   190 190     FF
+42   191 191     FF
+43   192 192     FF
+44   193 193     FF
+45   196 196     FF
+46   197 197     FF
+47   198 198     FF
+48   199 199     FF
+49   200 200     FF
+50   201 201     FF
+51   205 205     FF
+52   215 215     FF
+53   218 218     FF
+54   225 225     FF
+55   235 235     FF
+56   238 238     FF
+57   245 245     FF
+58   246 246     FF
+59   249 249     FF
+60   250 250     FF
+61   251 251     FF
+62   261 261     FF
+63   264 264     FF
+64   271 271     FF
+65   281 281     FF
+66   284 284     FF
+67   291 291     FF
+68   292 292     FF
+69   296 296     FF
+70   306 306     FF
+71   309 309     FF
+72   316 316     FF
+73   326 326     FF
+74   329 329     FF
+75   336 336     FF
+76   337 337     FF
+77   340 340     FF
+78   341 341     FF
+79   342 342     FF
+80   352 352     FF
+81   355 355     FF
+82   362 362     FF
+83   372 372     FF
+84   375 375     FF</code></pre>
 </div>
 </div>
 </div>
@@ -880,10 +1169,6 @@ Figure&nbsp;1
 <p>Some suggestions!! Note the alphabet!!! <img src="../../../../../materials/images/L-system-pythagoras.png" class="img-fluid"></p>
 <p><a href="../../../../../materials/images/L-system-KrishnaAnklet.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../../../../../materials/images/L-system-KrishnaAnklet.png" class="img-fluid"></a></p>
 <table class="table">
-<colgroup>
-<col style="width: 48%">
-<col style="width: 48%">
-</colgroup>
 <thead><tr class="header">
 <th>Col1</th>
 <th>Col2</th>
@@ -912,8 +1197,7 @@ Figure&nbsp;1
 -   turnAngle: 45.0
 -   growth : 1.408</code></pre>
 </td>
-<td>
-<img src="../../../. ./../materials/im ages/L -system-pythagoras.png" class="img-fluid"> |</td>
+<td>! <a href="../../../../../../content/materials/images/L-system-pythagoras.png"></a> |</td>
 </tr>
 <tr class="even">
 <td>
@@ -940,7 +1224,8 @@ Figure&nbsp;1
 </li>
 </ul>
 </td>
-<td><img src=". ./../../../. ./materials/image s/L-sy stem-KrishnaAnklet.png" class="img-fluid"></td>
+<td>
+<img src="../../../../../../content/materials/images/L-system-KrishnaAnklet.png" class="img-fluid"> |</td>
 </tr>
 <tr class="odd">
 <td></td>
