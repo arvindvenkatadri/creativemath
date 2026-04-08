@@ -4,7 +4,7 @@ subtitle: ""
 subject: ""
 abstract: ""
 date: 23/Jan/2025
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 16
 categories:
   - Frequency Modulation
@@ -104,6 +104,14 @@ sysfonts::font_add(family = "Roboto Condensed",
   italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
   bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
 showtext_auto(enable = TRUE) #enable showtext
+##
+# Chunk options
+knitr::opts_chunk$set(
+ fig.width = 6,
+ fig.asp = 0.618, # Golden Ratio
+ #out.width = "80%",
+ fig.align = "center"
+)
 ##
 theme_custom <- function(){ 
 
@@ -210,21 +218,32 @@ To be Found!!
 
 ## What is Frequency Modulation?
 
-In Frequency Modulation, we take a *carrier* oscillator and change its
-`frequency` in accordance with *another* signal called the *modulation*
-signal. There is no change in amplitude, just the instantaneous
-frequency. We write this change as:
+What if the **frequency** of a waveform was itself a function of time?
+
+Let us write out such a `carrier` wave:
 
 $$
-\Large\omega_i(t) = \omega_c + \Delta_{\omega}\
+\Large{x_{fm}(t) = A_c \cos \left({\color{blue}{\omega_i(t)}} \right)}\Large
+$$ {#eq-fm-time-variable-freq}
+
+$\color{blue}{\omega_i(t)}$ is the Instantaneous Frequency of the `carrier` wave.
+
+In ***Frequency Modulation***, we take a *carrier* oscillator and change its
+`frequency` in accordance with *another* signal called the *modulation*
+signal. There is no change in amplitude, just the instantaneous
+frequency. 
+
+We write this change as:
+
+$$
+\Large{{\color{blue}{\omega_i(t)}}} = \omega_c + \Delta_{\omega}\
 cos(\omega_mt)\Large
 $$ {#eq-fm-freq}
 
 where
 
--   $\omega_i(t)$ is the Instantaneous Frequency of the `carrier` wave
 -   $\omega_c$ is the *center* (undeviated) Frequency of the `carrier` wave
--   $\omega_m$ is the Frequency of the `modulation` wave, the `rate` at which FM changes the `carrier's` frequency
+-   $\color{red}{\omega_m}$ is the Frequency of the `modulation` wave, the `rate` at which FM changes the `carrier's` frequency
 -   $\Delta_{\omega}$ is an amplitude-like parameter, which controls the
     `amount` of frequency deviation.
 
@@ -232,8 +251,12 @@ So what does an FM signal look like?
 
 ```{r}
 #| label: fig-fm-waveform
+#| layout-ncol: 2
 #| echo: false
 #| fig-cap: FM Waveforms
+#| fig-subcap: 
+#|  - "FM Waveforms"
+#|  - "Modulation Domain Waveform"
 
 t <-  seq(0, 1.0, length.out = 8*801)
 mod <- cos(17*t) # Modulating Wave
@@ -246,7 +269,9 @@ y = cos(inst_phase)
 ##
 y = cos(inst_phase) # FM Wave
 plot(t,y, type='l', col = "blue", ylab = "Amplitude", xlab = "Time (s)", main = "FM Waveform (Blue) vs Modulating Wave (Red)")
-lines(t, mod, col = "red")
+lines(t, mod, col = "red", lwd = 3)
+##
+plot(t, inst_freq, ylab = "Instantaneous Frequency (Hz)", xlab = "Time (s)", main = "FM Modulation Domain Plot", type = "l", lwd = 3)
 
 ```
 
@@ -886,7 +911,7 @@ gf_fun(
     #scale_linetype_manual("Order", values = c(1:6),
     scale_x_continuous(expand = expansion(add = c(0,0), 
                                           mult = c(0,0)))) %>%
-  gf_annotate("label", x = 2, y = 0.9, label = "Modulation Index\n in FM Spectrum Above", colour = "1", size = 4, fill = "moccasin") %>%
+  gf_annotate("label", x = 2, y = 0.9, label = "Modulation Index\n in FM Spectrum Above", colour = "1", size = 2, fill = "moccasin") %>%
   gf_labs(x = "Modulation Index", y = "Amplitude", title = "Bessel Functions", subtitle = "Weights of FM harmonic sidebands")
 
 ```

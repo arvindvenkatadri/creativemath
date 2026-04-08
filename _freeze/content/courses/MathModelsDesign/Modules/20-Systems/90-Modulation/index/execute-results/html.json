@@ -1,0 +1,19 @@
+{
+  "hash": "d8cb620ce8029fef106ac669435f5110",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: <iconify-icon icon=\"mdi:reiterate\" width=\"1.2em\" height=\"1.2em\"></iconify-icon> <iconify-icon icon=\"gravity-ui:function\" width=\"1.2em\" height=\"1.2em\"></iconify-icon> Modulation\nsubtitle: \"Imprinting Information on Sine Waves\"\nsubject: \"\"\nabstract: \"\"\ndate: 2/Apr/2026\ndate-modified: today\norder: 90\ncategories:\n  - Amplitude Modulation\n  - Phase Modulation\n  - Frequency Modulation\n  - Vector Modulation\n# bibliography: \n#   - grateful-refs.bib\ncitation: true\neditor: \n  markdown: \n    wrap: 72\n---\n\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n::: {.cell messages='false'}\n\n:::\n\n\n\n## Introduction\n\n\n\n## {{< iconify icons8 idea >}} Inspiration\n\nTo be Found!!\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

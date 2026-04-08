@@ -82,7 +82,7 @@ library(embedr) # Embed multimedia in HTML files
 
 # Chunk options
 knitr::opts_chunk$set(
- fig.width = 7,
+ fig.width = 5,
  fig.asp = 0.618, # Golden Ratio
  #out.width = "80%",
  fig.align = "center"
@@ -165,7 +165,12 @@ In Fourier series, we normally use just *sine wave oscillators*, and use
 many of them to add up to obtain the wave form we need. Now let us hear
 from Mr Shiffman again:
 
-{{< video https://youtu.be/Bk8rLzzSink?list=PLRqwX-V7Uu6aFcVjlDAkkGIixw70s7jpW >}}
+::: {#fig-oscillators}
+{{< video https://youtu.be/Bk8rLzzSink?list=PLRqwX-V7Uu6aFcVjlDAkkGIixw70s7jpW width="560" height="400" align="center" >}}
+
+Oscillators in p5.js
+:::
+
 
 ## The Math of Waveform Addition
 
@@ -179,7 +184,12 @@ $g(t)$ is the desired time-waveform, $\omega = 2\pi\times f$ is the fundamental 
 
 How does this look like? Mr. Shiffman again:
 
-{{< video https://youtu.be/okfZRl4Xw-c >}}
+::: {#fig-additive-waves}
+{{< video https://youtu.be/okfZRl4Xw-c width="560" height="400" align="center" >}}
+
+Additive Waves in p5.js
+:::
+
 
 
 Now let us see how we can design something using the Additive Method. 
@@ -203,7 +213,12 @@ Risset and Mathews, [@risset1969a] and
 
 *ADSR* stands for "Attack Decay Sustain Release". These related to the way a note of music varies over time in a typical piece of music. 
 
-{{< video https://www.youtube.com/watch?v=wUSva_BnedA&pp=ygURQURTUiBjb2RpbmcgdHJhaW4%3D >}}
+::: {#fig-adsr}
+{{< video https://www.youtube.com/watch?v=wUSva_BnedA&pp=ygURQURTUiBjb2RpbmcgdHJhaW4%3D width="560" height="400" align="center" >}}
+
+Envelope Modulation in p5.js: ADSR
+:::
+
 
 :::
 
