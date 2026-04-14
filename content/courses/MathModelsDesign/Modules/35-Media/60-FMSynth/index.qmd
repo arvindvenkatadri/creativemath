@@ -228,6 +228,7 @@ $$ {#eq-fm-time-variable-freq}
 
 $\color{blue}{\omega_i(t)}$ is the Instantaneous Frequency of the `carrier` wave.
 
+
 In ***Frequency Modulation***, we take a *carrier* oscillator and change its
 `frequency` in accordance with *another* signal called the *modulation*
 signal. There is no change in amplitude, just the instantaneous
@@ -246,6 +247,107 @@ where
 -   $\color{red}{\omega_m}$ is the Frequency of the `modulation` wave, the `rate` at which FM changes the `carrier's` frequency
 -   $\Delta_{\omega}$ is an amplitude-like parameter, which controls the
     `amount` of frequency deviation.
+Here is a Block Diagram for FM:
+```{r}
+#| label: fig-fm-mod
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "FM Modulation Block Diagram"
+#| 
+library(ggdiagram)
+library(ggplot2)
+
+my_font <- "Roboto Condensed"
+my_font_size <- 20
+my_point_size <- 2
+
+# my_colors <- viridis::viridis(2, begin = .25, end = .5)
+my_colors <- c("#3B528B", "#21908C")
+
+theme_set(
+  theme_minimal(
+    base_size = my_font_size,
+    base_family = my_font) +
+    theme(axis.title.y = element_text(angle = 0, vjust = 0.5)))
+
+bp <- ggdiagram(
+  font_family = my_font,
+  font_size = my_font_size,
+  point_size = my_point_size,
+  linewidth = .5,
+  theme_function = theme_minimal,
+  axis.title.x =  element_text(face = "italic"),
+  axis.title.y = element_text(
+    face = "italic",
+    angle = 0,
+    hjust = .5,
+  vjust = .5)) 
+# +
+  # scale_x_continuous(labels = signs_centered,
+  #                    limits = c(-16, 16)) +
+  # scale_y_continuous(labels = signs::signs,
+  #                    limits = c(-16, 16))
+
+# --- Nodes ---
+
+# Modulation oscillator
+mod_osc <- ob_circle(
+  ob_point(-8, 0), radius = 2,
+  label = ob_label("Modulation<br>Oscillator<br>*f*~m~, *A*~m~", size = 8)
+)
+
+# Summing junction (circle with + inside)
+summer <- ob_circle(
+  ob_point(0, 0), radius = 1, 
+  label = ob_label(label = "\\+", size = 16))
+
+# Carrier oscillator
+car_osc <- ob_circle(
+  ob_point(8, 0), radius = 2, 
+  label = ob_label("Carrier<br>Oscillator<br>*f*~i~, *A*~c~", size = 8)
+)
+
+# f_c input node (comes in from above the summer)
+fc_point <- ob_point(0, 5)
+
+# FM output label (to the right of carrier oscillator)
+output_point <- ob_point(12, 0)
+
+# --- Plot ---
+bp +
+
+  # Blocks
+  mod_osc + summer + car_osc + fc_point + output_point + 
+
+  # Arrow: modulation oscillator -> summer
+  connect(mod_osc, summer,
+    label = ob_label("*x*~m~(*t*) = *A*~m~ cos(*w*~m~*t*)", 
+                     vjust = -1.2, size = 7)) +
+
+  # Arrow: f_c input from top -> summer
+  connect(fc_point, summer,
+  label = ob_label("*w*~c~", hjust = 0.5, vjust = - 2, 
+                   size = 9, angle = 0)) +
+
+  # Arrow: summer -> carrier oscillator
+  # Label shows the net frequency expression
+  connect(summer, car_osc,
+    label = ob_label("*w*~i~(*t*) = *w*~c~ + *Δ*~w~ cos(*w*~m~*t*)",
+                     vjust = -1.2, size = 7)) +
+
+  # Arrow: carrier oscillator -> output
+  connect(
+    car_osc@east, output_point,
+    label = ob_label("FM Output<br>*x*~fm~(*t*) = *A*~c~ cos(*w*~c~*t* + I *sin(*w*~m~t)",
+                     vjust = -0.8, hjust = +0.2, size = 9)
+  ) +
+  
+  coord_equal(clip = "off") +
+  theme_void() +
+  theme(plot.margin = margin(20, 80, 20, 20))
+
+```
 
 So what does an FM signal look like?
 
