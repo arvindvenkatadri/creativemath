@@ -524,6 +524,7 @@ window.Quarto = {
 <a href="#appendices" id="toc-appendices" class="nav-link" data-scroll-target="#appendices">Appendices</a>
   <ul class="collapse">
 <li><a href="#why-is-modulation-index-inversely-proportional-to-modulation-frequency" id="toc-why-is-modulation-index-inversely-proportional-to-modulation-frequency" class="nav-link" data-scroll-target="#why-is-modulation-index-inversely-proportional-to-modulation-frequency">Why is Modulation Index inversely proportional to modulation frequency?</a></li>
+  <li><a href="#what-are-bessel-functions" id="toc-what-are-bessel-functions" class="nav-link" data-scroll-target="#what-are-bessel-functions">What are Bessel Functions?</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -557,7 +558,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 14, 2026</p>
+      <p class="date-modified">April 15, 2026</p>
     </div>
   </div>
     
@@ -909,65 +910,65 @@ Figure&nbsp;11: Reflecting negative frequency sidebands
 </ul>
 <section id="core-fm-steps" class="level3"><h3 class="anchored" data-anchor-id="core-fm-steps">Core FM steps</h3>
 <ul>
-<li>Choose target pitch (fundamental) in the audible range, and set the <strong>carrier</strong> frequency <span class="math inline">\(c\)</span> to that or a related harmonic. For example, for the note A3 choose <span class="math inline">\(c = 220~Hz\)</span>.[2]</li>
-<li>Choose a <strong>modulator</strong> frequency <span class="math inline">\(m\)</span>. Its value and its ratio <span class="math inline">\(c/m\)</span> determine the spacing and harmonic/inharmonic character of the sidebands at <span class="math inline">\(c \pm k * m\)</span>.[1][2]</li>
-<li>Choose a peak <strong>frequency deviation</strong> <span class="math inline">\(d\)</span> and modulation <strong>index</strong> <span class="math inline">\(I = d/m\)</span>; this controls how far the instantaneous frequency swings and how many sidebands have significant amplitude.[2][1]</li>
-<li>Compute or intuit the approximate bandwidth using Carson’s rule <span class="math inline">\(B \approx 2(m*(I+1))\)</span> to ensure audible components stay within the desired spectrum and avoid aliasing for given sample rate.[1]</li>
+<li>Choose target pitch (fundamental) in the audible range, and set the <strong>carrier</strong> frequency <span class="math inline">\(f_c\)</span> to that or a related harmonic. For example, for the note A3 choose <span class="math inline">\(f_c = 220~Hz\)</span>.[2]</li>
+<li>Choose a <strong>modulator</strong> frequency <span class="math inline">\(f_m\)</span>. Its value and its ratio <span class="math inline">\(f_c/f_m\)</span> determine the spacing and harmonic/inharmonic character of the sidebands at <span class="math inline">\(f_c \pm k * f_m\)</span>.[1][2]</li>
+<li>Choose a peak <strong>frequency deviation</strong> <span class="math inline">\(\Delta\)</span> and modulation <strong>index</strong> <span class="math inline">\(I = \Delta/f_m\)</span>; this controls how far the instantaneous frequency swings and how many sidebands have significant amplitude.[2][1]</li>
+<li>Compute or intuit the approximate bandwidth using <span style="background-color:yellow;"><strong><em>Carson’s rule</em></strong> <span class="math inline">\(B \approx 2(f_m*(I+1))\)</span></span> to ensure audible components stay within the desired spectrum and avoid aliasing for given sample rate.[1]</li>
 <li>Design amplitude and index <strong>envelopes</strong> so that loudness and brightness evolve together (e.g., high index at attack, decaying over time), yielding dynamic spectra that resemble many natural sounds.[4][2]</li>
-<li>Implement the FM signal as <span class="math inline">\(x(t) = A \sin(2\pi c*t + I \sin(2\pi m*t))\)</span>, optionally making <span class="math inline">\(A\)</span> and <span class="math inline">\(I\)</span> time‑varying through envelopes, or based on human input!! [2][1]</li>
+<li>Implement the FM signal as <span class="math inline">\(x(t) = A \sin(2\pi f_c*t + I \sin(2\pi f_m*t))\)</span>, optionally making <span class="math inline">\(A\)</span> and <span class="math inline">\(I\)</span> time‑varying through envelopes, <span style="background-color:yellow;">or based on human input!!</span> [2][1]</li>
 </ul></section></section><section id="design-parameters-and-how-to-set-them" class="level2"><h2 class="anchored" data-anchor-id="design-parameters-and-how-to-set-them">Design parameters and how to set them</h2>
 <ul>
 <li>
-<strong>Carrier frequency <span class="math inline">\(c\)</span></strong>
+<strong>Carrier frequency <span class="math inline">\(f_c\)</span></strong>
 <ul>
 <li>Meaning: Average frequency and perceived pitch if the spectrum is harmonic.[2]</li>
 <li>How to set:
 <ul>
-<li>For harmonic tones, set <span class="math inline">\(c\)</span> equal to the desired fundamental (e.g., 440 Hz) or an integer multiple if the ear will still infer the missing fundamental.[2]</li>
-<li>For inharmonic “pitched noise” or bells, <span class="math inline">\(c\)</span> need not match a musical pitch exactly; it sets a central region of energy.[3]</li>
+<li>For harmonic tones, set <span class="math inline">\(f_c\)</span> equal to the desired fundamental (e.g., 440 Hz) or an integer multiple if the ear will still infer the missing fundamental.[2]</li>
+<li>For inharmonic “pitched noise” or bells, <span class="math inline">\(f_c\)</span> need not match a musical pitch exactly; it sets a central region of energy.[3]</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<strong>Modulator frequency <span class="math inline">\(m\)</span></strong>
+<strong>Modulator frequency <span class="math inline">\(f_m\)</span></strong>
 <ul>
-<li>Meaning: Spacing between sidebands <span class="math inline">\(c \pm k*m\)</span> and, through <span class="math inline">\(c/m\)</span>, the harmonic or inharmonic pattern.[1][2]</li>
+<li>Meaning: Spacing between sidebands <span class="math inline">\(f_c \pm k*f_m\)</span> and, through <span class="math inline">\(f_c/f_m\)</span>, the harmonic or inharmonic pattern.[1][2]</li>
 <li>How to set:
 <ul>
-<li>Harmonic: choose a rational ratio <span class="math inline">\(c/m = p/q\)</span> (often integers, like <span class="math inline">\(1:1, ~ 2:1, ~ 3:2\)</span>), so sidebands fall on a harmonic series of some fundamental.[1][2]</li>
-<li>Inharmonic: choose irrational or “odd” ratios such as <span class="math inline">\(c/m = \sqrt{2}\)</span> or similar non‑integer relations so sidebands fall between harmonic positions.[3][1]</li>
+<li>Harmonic: choose a rational ratio <span class="math inline">\(f_c/f_m = p/q\)</span> (often integers, like <span class="math inline">\(1:1, ~ 2:1, ~ 3:2\)</span>), so sidebands fall on a harmonic series of some fundamental.[1][2]</li>
+<li>Inharmonic: choose irrational or “odd” ratios such as <span class="math inline">\(f_c/f_m = \sqrt{2}\)</span> or similar non‑integer relations so sidebands fall <strong><em>between</em></strong> harmonic positions.[3][1]</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<strong>Modulation index <span class="math inline">\(I = d/m\)</span></strong>
+<strong>Modulation index <span class="math inline">\(I = \Delta/f_m\)</span></strong>
 <ul>
-<li>Meaning: Ratio of peak deviation <span class="math inline">\(d\)</span> to modulator frequency; determines number and relative amplitude of significant sidebands.[1][2]</li>
+<li>Meaning: Ratio of peak deviation <span class="math inline">\(\Delta\)</span> to modulator frequency; determines number and relative amplitude of significant sidebands.[1][2]</li>
 <li>How to set:
 <ul>
-<li>Small <span class="math inline">\(I\)</span> (near 0) yields almost pure sine tones with very few sidebands (soft timbre).[2]</li>
+<li>Small <span class="math inline">\(I\)</span> (near 0) yields almost **pure sine tones with very few sidebands (soft timbre).[2]</li>
 <li>Moderate <span class="math inline">\(I\)</span> gives a few strong sidebands (clarinet‑like or brass‑like spectra). Practical musical values often lie roughly between 1 and 10 for simple single‑operator examples.[1][2]</li>
-<li>Larger <span class="math inline">\(I\)</span> produces many sidebands and brighter, more complex or noisy timbres until aliasing or excessive roughness appears.[1]</li>
+<li>Larger <span class="math inline">\(I\)</span> produces many sidebands and brighter, more complex or noisy timbres until <strong>aliasing</strong> or excessive roughness appears.[1]</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<strong>Amplitude <span class="math inline">\(A\)</span> and envelopes</strong>
+<strong>Amplitude <span class="math inline">\(A_c\)</span> and envelopes</strong>
 <ul>
-<li>Meaning: Overall loudness and time evolution of loudness and brightness, since envelopes can modulate both <span class="math inline">\(A(t)\)</span> and <span class="math inline">\(I(t)\)</span>.[4][2]</li>
+<li>Meaning: Overall loudness and time evolution of loudness and brightness, since <strong>ADSR envelopes can modulate both <span class="math inline">\(A_c(t)\)</span> and <span class="math inline">\(I(t)\)</span></strong>.[4][2]. This means that in most instruments, the ADSR not only sets the <em>amplitude</em> but also the <em>FM frequency variation</em>.</li>
 <li>How to set:
 <ul>
-<li>Use an amplitude envelope with attack, decay, sustain, and release appropriate to the instrument (e.g., fast attack/decay for percussive sounds, slower for pads).[4]</li>
-<li>Tie the index envelope to the amplitude envelope so that when amplitude decays, the index decreases, causing the spectrum to lose high‑frequency content over time, as in many acoustic sounds.[4][2]</li>
+<li>Use an amplitude envelope with ADSR (attack, decay, sustain, and release) appropriate to the instrument (e.g., fast attack/decay for percussive sounds, slower for pads).[4]</li>
+<li>Tie the <strong>index envelope</strong> to the amplitude envelope so that when amplitude decays, the index decreases, causing the spectrum to lose high‑frequency content over time, as in many acoustic sounds.[4][2]</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<strong>Carrier–modulator ratio <span class="math inline">\(c/m\)</span></strong>
+<strong>Carrier–modulator ratio <span class="math inline">\(f_c/f_m\)</span></strong>
 <ul>
 <li>Meaning: Positions of spectral components; with reflection from negative frequencies, this ratio still controls whether the pattern is harmonic or inharmonic.[3][2]</li>
 <li>How to set:
@@ -981,10 +982,10 @@ Figure&nbsp;11: Reflecting negative frequency sidebands
 </ul></section><section id="example-harmonic-fm-tone" class="level2"><h2 class="anchored" data-anchor-id="example-harmonic-fm-tone">Example: harmonic FM tone</h2>
 <p>Design a harmonic spectrum centered on A4 with clearly related overtones, all within audible range.</p>
 <ul>
-<li>Choose <strong>fundamental and carrier</strong>: Target pitch A4, fundamental 440 Hz; use <span class="math inline">\(c = 440\)</span> Hz so the carrier itself is the fundamental.[2]</li>
-<li>Choose <strong>modulator</strong> with harmonic ratio: Take <span class="math inline">\(c/m = 2/1\)</span>, so set <span class="math inline">\(m = 220\)</span> Hz. This yields sidebands at <span class="math inline">\(440 \pm k\cdot 220\)</span> Hz: 220, 440, 660, 880, 1100 Hz, etc., which lie on the harmonic series of 220 Hz (harmonics 1, 2, 3, 4, 5…).[1][2]</li>
+<li>Choose <strong>fundamental and carrier</strong>: Target pitch A4, fundamental 440 Hz; use <span class="math inline">\(f_c = 440\)</span> Hz so the carrier itself is the fundamental.[2]</li>
+<li>Choose <strong>modulator</strong> with harmonic ratio: Take <span class="math inline">\(f_c/f_m = 2/1\)</span>, so set <span class="math inline">\(f_m = 220\)</span> Hz. This yields sidebands at <span class="math inline">\(440 \pm k\cdot 220\)</span> Hz: 220, 440, 660, 880, 1100 Hz, etc., which lie on the harmonic series of 220 Hz (harmonics 1, 2, 3, 4, 5…).[1][2]</li>
 <li>Choose <strong>index</strong>: Let <span class="math inline">\(I = 4\)</span>; this provides several strong sidebands before amplitudes taper, giving a bright harmonic timbre without extreme spectral width.[2][1]</li>
-<li>Check <strong>bandwidth</strong>: With <span class="math inline">\(m = 220~Hz\)</span> and <span class="math inline">\(I = 4\)</span>, Carson’s rule gives <span class="math inline">\(B \approx 2(m(I+1)) = 2 \cdot 220 \cdot 5 = 2200~Hz\)</span>, so significant components lie roughly between about 0 and 2600 Hz, safely inside the audible band.[1]</li>
+<li>Check <strong>bandwidth</strong>: With <span class="math inline">\(f_m = 220~Hz\)</span> and <span class="math inline">\(I = 4\)</span>, Carson’s rule gives <span class="math inline">\(B \approx 2(f_m(I+1)) = 2 \cdot 220 \cdot 5 = 2200~Hz\)</span>, so significant components lie roughly between about 0 and 2600 Hz, safely inside the audible band.[1]</li>
 <li>Define <strong>signal and envelopes</strong>:
 <ul>
 <li>Audio formula: <span class="math inline">\(x(t) = A(t)\,\sin(2\pi\cdot 440\, t + I(t)\,\sin(2\pi\cdot 220\, t))\)</span>.[2][1]</li>
@@ -996,14 +997,14 @@ Figure&nbsp;11: Reflecting negative frequency sidebands
 </section><section id="example-inharmonic-fm-tone" class="level2"><h2 class="anchored" data-anchor-id="example-inharmonic-fm-tone">Example: inharmonic FM tone</h2>
 <p>Design a bell‑like inharmonic sound centered in the midrange, with components still clearly audible.</p>
 <ul>
-<li>Choose <strong>central carrier</strong>: Use <span class="math inline">\(c = 600~ Hz\)</span> to keep energy in the middle of the spectrum.[3]</li>
-<li>Choose <strong>modulator</strong> with inharmonic ratio: Let <span class="math inline">\(c/m = \sqrt{2}\)</span>; solve <span class="math inline">\(m = c/\sqrt{2} \approx 600/1.414 \approx 424.3~Hz\)</span>.[3]
+<li>Choose <strong>central carrier</strong>: Use <span class="math inline">\(f_c = 600~ Hz\)</span> to keep energy in the middle of the spectrum.[3]</li>
+<li>Choose <strong>modulator</strong> with inharmonic ratio: Let <span class="math inline">\(f_c/f_m = \sqrt{2}\)</span>; solve <span class="math inline">\(f_m = f_c/\sqrt{2} \approx 600/1.414 \approx 424.3~Hz\)</span>.[3]
 <ul>
 <li>Sidebands appear at <span class="math inline">\(600 \pm k\cdot 424.3~Hz\)</span>, giving components such as about 176, 1024, 1448 Hz, etc., which do not align with any simple harmonic series, creating an inharmonic spectrum.[3][1]</li>
 </ul>
 </li>
 <li>Choose <strong>index</strong>: Set <span class="math inline">\(I = 6\)</span> for a dense, bright spectrum typical of struck metal, with many lateral components before amplitudes fade.[2][1]</li>
-<li>Check <strong>bandwidth</strong>: With <span class="math inline">\((m \approx 424 ~ Hz\)</span> and <span class="math inline">\(I = 6\)</span>, Carson’s estimate gives <span class="math inline">\(B \approx 2\cdot 424\cdot(6+1) \approx 5936~Hz\)</span>, so important components range roughly from near 0 up to around 6500 Hz, entirely in the audible band.[1]</li>
+<li>Check <strong>bandwidth</strong>: With <span class="math inline">\((f_m \approx 424 ~ Hz\)</span> and <span class="math inline">\(I = 6\)</span>, Carson’s estimate gives <span class="math inline">\(B \approx 2\cdot 424\cdot(6+1) \approx 5936~Hz\)</span>, so important components range roughly from near 0 up to around 6500 Hz, entirely in the audible band.[1]</li>
 <li>Define <strong>signal and envelopes</strong>:
 <ul>
 <li>Audio formula: <span class="math inline">\(x(t) = A(t)\,\sin(2\pi\cdot 600\, t + I(t)\,\sin(2\pi\cdot 424.3\, t))\)</span>.[2][1]</li>
@@ -1114,28 +1115,11 @@ Soetaert, Karline. 2025. <em>plot3D: Plotting Multi-Dimensional Data</em>. <a hr
 </div>
 </section><section id="appendices" class="level2"><h2 class="anchored" data-anchor-id="appendices">Appendices</h2>
 <section id="why-is-modulation-index-inversely-proportional-to-modulation-frequency" class="level3"><h3 class="anchored" data-anchor-id="why-is-modulation-index-inversely-proportional-to-modulation-frequency">Why is Modulation Index inversely proportional to modulation frequency?</h3>
-<p>From equation {eq-fm-freq}, we see that the instantaneous frequency deviation is given by <span class="math inline">\(\delta_f \sin(2 \pi f_m t)\)</span>. The maximum deviation is <span class="math inline">\(\delta_f\)</span>.</p>
+<p>From equation {eq-fm-freq}, we see that the instantaneous frequency deviation is given by <span class="math inline">\(\Delta \sin(2 \pi f_m t)\)</span>. The maximum deviation is <span class="math inline">\(\Delta\)</span>.</p>
 <p>Consider two cars running along parallel race tracks. And that they are at the same speed and running neck-and-neck. Now, one car starts to <code>speed up and slow down</code> repeatedly. If it speeds up and slows down very <code>quickly</code>, then the <code>distance</code> gained or lost by this car in front is small. If it speeds up and slows down slowly, then the distance gained or lost by the car in front is large.</p>
-<p>So, for a given frequency deviation <span class="math inline">\(\delta_f\)</span> , if the modulation frequency <span class="math inline">\(f_m\)</span> is high, then the distance gained or lost (i.e the effect of modulation) is small. If the modulation frequency <span class="math inline">\(f_m\)</span> is low, then the distance gained or lost (i.e the effect of modulation) is large.</p>
+<p>So, for a given frequency deviation <span class="math inline">\(\Delta\)</span> , if the modulation frequency <span class="math inline">\(f_m\)</span> is high, then the distance gained or lost (i.e the effect of modulation) is small. If the modulation frequency <span class="math inline">\(f_m\)</span> is low, then the distance gained or lost (i.e the effect of modulation) is large.</p>
 <p>Hence the FM modulation index is <em>inversely proportional</em> to the modulation frequency.</p>
-<p><span class="math display">\[
-% Left alignment of multiline equations
-\begin{flalign}
-f(u) &amp; =\sum_{j=1}^{n} x_jf(u_j)&amp;\\
-     &amp; =\sum_{j=1}^{n} x_j \sum_{i=1}^{m} a_{ij}v_i&amp;\\
-     &amp; =\sum_{j=1}^{n} \sum_{i=1}^{m} a_{ij}x_jv_i
-\end{flalign}
-\]</span></p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>What are Bessel Functions?
-</div>
-</div>
-<div class="callout-body-container callout-body">
+</section><section id="what-are-bessel-functions" class="level3"><h3 class="anchored" data-anchor-id="what-are-bessel-functions">What are Bessel Functions?</h3>
 <p>Let us plot them: Bessel functions ( the ones we want anyway ) are written as <span class="math inline">\(J_{order}(parameter)\)</span>. So for the <code>carrier</code> we need <span class="math inline">\(J_0(I)\)</span> and for any <code>n-order</code> sidebands at spacing <span class="math inline">\(n*\omega_m\)</span> we need <span class="math inline">\(J_n(I)\)</span>. In the <a href="#fig-bessel-functions" class="quarto-xref">Figure&nbsp;12</a> below, we plot Bessel function <em>amplitude</em> vs <em>modulation index</em>, for orders 0 to 6. The vertical black line shows the <em>chosen</em> modulation index <span class="math inline">\(I = 2\)</span> in <a href="#fig-fm-spectrum" class="quarto-xref">Figure&nbsp;4</a>. We can read off the values of the different Bessel functions at this value of <span class="math inline">\(I\)</span> to obtain the sideband amplitudes. Note here that these are all positive; if <span class="math inline">\(I\)</span> were larger, then the amplitudes can go to <span class="math inline">\(0\)</span> or even <span class="math inline">\(negative\)</span>. What would that mean??</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1146,8 +1130,6 @@ f(u) &amp; =\sum_{j=1}^{n} x_jf(u_j)&amp;\\
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bessel-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12: Bessel Functions
 </figcaption></figure>
-</div>
-</div>
 </div>
 </div>
 </div>

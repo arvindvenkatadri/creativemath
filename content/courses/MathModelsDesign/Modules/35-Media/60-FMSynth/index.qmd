@@ -339,7 +339,7 @@ bp +
   # Arrow: carrier oscillator -> output
   connect(
     car_osc@east, output_point,
-    label = ob_label("FM Output<br>*x*~fm~(*t*) = *A*~c~ cos(*w*~c~*t* + I *sin(*w*~m~t)",
+    label = ob_label("FM Output<br>*x*~fm~(*t*) = *A*~c~ cos[*w*~c~*t* + I *sin(*w*~m~t)]",
                      vjust = -0.8, hjust = +0.2, size = 9)
   ) +
   
@@ -762,41 +762,41 @@ FM (Chowning) synthesis is built from a small set of parameters—carrier freque
 
 ### Core FM steps
 
-- Choose target pitch (fundamental) in the audible range, and set the **carrier** frequency $c$ to that or a related harmonic. For example, for the note A3 choose $c = 220~Hz$.[2]
-- Choose a **modulator** frequency $m$. Its value and its ratio $c/m$ determine the spacing and harmonic/inharmonic character of the sidebands at $c \pm k * m$.[1][2]
-- Choose a peak **frequency deviation** $d$ and modulation **index** $I = d/m$; this controls how far the instantaneous frequency swings and how many sidebands have significant amplitude.[2][1]
-- Compute or intuit the approximate bandwidth using Carson’s rule $B \approx 2(m*(I+1))$ to ensure audible components stay within the desired spectrum and avoid aliasing for given sample rate.[1]
+- Choose target pitch (fundamental) in the audible range, and set the **carrier** frequency $f_c$ to that or a related harmonic. For example, for the note A3 choose $f_c = 220~Hz$.[2]
+- Choose a **modulator** frequency $f_m$. Its value and its ratio $f_c/f_m$ determine the spacing and harmonic/inharmonic character of the sidebands at $f_c \pm k * f_m$.[1][2]
+- Choose a peak **frequency deviation** $\Delta$ and modulation **index** $I = \Delta/f_m$; this controls how far the instantaneous frequency swings and how many sidebands have significant amplitude.[2][1]
+- Compute or intuit the approximate bandwidth using [***Carson’s rule*** $B \approx 2(f_m*(I+1))$]{style="background-color:yellow;"} to ensure audible components stay within the desired spectrum and avoid aliasing for given sample rate.[1]
 - Design amplitude and index **envelopes** so that loudness and brightness evolve together (e.g., high index at attack, decaying over time), yielding dynamic spectra that resemble many natural sounds.[4][2]
-- Implement the FM signal as $x(t) = A \sin(2\pi c*t + I \sin(2\pi m*t))$, optionally making $A$ and $I$ time‑varying through envelopes, or based on human input!! [2][1]
+- Implement the FM signal as $x(t) = A \sin(2\pi f_c*t + I \sin(2\pi f_m*t))$, optionally making $A$ and $I$ time‑varying through envelopes, [or based on human input!!]{style="background-color:yellow;"} [2][1]
 
 ## Design parameters and how to set them
 
-- **Carrier frequency $c$**  
+- **Carrier frequency $f_c$**  
   - Meaning: Average frequency and perceived pitch if the spectrum is harmonic.[2]
   - How to set:  
-    - For harmonic tones, set $c$ equal to the desired fundamental (e.g., 440 Hz) or an integer multiple if the ear will still infer the missing fundamental.[2]
-    - For inharmonic “pitched noise” or bells, $c$ need not match a musical pitch exactly; it sets a central region of energy.[3]
+    - For harmonic tones, set $f_c$ equal to the desired fundamental (e.g., 440 Hz) or an integer multiple if the ear will still infer the missing fundamental.[2]
+    - For inharmonic “pitched noise” or bells, $f_c$ need not match a musical pitch exactly; it sets a central region of energy.[3]
 
-- **Modulator frequency $m$**  
-  - Meaning: Spacing between sidebands $c \pm k*m$ and, through $c/m$, the harmonic or inharmonic pattern.[1][2]
+- **Modulator frequency $f_m$**  
+  - Meaning: Spacing between sidebands $f_c \pm k*f_m$ and, through $f_c/f_m$, the harmonic or inharmonic pattern.[1][2]
   - How to set:  
-    - Harmonic: choose a rational ratio $c/m = p/q$ (often integers, like $1:1, ~ 2:1, ~ 3:2$), so sidebands fall on a harmonic series of some fundamental.[1][2]
-    - Inharmonic: choose irrational or “odd” ratios such as $c/m = \sqrt{2}$ or similar non‑integer relations so sidebands fall between harmonic positions.[3][1]
+    - Harmonic: choose a rational ratio $f_c/f_m = p/q$ (often integers, like $1:1, ~ 2:1, ~ 3:2$), so sidebands fall on a harmonic series of some fundamental.[1][2]
+    - Inharmonic: choose irrational or “odd” ratios such as $f_c/f_m = \sqrt{2}$ or similar non‑integer relations so sidebands fall ***between*** harmonic positions.[3][1]
 
-- **Modulation index $I = d/m$**  
-  - Meaning: Ratio of peak deviation $d$ to modulator frequency; determines number and relative amplitude of significant sidebands.[1][2]
+- **Modulation index $I = \Delta/f_m$**  
+  - Meaning: Ratio of peak deviation $\Delta$ to modulator frequency; determines number and relative amplitude of significant sidebands.[1][2]
   - How to set:  
-    - Small $I$ (near 0) yields almost pure sine tones with very few sidebands (soft timbre).[2]
+    - Small $I$ (near 0) yields almost **pure sine tones with very few sidebands (soft timbre).[2]
     - Moderate $I$ gives a few strong sidebands (clarinet‑like or brass‑like spectra). Practical musical values often lie roughly between 1 and 10 for simple single‑operator examples.[1][2]
-    - Larger $I$ produces many sidebands and brighter, more complex or noisy timbres until aliasing or excessive roughness appears.[1]
+    - Larger $I$ produces many sidebands and brighter, more complex or noisy timbres until **aliasing** or excessive roughness appears.[1]
 
-- **Amplitude $A$ and envelopes**  
-  - Meaning: Overall loudness and time evolution of loudness and brightness, since envelopes can modulate both $A(t)$ and $I(t)$.[4][2]
+- **Amplitude $A_c$ and envelopes**  
+  - Meaning: Overall loudness and time evolution of loudness and brightness, since **ADSR envelopes can modulate both $A_c(t)$ and $I(t)$**.[4][2]. This means that in most instruments, the ADSR not only sets the *amplitude* but also the *FM frequency variation*.
   - How to set:  
-    - Use an amplitude envelope with attack, decay, sustain, and release appropriate to the instrument (e.g., fast attack/decay for percussive sounds, slower for pads).[4]
-    - Tie the index envelope to the amplitude envelope so that when amplitude decays, the index decreases, causing the spectrum to lose high‑frequency content over time, as in many acoustic sounds.[4][2]
+    - Use an amplitude envelope with ADSR (attack, decay, sustain, and release) appropriate to the instrument (e.g., fast attack/decay for percussive sounds, slower for pads).[4]
+    - Tie the **index envelope** to the amplitude envelope so that when amplitude decays, the index decreases, causing the spectrum to lose high‑frequency content over time, as in many acoustic sounds.[4][2]
 
-- **Carrier–modulator ratio $c/m$**  
+- **Carrier–modulator ratio $f_c/f_m$**  
   - Meaning: Positions of spectral components; with reflection from negative frequencies, this ratio still controls whether the pattern is harmonic or inharmonic.[3][2]
   - How to set:  
     - Choose low integer ratios (e.g., 1:1, 2:1, 3:1) for clear, consonant harmonic spectra.[2][1]
@@ -806,10 +806,10 @@ FM (Chowning) synthesis is built from a small set of parameters—carrier freque
 
 Design a harmonic spectrum centered on A4 with clearly related overtones, all within audible range.
 
-- Choose **fundamental and carrier**: Target pitch A4, fundamental 440 Hz; use $c = 440$ Hz so the carrier itself is the fundamental.[2]
-- Choose **modulator** with harmonic ratio: Take $c/m = 2/1$, so set $m = 220$ Hz. This yields sidebands at $440 \pm k\cdot 220$ Hz: 220, 440, 660, 880, 1100 Hz, etc., which lie on the harmonic series of 220 Hz (harmonics 1, 2, 3, 4, 5…).[1][2]
+- Choose **fundamental and carrier**: Target pitch A4, fundamental 440 Hz; use $f_c = 440$ Hz so the carrier itself is the fundamental.[2]
+- Choose **modulator** with harmonic ratio: Take $f_c/f_m = 2/1$, so set $f_m = 220$ Hz. This yields sidebands at $440 \pm k\cdot 220$ Hz: 220, 440, 660, 880, 1100 Hz, etc., which lie on the harmonic series of 220 Hz (harmonics 1, 2, 3, 4, 5…).[1][2]
 - Choose **index**: Let $I = 4$; this provides several strong sidebands before amplitudes taper, giving a bright harmonic timbre without extreme spectral width.[2][1]
-- Check **bandwidth**: With $m = 220~Hz$ and $I = 4$, Carson’s rule gives $B \approx 2(m(I+1)) = 2 \cdot 220 \cdot 5 = 2200~Hz$, so significant components lie roughly between about 0 and 2600 Hz, safely inside the audible band.[1]
+- Check **bandwidth**: With $f_m = 220~Hz$ and $I = 4$, Carson’s rule gives $B \approx 2(f_m(I+1)) = 2 \cdot 220 \cdot 5 = 2200~Hz$, so significant components lie roughly between about 0 and 2600 Hz, safely inside the audible band.[1]
 - Define **signal and envelopes**:  
   - Audio formula: $x(t) = A(t)\,\sin(2\pi\cdot 440\, t + I(t)\,\sin(2\pi\cdot 220\, t))$.[2][1]
   - Set $A(t)$ with fast attack (5–10 ms), moderate decay, small sustain, and short release for a plucked‑string‑like sound; let $I(t)$ start near 4 at attack and decay toward 1 or 0.5 to mimic natural bright‑then‑dull behavior.[4][2]
@@ -820,11 +820,11 @@ Result: A clearly pitched harmonic tone at 440 Hz with controllable brightness, 
 
 Design a bell‑like inharmonic sound centered in the midrange, with components still clearly audible.
 
-- Choose **central carrier**: Use $c = 600~ Hz$ to keep energy in the middle of the spectrum.[3]
-- Choose **modulator** with inharmonic ratio: Let $c/m = \sqrt{2}$; solve $m = c/\sqrt{2} \approx 600/1.414 \approx 424.3~Hz$.[3]
+- Choose **central carrier**: Use $f_c = 600~ Hz$ to keep energy in the middle of the spectrum.[3]
+- Choose **modulator** with inharmonic ratio: Let $f_c/f_m = \sqrt{2}$; solve $f_m = f_c/\sqrt{2} \approx 600/1.414 \approx 424.3~Hz$.[3]
   - Sidebands appear at $600 \pm k\cdot 424.3~Hz$, giving components such as about 176, 1024, 1448 Hz, etc., which do not align with any simple harmonic series, creating an inharmonic spectrum.[3][1]
 - Choose **index**: Set $I = 6$ for a dense, bright spectrum typical of struck metal, with many lateral components before amplitudes fade.[2][1]
-- Check **bandwidth**: With $(m \approx 424 ~ Hz$ and $I = 6$, Carson’s estimate gives $B \approx 2\cdot 424\cdot(6+1) \approx 5936~Hz$, so important components range roughly from near 0 up to around 6500 Hz, entirely in the audible band.[1]
+- Check **bandwidth**: With $(f_m \approx 424 ~ Hz$ and $I = 6$, Carson’s estimate gives $B \approx 2\cdot 424\cdot(6+1) \approx 5936~Hz$, so important components range roughly from near 0 up to around 6500 Hz, entirely in the audible band.[1]
 - Define **signal and envelopes**:  
   - Audio formula: $x(t) = A(t)\,\sin(2\pi\cdot 600\, t + I(t)\,\sin(2\pi\cdot 424.3\, t))$.[2][1]
   - Use a percussive envelope: very fast attack, no real sustain, and a long exponential decay on both amplitude and index so the sound starts bright and metallic then gradually loses high‑frequency content like a bell.[3][2]
@@ -904,8 +904,8 @@ cite_packages(
 ### Why is Modulation Index inversely proportional to modulation frequency?
 
 From equation {eq-fm-freq}, we see that the instantaneous frequency
-deviation is given by $\delta_f \sin(2 \pi f_m t)$. The maximum
-deviation is $\delta_f$.
+deviation is given by $\Delta \sin(2 \pi f_m t)$. The maximum
+deviation is $\Delta$.
 
 Consider two cars running along parallel race tracks. And that they are
 at the same speed and running neck-and-neck. Now, one car starts to
@@ -914,7 +914,7 @@ at the same speed and running neck-and-neck. Now, one car starts to
 small. If it speeds up and slows down slowly, then the distance gained
 or lost by the car in front is large.
 
-So, for a given frequency deviation $\delta_f$ , if the modulation
+So, for a given frequency deviation $\Delta$ , if the modulation
 frequency $f_m$ is high, then the distance gained or lost (i.e the effect
 of modulation) is small. If the modulation frequency $f_m$ is low, then
 the distance gained or lost (i.e the effect of modulation) is large.
@@ -922,16 +922,6 @@ the distance gained or lost (i.e the effect of modulation) is large.
 Hence the FM modulation index is *inversely proportional* to the
 modulation frequency.
 
-$$
-% Left alignment of multiline equations
-\begin{flalign}
-f(u) & =\sum_{j=1}^{n} x_jf(u_j)&\\
-     & =\sum_{j=1}^{n} x_j \sum_{i=1}^{m} a_{ij}v_i&\\
-     & =\sum_{j=1}^{n} \sum_{i=1}^{m} a_{ij}x_jv_i
-\end{flalign}
-$$
-
-::: callout-important
 
 ### What are Bessel Functions?
 
@@ -1017,7 +1007,7 @@ gf_fun(
   gf_labs(x = "Modulation Index", y = "Amplitude", title = "Bessel Functions", subtitle = "Weights of FM harmonic sidebands")
 
 ```
-:::
+
 
 
 
