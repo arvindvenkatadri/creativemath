@@ -39,3 +39,7 @@ systemfonts
 showtextdb
 showtext
 ggiraph
+rgl
+marquee
+ggtext
+ggrepel

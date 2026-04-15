@@ -17,18 +17,36 @@ editor:
     wrap: 72
 ---
 
-![TRON the movie](../../../../../materials/images/tron.jpg)
-
 ```{r setup, include=FALSE}
 library(blogdown)
+library(tidyverse)
+library(ggformula)
 library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
-library(caracas)
+library(rgl) # Interactive 3D plots for explanation
+library(plotly)
+knitr::knit_hooks$set(webgl = hook_webgl)
+#library(caracas)
 library(downloadthis)
 library(knitr)
 library(kableExtra)
-library(tidyverse)
+## Markdown boiler plate stuff!!
+# ![An Elephant](elephant.png){#fig-elephant}
+# This is illustrated well by @fig-elephant.
+# 
+# ### Figure Panel Divs
+#     ::: {#fig-elephants layout-ncol=2}
+#     ![Surus](surus.png){#fig-surus}
+#     ![Hanno](hanno.png){#fig-hanno}
+#      Famous Elephants
+#     :::
+#     Adding download buttons
+#     data that has been read in
+#     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
+#    existing file
+#    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
+
 ```
 
 ```{r}
@@ -50,22 +68,21 @@ library(kableExtra)
 library(downloadthis)
 #devtools::install_github("mccarthy-m-g/embedr")
 library(embedr) # Embed multimedia in HTML files
-library(hrbrthemes)
-hrbrthemes::import_roboto_condensed() # Import Roboto Condensed font
-ggplot2::theme_set(new = hrbrthemes::theme_ipsum_rc())
-
 ```
 
 
 ```{r}
-#| label: plot-theme
-#| echo: false
+#| label: plot-theme-ggplot4
 #| cache: false
+#| echo: false
 #| messages: false
 #| warning: false
-
+#| 
 library(systemfonts)
 library(showtext)
+library(marquee)
+library(ggtext)
+library(ggrepel)
 ## Clean the slate
 systemfonts::clear_local_fonts()
 systemfonts::clear_registry()
@@ -83,51 +100,111 @@ sysfonts::font_add(family = "Roboto Condensed",
   italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
   bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
 showtext_auto(enable = TRUE) #enable showtext
-
+##
+# Chunk options
+knitr::opts_chunk$set(
+ fig.width = 6,
+ fig.asp = 0.618, # Golden Ratio
+ #out.width = "80%",
+ fig.align = "center"
+)
+##
 theme_custom <- function(){ 
-    font <- "Roboto Condensed"   #assign font family up front
+
+    theme_bw(base_size = 10) + 
     
-    theme_classic(base_size = 14) %+replace%    #replace elements we want to change
+    # theme(panel.widths = unit(11, "cm"), 
+    #       panel.heights = unit(6.79, "cm")) + # Golden Ratio
     
-    theme(
-      panel.grid.minor = element_blank(),    #strip minor gridlines
-      text = element_text(family = font),
-      #text elements
-      plot.title = element_text(             #title
-                   family = font,            #set font family
-                   #size = 20,               #set font size
-                   face = 'bold',            #bold typeface
-                   hjust = 0,                #left align
-                   #vjust = 2                #raise slightly
-                   margin=margin(0,0,10,0)
-),               
-      
-      plot.subtitle = element_text(          #subtitle
-                   family = font,            #font family
-                   #size = 14,                #font size
-                   hjust = 0,
-                   margin=margin(2,0,5,0)
-),               
-      
-      plot.caption = element_text(           #caption
-                   family = font,            #font family
-                   size = 8,                 #font size
-                   hjust = 1),               #right align
-      
-      axis.title = element_text(             #axis titles
-                   family = font,            #font family
-                   size = 10                 #font size
-),
-      
-      axis.text = element_text(              #axis text
-                   family = font,            #axis family
-                   size = 8)               #font size
-    )
+    theme(plot.margin = margin_auto(t = 1, r = 2, b = 1, l = 1, unit = "cm"),
+          plot.background = element_rect(fill = "bisque",
+                                         colour = "black",
+                                         linewidth = 1)) + 
+            
+    theme_sub_axis(title = element_text(family = "Roboto Condensed", 
+                                       size = 10),
+                   text = element_text(family = "Roboto Condensed", 
+                                       size = 8)) + 
+    
+    theme_sub_legend(text = element_text(family = "Roboto Condensed", 
+                                         size = 6),
+                     title = element_text(family = "Alegreya", 
+                                          size = 8)) + 
+    
+    theme_sub_plot(title = element_text(family = "Alegreya", 
+                                        size = 14, face = "bold"),
+                   title.position = "plot",
+                   subtitle = element_text(family = "Alegreya", 
+                                           size = 10),
+                   caption = element_text(family = "Alegreya", 
+                                          size = 6),
+                   caption.position = "plot") 
+    
 }
 
-# Set graph theme
-theme_set(new = theme_custom())
-#
+## Use available fonts in ggplot text geoms too!
+ggplot2::update_geom_defaults(geom = "text", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "label", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+
+ggplot2::update_geom_defaults(geom = "marquee", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "text_repel", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+ggplot2::update_geom_defaults(geom = "label_repel", new = list(
+  family = "Roboto Condensed",
+  face = "plain",
+  size = 3.5,
+  color = "#2b2b2b"
+)
+)
+
+## Set the theme
+ggplot2::theme_set(new = theme_custom())
+
+## tinytable options
+options("tinytable_tt_digits" = 2)
+options("tinytable_format_num_fmt" = "significant_cell")
+options(tinytable_html_mathjax = TRUE)
+
+
+## Set defaults for flextable
+flextable::set_flextable_defaults(font.family = "Roboto Condensed")
+
+```
+<br>
+
+```{r}
+#| label: fig-tron-the-movie
+#| echo: FALSE
+#| fig-cap: "TRON the Movie"
+#| fig.align: 'center'
+#| out-width: "75%"
+#| out-height: "75%"
+#| 
+knitr::include_graphics("../../../../../materials/images/tron.jpg")
+
 ```
 
 ## {{< iconify fe beginner >}} What noise based outcomes will we see today?
@@ -136,10 +213,6 @@ We will understand the basics of *procedural noise generation*:
 generating random noise-like numbers that allow us to model and create
 very realistic-looking textures, such as wood, fire, marble, terrain,
 mountains, and clouds.
-
-Let us quickly see this intro to *Perlin Noise*:
-
-{{< video https://youtu.be/Qf4dIN99e2w >}}
 
 ## {{< iconify icons8 idea >}} Inspiration
 
@@ -158,6 +231,20 @@ Ok, this is going to be a long explanation!!!
 
 #### A. Inner Product Computation
 
+Let us take some inspiration from the Mahabharata first: Here is an evocative picture of an event from the great epic:
+
+```{r}
+#| label: fig-bheeshma
+#| echo: FALSE
+#| fig-cap: "Bheeshma On a Bed of Arrows"
+#| fig.align: 'center'
+#| out-width: "75%"
+#| out-height: "75%"
+#| 
+knitr::include_graphics("../../../../../materials/images/Bheeshma.jpeg")
+
+```
+
 Let us start by dividing up 2D space ( for now!!) into square-shaped
 cells. At each vertex we randomly place a [**unit gradient
 vector**]{.purple} labelled $r_{i}$ that points in a random direction.
@@ -165,16 +252,12 @@ See the figure below:
 
 <center>
 
-<iframe width="780px" height="600px" src="https://editor.p5js.org/arvindv/full/6CosUsBQt">
+<iframe width="680px" height="680px" src="https://editor.p5js.org/arvindv/full/6CosUsBQt">
 
 </iframe>
 
 </center>
 
-::: callout-note
-A perhaps more evocative picture may be this representation of an event
-from the Mahabharata: ![](../../../../../materials/images/Bheeshma.jpeg)
-:::
 
 We wish to calculate the Perlin Noise amount at [any point of
 interest]{.green} inside the cell.
@@ -217,13 +300,15 @@ implementations. The interpolating function is:
 
 $$
 f(t) = 6t^5-15t^4+10t^3
-$$ {#eq-interpolcation-function}
+$$ {#eq-interpolation-function}
 
 and looks like this:
 
 ```{r}
 #| label: interpolating-function
 #| echo: false
+#| out-width: "75%"
+#| out-height: "75%"
 
 # Set graph theme
 theme_set(new = theme_custom())
@@ -287,7 +372,8 @@ gf_polygon(c(0,0.25, 0.25,0) ~ c(0,0.25, 0.75,1),
                          panel.grid = element_blank(),
                          legend.title = element_blank(),
                          axis.title.x = element_blank(),
-                         axis.text.x = element_blank()))
+                         axis.text.x = element_blank(), 
+                         legend.position = "bottom"))
 
 ```
 
@@ -295,6 +381,8 @@ gf_polygon(c(0,0.25, 0.25,0) ~ c(0,0.25, 0.75,1),
 #| label: 3D-plot-interpolation-function
 #| echo: false
 #| warning: false
+#| fig-height: 5
+#| 
 #library(plot3D)
 x = c(0:25) / 25
 y = c(0:25) / 25
@@ -577,8 +665,6 @@ Of course there are videos by Dan Shiffman on the topic of Perlin Noise:
 1.  Patricio Gonzalez Vivo & Jen Lowe. *The Book of Shaders*.
     <https://thebookofshaders.com/11/>
 
-::: {#refs style="font-size: 60%;"}
-###### {{< iconify lucide package-check >}} R Package Citations
 
 #### Resources
 
@@ -591,6 +677,8 @@ Of course there are videos by Dan Shiffman on the topic of Perlin Noise:
 1. Pure Data
 1. Envion <https://www.peamarte.it/env/envion_v3.6.html>
 
+::: {#refs style="font-size: 60%;"}
+###### {{< iconify lucide package-check >}} R Package Citations
 
 ```{r}
 #| echo: false
