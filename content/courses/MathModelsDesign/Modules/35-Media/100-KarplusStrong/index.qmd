@@ -4,7 +4,7 @@ subtitle: ""
 subject: ""
 abstract: ""
 date: 22/March/2024
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 99
 categories:
 - Delay Lines
@@ -17,6 +17,7 @@ editor:
   markdown: 
     wrap: 72
 ---
+
 ```{r setup, include=FALSE}
 library(blogdown)
 library(tidyverse)
@@ -161,7 +162,7 @@ Let us code up our guitar and see how it works!
 
 ## References
 
-1. Karplus, K., & Strong, A. (1983). *Digital Synthesis of Plucked-String and Drum Timbres*. Computer Music Journal, 7(2), 43. doi:10.2307/3680062. <https://sci-hub.se/https://doi.org/10.2307/3680062> 
+1. Karplus, K., & Strong, A. (1983). *Digital Synthesis of Plucked-String and Drum Timbres*. Computer Music Journal, 7(2), 43. doi:10.2307/3680062. <https://sci-hub.se/https://doi.org/10.2307/3680062> and [PDF](../../../../../materials/pdfs/Digital-Synthesis-of-Plucked-String-and-Drum-Timbres.pdf)
 1. Julius O. Smith. *PHYSICAL AUDIO SIGNAL PROCESSING
 FOR VIRTUAL MUSICAL INSTRUMENTS AND AUDIO EFFECTS*. <https://ccrma.stanford.edu/~jos/pasp/pasp.html>
 1. *Euphonics: The Science of Musical Instruments*.<https://euphonics.org/about/>
