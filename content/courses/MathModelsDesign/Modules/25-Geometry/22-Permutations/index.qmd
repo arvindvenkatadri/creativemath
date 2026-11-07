@@ -1,0 +1,21 @@
+---
+title: "Permutations and Symmetry"
+date: 26/July/2026
+date-modified: today
+order: 22
+categories:
+  - Counting the Ways
+  - Anagrams
+  - Elizabeth Barett Browning
+---
+
+## Introduction
+
+TBWU!!
+
+- Use Elizabeth Barett Browning's poem to introduce Permutations. 
+- Use Internet Anagram Server to motivate fun Permutations / ( e.e. imaginary Insta Handles)
+- The Math of Permutation and how it relates to Symmetry
+- Cayley Matrices
+
+

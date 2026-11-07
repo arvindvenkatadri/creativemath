@@ -1,6 +1,4 @@
 blogdown
-emoji
-embedr
 tidyverse
 ggplot2
 tibble
@@ -12,12 +10,12 @@ stringr
 forcats
 lubridate
 scales
+ggiraph
 ggridges
 ggformula
-lattice
-Matrix
-mosaicData
-mosaicCalc
+LindenmayeR
+LearnGeom
+TurtleGraphics
 ambient
 plot3D
 caracas
@@ -27,11 +25,4 @@ kableExtra
 checkdown
 epoxy
 grateful
-MKdescr
-shinylive
-sysfonts
-gfonts
-LindenmayeR
-LearnGeom
-TurtleGraphics
-ggiraph
+embedr

@@ -1,0 +1,23 @@
+---
+title: "Symmetries in a Plane"
+date: 26/July/2026
+date-modified: today
+order: 24
+categories:
+  - Canonical Movements
+  - Friezes
+  - Thresholds
+---
+
+## Introduction
+
+TBWU!!
+
+## 1D Symmetries
+
+- Friezes
+- Symmetries on a Frieze
+
+
+## 2D Symmetries
+- 17 Symmetry types

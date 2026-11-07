@@ -1,6 +1,6 @@
 ---
 date: 23/Nov/2024
-date-modified: "`r Sys.Date()`"
+date-modified: today
 title: "The Multilayer Perceptron"
 order: 30
 summary: 
@@ -19,7 +19,7 @@ d2:
 library(blogdown)
 library(tidyverse)
 library(ggformula)
-library(mosaicCalc) # Analytic Calculus
+# library(mosaicCalc) # Analytic Calculus
 library(neuralnet) # Backpropagation training
 library(plot3D) # 3D plots for explanation
 library(DiagrammeR)

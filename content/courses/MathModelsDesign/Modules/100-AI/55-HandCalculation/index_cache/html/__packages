@@ -10,12 +10,9 @@ stringr
 forcats
 lubridate
 scales
+ggiraph
 ggridges
 ggformula
-lattice
-Matrix
-mosaicData
-mosaicCalc
 neuralnet
 plot3D
 DiagrammeR
@@ -31,4 +28,3 @@ gfonts
 kableExtra
 downloadthis
 embedr
-ggiraph

@@ -1,0 +1,17 @@
+---
+title: "Graphs"
+subtitle: ""
+date: 07/Nov/2026
+order: 25
+listing:
+  type: table
+  sort: "order"
+  sort-ui: false
+  filter-ui: false
+  contents: "*/*.qmd"
+  fields: [title,reading-time]
+  table-striped: true
+  table-hover: true
+  categories: numbered
+---
+

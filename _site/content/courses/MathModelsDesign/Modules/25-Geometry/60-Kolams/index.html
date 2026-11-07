@@ -2,15 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.16">
+<meta name="generator" content="quarto-1.11.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2024-05-02">
-<title>Kolams and Lusona – Applied Math for Creative Coders</title>
+<title>Kolams and Lusona – Applied Math for Makers</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -32,15 +38,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
 <script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-792aea850e7e5573310f85939a37799b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-85f7a32731ed2b609fa7be27e34d4366.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-93ad3e07253cb8ce00162cc303228b16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-7a1d14f50645d6335187906f5103aab9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -73,28 +79,27 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<link href="../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<meta property="og:title" content="Kolams and Lusona – Applied Math for Creative Coders">
-<meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
-<meta property="og:image" content="https://mathforcoders.netlify.app/content/materials/images/Africa-Fabric-Map.jpeg">
-<meta property="og:site_name" content="Applied Math for Creative Coders">
-<meta name="twitter:title" content="Kolams and Lusona – Applied Math for Creative Coders">
-<meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
-<meta name="twitter:image" content="https://mathforcoders.netlify.app/content/materials/images/Africa-Fabric-Map.jpeg">
+<meta property="og:title" content="Kolams and Lusona – Applied Math for Makers">
+<meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences.">
+<meta property="og:image" content="https://mathformakers.netlify.app/content/materials/images/Africa-Fabric-Map.jpeg">
+<meta property="og:site_name" content="Applied Math for Makers">
+<meta property="og:image:height" content="824">
+<meta property="og:image:width" content="735">
+<meta name="twitter:title" content="Kolams and Lusona – Applied Math for Makers">
+<meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences.">
+<meta name="twitter:image" content="https://mathformakers.netlify.app/content/materials/images/Africa-Fabric-Map.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../../../../index.html">
-    <span class="navbar-title">Applied Math for Creative Coders</span>
+    <span class="navbar-title">Applied Math for Makers</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -128,13 +133,14 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </a>
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav" aria-label="Toolbar"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html">Geometry</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html">Kolams and Lusona</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Artists and Designers</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html">Geometry</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html">Kolams and Lusona</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -142,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Section"><div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../../../../../index.html" class="sidebar-logo-link">
       <img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       </div>
@@ -156,21 +162,21 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Math Models for Creative Coders</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Math Models for Artists and Designers</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section: Math Models for Artists and Designers">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools and Tech</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Tools and Tech</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section: Tools and Tech">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html" class="sidebar-item-text sidebar-link">
@@ -206,12 +212,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Maths</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Maths</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section: Maths">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/10-ComplexNumbers/index.html" class="sidebar-item-text sidebar-link">
@@ -241,12 +247,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Systems</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Systems</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section: Systems">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" class="sidebar-item-text sidebar-link">
@@ -288,12 +294,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geometry</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Geometry</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section: Geometry">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth2 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
@@ -304,6 +310,30 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetry Itself</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/22-Permutations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Permutations and Symmetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/24-Rotational/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rotational Symmetry Revisited</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/26-Planar/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetries in a Plane</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -335,12 +365,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Media</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Media</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section: Media">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html" class="sidebar-item-text sidebar-link">
@@ -376,12 +406,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-7-label">AI</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section: AI">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html" class="sidebar-item-text sidebar-link">
@@ -423,12 +453,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Projects</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section: Projects">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
@@ -444,12 +474,12 @@ ul.task-list li input[type="checkbox"] {
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
 <li><a href="#inspiration" id="toc-inspiration" class="nav-link active" data-scroll-target="#inspiration">Inspiration</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
   <li><a href="#creating-kolams" id="toc-creating-kolams" class="nav-link" data-scroll-target="#creating-kolams">Creating Kolams</a></li>
   <li>
 <a href="#by-hand" id="toc-by-hand" class="nav-link" data-scroll-target="#by-hand">By Hand!</a>
@@ -458,13 +488,21 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#method-2-using-mirrors-and-light" id="toc-method-2-using-mirrors-and-light" class="nav-link" data-scroll-target="#method-2-using-mirrors-and-light">Method #2: Using Mirrors and Light</a></li>
   </ul>
 </li>
+  <li>
+<a href="#the-mathematics-of-kolam" id="toc-the-mathematics-of-kolam" class="nav-link" data-scroll-target="#the-mathematics-of-kolam">The Mathematics of Kolam</a>
+  <ul class="collapse">
+<li><a href="#basics-of-lunda-geometry-and-kolam" id="toc-basics-of-lunda-geometry-and-kolam" class="nav-link" data-scroll-target="#basics-of-lunda-geometry-and-kolam">Basics of Lunda Geometry and Kolam</a></li>
+  <li><a href="#kolams-and-knot-theory" id="toc-kolams-and-knot-theory" class="nav-link" data-scroll-target="#kolams-and-knot-theory">Kolams and Knot Theory</a></li>
+  </ul>
+</li>
   <li><a href="#kolams-with-code" id="toc-kolams-with-code" class="nav-link" data-scroll-target="#kolams-with-code">Kolams with Code</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
+  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading">Additional Reading</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html">Geometry</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html">Kolams and Lusona</a></li></ol></nav><div class="quarto-title">
+<main class="content column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Artists and Designers</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html">Geometry</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html">Kolams and Lusona</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">Kolams and Lusona</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Kolam</div>
@@ -491,7 +529,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 30, 2025</p>
+      <p class="date-modified">November 7, 2026</p>
     </div>
   </div>
     
@@ -500,7 +538,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header><section id="inspiration" class="level2"><h2 class="anchored" data-anchor-id="inspiration">Inspiration</h2>
-<p>Look at this fabric map of Africa:</p>
+Look at this fabric map of Africa:
+<center>
 <div id="fig-africa-textile" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-africa-textile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="../../../../../materials/images/Africa-Fabric-Map.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Africa Fabric Map: What’s your next T-Shirt?"><img src="../../../../../materials/images/Africa-Fabric-Map.jpeg" class="img-fluid figure-img"></a>
@@ -509,6 +548,7 @@ ul.task-list li input[type="checkbox"] {
 Figure&nbsp;1: Africa Fabric Map: What’s your next T-Shirt?
 </figcaption></figure>
 </div>
+</center>
 <p>And look at this map of Nobel prize winners!</p>
 <div id="fig-nobel-winners" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-nobel-winners-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -521,11 +561,13 @@ Figure&nbsp;2: Network of Nobel Prize Winners
 <p>Would there be anything in common between these two 😮 ??!! How???!!!</p>
 </section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>The South Indian tradition of Kolam, and the <a href="https://www.sahistory.org.za/sites/default/files/archive-files3/paulus_gerdes_lunda_geometry_mirror_curves_desbook4you.pdf">Angolan tradition of Lusona</a> art have quite a few things in common. Both are also strongly linked to finite grammars and networks.</p>
-</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
+<center>
 <iframe src="https://openprocessing.org/sketch/296103/embed/" width="780" height="780">
 </iframe>
-<p>Click to generate a fresh Kolam!</p>
+<br> Click to generate a fresh Kolam!
+</center>
 </section><section id="creating-kolams" class="level2"><h2 class="anchored" data-anchor-id="creating-kolams">Creating Kolams</h2>
 <p>How do we create these Kolam Patterns? Let us do this two ways: first pretending we are a South-Indian Woman adorning her doorstep in the morning. And then with two other methods, that lend themselves to computation / iteration. So, first by hand!</p>
 </section><section id="by-hand" class="level2"><h2 class="anchored" data-anchor-id="by-hand">By Hand!</h2>
@@ -574,7 +616,11 @@ Figure&nbsp;2: Network of Nobel Prize Winners
 <p>What does <strong>canonical piece</strong> mean? These are pieces like the alphabet: pieces that can be repeatedly used to create a vast variety of patterns? Sounds familiar again?</p>
 <p>Check the Polypad: <a href="https://polypad.amplify.com/p#patterns" class="uri">https://polypad.amplify.com/p#patterns</a></p>
 <p>Here we use “pieces of Kolam” that are standard: by repeated usage of combinations of these pieces, ( I believe ) any kolam can be produced. Here is a video showing kolams with a few <strong>canonical pieces</strong>:</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/-l9za7UlzKM" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div>
+<center>
+<div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/-l9za7UlzKM" width="500" height="360" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> Using “Canonical Pieces” by Saty Raghavachary
+</center>
+</div>
 <p>Which are the canonical pieces here?</p>
 <p>This is also the idea embedded in this toy called <a href="https://kolamtiles.com/">Kolam Tiles</a>. See this <a href="https://youtube.com/playlist?list=PL6LYOn0Nvs_spbp4kYo2llyTmwPbFdEUf&amp;si=ThsBwebTaEYInKNr">YT Playlist on Kolam Tiles</a>.</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
@@ -607,8 +653,19 @@ Figure&nbsp;2: Network of Nobel Prize Winners
 </div>
 </div>
 </div>
+<p>This very accessible paper by Nagata and Thamburaj illustrates this concept and may help in recreating this idea digitally, in <code>p5.js</code>!</p>
+  <p><a href="../../../../../materials/pdfs/Kolam/Nagata-Thamburaj-DigitalizationKolamPatterns.pdf" target="_blank">Download PDF File</a></p>
+   <object data="../../../../../materials/pdfs/Kolam/Nagata-Thamburaj-DigitalizationKolamPatterns.pdf" type="application/pdf" width="100%" height="600px">
+    <p>Unable to display PDF file. <a href="../../../../../materials/pdfs/Kolam/Nagata-Thamburaj-DigitalizationKolamPatterns.pdf">Download</a> instead.</p>
+  </object>
+  
 </section><section id="method-2-using-mirrors-and-light" class="level3"><h3 class="anchored" data-anchor-id="method-2-using-mirrors-and-light">Method #2: Using Mirrors and Light</h3>
 <p>This follows the development of <a href="https://www.mi.sanu.ac.rs/vismath/paulus/index.html">Paul Gerdes</a>.</p>
+    <p><a href="https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm" target="_blank">View webpage in full screen</a></p>
+       <div>
+      <iframe src="https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm" height="475px"></iframe>
+    </div>
+  
 <p>First let us get a printable grid to make our Kolams manually, since making grids can become tedious when you are making a lot of Kolams. We can use the grid to place “pulli-s” on the grid to make our Kolam. Head off to: <a href="https://editor.p5js.org/arvindv/sketches/UuHApkvqd" class="uri">https://editor.p5js.org/arvindv/sketches/UuHApkvqd</a> and open it in your p5.js web-editor. Print out a few samples of the <code>.svg</code> grid file that is generated.</p>
 <p>Now consider that each of your Kolam “lines” or “trajectories” is <a href="https://www.imaginary.org/program/frozenlight">made of light</a>. And place some single horizontal or vertical mirrors, at some locations <em>midway between adjacent pulli-s</em>. See the figure below:</p>
 <div id="fig-kolam-with-mirrors" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -620,7 +677,18 @@ Figure&nbsp;3: Kolam with Mirrors
 </figcaption></figure>
 </div>
 <p>The black lines here are to be imagined as <em>“made of light”</em>. Whenever they hit a mirror, a <em>“curved reflection”</em> occurs. Note how the arrangement of mirrors is symmetric here. Can we take <em>computational liberties</em> here and make asymmetric mirror arrangements? Can the grid also be non-square? Try?</p>
+</section></section><section id="the-mathematics-of-kolam" class="level2"><h2 class="anchored" data-anchor-id="the-mathematics-of-kolam">The Mathematics of Kolam</h2>
+<p>We will follow the <em>Lunda Geometry</em> treatment of Gerdes here, and also briefly( Ha! Briefly!!) touch upon the S. Jablan’s treatment based on <em>Knot Theory</em>.</p>
+<p>TBWU.</p>
+<ul>
+<li>Combine Karnaugh Maps, Network Adjacency Matrics, Cayley Symmetry Matrices, and Paulus Gerdus’ Modulo-m Lunda matrices into a unified “Kolam Symmetry Matrix”.</li>
+<li>Discuss the similarity to Wang tiles.</li>
+</ul>
+<p>Questions: - Can we generate random KSMs and find “symmetry on average”, in the manner of Field and Golubitsky? - Can we mimic Kolam Tiles / Saty Raghavachary’s video in code? - How “simple” can the code be?</p>
+<section id="basics-of-lunda-geometry-and-kolam" class="level3"><h3 class="anchored" data-anchor-id="basics-of-lunda-geometry-and-kolam">Basics of Lunda Geometry and Kolam</h3>
 <p>For more inspiration, see <a href="https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm">here</a>. This is a multipage article with many different grid+mirror arrangements! There is also an intriguing technique shown therein of <strong>colouring the squares in the grid</strong> alternatively white and black, to generate very symmetric shaded patterns!</p>
+</section><section id="kolams-and-knot-theory" class="level3"><h3 class="anchored" data-anchor-id="kolams-and-knot-theory">Kolams and Knot Theory</h3>
+<p>S. Jablan’s treatment based on <em>Knot Theory</em></p>
 </section></section><section id="kolams-with-code" class="level2"><h2 class="anchored" data-anchor-id="kolams-with-code">Kolams with Code</h2>
 <p>Work in (slow….) Progress!!!</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills" style="background: whitesmoke;">
@@ -640,30 +708,41 @@ Figure&nbsp;3: Kolam with Mirrors
 </div>
 </div>
 </div>
-</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why">
 <iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</h2>
 <p>Kolams and Sona are powerful metaphors for <a href="../../../../Analytics/Descriptive/Modules/100-Networks/index.qmd">graphs and networks</a>. These ideas show up in a variety of situations, such as tranportation networks, supply-chain, friendship networks, tracing literary and artistic influence, and so on.</p>
-</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references">
 <iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</h2>
 <ol type="1">
+<li>Syamala Chenulu. <em>Teaching Mathematics through the ART OF KOLAM</em>
+</li>
+<li>Mirror Designs and Mirror Curves: Comparing Kolam and Tchokwe Art. <a href="https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm" class="uri">https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm</a>
+</li>
+<li>YANAGISAWA, Kiwamu &amp; Nagata, Shojiro. (2007). <em>Fundamental Study on Design System of Kolam Pattern</em>. <a href="https://www.researchgate.net/publication/237442288_Fundamental_Study_on_Design_System_of_Kolam_Pattern" class="uri">https://www.researchgate.net/publication/237442288_Fundamental_Study_on_Design_System_of_Kolam_Pattern</a>
+</li>
+<li>Paulus Gerdes. <em>Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries</em>.   <p><a href="../../../../../materials/pdfs/Kolam/lunda_geometry.pdf" target="_blank">Download PDF File</a></p>
+   <object data="../../../../../materials/pdfs/Kolam/lunda_geometry.pdf" type="application/pdf" width="100%" height="600px">
+    <p>Unable to display PDF file. <a href="../../../../../materials/pdfs/Kolam/lunda_geometry.pdf">Download</a> instead.</p>
+  </object>
+  </li>
+<li>Visual Mathematics. Mathematical Institute of the Serbian Academy of Sciences and Arts. Editor: Ljiljana Radovic. ISSN: 1821-1437. <a href="https://www.mi.sanu.ac.rs/vismath/" class="uri">https://www.mi.sanu.ac.rs/vismath/</a>
+</li>
+<li>Anu Reddy and Alex McLean.(March 2024). <em>Drawing Kolam Patterns in Stitches and Code</em>. <a href="https://alpaca.pubpub.org/pub/eljjyi80/release/6" class="uri">https://alpaca.pubpub.org/pub/eljjyi80/release/6</a>
+</li>
+<li>Labs Without Borders on Medium. (Nov 29, 2020). <em>Folkloric Graph Theory: The Mathematics of Kolam.</em> <a href="https://liubauer.medium.com/mathematics-of-kolam-folkloric-graph-theory-4b3acc79d5cb" class="uri">https://liubauer.medium.com/mathematics-of-kolam-folkloric-graph-theory-4b3acc79d5cb</a>
+</li>
+</ol></section><section id="additional-reading" class="level2"><h2 class="anchored" data-anchor-id="additional-reading">Additional Reading</h2>
+<ol type="1">
+<li>Symmetry Journal. <a href="https://www.mdpi.com/journal/symmetry" class="uri">https://www.mdpi.com/journal/symmetry</a> [ Open Access]</li>
 <li>Some kolam like patterns for inspiration. <a href="https://www.pinterest.com/gbenainous/p5js-teaching-ideas/" class="uri">https://www.pinterest.com/gbenainous/p5js-teaching-ideas/</a>
 </li>
 <li>Dr.&nbsp;Gift Siromoney’s webpage. <a href="https://www.cmi.ac.in/gift/Kolam.htm" class="uri">https://www.cmi.ac.in/gift/Kolam.htm</a>
 </li>
-<li>Mirror Designs and Mirror Curves: Comparing Kolam and Tchokwe Art. <a href="https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm" class="uri">https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm</a>
-</li>
-<li>YANAGISAWA, Kiwamu &amp; Nagata, Shojiro. (2007). Fundamental Study on Design System of Kolam Pattern.<a href="https://www.researchgate.net/publication/237442288_Fundamental_Study_on_Design_System_of_Kolam_Pattern" class="uri">https://www.researchgate.net/publication/237442288_Fundamental_Study_on_Design_System_of_Kolam_Pattern</a>)</li>
-<li>Paulus Gerdes. <em>Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries</em>. <a href="https://www.sahistory.org.za/sites/default/files/archive-files3/paulus_gerdes_lunda_geometry_mirror_curves_desbook4you.pdf" class="uri">https://www.sahistory.org.za/sites/default/files/archive-files3/paulus_gerdes_lunda_geometry_mirror_curves_desbook4you.pdf</a>
-</li>
-<li>Visual Mathematics. Mathematical Institute of the Serbian Academy of Sciences and Arts. Editor: Ljiljana Radovic. ISSN: 1821-1437. <a href="https://www.mi.sanu.ac.rs/vismath/" class="uri">https://www.mi.sanu.ac.rs/vismath/</a>
-</li>
 <li>Imaginary.Org. <em>Frozen Light App</em>. <a href="https://www.imaginary.org/program/frozenlight" class="uri">https://www.imaginary.org/program/frozenlight</a>
 </li>
 <li><a href="https://kolamtiles.com" class="uri">https://kolamtiles.com</a></li>
-<li>Anu Reddy and Alex McLean.(March 2024). <em>Drawing Kolam Patterns in Stitches and Code</em>. <a href="https://alpaca.pubpub.org/pub/eljjyi80/release/6" class="uri">https://alpaca.pubpub.org/pub/eljjyi80/release/6</a>
-</li>
 <li><a href="https://algorithmicpattern.org" class="uri">https://algorithmicpattern.org</a></li>
-<li>Ascher, M. (2002). <em>The Kolam Tradition: A tradition of figure-drawing in southern India expresses mathematical ideas and has attracted the attention of computer science</em>. American Scientist, 90(1), 56+. <a href="https://link.gale.com/apps/doc/A81528419/AONE?u=anon\~274c1208&amp;sid=googleScholar&amp;xid=4105e718" class="uri">https://link.gale.com/apps/doc/A81528419/AONE?u=anon\~274c1208&amp;sid=googleScholar&amp;xid=4105e718</a>
+<li>Ascher, M. (2002). <em>The Kolam Tradition: A tradition of figure-drawing in southern India expresses mathematical ideas and has attracted the attention of computer science</em>. American Scientist, 90(1), 56+. <a href="https://www.jstor.org/stable/27857597" class="uri">https://www.jstor.org/stable/27857597</a>
 </li>
 </ol>
 
@@ -741,12 +820,31 @@ Figure&nbsp;3: Kolam with Mirrors
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/mathforcoders\.netlify\.app");
+        var filterRegex = new RegExp("https:\/\/mathformakers\.netlify\.app\/");
+      const newWindowLabel = "(opens in a new tab)";
+      const newWindowNoteId = "quarto-ext-newwindow-label";
+      // Links reference one hidden label through aria-describedby, so the
+      // announcement never changes their accessible name.
+      var describeNewWindow = (link) => {
+        if (!window.document.getElementById(newWindowNoteId)) {
+          var newWindowNote = window.document.createElement("span");
+          newWindowNote.id = newWindowNoteId;
+          newWindowNote.hidden = true;
+          newWindowNote.textContent = newWindowLabel;
+          window.document.body.appendChild(newWindowNote);
+        }
+        var describedBy = (link.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+        if (!describedBy.includes(newWindowNoteId)) {
+          describedBy.push(newWindowNoteId);
+          link.setAttribute("aria-describedby", describedBy.join(" "));
+        }
+      }
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -760,10 +858,72 @@ Figure&nbsp;3: Kolam with Mirrors
             if (link.getAttribute("rel") === null) {
               link.setAttribute("rel", "noopener");
             }
+            describeNewWindow(link);
+          if (!link.classList.contains('no-external-icon')) {
             // default icon
             link.classList.add("external");
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -777,6 +937,7 @@ Figure&nbsp;3: Kolam with Mirrors
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -939,44 +1100,54 @@ Figure&nbsp;3: Kolam with Mirrors
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1074,7 +1245,9 @@ Figure&nbsp;3: Kolam with Mirrors
       }
     }
   });
-  </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+  </script><script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script><nav class="page-navigation column-body" aria-label="Page"><div class="nav-page nav-page-previous">
       <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/50-LSystems/index.html" class="pagination-link" aria-label="L-Systems">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">L-Systems</span>
       </a>          

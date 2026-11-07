@@ -2,15 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.16">
+<meta name="generator" content="quarto-1.11.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2024-05-02">
-<title>Fourier Series and Fourier Transform – Applied Math for Creative Coders</title>
+<title>Fourier Series and Fourier Transform – Applied Math for Makers</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -22,7 +28,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,15 +57,15 @@ div.csl-indent {
 <link href="../../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
 <script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-792aea850e7e5573310f85939a37799b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-85f7a32731ed2b609fa7be27e34d4366.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-93ad3e07253cb8ce00162cc303228b16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-7a1d14f50645d6335187906f5103aab9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -93,8 +98,7 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<link href="../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -120,24 +124,23 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<meta property="og:title" content="Fourier Series and Fourier Transform – Applied Math for Creative Coders">
-<meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
-<meta property="og:site_name" content="Applied Math for Creative Coders">
-<meta name="twitter:title" content="Fourier Series and Fourier Transform – Applied Math for Creative Coders">
-<meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
+<meta property="og:title" content="Fourier Series and Fourier Transform – Applied Math for Makers">
+<meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences.">
+<meta property="og:site_name" content="Applied Math for Makers">
+<meta name="twitter:title" content="Fourier Series and Fourier Transform – Applied Math for Makers">
+<meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences.">
 <meta name="twitter:card" content="summary">
 </head>
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../../../../index.html">
-    <span class="navbar-title">Applied Math for Creative Coders</span>
+    <span class="navbar-title">Applied Math for Makers</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -171,13 +174,14 @@ window.Quarto = {
   </div>
 </a>
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav" aria-label="Toolbar"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html">Fourier Series and Fourier Transform</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Artists and Designers</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html">Fourier Series and Fourier Transform</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -185,7 +189,7 @@ window.Quarto = {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Section"><div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../../../../../index.html" class="sidebar-logo-link">
       <img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       </div>
@@ -199,21 +203,21 @@ window.Quarto = {
 <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Math Models for Creative Coders</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Math Models for Artists and Designers</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section: Math Models for Artists and Designers">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools and Tech</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Tools and Tech</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section: Tools and Tech">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html" class="sidebar-item-text sidebar-link">
@@ -249,12 +253,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Maths</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Maths</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section: Maths">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/10-ComplexNumbers/index.html" class="sidebar-item-text sidebar-link">
@@ -284,12 +288,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Systems</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Systems</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section: Systems">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth2 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" class="sidebar-item-text sidebar-link">
@@ -331,12 +335,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geometry</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Geometry</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section: Geometry">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
@@ -347,6 +351,30 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetry Itself</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/22-Permutations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Permutations and Symmetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/24-Rotational/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rotational Symmetry Revisited</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/26-Planar/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetries in a Plane</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -378,12 +406,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Media</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Media</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section: Media">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html" class="sidebar-item-text sidebar-link">
@@ -419,12 +447,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-7-label">AI</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section: AI">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html" class="sidebar-item-text sidebar-link">
@@ -466,12 +494,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Projects</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section: Projects">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
@@ -487,11 +515,11 @@ window.Quarto = {
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
 <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
   <li>
 <a href="#what-is-the-fourier-series" id="toc-what-is-the-fourier-series" class="nav-link" data-scroll-target="#what-is-the-fourier-series">What is the Fourier Series?</a>
   <ul class="collapse">
@@ -508,8 +536,8 @@ window.Quarto = {
 <li><a href="#an-analogy" id="toc-an-analogy" class="nav-link" data-scroll-target="#an-analogy">An Analogy</a></li>
   </ul>
 </li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
   <li>
 <a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a>
   <ul class="collapse">
@@ -519,7 +547,7 @@ window.Quarto = {
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html">Fourier Series and Fourier Transform</a></li></ol></nav><div class="quarto-title">
+<main class="content column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Artists and Designers</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html">Fourier Series and Fourier Transform</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">Fourier Series and Fourier Transform</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Euler Formula</div>
@@ -543,7 +571,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 23, 2026</p>
+      <p class="date-modified">May 31, 2026</p>
     </div>
   </div>
     
@@ -553,7 +581,7 @@ window.Quarto = {
 
 </header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Can <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html">Circles</a> do more for us than draw these lovely patterns? Can they give us an <em>alphabet</em>, a universal way of generating and representing many forms of interest? Can we treat them like a bunch of kitchen ingredients, that we throw into a recipe to conjure up new dishes that look different?</p>
-</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
 <p>Take a look at these paintings:</p>
 <center>
@@ -598,25 +626,28 @@ Figure&nbsp;1: Fourier Series as a Smoothie Recipe. Source: <a href="https://bet
 </center>
 </section></section><section id="rolling-circles-and-the-fourier-series" class="level2"><h2 class="anchored" data-anchor-id="rolling-circles-and-the-fourier-series">Rolling Circles and the Fourier Series</h2>
 <p>By sliding the amplitudes of various sine Oscillators (whose number you could choose), you were hopefully able to visually create a waveform that looked very close the one on the screen. This was a way of doing <strong><em>waveform synthesis</em></strong>. How did you know, visually speaking, how to set the amplitude?</p>
-<p>A. <strong>Correlation of Time waveforms</strong>: We adjusted the slider on each sine wave when the selected sine Oscillation that you were manipulating had the <strong><em>best possible correlation</em></strong> with the target waveform!! But how does this correlation work here, with <em>waveforms</em>, instead of data variables?</p>
+<section id="a.correlation-of-time-waveforms" class="level6"><h6 class="anchored" data-anchor-id="a.correlation-of-time-waveforms">A.Correlation of Time waveforms:</h6>
+<p>We adjusted the slider on each sine wave when the selected sine Oscillation that you were manipulating had the <strong><em>best possible correlation</em></strong> with the target waveform!! But how does this correlation work here, with <em>waveforms</em>, instead of data variables?</p>
 <p>We all know what <a href="https://madhatterguide.netlify.app/content/courses/analytics/10-descriptive/modules/30-change/#pearson-correlation-coefficient">Pearson Correlations</a> are: we take the <em>product</em> of two (scaled and centered) quantitative variables, value by value, and take the average of these products. With waveforms, we can intuitively do the same thing to determine the <strong>coefficient</strong> of each <em>component</em> of the Fourier Series:</p>
 <p><span class="math display">\[
 Fourier~coeff~for~sin(\omega_c*t) = \\
 \]</span> <span id="eq-fourier-coeff-intuitive"><span class="math display">\[
 \begin{align*}
-\\&amp;= Average\Big(sin(\omega_c*t) \times target.waveform\Big)\\
-\\&amp;= \frac{1}{Waveform~Period} * \displaystyle{\int}_{0}^{Waveform~Period} sin(\omega_c*t) \times target.waveform * dt
+\\&amp;= Average\Big(sin(\omega_c*t) \times target~waveform\Big)\\
+\\&amp;= \frac{1}{Waveform~Period} * \displaystyle{\int}_{0}^{Waveform~Period} sin(\omega_c*t) \times target~waveform * dt
 \end{align*}
 \tag{1}\]</span></span></p>
 <p>OK, but how does one make use of these <em>time-waveform correlations</em>? By using many of them!</p>
-<p>B. <strong>Orthogonal Waveforms</strong>: We need one more concept here: that of an “orthogonal family of waveforms”: these are waveforms whose mutual correlations, as defined above, are zero! But which are these? Our good old sine and cosine waves!!</p>
+</section><section id="b.orthogonal-waveforms" class="level6"><h6 class="anchored" data-anchor-id="b.orthogonal-waveforms">B.Orthogonal Waveforms:</h6>
+<p>We need one more concept here: that of an “orthogonal family of waveforms”: these are waveforms whose mutual correlations, as defined above, are zero! But which are these? Our good old sine and cosine waves!!</p>
 <p>When we take sine/cosine waves whose frequencies are <strong>integer multiples</strong> of some base frequency, then <strong>all</strong> such waveforms are orthogonal.</p>
 <p><span class="math display">\[
 \frac{1}{Waveform~Period} * \int sin(m*\omega_c*t) \times sin(n*\omega_c*t)* dt = 0\\
 \]</span> <span id="eq-orthogonal-functions"><span class="math display">\[
 \text{where m and n are multiples of some base frequency}
 \tag{2}\]</span></span></p>
-<p>C: <strong>“Base Frequency”</strong>: So what is this <span class="bg-gold black">base frequency</span> we have been assuming? It is determined by the target waveform:</p>
+</section><section id="c.base-frequency" class="level5"><h5 class="anchored" data-anchor-id="c.base-frequency">C.”Base Frequency”:</h5>
+<p>So what is this <span class="bg-gold black">base frequency</span> we have been assuming? It is determined by the target waveform:</p>
 <p><span id="eq-base-frequency"><span class="math display">\[
 Base~ Frequency = \frac{1}{Period~of~Target~Waveform}
 \tag{3}\]</span></span></p>
@@ -633,7 +664,7 @@ Base~ Frequency = \frac{1}{Period~of~Target~Waveform}
 <p>For more on Orthogonality, see here: <a href="https://qr.ae/pATe4W" class="uri">https://qr.ae/pATe4W</a></p>
 </div>
 </div>
-</section><section id="how-does-the-fourier-series-compute" class="level2"><h2 class="anchored" data-anchor-id="how-does-the-fourier-series-compute">How does the Fourier Series Compute?</h2>
+</section></section><section id="how-does-the-fourier-series-compute" class="level2"><h2 class="anchored" data-anchor-id="how-does-the-fourier-series-compute">How does the Fourier Series Compute?</h2>
 <p>So now we are ready to define the steps in computing the Fourier Series:</p>
 <ol type="1">
 <li><p>Compute the <code>base-time-period</code> <span class="math inline">\(T\)</span> of the target waveform, and calculate the <code>base frequency</code> <span class="math inline">\(f_c = \frac{1}{T}\)</span> using <a href="#eq-base-frequency" class="quarto-xref">Equation&nbsp;3</a>.</p></li>
@@ -670,15 +701,15 @@ target~waveform \sim \sum_{i=1}^{M} corr(i) \times sin/cos(2\pi*i*f_c*t)
 <section id="an-analogy" class="level3"><h3 class="anchored" data-anchor-id="an-analogy">An Analogy</h3>
 <p>An analogy may help here: Recall <a href="https://madhatterguide.netlify.app/content/courses/analytics/10-descriptive/modules/26-distributions/#what-is-a-density-plot">this discussion on Frequency Density Plots</a>. There we said that a Frequency Density Plot was like a Histogram with infinitely small frequency bins. In a similar fashion, we could say that a Fourier Transform is a Fourier Series with “infinitely small bins”, and hence is a <strong>continuous function</strong> of frequency and not discrete like the Fourier Series.</p>
 <p>Let us examine this analogy in detail</p>
-<section id="histogram-discrete-sampled-view" class="level4"><h4 class="anchored" data-anchor-id="histogram-discrete-sampled-view">Histogram (Discrete, Sampled View):</h4>
+<section id="histogram-discrete-sampled-view" class="level5"><h5 class="anchored" data-anchor-id="histogram-discrete-sampled-view">Histogram (Discrete, Sampled View):</h5>
 <p>A histogram takes a continuous dataset (e.g., the heights of thousands of people). It divides this data into discrete bins (e.g., 150-155cm, 155-160cm, etc.). It then counts how many data points fall into each bin. This results in a bar chart showing discrete counts in discrete intervals. It’s a discrete representation of a continuous dataset.</p>
-</section><section id="density-plot-continuous-view" class="level4"><h4 class="anchored" data-anchor-id="density-plot-continuous-view">Density Plot (Continuous View):</h4>
+</section><section id="density-plot-continuous-view" class="level5"><h5 class="anchored" data-anchor-id="density-plot-continuous-view">Density Plot (Continuous View):</h5>
 <p>A density plot is a smoother, continuous version of a histogram. It uses the same binning concept (or kernel smoothing) but aims to represent the underlying probability density function of the continuous data. The height of the density plot at any point represents the density of data points around that value, providing a continuous curve that describes the distribution much more smoothly and informatively than the discrete counts of a histogram.</p>
-</section><section id="fourier-series-discrete-sampled-view" class="level4"><h4 class="anchored" data-anchor-id="fourier-series-discrete-sampled-view">Fourier Series (Discrete, Sampled View):</h4>
+</section><section id="fourier-series-discrete-sampled-view" class="level5"><h5 class="anchored" data-anchor-id="fourier-series-discrete-sampled-view">Fourier Series (Discrete, Sampled View):</h5>
 <p>The Fourier Series represents periodic signals. It decomposes the periodic signal into a discrete sum of sine and cosine waves (the Fourier basis functions). It calculates discrete coefficients for these specific frequencies (the fundamental frequency and its harmonics). This results in a discrete set of amplitudes and phases for discrete frequencies. It’s a sampled view of the frequency content, specifically tailored for periodic signals.</p>
-</section><section id="fourier-transform-continuous-view" class="level4"><h4 class="anchored" data-anchor-id="fourier-transform-continuous-view">Fourier Transform (Continuous View):</h4>
+</section><section id="fourier-transform-continuous-view" class="level5"><h5 class="anchored" data-anchor-id="fourier-transform-continuous-view">Fourier Transform (Continuous View):</h5>
 <p>The Fourier Transform generalizes the Fourier Series to represent any signal, including non-periodic ones. It decomposes the signal into a continuous spectrum of frequencies. It calculates a continuous function describing the amplitude and phase contribution of every possible frequency in the signal continuum. This provides a continuous, infinitely detailed view of the frequency content, analogous to the density plot revealing the true underlying distribution rather than just discrete counts. The Similarity:</p>
-</section><section id="discrete-to-continuous" class="level4"><h4 class="anchored" data-anchor-id="discrete-to-continuous">Discrete to Continuous</h4>
+</section><section id="discrete-to-continuous" class="level5"><h5 class="anchored" data-anchor-id="discrete-to-continuous">Discrete to Continuous</h5>
 <p>Both pairs involve a transformation from a discrete, sampled, or finite view to a continuous, infinite-resolution view. Nature of the Input: Both transformations start with something that, in its basic form, involves discrete elements (bins in a histogram, coefficients in a Fourier Series) representing underlying continuous phenomena (the data distribution, the signal).</p>
 <p>Both aim to provide a more complete, detailed, and often smoother representation of the underlying continuous quantity being analyzed (the data distribution or the signal’s frequency content).</p>
 <p>The analogy between <strong>histograms and density plots</strong> and between <strong>Fourier Series and the Fourier Transform</strong> captures the fundamental idea that a Fourier Series provides a discrete “histogram” of frequency content for periodic signals, while the Fourier Transform provides the continuous “density plot” of frequency content for general (aperiodic) signals.</p>
@@ -698,7 +729,7 @@ Histogram \sim Frequency~Density &lt;=&gt; Fourier~Series \sim Fourier~Transform
 </div>
 </div>
 <p>What is done in practice is the take the sample <em>aperiodic</em> input waveform and pretend that we can <strong>repeat it</strong> over and over again. Then we compute the Fourier Transform in a similar way as the Fourier Series, using a fine <strong>comb</strong> of sine/cosines: anything between 64 to 2048 is not uncommon.</p>
-</section></section></section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why">
+</section></section></section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why">
 <iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</h2>
 <ul>
 <li>The (infinite) set of sines and cosines are a waveform <code>alphabet</code>.</li>
@@ -706,7 +737,7 @@ Histogram \sim Frequency~Density &lt;=&gt; Fourier~Series \sim Fourier~Transform
 <li>The set of sines/consines in the alphabet are integer multiples of a fundamental frequency.</li>
 <li>How are their amplitudes calculated? By taking a <strong>correlation</strong> between the original waveform and the given sine/cosine wave from the alphabet (unit amplitude)</li>
 <li>How is this accurate? By minimizing a “least square error” between the original waveform and the sum of sinusoids.</li>
-</ul></section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references">
+</ul></section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references">
 <iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</h2>
 <ol type="1">
 <li>Jez Swanson. <em>An Interactive Introduction to Fourier Transforms</em> <a href="https://www.jezzamon.com/fourier/index.html" class="uri">https://www.jezzamon.com/fourier/index.html</a>
@@ -750,8 +781,8 @@ Histogram \sim Frequency~Density &lt;=&gt; Fourier~Series \sim Fourier~Transform
 <li><a href="https://dogbotic.com" class="uri">https://dogbotic.com</a></li>
 <li><a href="https://gjmvanboxtel.r-universe.dev/gsignal" class="uri">https://gjmvanboxtel.r-universe.dev/gsignal</a></li>
 </ol>
-<div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" data-entry-spacing="0" role="list">
-<section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations">
+<div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" role="list">
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations">
 <iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
 <div class="cell">
 <div class="cell-output-display">
@@ -775,7 +806,7 @@ Histogram \sim Frequency~Density &lt;=&gt; Fourier~Series \sim Fourier~Transform
 <tr class="odd">
 <td style="text-align: left;">mosaicCalc</td>
 <td style="text-align: left;">0.6.4</td>
-<td style="text-align: left;"><span class="citation" data-cites="mosaicCalc">Kaplan, Pruim, and Horton (<a href="#ref-mosaicCalc" role="doc-biblioref">2024</a>)</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="mosaicCalc">Kaplan et al. (<a href="#ref-mosaicCalc" role="doc-biblioref">2024</a>)</span></td>
 </tr>
 </tbody>
 </table>
@@ -794,16 +825,15 @@ Van Boxtel, G.J.M., et al. 2021. <em><span class="nocase">gsignal</span>: Signal
 </div>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{2024,
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><div class="code-copy-outer-scaffold"><pre class="sourceCode quarto-appendix-bibtex code-with-copy"><code class="sourceCode bibtex">@online{2024,
   author = {},
   title = {Fourier {Series} and {Fourier} {Transform}},
   date = {2024-05-02},
-  url = {https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/},
+  url = {https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-<span>“Fourier Series and Fourier Transform.”</span> 2024. May 2, 2024.
-<a href="https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/">https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/</a>.
+</code></pre><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+<span>“Fourier Series and Fourier Transform.”</span> 2024. May 2. <a href="https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/">https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -877,12 +907,31 @@ Van Boxtel, G.J.M., et al. 2021. <em><span class="nocase">gsignal</span>: Signal
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/mathforcoders\.netlify\.app");
+        var filterRegex = new RegExp("https:\/\/mathformakers\.netlify\.app\/");
+      const newWindowLabel = "(opens in a new tab)";
+      const newWindowNoteId = "quarto-ext-newwindow-label";
+      // Links reference one hidden label through aria-describedby, so the
+      // announcement never changes their accessible name.
+      var describeNewWindow = (link) => {
+        if (!window.document.getElementById(newWindowNoteId)) {
+          var newWindowNote = window.document.createElement("span");
+          newWindowNote.id = newWindowNoteId;
+          newWindowNote.hidden = true;
+          newWindowNote.textContent = newWindowLabel;
+          window.document.body.appendChild(newWindowNote);
+        }
+        var describedBy = (link.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+        if (!describedBy.includes(newWindowNoteId)) {
+          describedBy.push(newWindowNoteId);
+          link.setAttribute("aria-describedby", describedBy.join(" "));
+        }
+      }
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -896,10 +945,72 @@ Van Boxtel, G.J.M., et al. 2021. <em><span class="nocase">gsignal</span>: Signal
             if (link.getAttribute("rel") === null) {
               link.setAttribute("rel", "noopener");
             }
+            describeNewWindow(link);
+          if (!link.classList.contains('no-external-icon')) {
             // default icon
             link.classList.add("external");
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -913,6 +1024,7 @@ Van Boxtel, G.J.M., et al. 2021. <em><span class="nocase">gsignal</span>: Signal
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1075,44 +1187,54 @@ Van Boxtel, G.J.M., et al. 2021. <em><span class="nocase">gsignal</span>: Signal
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1210,7 +1332,9 @@ Van Boxtel, G.J.M., et al. 2021. <em><span class="nocase">gsignal</span>: Signal
       }
     }
   });
-  </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+  </script><script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script><nav class="page-navigation column-body" aria-label="Page"><div class="nav-page nav-page-previous">
       <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/20-SamplingAliasing/index.html" class="pagination-link" aria-label="Sampling And Aliasing">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Sampling And Aliasing</span>
       </a>          

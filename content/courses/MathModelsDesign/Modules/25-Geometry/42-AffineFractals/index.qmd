@@ -4,7 +4,7 @@ subtitle: "Created in Translation"
 subject: ""
 abstract: ""
 date: 28/Jan/2025
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 42
 categories:
 - Iterated Functions
@@ -26,11 +26,13 @@ d2:
   sketch: true
 ---
 
+{{< include /_setup_claude_made.qmd >}}
+
 ```{r setup, include=FALSE}
 library(blogdown)
 library(tidyverse)
 library(ggformula)
-library(mosaicCalc) # Analytic Calculus
+# library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
 library(caracas)
@@ -80,104 +82,12 @@ library(embedr) # Embed multimedia in HTML files
 
 ```
 
-#### Plot Fonts and Theme
-
-```{r}
-#| label: plot-theme
-#| echo: true
-#| cache: false
-#| code-fold: true
-#| messages: false
-#| warning: false
-
-library(systemfonts)
-library(showtext)
-## Clean the slate
-systemfonts::clear_local_fonts()
-systemfonts::clear_registry()
-##
-showtext_opts(dpi = 96) #set DPI for showtext
-sysfonts::font_add(family = "Alegreya",
-  regular = "../../../../../../fonts/Alegreya-Regular.ttf",
-  bold = "../../../../../../fonts/Alegreya-Bold.ttf",
-  italic = "../../../../../../fonts/Alegreya-Italic.ttf",
-  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf")
-
-sysfonts::font_add(family = "Roboto Condensed", 
-  regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
-  bold = "../../../../../../fonts/RobotoCondensed-Bold.ttf",
-  italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
-  bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
-showtext_auto(enable = TRUE) #enable showtext
-##
-theme_custom <- function(){ 
-    font <- "Alegreya"   #assign font family up front
-    '%+replace%' <- ggplot2::'%+replace%' # nolint
-    
-    theme_classic(base_size = 14, base_family = font) %+replace%    #replace elements we want to change
-    
-    theme(
-      text = element_text(family = font),  #set base font family
-      
-      #text elements
-      plot.title = element_text(                 #title
-                   family = font,          #set font family
-                   size = 24,                    #set font size
-                   face = 'bold',                #bold typeface
-                   hjust = 0,                    #left align
-                   margin = margin(t = 5, r = 0, b = 5, l = 0)), #margin
-      plot.title.position = "plot", 
-      
-      plot.subtitle = element_text(              #subtitle
-                   family = font,          #font family
-                   size = 14,                   #font size
-                   hjust = 0,                   #left align
-                   margin = margin(t = 5, r = 0, b = 10, l = 0)), #margin
-      
-      plot.caption = element_text(               #caption
-                   family = font,          #font family
-                   size = 9,                     #font size
-                   hjust = 1),                   #right align
-      
-      plot.caption.position = "plot",            #right align
-      
-      axis.title = element_text(                 #axis titles
-                   family = "Roboto Condensed",  #font family
-                   size = 12),                   #font size
-      
-      axis.text = element_text(                  #axis text
-                   family = "Roboto Condensed",  #font family
-                   size = 9),                    #font size
-      
-      axis.text.x = element_text(                #margin for axis text
-                    margin = margin(5, b = 10))
-      
-      #since the legend often requires manual tweaking 
-      #based on plot content, don't define it here
-    )
-}
-
-## Use available fonts in ggplot text geoms too!
-ggplot2::update_geom_defaults(geom = "text",new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-
-## Set the theme
-ggplot2::theme_set(new = theme_custom())
-
-```
-
 
 ## {{< iconify icons8 idea >}} Inspiration
 
 ```{r}
 #| echo: false
 # Iteratively build the fern
-theme_set(theme_custom())
 #
 n <- 50000
 x <- numeric(n)
@@ -233,8 +143,15 @@ fractals from a basic shape using the following procedure:
 5.  Wait for the pattern to emerge.
 
 See the figure below to get an idea of this process.
+```{r}
+#| label: fig-emerging-fractal
+#| fig-cap: "Emerging Fractal"
+#| echo: false
 
-![Emerging Fractal](../../../../../materials/images/Emerging-Barnesly.png){#fig-emerging-barnesly}
+knitr::include_graphics("../../../../../materials/images/Emerging-Barnesly.png")
+
+```
+
 
 Well, this works, provided the transformations include significant
 amounts of scaling (i.e. **reduction in size**). You can imagine that
@@ -253,6 +170,18 @@ simplified a great deal of AI algorithms, we have recourse to what is
 called the [**Barnsley
 Algorithm**](https://mathematica.stackexchange.com/questions/124919/construction-steps-of-barnsleys-fern).
 NOTE: especially note the terrific pictures on this stackexchange page!
+
+## What is a Transformation?
+
+If 2D-space were a sheet of rubber...what could you do with it? 
+Well, you could stretch in any direction, and rotate it too. 
+
+How do these transformations work? 
+:::
+{{< video https://www.youtube-nocookie.com/embed/kYB8IZa5AuE width="560" height="400" align="center" title="" >}}
+</center>
+Linear Transformations
+:::
 
 First let us understand what are ***Affine Transformations*** and then
 build our fractals.

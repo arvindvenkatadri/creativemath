@@ -3,7 +3,7 @@ title: <iconify-icon icon="arcticons:noise-reducer" width="1.2em" height="1.2em"
 subtitle: "Meeting Ken Perlin"
 abstract: "Can you make the same random noise again?"
 date: 2024-Nov-07
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 30
 categories:
 - Noise Generation
@@ -18,15 +18,21 @@ editor:
 ---
 
 ```{r setup, include=FALSE}
-library(blogdown)
+#library(blogdown)
 library(tidyverse)
 library(ggformula)
+library(ggiraph)
+library(ggcube) # New package for 3D plots (May2026)
+library(ggpointless) # fancy extra geoms for better diagrams
+library(ggdiagram) # What is says
+###
 library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
-library(plot3D) # 3D plots for explanation
-library(rgl) # Interactive 3D plots for explanation
 library(plotly)
-knitr::knit_hooks$set(webgl = hook_webgl)
+#library(plot3D) # 3D plots for explanation
+#library(rgl) # Interactive 3D plots for explanation
+#options(rgl.useNULL = TRUE)
+#knitr::knit_hooks$set(webgl = hook_webgl)
 #library(caracas)
 library(downloadthis)
 library(knitr)
@@ -49,25 +55,21 @@ library(kableExtra)
 
 ```
 
+
 ```{r}
 #| label: Extra Pedagogical Packages
 #| echo: false
 #| message: false
 
-library(checkdown)
 library(epoxy)
 library(grateful)
-library(MKdescr)
-library(shinylive) # To create a Shiny app in a Quarto HTML doc
-# Will not work if webr is also used in the SAME Quarto doc!
 library(sysfonts)
 library(gfonts)
-library(kableExtra)
-# library(conflicted)
-# conflicted::conflicts_prefer(dplyr::filter, dplyr::count, dplyr::last, dplyr::glimpse, base::max)
 library(downloadthis)
+library(kableExtra)
 #devtools::install_github("mccarthy-m-g/embedr")
 library(embedr) # Embed multimedia in HTML files
+
 ```
 
 
@@ -231,7 +233,7 @@ Ok, this is going to be a long explanation!!!
 
 #### A. Inner Product Computation
 
-Let us take some inspiration from the Mahabharata first: Here is an evocative picture of an event from the great epic:
+Let us take some inspiration from the Mahabharata first: Here is an evocative picture of an event from the great epic, where Bheeshma is lying on a bed of arrows, and the arrows are piercing his body in random directions. The arrows are like the gradient vectors in Perlin Noise, and the point of interest is like Bheeshma's body. The dot product of the gradient vectors with the difference vectors to the point of interest gives us the noise value at that point.:
 
 ```{r}
 #| label: fig-bheeshma
@@ -378,22 +380,10 @@ gf_polygon(c(0,0.25, 0.25,0) ~ c(0,0.25, 0.75,1),
 ```
 
 ```{r}
-#| label: 3D-plot-interpolation-function
+#| label: fig-3D-interpolation-plot
 #| echo: false
-#| warning: false
-#| fig-height: 5
-#| 
-#library(plot3D)
-x = c(0:25) / 25
-y = c(0:25) / 25
-##
-my_data <- expand_grid(x, y) %>%
-  mutate(
-    r = sqrt(x ^ 2 + y ^ 2),
-    rscaled = r / max(r),
-    z = 6 * (1 - rscaled) ^ 5 - 15 * (1 - rscaled) ^ 4 + 10 * (1 -
-                                                                 rscaled) ^ 3
-  )
+#| eval: false
+
 my_points <- tibble(
   x = c(0, 0, 1, 1, 0.6),
   y = c(0, 1, 0, 1, 0.2),
@@ -405,13 +395,52 @@ my_gradient <- tibble(x = c(0, 0.5),
 my_vector <- tibble(x = c(0, 0.6),
                     y = c(0, 0.2),
                     z = c(0, 0))
-scene = list(camera = list(eye = list(
-  x = 0.75, y = -1.5, z = 1.25
-)))
-my_data %>%
-  plot_ly(x = ~ x, y = ~ y, z = ~ z) %>%
+
+mosaicCalc::interactive_plot(6*(1-x)^5*(1-y)^5 - 15 * (1-x)^4*(1-y)^4 + 10* (1-x)^3*(1-y)^3 ~ x & y, domain(x=0:1, y=0:1)) %>% 
   add_mesh(opacity = 0.5) %>%
-  
+  add_markers(
+    data = my_points,
+    x = ~ x,
+    y = ~ y,
+    z = ~ z,
+    color = c("Vertex", "Vertex", "Vertex", "Vertex", "PoI"))
+
+```
+
+```{r}
+#| label: 3D-plot-interpolation-vectors-points
+#| echo: false
+#| eval: false
+#| warning: false
+#| 
+x = c(0:25) / 25
+y = c(0:25) / 25
+
+my_data2 <- expand_grid(x, y) %>%
+  mutate(
+    z = 6*(1-x)^5*(1-y)^5 - 15 * (1-x)^4*(1-y)^4 + 10* (1-x)^3*(1-y)^3
+  )
+
+my_points <- tibble(
+  x = c(0, 0, 1, 1, 0.6),
+  y = c(0, 1, 0, 1, 0.2),
+  z = c(0, 0, 0, 0, 0)
+)
+my_gradient <- tibble(x = c(0, 0.5),
+                      y = c(0, -0.2),
+                      z = c(0, 0.6))
+my_vector <- tibble(x = c(0, 0.6),
+                    y = c(0, 0.2),
+                    z = c(0, 0))
+##
+scene = list(
+  camera = list(eye = list(x = 0.75, y = -1.5, 
+                           z = 1.25),
+  annotations = list(arrowhead = 6)))
+
+plot_ly(x = ~ x, y = ~ y, z = ~ z, 
+        data = my_data2) %>%
+  add_mesh(opacity = 0.5) %>%
   add_markers(
     data = my_points,
     x = ~ x,
@@ -419,18 +448,17 @@ my_data %>%
     z = ~ z,
     color = c("Vertex", "Vertex", "Vertex", "Vertex", "PoI")
   ) %>%
-  
   add_lines(
     data = my_gradient,
     name = "Gradient Vector",
     showlegend = T,
     line = list(
-      color = 'purple',
+      symbol = "arrow",
+      arrow_style = 'arrow-right',
       width = 10,
-      symbol = 'arrow-right'
-    )
-  ) %>%
-  
+      color = 'purple',
+      symbol = "arrow-right")
+  ) %>% 
   add_lines(
     data = my_vector,
     name = "Point Vector",
@@ -438,7 +466,6 @@ my_data %>%
     line = list(
       symbol = "arrow",
       arrow_style = 'arrow-right',
-      size = 10,
       color = 'red',
       width = 10,
       angleref = "previous"
@@ -454,14 +481,6 @@ my_data %>%
 Both $\frac{df(t)}{dt}$ and $\frac{d^2f(t)}{dt^2}$ are continuous at the
 ends of the range of the function (t = 0 and t = 1).
 
-```{r}
-#| echo: false
-#| eval: false
-library(mosaicCalc)
-mosaicCalc::D(6*t^5 - 15*t^4 + 10*t^3 ~ t) ->fdash
-fdash
-D(fdash(t) ~ t)
-```
 
 $$
 \begin{array}{lcl}f'(t) & = & \ \frac{d}{dt}[6*t^5 - 15*t^4 + 10*t^3]\\
@@ -470,12 +489,16 @@ $$
 \end{array}
 $$
 
+
 $$
 \begin{array}{lcl}f''(t) & = & \ \frac{d^2}{dt^2}[6*t^5 - 15*t^4 + 10*t^3]\\
 & = &60 * (2 * t^3 - 3 * t^2 + t)\\
 & = & 0  \ \text{@ t = 0 and t = 1}
 \end{array}
-$$ This ensures that there are not sudden changes in the noise function
+$$ 
+
+
+This ensures that there are not sudden changes in the noise function
 near about the vertices.
 :::
 
@@ -621,6 +644,9 @@ cannot generate say time waveforms based on this idea. `p5.js` of course
 can do 1D.
 :::
 
+There is also another new package called `[opensimplex2]` that can generate *simplex* noise, that is said to be computationally less intense compared to Perlin Noise. 
+We will discuss that in the next section. TBD. 
+
 ## Videos
 
 Of course there are videos by Dan Shiffman on the topic of Perlin Noise:
@@ -687,7 +713,7 @@ cite_packages(
   output = "table",
   out.dir = ".",
   out.format = "html",
-  pkgs = c("ambient", "mosaicCalc", "plot3D")
+  pkgs = c("ambient")
 ) %>%
   knitr::kable(format = "simple")
 

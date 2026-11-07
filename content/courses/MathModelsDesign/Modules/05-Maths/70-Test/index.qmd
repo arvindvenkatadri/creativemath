@@ -1,0 +1,15 @@
+---
+title: "Test"
+---
+
+{{< include /_setup_claude_made.qmd >}}
+```{r}
+library(systemfonts)
+library(ggplot2)
+cat("graphics/fonts loaded\n")
+```
+
+```{r}
+library(RcppArmadillo)
+cat("RcppArmadillo loaded\n")
+```

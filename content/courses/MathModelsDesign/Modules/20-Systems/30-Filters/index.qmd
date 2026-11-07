@@ -2,7 +2,8 @@
 title: "Filters"
 order: 30
 date: 11/Dec/2025
-date-modified: " `r Sys.Date()` "
+date-modified: today
+description: "Filters are mathematical tools used to process signals and data, often to remove noise or extract useful information. They are widely used in various fields, including engineering, physics, and data science. In this module, we will explore different types of filters, their applications, and how they can be implemented in R."
 
 ---
 
@@ -12,8 +13,12 @@ date-modified: " `r Sys.Date()` "
 #| message: false
 #| warning: false
 
-library(gsignal)
-library(ggdiagram)
+library(gsignal) # for signal processing
+library(ggdiagram) # For drawing diagrams
+library(ggcube) # for 3D plotting
+library(mvtnorm) # for multivariate normal distribution
+library(mosaic)
+
 ```
 
 
@@ -22,4 +27,9 @@ library(ggdiagram)
 ## References
 
 1. <https://ccrma.stanford.edu/~jos/filters/> 
+1. Tim Babb.*The Kalman Filter in Pictures*.<https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/>
+1. The Kalman Filter Website for Students. <https://thekalmanfilter.com/>
+1. <https://sites.google.com/view/ramseyfaragher/papers> 
+1. Kalman Filter in Julia. <https://github.com/wkearn/Kalman.jl> 
+
 

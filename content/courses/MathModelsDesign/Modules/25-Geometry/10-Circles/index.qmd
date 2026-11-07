@@ -4,7 +4,7 @@ subtitle: ""
 subject: "Shapes and Code"
 abstract: ""
 date: 02/May/2024
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 10
 code-fold: true
 categories:
@@ -20,10 +20,13 @@ editor:
     wrap: 72
 ---
 
+{{< include /_setup_claude_made.qmd >}}
+
 ```{r setup, include=FALSE}
 library(blogdown)
 library(tidyverse)
 library(ggformula)
+library(mosaic)
 library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
@@ -73,130 +76,6 @@ library(downloadthis)
 library(embedr) # Embed multimedia in HTML files
 ```
 
-
-```{r}
-#| label: plot-theme-ggplot4
-#| cache: false
-#| echo: false
-#| messages: false
-#| warning: false
-#| 
-library(systemfonts)
-library(showtext)
-library(marquee)
-library(ggtext)
-library(ggrepel)
-## Clean the slate
-systemfonts::clear_local_fonts()
-systemfonts::clear_registry()
-##
-showtext_opts(dpi = 96) #set DPI for showtext
-sysfonts::font_add(family = "Alegreya",
-  regular = "../../../../../../fonts/Alegreya-Regular.ttf",
-  bold = "../../../../../../fonts/Alegreya-Bold.ttf",
-  italic = "../../../../../../fonts/Alegreya-Italic.ttf",
-  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf")
-
-sysfonts::font_add(family = "Roboto Condensed", 
-  regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
-  bold = "../../../../../../fonts/RobotoCondensed-Bold.ttf",
-  italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
-  bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
-showtext_auto(enable = TRUE) #enable showtext
-##
-theme_custom <- function(){ 
-
-    theme_bw(base_size = 10) + 
-    
-    # theme(panel.widths = unit(11, "cm"), 
-    #       panel.heights = unit(6.79, "cm")) + # Golden Ratio
-    
-    theme(plot.margin = margin_auto(t = 1, r = 2, b = 1, l = 1, unit = "cm"),
-          plot.background = element_rect(fill = "bisque",
-                                         colour = "black",
-                                         linewidth = 1)) + 
-            
-    theme_sub_axis(title = element_text(family = "Roboto Condensed", 
-                                       size = 10),
-                   text = element_text(family = "Roboto Condensed", 
-                                       size = 8)) + 
-    
-    theme_sub_legend(text = element_text(family = "Roboto Condensed", 
-                                         size = 6),
-                     title = element_text(family = "Alegreya", 
-                                          size = 8)) + 
-    
-    theme_sub_plot(title = element_text(family = "Alegreya", 
-                                        size = 14, face = "bold"),
-                   title.position = "plot",
-                   subtitle = element_text(family = "Alegreya", 
-                                           size = 10),
-                   caption = element_text(family = "Alegreya", 
-                                          size = 6),
-                   caption.position = "plot") 
-    
-}
-
-## Use available fonts in ggplot text geoms too!
-ggplot2::update_geom_defaults(geom = "text", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "label", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-
-ggplot2::update_geom_defaults(geom = "marquee", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "text_repel", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "label_repel", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-
-## Set the theme
-ggplot2::theme_set(new = theme_custom())
-
-## tinytable options
-options("tinytable_tt_digits" = 2)
-options("tinytable_format_num_fmt" = "significant_cell")
-options(tinytable_html_mathjax = TRUE)
-
-
-## Set defaults for flextable
-flextable::set_flextable_defaults(font.family = "Roboto Condensed")
-
-```
-
-```{r}
-#| echo: false
-library(hrbrthemes)
-hrbrthemes::import_roboto_condensed()
-
-```
-
-
 ## Introduction
 
 Let us start with an investigation into rolling circles! Circles have been with us since our childhood toys and to our older (and more silly!) aspirations for wheels (ahem!). Let us understand their mathematics and see what we can make with them. 
@@ -207,6 +86,10 @@ Let us start with an investigation into rolling circles! Circles have been with 
 #| label: fig-mystery-curve
 #| code-fold: true
 #| fig-cap: "Mystery Curve"
+#| fig-subcap:
+#|  - ggformula
+#|  - traj_plot
+#|  
 t <- seq(0, 2 * pi, by = 0.001)
 x <- t
 data <- tibble::tibble(t,
@@ -217,6 +100,12 @@ data %>%
   gf_point(y ~ x) %>% 
   gf_refine(coord_equal()) %>% 
   gf_theme(theme_void())
+## Using traj_plot
+mosaicCalc::traj_plot(sin(t) + sin(6*t)/2 + cos(14*t)/3 ~ cos(t) + cos(6*t)/2 + sin(14*t)/3,
+  domain(t = c(0, 2*pi)),
+  title = "Mystery Curve", nt = 0) |> 
+  gf_refine(coord_fixed()) |>  
+  gf_refine(theme_void())
 
 ```
 
@@ -241,9 +130,9 @@ $$ {#eq-parametric}
 
 This form is especially suited for a *computational depiction* of the
 curve, since we can have the parameter $t$ go from $0~ ->\infty$ and let
-the $x$ and $y$ be computed and plotted. All right, whatever...but what
-does this have to do with circles?? For that we need to turn to the
-famous Euler formula relating complex vectors and circles.
+the $x$ and $y$ be computed and plotted. So this is really a *scatter plot* of points whose coordinates are generated using the two equations above. 
+
+All right, whatever...but what does this have to do with circles?? For that we need to turn to the famous Euler formula relating complex vectors and circles.
 
 ## How about the Euler Formula?
 
@@ -277,16 +166,23 @@ Now, if we were to use *complex numbers* as our notation, then the
 function for our circle becomes:
 
 $$
-\begin{eqnarray}
-\gamma(t) &=& (cos(t), sin(t))\\
-&=& e^{it}
-\end{eqnarray}
+\Large
+\begin{aligned}
+\gamma(t) &= (\cos t, \sin t) \\
+          &= e^{it}
+\end{aligned}
+\Large
 $$ {#eq-euler}
+
 
 where of course, $i = \sqrt{-1}$.
 
-This is the famous Euler Formula that connects complex numbers with
-trigonometry.
+This is the famous Euler Formula that connects complex numbers with trigonometry.
+
+::: callout-note
+## For the intrepid
+The two steps in @eq-euler are not so pat; there is a brief excursion into a [Taylor Series based derivation](https://muthu.co/deriving-the-famous-eulers-formula-through-taylor-series/) before we go from the first line therein to the second. This need not detain us now, but ask me if you want to know *how* we arrived there!
+:::
 
 ## The Mystery Curve
 

@@ -1,0 +1,124 @@
+---
+title: "Bell Curve Stuff"
+subtitle: "How Noise and Uncertainty might look like"
+order: 120
+date: 01/July/2026
+date-modified: today
+description: "In many applications, we model noise in the system as a bell curve type distribution. This structure lends itself to simple models for filtering and prediction, and also allows itself to be applied in multiple dimensions."
+
+---
+
+```{r}
+#| echo: false
+#| out-width: "60%"
+#| out-height: "60%"
+#| fig-align: center
+#| fig-cap: "Bell Curve"
+
+# knitr::include_graphics("")
+
+```
+
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(gsignal) # for signal processing
+library(mvtnorm) # for multivariate normal distribution
+library(MASS) # mutivariate random number generation
+library(mosaic)
+library(mosaicCalc)
+library(plotly)
+library(ggdiagram) # For drawing diagrams
+library(ggcube) # for 3D plotting
+
+```
+
+
+## How did the Bell Curve originate?
+
+- Random Variables; Probability. An Intro paragraph
+- Gauss and his work
+- Where does this show up?
+
+## Idea of Dimensions
+
+
+## What Does Gaussian Noise look like?
+
+```{r}
+sigma <- matrix(c(4,1,1,1,4,1,1,1,4), ncol = 3, nrow = 3)
+mean = c(0,0,0 )
+#sigma
+#mean
+rmvnorm(n=500, mean=mean, sigma=sigma, method="chol")
+data_3d <- mvtnorm::rmvnorm(mean = mean, n = 1000, sigma = sigma) %>%
+  as_tibble() |> janitor::clean_names()
+
+# 2D density on x-y
+kd <- kde2d(data_3d$v1, data_3d$v2, n = 100)
+
+# put the density on the xy plane at the minimum z
+z0 <- min(data_3d$v3)
+
+data_3d |> plot_ly(x = ~v1, y = ~v2, z = ~v3) |> 
+  add_trace(type = "scatter3d", mode = "markers", size = 3) |> add_surface(
+    x = kd$x,
+    y = kd$y,
+    z = matrix(z0, nrow = length(kd$y), ncol = length(kd$x)),
+    surfacecolor = t(kd$z),
+    colorscale = "Viridis",
+    opacity = 0.5,
+    showscale = FALSE,
+    contours = list(
+      z = list(show = "truehist")
+    )
+  )
+
+```
+
+
+```{r}
+
+p2 <- data_3d |> ggplot(aes(x = v1, y = v2, z = v3)) + 
+  ggcube::geom_point_3d() + 
+  coord_3d()+ 
+  # place 2D density plot on zmin face
+  stat_density_2d(position = position_on_face(faces = "zmin", axes = c("x", "y")),
+                      geom = "polygon", alpha = .1, linewidth = .25) + 
+  stat_density_2d(position = position_on_face(faces = "ymin", axes = c("x", "z")),
+                      geom = "polygon", alpha = .1, linewidth = .25)
+
+p2
+# animate_3d(p2)
+
+```
+
+
+
+## References
+
+1. bzarg blog. *How a Kalman Filter Works, in Pictures.* <https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/> 
+
+1. Ramsey Faragher. *Understanding the Basis of the Kalman Filter
+Via a Simple and Intuitive Derivation*.{{< pdf ../../../../../materials/pdfs/UnderstandingtheBasisoftheKalmanFilter.pdf >}}
+
+1. Tim Babb.*The Kalman Filter in Pictures*.<https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/>
+1. The Kalman Filter Website for Students. <https://thekalmanfilter.com/>
+
+1. Chapter 6. *The Kalman Filter*. <https://bookdown.org/probability/bookdown-demo/kalman-filters.html> in [Stochastic Processes! An interactive introduction.](https://bookdown.org/probability/bookdown-demo/)
+
+1. Kalman Filter in Julia. <https://github.com/wkearn/Kalman.jl> 
+
+1. Chuong B. Do. (October 10, 2008). *The Multivariate Gaussian Distribution*. <https://cs229.stanford.edu/section/gaussians.pdf>
+
+1. <https://ccrma.stanford.edu/~jos/filters/> 
+
+
+## Additional Reading
+
+1. Ramsey Faragher <https://sites.google.com/view/ramseyfaragher/papers> 

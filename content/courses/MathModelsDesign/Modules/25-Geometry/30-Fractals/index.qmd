@@ -2,9 +2,9 @@
 title: Fractals
 subtitle: ""
 subject: "Shapes and Code"
-abstract: "A Geometric Jewellery Store"
+abstract: "A Mathematical Jewellery Store"
 date: 02/May/2024
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 30
 categories:
 - Iterated Functions
@@ -136,7 +136,7 @@ library(LindenmayeR)
 library(LearnGeom)
 library(TurtleGraphics)
 ###
-library(mosaicCalc) # Analytic Calculus
+# library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
 library(caracas)

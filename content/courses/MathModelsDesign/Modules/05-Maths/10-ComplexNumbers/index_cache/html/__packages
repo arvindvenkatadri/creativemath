@@ -10,6 +10,7 @@ stringr
 forcats
 lubridate
 scales
+ggiraph
 ggridges
 ggformula
 lattice
@@ -18,16 +19,13 @@ mosaicData
 mosaicCalc
 ambient
 plot3D
-caracas
+p5
 downloadthis
 knitr
 kableExtra
 checkdown
 epoxy
 grateful
-MKdescr
-shinylive
-sysfonts
-gfonts
 embedr
-ggiraph
+systemfonts
+symengine

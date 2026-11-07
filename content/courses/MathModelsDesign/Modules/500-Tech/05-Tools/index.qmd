@@ -2,7 +2,7 @@
 title: "Tools and Installation"
 author: Arvind V.
 date: 04/Dec/2024
-date-modified: " `r Sys.Date()`"
+date-modified: today
 order: 05
 summary: "What We will Design with"
 categories:
@@ -16,7 +16,9 @@ categories:
 
 ## Introduction
 
-We will predomnantly use `p5.js` in this course, since most of use have had some exposure to it and it is of course easy to acquire skill in `p5.js` rapidly. (Some R code may also be demonstrated.)
+We will use `p5.js` and R in this course. Most of use have had some exposure to  `p5.js` and it is of course easy to acquire skill in `p5.js` rapidly, and requires no installation. 
+
+R also has some very useful packages that allow us to work with maths of sound, image, and other media, and we will use these packages in this course. R is also easy to install, and has a very large community of users and contributors.
 
 ## The `p5.js` web editor
 
@@ -41,11 +43,21 @@ And this?
 Which one was simpler to interpret and modify?
 
 
+## Installing R
+
+1. Head off to  Posit (RStudio) website <https://posit.co/download/rstudio-desktop/> and download the appropriate version for your OS.
+
+2. Head to CRAN <https://cran.r-project.org/> and download the appropriate version of R for your OS.
+
+
+
 ## Wait, But Why?
 
-`p5.js` is very easy for beginners to acquire and see results rapidly. There is also excellent help available on The Coding Train set of video tutorials <u><https://www.youtube.com/@TheCodingTrain></u>, and other web resources.
+- `p5.js` is very easy for beginners to acquire and see results rapidly. There is also excellent help available on The Coding Train set of video tutorials <u><https://www.youtube.com/@TheCodingTrain></u>, and other web resources. Using this tool will allow us to focus more energy on the mathematics aspects, and less on the tool itself. 
 
-Using this tool will allow us to focus more energy on the mathematics aspects, and less on the tool itself. 
+- `R / RStudio` have a terrific set of capabilities that allow us to perform sophisticated processing using very fast and intuitive ("like English" ) code. 
+
+We will work in both environments, and use the best of both worlds to create our designs.
 
 ## Conclusions
 

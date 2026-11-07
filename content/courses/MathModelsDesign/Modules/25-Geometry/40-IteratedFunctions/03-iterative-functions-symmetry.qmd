@@ -1,0 +1,155 @@
+---
+title: "Iterative Functions and Symmetry"
+subtitle: "How Contractive Maps Can Carry the Symmetries from Document 1"
+format: 
+  html:
+    embed-resources: true
+    theme: cosmo
+execute:
+  echo: true
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+set.seed(123)
+```
+
+# Iterated Function Systems (IFS)
+
+An IFS is a finite set of contractive transformations (usually affine maps). Iterating them randomly produces a fractal attractor. When the set of maps is closed under a symmetry group, the attractor inherits that symmetry.
+
+This connects directly to the fractal constructions you may have seen in the Fractals module (self-similar shapes built by repeatedly replacing a figure with smaller copies of itself).
+
+## Simple symmetric IFS in R
+
+The following three maps generate a symmetric Sierpinski-like gasket with rotational symmetry of order 3.
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-cap: "IFS attractor with order-3 rotational symmetry"
+
+# Three contractive maps (scale 0.5 toward the vertices)
+maps <- list(
+  function(p) 0.5 * p + c(0, 0),
+  function(p) 0.5 * p + c(0.5, 0),
+  function(p) 0.5 * p + c(0.25, sqrt(3)/4)
+)
+
+n <- 25000
+pts <- matrix(0, n, 2)
+pts[1,] <- c(0.3, 0.3)
+
+for (i in 2:n) {
+  f <- sample(maps, 1)[[1]]
+  pts[i,] <- f(pts[i-1,])
+}
+
+df <- as.data.frame(pts)
+names(df) <- c("x","y")
+ggplot(df, aes(x,y)) +
+  geom_point(size = 0.2, alpha = 0.4, color = "purple") +
+  coord_fixed() + theme_void()
+```
+
+## p5.js: live IFS with adjustable symmetry
+
+```{=html}
+<div id="ifs-sketch"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<script>
+new p5((p) => {
+  let x = 0, y = 0;
+  let n = 4; // order of symmetry
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    p.background(255);
+    p.strokeWeight(0.8);
+  };
+  p.draw = () => {
+    p.translate(200, 200);
+    for (let i = 0; i < 50; i++) {
+      // Randomly apply a scaled rotation toward a vertex
+      let k = p.floor(p.random(n));
+      let angle = k * p.TWO_PI / n;
+      let vx = 120 * p.cos(angle);
+      let vy = 120 * p.sin(angle);
+      x = (x + vx) * 0.5;
+      y = (y + vy) * 0.5;
+      p.stroke(80, 120, 200, 120);
+      p.point(x, y);
+    }
+  };
+}, document.getElementById("ifs-sketch"));
+</script>
+```
+
+# A Simple Design Procedure
+
+1. **Choose the desired symmetry group**  
+   Decide on rotational order \( n \) or full dihedral \( D_n \). This is the same vocabulary as Document 1.
+
+2. **Select a fundamental domain**  
+   Pick a small set of “seed” points or a basic shape that will be copied by the group actions.
+
+3. **Define contractive maps that respect the group**  
+   For each group element \( g \), include a map of the form  
+   \[ f_g(p) = s \cdot g(p) + t \]  
+   where \( s < 1 \) is a scale factor and \( t \) is a translation.  
+   The collection \( \{f_g\} \) must be closed under the group action if you want the full symmetry.
+
+4. **Iterate randomly**  
+   Start from any point and repeatedly apply a randomly chosen map. After discarding the first few hundred iterates, plot the remaining points (or color by density).
+
+5. **Tune**  
+   Adjust scales, translations, and the probability of each map. Small changes produce large visual differences while the symmetry is preserved.
+
+## Example: adding reflections
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-cap: "Dihedral version (rotations + reflections)"
+
+# Maps that include both rotations and a reflection
+reflect <- function(p) c(p[1], -p[2])
+base_maps <- list(
+  function(p) 0.5 * p + c(0.4, 0),
+  function(p) 0.5 * p + c(-0.2, 0.35)
+)
+
+n_iter <- 20000
+pts <- matrix(0, n_iter, 2)
+pts[1,] <- c(0.1, 0.1)
+
+for (i in 2:n_iter) {
+  f <- sample(base_maps, 1)[[1]]
+  p <- f(pts[i-1,])
+  if (runif(1) < 0.5) p <- reflect(p)   # randomly apply reflection
+  # also rotate by 120° occasionally for order 3
+  if (runif(1) < 0.3) {
+    th <- 2*pi/3
+    R <- matrix(c(cos(th), -sin(th), sin(th), cos(th)), 2, 2)
+    p <- as.numeric(R %*% p)
+  }
+  pts[i,] <- p
+}
+
+df <- as.data.frame(pts)
+names(df) <- c("x","y")
+ggplot(df, aes(x,y)) +
+  geom_point(size = 0.15, alpha = 0.35, color = "darkgreen") +
+  coord_fixed() + theme_void()
+```
+
+# Connection to Classic Fractals
+
+- Sierpinski triangle / carpet → special cases of the above procedure with particular scales and translations.
+- Koch curve, dragon curve, etc. can be rewritten as IFS and then symmetrized by adding the group actions.
+- The same design steps work whether you are building a deterministic L-system or a random IFS.
+
+Once you have a set of maps that carry a symmetry, every iterate (and therefore the whole attractor) respects that symmetry. That is the bridge from Document 1 into generative fractal design.
+

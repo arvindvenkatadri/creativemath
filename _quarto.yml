@@ -22,10 +22,10 @@ website:
   open-graph: true
   search: true
   twitter-card: true
-  title: "Applied Math for Creative Coders"
-  site-url: "https://mathforcoders.netlify.app"
+  title: "Applied Math for Makers"
+  site-url: "https://mathformakers.netlify.app/"
   repo-url: https://github.com/arvindvenkatadri/mathforcoders
-  description: "This is Arvind V.'s website for teaching Maths and Systems for Creative Coders"
+  description: "This is Arvind V.'s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences."
   favicon: "content/materials/icon-park-twotone--concept-sharing.svg"
   google-analytics: "" 
   reader-mode: true
@@ -55,7 +55,7 @@ website:
     search: true
     logo: "content/materials/images/Catterpillar.jpg"
     contents:
-          - section: "Math Models for Creative Coders"
+          - section: "Math Models for Artists and Designers"
             href: content/courses/MathModelsDesign/listing.qmd
             contents: 
             
@@ -101,6 +101,11 @@ website:
                 contents:
                 - content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.qmd
                 - content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.qmd
+                - content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/index.qmd
+                - content/courses/MathModelsDesign/Modules/25-Geometry/22-Permutations/index.qmd
+                - content/courses/MathModelsDesign/Modules/25-Geometry/24-Rotational/index.qmd
+                - content/courses/MathModelsDesign/Modules/25-Geometry/26-Planar/index.qmd
+
                 - content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.qmd
                 - content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/index.qmd 
                 - content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.qmd 
@@ -198,7 +203,7 @@ format:
     highlight-style: tango
     reference-location: document
     cap-location: bottom
-    df-print: paged
+    df-print: kable
     toc: true
     fig-align: center
     fig-cap-location: bottom

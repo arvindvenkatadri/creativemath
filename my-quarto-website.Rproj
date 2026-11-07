@@ -14,3 +14,7 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 AutoAppendNewline: Yes
+
+PythonType: system
+PythonVersion: 3.15.2
+PythonPath: /opt/homebrew/bin/python3

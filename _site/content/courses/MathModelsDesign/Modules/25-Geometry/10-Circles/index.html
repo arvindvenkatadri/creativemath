@@ -2,15 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.16">
+<meta name="generator" content="quarto-1.11.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2024-05-02">
-<title>  Circles – Applied Math for Creative Coders</title>
+<title>  Circles – Applied Math for Makers</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -57,7 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -82,20 +87,20 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../../../">
-<link href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.html" rel="next">
+<link href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/index.html" rel="next">
 <link href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.html" rel="prev">
 <link href="../../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
 <script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-792aea850e7e5573310f85939a37799b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-85f7a32731ed2b609fa7be27e34d4366.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-93ad3e07253cb8ce00162cc303228b16.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-7a1d14f50645d6335187906f5103aab9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -128,8 +133,7 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<link href="../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -155,30 +159,27 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<meta property="og:title" content=" Circles – Applied Math for Creative Coders">
-<meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
-<meta property="og:image" content="https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index_files/figure-html/fig-mystery-curve-1.png">
-<meta property="og:site_name" content="Applied Math for Creative Coders">
-<meta property="og:image:height" content="3000">
-<meta property="og:image:width" content="4200">
-<meta name="twitter:title" content=" Circles – Applied Math for Creative Coders">
-<meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Creative Coders">
-<meta name="twitter:image" content="https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index_files/figure-html/fig-mystery-curve-1.png">
-<meta name="twitter:image-height" content="3000">
-<meta name="twitter:image-width" content="4200">
+<meta property="og:title" content=" Circles – Applied Math for Makers">
+<meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences.">
+<meta property="og:image" content="https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index_files/figure-html/fig-mystery-curve-1.png">
+<meta property="og:site_name" content="Applied Math for Makers">
+<meta property="og:image:height" content="711">
+<meta property="og:image:width" content="1152">
+<meta name="twitter:title" content=" Circles – Applied Math for Makers">
+<meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences.">
+<meta name="twitter:image" content="https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index_files/figure-html/fig-mystery-curve-1.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../../../../index.html">
-    <span class="navbar-title">Applied Math for Creative Coders</span>
+    <span class="navbar-title">Applied Math for Makers</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -212,13 +213,14 @@ window.Quarto = {
   </div>
 </a>
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav" aria-label="Toolbar"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html">Geometry</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Artists and Designers</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html">Geometry</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -226,7 +228,7 @@ window.Quarto = {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Section"><div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../../../../../index.html" class="sidebar-logo-link">
       <img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../../../../../../content/materials/images/Catterpillar.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       </div>
@@ -240,21 +242,21 @@ window.Quarto = {
 <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Math Models for Creative Coders</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Math Models for Artists and Designers</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section: Math Models for Artists and Designers">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools and Tech</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Tools and Tech</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section: Tools and Tech">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html" class="sidebar-item-text sidebar-link">
@@ -290,12 +292,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Maths</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Maths</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section: Maths">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/05-Maths/10-ComplexNumbers/index.html" class="sidebar-item-text sidebar-link">
@@ -325,12 +327,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Systems</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Systems</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section: Systems">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" class="sidebar-item-text sidebar-link">
@@ -372,12 +374,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geometry</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Geometry</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section: Geometry">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth2 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
@@ -388,6 +390,30 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetry Itself</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/22-Permutations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Permutations and Symmetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/24-Rotational/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rotational Symmetry Revisited</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/26-Planar/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetries in a Plane</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -419,12 +445,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Media</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Media</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section: Media">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html" class="sidebar-item-text sidebar-link">
@@ -460,12 +486,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-7-label">AI</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section: AI">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html" class="sidebar-item-text sidebar-link">
@@ -507,12 +533,12 @@ window.Quarto = {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Projects</span></a>
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section: Projects">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
@@ -528,11 +554,11 @@ window.Quarto = {
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
 <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration"><iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</a></li>
   <li><a href="#what-is-a-parametric-equation" id="toc-what-is-a-parametric-equation" class="nav-link" data-scroll-target="#what-is-a-parametric-equation">What is a Parametric Equation?</a></li>
   <li><a href="#how-about-the-euler-formula" id="toc-how-about-the-euler-formula" class="nav-link" data-scroll-target="#how-about-the-euler-formula">How about the Euler Formula?</a></li>
   <li>
@@ -548,17 +574,17 @@ window.Quarto = {
   </ul>
 </li>
   <li><a href="#design-principles-for-rotational-symmetry" id="toc-design-principles-for-rotational-symmetry" class="nav-link" data-scroll-target="#design-principles-for-rotational-symmetry">Design Principles for Rotational Symmetry</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d--mirror-symmetry" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d--mirror-symmetry" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d--mirror-symmetry"><iconify-icon inline="" icon="codicon:mirror" aria-label="Icon mirror from codicon Iconify.design set." title="Icon mirror from codicon Iconify.design set."></iconify-icon> Mirror Symmetry</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d-mirror-symmetry" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d-mirror-symmetry" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d-mirror-symmetry"><iconify-icon inline="" icon="codicon:mirror" aria-label="Icon mirror from codicon Iconify.design set." title="Icon mirror from codicon Iconify.design set."></iconify-icon> Mirror Symmetry</a></li>
   <li><a href="#fun-extras-to-try" id="toc-fun-extras-to-try" class="nav-link" data-scroll-target="#fun-extras-to-try">Fun Extras to Try</a></li>
   <li><a href="#comparing-exponential-and-trigonometric-functions" id="toc-comparing-exponential-and-trigonometric-functions" class="nav-link" data-scroll-target="#comparing-exponential-and-trigonometric-functions">Comparing Exponential and Trigonometric Functions</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d--conclusion" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d--conclusion" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d--conclusion"><iconify-icon inline="" icon="fluent-mdl2:decision-solid" aria-label="Icon decision-solid from fluent-mdl2 Iconify.design set." title="Icon decision-solid from fluent-mdl2 Iconify.design set."></iconify-icon> Conclusion</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion"><iconify-icon inline="" icon="fluent-mdl2:decision-solid" aria-label="Icon decision-solid from fluent-mdl2 Iconify.design set." title="Icon decision-solid from fluent-mdl2 Iconify.design set."></iconify-icon> Conclusion</a></li>
   <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
-  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Creative Coders</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html">Geometry</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</a></li></ol></nav><div class="quarto-title">
+<main class="content page-columns page-full column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Artists and Designers</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/listing.html">Geometry</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
 <iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</h1>
   <div class="quarto-categories">
@@ -584,7 +610,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 12, 2026</p>
+      <p class="date-modified">November 7, 2026</p>
     </div>
   </div>
     
@@ -594,9 +620,9 @@ window.Quarto = {
 
 </header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Let us start with an investigation into rolling circles! Circles have been with us since our childhood toys and to our older (and more silly!) aspirations for wheels (ahem!). Let us understand their mathematics and see what we can make with them.</p>
-</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d--inspiration">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span>, by <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">t</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">t</span>,</span>
@@ -607,16 +633,40 @@ window.Quarto = {
 <span><span class="va">data</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
-<div id="fig-mystery-curve" class="quarto-float quarto-figure quarto-figure-center anchored">
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## Using traj_plot</span></span>
+<span><span class="fu">mosaicCalc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/traj_plot.html">traj_plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">6</span> <span class="op">*</span> <span class="va">t</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="fl">14</span> <span class="op">*</span> <span class="va">t</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="fl">6</span> <span class="op">*</span> <span class="va">t</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">14</span> <span class="op">*</span> <span class="va">t</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3</span>,</span>
+<span>  <span class="fu">domain</span><span class="op">(</span>t <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Mystery Curve"</span>, nt <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">coord_fixed</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div id="fig-mystery-curve" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-mystery-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-mystery-curve-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Mystery Curve"><img src="index_files/figure-html/fig-mystery-curve-1.png" class="img-fluid figure-img" width="2100"></a>
+<div class="cell-output-display">
+<div id="fig-mystery-curve-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-mystery-curve-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-mystery-curve-1.png" class="lightbox" data-gallery="fig-mystery-curve" title="Figure&nbsp;1&nbsp;(a): ggformula"><img src="index_files/figure-html/fig-mystery-curve-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" data-ref-parent="fig-mystery-curve"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-mystery-curve-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) ggformula
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-mystery-curve-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-mystery-curve-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-mystery-curve-2.png" class="lightbox" data-gallery="fig-mystery-curve" title="Figure&nbsp;1&nbsp;(b): traj_plot"><img src="index_files/figure-html/fig-mystery-curve-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" data-ref-parent="fig-mystery-curve"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-mystery-curve-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) traj_plot
+</figcaption></figure>
+</div>
+</div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mystery-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Mystery Curve
 </figcaption></figure>
-</div>
 </div>
 </div>
 <center>
@@ -631,7 +681,8 @@ x &amp;= cos(t) + cos(6t)/2 + sin(14t)/3\\
 y &amp;= sin(t) + sin(6t)/2 + cos(14t)/3
 \end{eqnarray}
 \tag{1}\]</span></span></p>
-<p>This form is especially suited for a <em>computational depiction</em> of the curve, since we can have the parameter <span class="math inline">\(t\)</span> go from <span class="math inline">\(0~ -&gt;\infty\)</span> and let the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> be computed and plotted. All right, whatever…but what does this have to do with circles?? For that we need to turn to the famous Euler formula relating complex vectors and circles.</p>
+<p>This form is especially suited for a <em>computational depiction</em> of the curve, since we can have the parameter <span class="math inline">\(t\)</span> go from <span class="math inline">\(0~ -&gt;\infty\)</span> and let the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> be computed and plotted. So this is really a <em>scatter plot</em> of points whose coordinates are generated using the two equations above.</p>
+<p>All right, whatever…but what does this have to do with circles?? For that we need to turn to the famous Euler formula relating complex vectors and circles.</p>
 </section><section id="how-about-the-euler-formula" class="level2"><h2 class="anchored" data-anchor-id="how-about-the-euler-formula">How about the Euler Formula?</h2>
 <p>What is the equation of a circle? Most likely you will say:</p>
 <p><span id="eq-circle"><span class="math display">\[
@@ -651,13 +702,28 @@ or ~ perhaps\\
 \]</span> for a more general one.</p>
 <p>Now, if we were to use <em>complex numbers</em> as our notation, then the function for our circle becomes:</p>
 <p><span id="eq-euler"><span class="math display">\[
-\begin{eqnarray}
-\gamma(t) &amp;=&amp; (cos(t), sin(t))\\
-&amp;=&amp; e^{it}
-\end{eqnarray}
+\Large
+\begin{aligned}
+\gamma(t) &amp;= (\cos t, \sin t) \\
+          &amp;= e^{it}
+\end{aligned}
+\Large
 \tag{3}\]</span></span></p>
 <p>where of course, <span class="math inline">\(i = \sqrt{-1}\)</span>.</p>
 <p>This is the famous Euler Formula that connects complex numbers with trigonometry.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>For the intrepid
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The two steps in <a href="#eq-euler" class="quarto-xref">Equation&nbsp;3</a> are not so pat; there is a brief excursion into a <a href="https://muthu.co/deriving-the-famous-eulers-formula-through-taylor-series/">Taylor Series based derivation</a> before we go from the first line therein to the second. This need not detain us now, but ask me if you want to know <em>how</em> we arrived there!</p>
+</div>
+</div>
 </section><section id="the-mystery-curve" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="the-mystery-curve">The Mystery Curve</h2>
 <p>Using this formula, our parametric function <span class="math inline">\(\mu(t)\)</span> for our mystery curve becomes a family of three circles, of <span class="bg-pink black"><strong>different sizes</strong></span> and rotating at <span class="bg-blue black"><strong>different speeds</strong></span>:</p>
 <p><span class="math display">\[
@@ -674,7 +740,7 @@ y &amp;= sin(t) + sin(6t)/2 + cos(14t)/3\\
 \tag{4}\]</span></span></p>
 <p>which gives us three <em>rotating vectors</em> with amplitudes given by {1, 1/2, 1/3} and with rotation speeds in the ratio {1 : 6: -14}. The first two rotate counter-clockwise; the third vector rotates in the clockwise direction since we have a negative coefficient for <span class="math inline">\(t\)</span>). The tips of these rotating vectors course trace out the individual circles. We can picture the pattern as the <em>vector sum</em> of the vectors, or as three circles where each subsequent circle rotates and rolls on the circumference of the earlier one, like meshed gears.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../../../../../materials/images/mystery-curve.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="From The Math Less Travelled Blog"><img src="../../../../../materials/images/mystery-curve.gif" class="img-fluid figure-img" alt="From The Math Less Travelled Blog"></a></p>
+<figure class="figure"><p><a href="../../../../../materials/images/mystery-curve.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="From The Math Less Travelled Blog"><img src="../../../../../materials/images/mystery-curve.gif" class="img-fluid figure-img" alt="From The Math Less Travelled Blog"></a></p>
 <figcaption>From <a href="https://mathlesstraveled.wordpress.com/2015/06/04/random-cyclic-curves-5/">The Math Less Travelled Blog</a></figcaption></figure>
 </div>
 <p>How do we go from the parametric form in <a href="#eq-parametric" class="quarto-xref">Equation&nbsp;1</a> to the complex exponential form in <a href="#eq-mystery-curve" class="quarto-xref">Equation&nbsp;4</a>? The first two terms are direct combinings of the respective <code>cos</code> and <code>sin</code> terms into exponentials; the third term may need a bit of understanding.</p>
@@ -767,7 +833,7 @@ Table&nbsp;1: Rotating Complex Exponentials and their Complex Amplitudes
 <p>Do think of what might happen when the amplitude has an <strong>overall negative sign</strong>, like <span class="math inline">\(-2*e^{-3it}\)</span> or <span class="math inline">\(-2i*e^{-3it}\)</span>! (Gasp!! Swoon…). Just flip the vector on its head and rotate the same way as stated.</p>
 <section id="plotting-with-complex-exponentials-in-r" class="level3"><h3 class="anchored" data-anchor-id="plotting-with-complex-exponentials-in-r">Plotting with Complex Exponentials in R</h3>
 <p>We can use the rules in the above table to directly plot using complex vectors in R:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">f_mystery1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="fl">1i</span><span class="op">)</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fl">0.5</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="fl">6i</span><span class="op">)</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">+</span></span>
@@ -781,8 +847,8 @@ Table&nbsp;1: Rotating Complex Exponentials and their Complex Amplitudes
 <span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="index_files/figure-html/plotting-exponentials-in-R-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="index_files/figure-html/plotting-exponentials-in-R-1.png" class="img-fluid figure-img" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/plotting-exponentials-in-R-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/plotting-exponentials-in-R-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -872,10 +938,14 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <li>k = 2 (The remainder of <span class="math inline">\(n*m~mod~k\)</span>) i.e.&nbsp;<strong>Type</strong> of Symmetry</li>
 </ul>
 <p>Here is the plot of the frequency components:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Set graph theme</span></span>
-<span><span class="fu">theme_set</span><span class="op">(</span>new <span class="op">=</span> <span class="fu">theme_custom</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#</span></span>
+<span><span class="fu">theme_set</span><span class="op">(</span>new <span class="op">=</span> <span class="fu">theme_custom</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output cell-output-error">
+<pre data-code-line-numbers=""><code>Error in `theme_custom()`:
+! could not find function "theme_custom"</code></pre>
+</div>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1973</span><span class="op">)</span></span>
 <span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="co"># Number of circles</span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fl">7</span> <span class="co"># Prime Modulus</span></span>
@@ -893,13 +963,44 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">prime_multiple</span>, <span class="va">frequency</span>, <span class="va">amplitude</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">circles</span></span>
 <span><span class="va">circles</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["prime_multiple"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["frequency"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["amplitude"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"-14","2":"-12","3":"-0.1666667"},{"1":"-7","2":"-5","3":"-0.4000000"},{"1":"0","2":"2","3":"1.0000000"},{"1":"7","2":"9","3":"0.2222222"},{"1":"14","2":"16","3":"0.1250000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: right;">prime_multiple</th>
+<th style="text-align: right;">frequency</th>
+<th style="text-align: right;">amplitude</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-14</td>
+<td style="text-align: right;">-12</td>
+<td style="text-align: right;">-0.1666667</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-7</td>
+<td style="text-align: right;">-5</td>
+<td style="text-align: right;">-0.4000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.2222222</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0.1250000</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##</span></span>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##</span></span>
 <span><span class="va">circles</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, colour <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_segment</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">prime_multiple</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">prime_multiple</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span> <span class="va">prime_multiple</span> <span class="op">+</span> <span class="va">frequency</span>,</span>
@@ -938,11 +1039,9 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <span>  <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">28</span>, <span class="op">-</span><span class="fl">21</span>, <span class="op">-</span><span class="fl">14</span>, <span class="op">-</span><span class="fl">7</span>, <span class="op">-</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">7</span>, <span class="fl">9</span>, <span class="fl">14</span>, <span class="fl">16</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu">theme_custom</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="2100"></a></p>
-</figure>
-</div>
+</details><div class="cell-output cell-output-error">
+<pre data-code-line-numbers=""><code>Error in `theme_custom()`:
+! could not find function "theme_custom"</code></pre>
 </div>
 </div>
 <p>The function for this curve would be:</p>
@@ -960,7 +1059,7 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 \end{multline}
 \tag{7}\]</span></span></p>
 <p>Let us now plot this:</p>
-<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remainder = 2 from 7</span></span>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remainder = 2 from 7</span></span>
 <span><span class="co"># frequencies: 2, 7+2, 14+2, -7+2, -14+2</span></span>
 <span><span class="va">f_mystery2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fl">1.0</span> <span class="op">*</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="fl">2i</span><span class="op">)</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">+</span></span>
@@ -986,19 +1085,22 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <span><span class="co">#   gf_point(y ~ x, title = "Parametric Equation Rendering") %&gt;%</span></span>
 <span><span class="co">#   gf_refine(coord_equal()) %&gt;%</span></span>
 <span><span class="co">#   gf_theme(theme_void())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell quarto-layout-panel" data-layout-ncol="1">
+</details><div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><a href="index_files/figure-html/mystery-curve-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/mystery-curve-2-1.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/mystery-curve-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="index_files/figure-html/mystery-curve-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <p>There, we have designed a pattern with seven-fold rotational symmetry. Can you make this in <code>p5.js</code>? Can you try for other orders and types of symmetry?</p>
-</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d--mirror-symmetry" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d--mirror-symmetry">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d-mirror-symmetry" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920636f6469636f6e206d6972726f72203e7d7d-mirror-symmetry">
 <iconify-icon inline="" icon="codicon:mirror" aria-label="Icon mirror from codicon Iconify.design set." title="Icon mirror from codicon Iconify.design set."></iconify-icon> Mirror Symmetry</h2>
 <p>The coordinate system defines a positive increase in angle as the <strong>counterclockwise direction</strong>. So an increase in the parameter <span class="math inline">\(t\)</span>, increases the angle for each frequency component in that direction, <strong>if their coefficient is positive</strong>, and the other way of their <strong>coefficient is negative</strong>. So far so good.</p>
 <p>Consider a small modification to our original <a href="#fig-mystery-curve" class="quarto-xref">Figure&nbsp;1</a>:</p>
-<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Original Mystery Curve</span></span>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Original Mystery Curve</span></span>
 <span><span class="co"># ## remainder = +1 from 5</span></span>
 <span><span class="co"># ## frequencies 1, 5+1, -15+1</span></span>
 <span><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
@@ -1026,13 +1128,19 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell quarto-layout-panel" data-layout-ncol="2">
+</details><div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="index_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="index_files/figure-html/unnamed-chunk-3-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="index_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-2-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="index_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1056,7 +1164,7 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 </section><section id="fun-extras-to-try" class="level2"><h2 class="anchored" data-anchor-id="fun-extras-to-try">Fun Extras to Try</h2>
 <p>It would be cool to simply develop the equations for any pattern in <strong>complex notation</strong> as in <a href="#eq-mystery-curve" class="quarto-xref">Equation&nbsp;4</a> and throw that into code, without the tedious conversions into sines and cosines. Can we try that?</p>
 <p>Here is an example in R:</p>
-<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span>, by <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span></span>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span>, by <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">t</span></span>
 <span><span class="co">## NOTE: need the minus sign here inside the exponential!!</span></span>
 <span><span class="co">## AND Absolutely need the "1" here before the solitary "i"!!</span></span>
@@ -1114,33 +1222,51 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">f6</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, asp <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell quarto-layout-panel" data-layout-ncol="2">
+</details><div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="index_files/figure-html/fun-stuff-base-R-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/fun-stuff-base-R-1.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/fun-stuff-base-R-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/fun-stuff-base-R-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="index_files/figure-html/fun-stuff-base-R-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="index_files/figure-html/fun-stuff-base-R-2.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/fun-stuff-base-R-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="index_files/figure-html/fun-stuff-base-R-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="index_files/figure-html/fun-stuff-base-R-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="index_files/figure-html/fun-stuff-base-R-3.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/fun-stuff-base-R-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="index_files/figure-html/fun-stuff-base-R-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="index_files/figure-html/fun-stuff-base-R-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="index_files/figure-html/fun-stuff-base-R-4.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/fun-stuff-base-R-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="index_files/figure-html/fun-stuff-base-R-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="index_files/figure-html/fun-stuff-base-R-5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="index_files/figure-html/fun-stuff-base-R-5.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/fun-stuff-base-R-5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="index_files/figure-html/fun-stuff-base-R-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="index_files/figure-html/fun-stuff-base-R-6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="index_files/figure-html/fun-stuff-base-R-6.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/fun-stuff-base-R-6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="index_files/figure-html/fun-stuff-base-R-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
 </div>
 </div>
 </div>
-<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># t &lt;- seq(0, 2 * pi, by = 0.001) # Already computed</span></span>
+</div>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># t &lt;- seq(0, 2 * pi, by = 0.001) # Already computed</span></span>
 <span><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">t</span>, pattern <span class="op">=</span> <span class="fu">f1</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">t</span>, pattern <span class="op">=</span> <span class="fu">f2</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">data3</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span><span class="va">t</span>, pattern <span class="op">=</span> <span class="fu">f3</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">)</span></span>
@@ -1167,12 +1293,12 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/complex.html">Im</a></span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html">Re</a></span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell quarto-layout-panel" data-layout-ncol="2">
+</details><div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 
 </div>
 </section><section id="comparing-exponential-and-trigonometric-functions" class="level2"><h2 class="anchored" data-anchor-id="comparing-exponential-and-trigonometric-functions">Comparing Exponential and Trigonometric Functions</h2>
 <p>Just for practice, let us once more be clear between the complex exponential notation, and the parametric trigonometric functions.</p>
-<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ## remainder = +2 from 5</span></span>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ## remainder = +2 from 5</span></span>
 <span><span class="co"># ## frequencies 0+2, 5+2, -15+2</span></span>
 <span><span class="co"># ## Coefficients 1, 1, 1</span></span>
 <span><span class="va">f7</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1206,21 +1332,30 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell quarto-layout-panel" data-layout-ncol="3">
+</details><div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><a href="index_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><a href="index_files/figure-html/unnamed-chunk-4-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-3-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="index_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><a href="index_files/figure-html/unnamed-chunk-4-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="index_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-3-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="index_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <section id="section" class="level46"><p class="heading"></p>
-<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ## remainder = +2 from 5</span></span>
+<details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-code-line-numbers=""><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ## remainder = +2 from 5</span></span>
 <span><span class="co"># ## frequencies 0+2, 5+2, -15+2</span></span>
 <span><span class="co"># ## Coefficients 1, -1/2, -i/3 ( Note!!!)</span></span>
 <span><span class="va">f8</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1253,23 +1388,32 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_refine</span><span class="op">(</span><span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell quarto-layout-panel" data-layout-ncol="3">
+</details><div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><a href="index_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><a href="index_files/figure-html/unnamed-chunk-5-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="index_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-4-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><a href="index_files/figure-html/unnamed-chunk-5-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="index_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-4-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="index_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
 </div>
 </div>
 </div>
-</section></section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d--wait-but-why">
+</div>
+</section></section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why">
 <iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</h2>
 <p>Sums of Complex exponentials are very common in mathematics and show up in many places: here, with symmetry, with <a href="../../35-Media/10-FourierSeries/index.qmd">Fourier Series</a>, with Sound synthesis and Analysis.</p>
-</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d--conclusion" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d--conclusion">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion">
 <iconify-icon inline="" icon="fluent-mdl2:decision-solid" aria-label="Icon decision-solid from fluent-mdl2 Iconify.design set." title="Icon decision-solid from fluent-mdl2 Iconify.design set."></iconify-icon> Conclusion</h2>
 <p>We have seen the close relationship between complex rotating exponentials and their trigonometric decompositions, embodied in the Euler Formula.</p>
 <p>We also saw how multiple such exponentials can be used to combine using complex weighting to create symmetric patterns.</p>
@@ -1280,7 +1424,7 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <figure class="figure"><p><a href="../../../../../materials/images/circle-patterns.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="From The Math Less Travelled Blog"><img src="../../../../../materials/images/circle-patterns.png" class="img-fluid figure-img" alt="From The Math Less Travelled Blog"></a></p>
 <figcaption>From <a href="https://mathlesstraveled.wordpress.com/2015/06/04/random-cyclic-curves-5/">The Math Less Travelled Blog</a></figcaption></figure>
 </div>
-</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d--references">
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references">
 <iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</h2>
 <ol type="1">
 <li>Frank Farris. <em>Creating Symmetry: The Artful Mathematics of Wallpaper Patterns</em>. Princeton University Press (2 June 2015).</li>
@@ -1300,10 +1444,10 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 <li>Michael Hartl.(Tau Day, 2010). The Tau Manifesto. <a href="https://www.tauday.com/tau-manifesto" class="uri">https://www.tauday.com/tau-manifesto</a>
 </li>
 </ol>
-<div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" data-entry-spacing="0" role="list">
-<section id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff-7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d--r-package-citations">
+<div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" role="list">
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations">
 <iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -1313,38 +1457,28 @@ term &amp;=&amp; i/3 * e^{i6t}\\
 </tr></thead>
 <tbody><tr class="odd">
 <td style="text-align: left;">ggformula</td>
-<td style="text-align: left;">0.12.2</td>
-<td style="text-align: left;"><span class="citation" data-cites="ggformula">Kaplan and Pruim (<a href="#ref-ggformula" role="doc-biblioref">2025</a>)</span></td>
+<td style="text-align: left;">2.0.0</td>
+<td style="text-align: left;"><span class="citation" data-cites="ggformula">Kaplan and Pruim (<a href="#ref-ggformula" role="doc-biblioref">2026</a>)</span></td>
 </tr></tbody>
 </table>
 </div>
 </div>
 <div id="ref-ggformula" class="csl-entry" role="listitem">
-Kaplan, Daniel, and Randall Pruim. 2025. <em><span class="nocase">ggformula</span>: Formula Interface to the Grammar of Graphics</em>. <a href="https://doi.org/10.32614/CRAN.package.ggformula">https://doi.org/10.32614/CRAN.package.ggformula</a>.
+Kaplan, Daniel, and Randall Pruim. 2026. <em><span class="nocase">ggformula</span>: Formula Interface to the Grammar of Graphics</em>. <a href="https://github.com/ProjectMOSAIC/ggformula">https://github.com/ProjectMOSAIC/ggformula</a>.
 </div>
 </section>
 </div>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{2024,
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><div class="code-copy-outer-scaffold"><pre class="sourceCode quarto-appendix-bibtex code-with-copy"><code class="sourceCode bibtex">@online{2024,
   author = {},
-  title = {\textless Iconify-Icon Icon=“ph:circles-Three-Fill”
-    Width=“1.2em”
-    Height=“1.2em”\textgreater\textless/Iconify-Icon\textgreater{}
-    \textless Iconify-Icon Icon=“gravity-Ui:function” Width=“1.2em”
-    Height=“1.2em”\textgreater\textless/Iconify-Icon\textgreater{}
-    {Circles}},
+  title = {{Circles}},
   date = {2024-05-02},
-  url = {https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/},
+  url = {https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-<span>“&lt;Iconify-Icon Icon=<span>‘ph:circles-Three-Fill’</span>
-Width=<span>‘1.2em’</span>
-Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; &lt;Iconify-Icon
-Icon=<span>‘gravity-Ui:function’</span> Width=<span>‘1.2em’</span>
-Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; Circles.”</span>
-2024. May 2, 2024. <a href="https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/">https://mathforcoders.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/</a>.
+</code></pre><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+<span>“ Circles.”</span> 2024. May 2. <a href="https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/">https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1418,12 +1552,31 @@ Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; Circles.”</span>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/mathforcoders\.netlify\.app");
+        var filterRegex = new RegExp("https:\/\/mathformakers\.netlify\.app\/");
+      const newWindowLabel = "(opens in a new tab)";
+      const newWindowNoteId = "quarto-ext-newwindow-label";
+      // Links reference one hidden label through aria-describedby, so the
+      // announcement never changes their accessible name.
+      var describeNewWindow = (link) => {
+        if (!window.document.getElementById(newWindowNoteId)) {
+          var newWindowNote = window.document.createElement("span");
+          newWindowNote.id = newWindowNoteId;
+          newWindowNote.hidden = true;
+          newWindowNote.textContent = newWindowLabel;
+          window.document.body.appendChild(newWindowNote);
+        }
+        var describedBy = (link.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+        if (!describedBy.includes(newWindowNoteId)) {
+          describedBy.push(newWindowNoteId);
+          link.setAttribute("aria-describedby", describedBy.join(" "));
+        }
+      }
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1437,10 +1590,72 @@ Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; Circles.”</span>
             if (link.getAttribute("rel") === null) {
               link.setAttribute("rel", "noopener");
             }
+            describeNewWindow(link);
+          if (!link.classList.contains('no-external-icon')) {
             // default icon
             link.classList.add("external");
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1454,6 +1669,7 @@ Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; Circles.”</span>
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1616,44 +1832,54 @@ Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; Circles.”</span>
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1751,14 +1977,16 @@ Height=<span>‘1.2em’</span>&gt;&lt;/Iconify-Icon&gt; Circles.”</span>
       }
     }
   });
-  </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+  </script><script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script><nav class="page-navigation column-body" aria-label="Page"><div class="nav-page nav-page-previous">
       <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.html" class="pagination-link" aria-label="Movement and Animation">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Movement and Animation</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.html" class="pagination-link" aria-label="Fractals">
-        <span class="nav-page-text">Fractals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/index.html" class="pagination-link" aria-label="Symmetry Itself">
+        <span class="nav-page-text">Symmetry Itself</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

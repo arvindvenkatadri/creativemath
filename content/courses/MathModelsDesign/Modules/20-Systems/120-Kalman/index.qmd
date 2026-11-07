@@ -1,0 +1,73 @@
+---
+title: "The Kalman Filter"
+subtitle: "How Neil Armstrong went to the Moon...and returned"
+order: 120
+date: 01/July/2026
+date-modified: today
+description: "The Kalman Filter is one the most important algorithms for tracking and estimation of parameters in a dynamical system."
+
+---
+
+```{r}
+#| echo: false
+#| out-width: "60%"
+#| out-height: "60%"
+#| fig-align: center
+#| fig-cap: "Halumi"
+
+knitr::include_graphics("../../../../../materials/images/halumi.jpeg")
+
+```
+
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(gsignal) # for signal processing
+library(mvtnorm) # for multivariate normal distribution
+library(mosaic)
+library(mosaicCalc)
+library(plotly)
+library(ggdiagram) # For drawing diagrams
+library(ggcube) # for 3D plotting
+
+```
+
+
+## Intro
+
+Self-Driving Cars as an example of a Dynamic System
+
+## Idea of State Space
+
+
+## Halumi for Dinner?
+Shubha's Halumi with a kebab stick to illustrate 3D Gaussian Distributions for prediction and measurement in a Kalman system.
+
+
+## References
+
+1. bzarg blog. *How a Kalman Filter Works, in Pictures.* <https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/> 
+
+1. Ramsey Faragher. *Understanding the Basis of the Kalman Filter
+Via a Simple and Intuitive Derivation*.{{< pdf ../../../../../materials/pdfs/UnderstandingtheBasisoftheKalmanFilter.pdf >}}
+
+1. Tim Babb.*The Kalman Filter in Pictures*.<https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/>
+1. The Kalman Filter Website for Students. <https://thekalmanfilter.com/>
+
+1. Chapter 6. *The Kalman Filter*. <https://bookdown.org/probability/bookdown-demo/kalman-filters.html> in [Stochastic Processes! An interactive introduction.](https://bookdown.org/probability/bookdown-demo/)
+
+1. Kalman Filter in Julia. <https://github.com/wkearn/Kalman.jl> 
+
+1. Chuong B. Do. (October 10, 2008). *The Multivariate Gaussian Distribution*. <https://cs229.stanford.edu/section/gaussians.pdf>
+
+1. <https://ccrma.stanford.edu/~jos/filters/> 
+
+
+## Additional Reading
+
+1. Ramsey Faragher <https://sites.google.com/view/ramseyfaragher/papers> 

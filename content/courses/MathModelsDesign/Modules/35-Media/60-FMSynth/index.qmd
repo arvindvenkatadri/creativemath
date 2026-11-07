@@ -29,6 +29,7 @@ library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
 library(rgl) # Interactive 3D plots for explanation
+options(rgl.useNULL = TRUE)
 library(plotly)
 knitr::knit_hooks$set(webgl = hook_webgl)
 #library(caracas)
@@ -514,7 +515,7 @@ x_{fm}(t) = A_c \bigg[ {J_0(I)} {\cos(\omega_c t) ~ \text{//carrier}}\\
 + {J_2(I)}\bigg(cos(\omega_c + 2\omega_m)t + cos(\omega_c - 2\omega_m)t\bigg) ~ \text{//second order sidebands}\\
 + {J_3(I)}\bigg(cos(\omega_c + 3\omega_m)t - cos(\omega_c - 3\omega_m)t\bigg) ~ \text{//third order sidebands}\\
 ...\\
-+ {J_n(I)}\bigg(cos(\omega_c + n\omega_m)t + cos(\omega_c - n\omega_m)t\bigg)\bigg] ~ \text{//nth order sidebands}
++ {J_n(I)}\bigg(cos(\omega_c + n\omega_m)t + (-1)^n*cos(\omega_c - n\omega_m)t\bigg)\bigg] ~ \text{//nth order sidebands}
 \end{multline*}}}
 $${#eq-fm-2}
 
@@ -561,11 +562,11 @@ my_data %>%
 :::
 
 
-In FM, the modulation process takes power from the carrier and distributes it into the sidebands. Since the instantaneous frequency is proportional to the modulating signal, we get a mathematical structure that looks like $cos(\omega_c t + I*cos(\omega_m t))$. Expanding this using trigonometric identities and Taylor series leads to the Bessel functions as weights for the sidebands. 
+In FM, [the modulation process takes power from the carrier and distributes it into the sidebands]{style="background-color:yellow;"}. Since the instantaneous frequency is proportional to the modulating signal, we get a mathematical structure that looks like $cos(\omega_c t + I*cos(\omega_m t))$. Expanding this using trigonometric identities and Taylor series leads to the Bessel functions as weights for the sidebands. 
 
 The spectrum is symmetric of course, with `sidebands` going off in both directions in pairs. The carrier also not necessarily the highest component, as expected. To recap, we see that with FM:
 
--   We have a `carrier` component (weighted by $\color{red}{J_0(I)}$). The carrier **disappear** for certain values of $I$ when $\color{red}{J_0(I)} = 0$;
+-   We have a `carrier` component (weighted by $\color{red}{J_0(I)}$). The carrier **disappears** for certain values of $I$ when $\color{red}{J_0(I)} = 0$;
 -   Pairs of `sidebands` around the carrier at a separation of n-multiples of $\omega_m$, weighted by $\color{red}{J_n(I)}$. In like fashion these pairs can also disappear at the zeroes of $\color{red}{J_n(I)}$. 
 - In general, the larger the `order` $n$, the larger the $I$ needed to produce sidebands of that `order`, since $\color{red}{J_n(I)}$ are *slow starters* when $n$ is large. 
 

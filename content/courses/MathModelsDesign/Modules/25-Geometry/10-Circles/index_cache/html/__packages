@@ -10,6 +10,7 @@ stringr
 forcats
 lubridate
 scales
+ggiraph
 ggridges
 ggformula
 lattice
@@ -18,7 +19,8 @@ mosaicData
 mosaicCalc
 ambient
 plot3D
-caracas
+rgl
+plotly
 downloadthis
 knitr
 kableExtra
@@ -30,13 +32,11 @@ shinylive
 sysfonts
 gfonts
 embedr
-plotly
-rgl
 systemfonts
 showtextdb
 showtext
-hrbrthemes
 marquee
 ggtext
 ggrepel
-ggiraph
+hrbrthemes
+mosaic

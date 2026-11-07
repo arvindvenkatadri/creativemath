@@ -10,18 +10,16 @@ stringr
 forcats
 lubridate
 scales
+ggiraph
 ggridges
 ggformula
-lattice
-Matrix
-mosaicData
-mosaicCalc
 ambient
 plot3D
 caracas
 downloadthis
 knitr
 kableExtra
+neuralnet
 checkdown
 epoxy
 grateful
@@ -30,5 +28,3 @@ shinylive
 sysfonts
 gfonts
 embedr
-neuralnet
-ggiraph

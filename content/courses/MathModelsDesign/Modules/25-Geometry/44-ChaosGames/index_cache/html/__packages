@@ -10,12 +10,9 @@ stringr
 forcats
 lubridate
 scales
+ggiraph
 ggridges
 ggformula
-lattice
-Matrix
-mosaicData
-mosaicCalc
 ambient
 plot3D
 caracas
@@ -30,4 +27,3 @@ shinylive
 sysfonts
 gfonts
 embedr
-ggiraph

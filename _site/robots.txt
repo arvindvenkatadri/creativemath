@@ -1,1 +1,1 @@
-Sitemap: https://mathforcoders.netlify.app/sitemap.xml
+Sitemap: https://mathformakers.netlify.app/sitemap.xml

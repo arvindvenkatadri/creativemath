@@ -246,7 +246,8 @@ Another good way to form this intuition is to play some of the **Wave Game** tha
 
 By sliding the amplitudes of various sine Oscillators (whose number you could choose), you were hopefully able to visually create a waveform that looked very close the one on the screen. This was a way of doing ***waveform synthesis***. How did you know, visually speaking, how to set the amplitude?
 
-A. **Correlation of Time waveforms**: We adjusted the slider on each sine wave when the selected sine Oscillation that you were manipulating had the ***best possible correlation*** with the target waveform!! But how does this correlation work here, with *waveforms*, instead of data variables? 
+###### A.Correlation of Time waveforms: 
+We adjusted the slider on each sine wave when the selected sine Oscillation that you were manipulating had the ***best possible correlation*** with the target waveform!! But how does this correlation work here, with *waveforms*, instead of data variables? 
 
 We all know what [Pearson Correlations](https://madhatterguide.netlify.app/content/courses/analytics/10-descriptive/modules/30-change/#pearson-correlation-coefficient) are: we take the *product* of two (scaled and centered) quantitative variables, value by value, and take the average of these products. With waveforms, we can intuitively do the same thing to determine the **coefficient** of each *component*  of the Fourier Series:
 
@@ -255,14 +256,15 @@ Fourier~coeff~for~sin(\omega_c*t) = \\
 $$
 $$
 \begin{align*} 
-\\&= Average\Big(sin(\omega_c*t) \times target.waveform\Big)\\
-\\&= \frac{1}{Waveform~Period} * \displaystyle{\int}_{0}^{Waveform~Period} sin(\omega_c*t) \times target.waveform * dt
+\\&= Average\Big(sin(\omega_c*t) \times target~waveform\Big)\\
+\\&= \frac{1}{Waveform~Period} * \displaystyle{\int}_{0}^{Waveform~Period} sin(\omega_c*t) \times target~waveform * dt
 \end{align*} 
 $${#eq-fourier-coeff-intuitive}
 
 OK, but how does one make use of these *time-waveform correlations*? By using many of them!
 
-B. **Orthogonal Waveforms**: We need one more concept here: that of an "orthogonal family of waveforms": these are waveforms whose mutual correlations, as defined above, are zero! But which are these? Our good old sine and cosine waves!!
+###### B.Orthogonal Waveforms:
+We need one more concept here: that of an "orthogonal family of waveforms": these are waveforms whose mutual correlations, as defined above, are zero! But which are these? Our good old sine and cosine waves!!
 
 When we take sine/cosine waves whose frequencies are **integer multiples** of some base frequency, then **all** such waveforms are orthogonal. 
 
@@ -274,7 +276,8 @@ $$
 $${#eq-orthogonal-functions}
 
 
-C: **"Base Frequency"**: So what is this [base frequency]{.bg-gold .black} we have been assuming? It is determined by the target waveform:
+##### C."Base Frequency": 
+So what is this [base frequency]{.bg-gold .black} we have been assuming? It is determined by the target waveform:
 
 $$
 Base~ Frequency = \frac{1}{Period~of~Target~Waveform}
@@ -340,23 +343,23 @@ An analogy may help here: Recall [this discussion on Frequency Density Plots](ht
 
 Let us examine this analogy in detail
 
-#### Histogram (Discrete, Sampled View):
+##### Histogram (Discrete, Sampled View):
 
 A histogram takes a continuous dataset (e.g., the heights of thousands of people). It divides this data into discrete bins (e.g., 150-155cm, 155-160cm, etc.).  It then counts how many data points fall into each bin. This results in a bar chart showing discrete counts in discrete intervals. It's a discrete representation of a continuous dataset.
 
-#### Density Plot (Continuous View):
+##### Density Plot (Continuous View):
 
 A density plot is a smoother, continuous version of a histogram.
 It uses the same binning concept (or kernel smoothing) but aims to represent the underlying probability density function of the continuous data. The height of the density plot at any point represents the density of data points around that value, providing a continuous curve that describes the distribution much more smoothly and informatively than the discrete counts of a histogram.
 
-#### Fourier Series (Discrete, Sampled View):
+##### Fourier Series (Discrete, Sampled View):
 
 The Fourier Series represents periodic signals.
 It decomposes the periodic signal into a discrete sum of sine and cosine waves (the Fourier basis functions).
 It calculates discrete coefficients for these specific frequencies (the fundamental frequency and its harmonics).
 This results in a discrete set of amplitudes and phases for discrete frequencies. It's a sampled view of the frequency content, specifically tailored for periodic signals.
 
-#### Fourier Transform (Continuous View):
+##### Fourier Transform (Continuous View):
 
 The Fourier Transform generalizes the Fourier Series to represent any signal, including non-periodic ones.
 It decomposes the signal into a continuous spectrum of frequencies.
@@ -364,7 +367,7 @@ It calculates a continuous function describing the amplitude and phase contribut
 This provides a continuous, infinitely detailed view of the frequency content, analogous to the density plot revealing the true underlying distribution rather than just discrete counts.
 The Similarity:
 
-#### Discrete to Continuous
+##### Discrete to Continuous
 
 Both pairs involve a transformation from a discrete, sampled, or finite view to a continuous, infinite-resolution view.
 Nature of the Input: Both transformations start with something that, in its basic form, involves discrete elements (bins in a histogram, coefficients in a Fourier Series) representing underlying continuous phenomena (the data distribution, the signal).

@@ -1,0 +1,18 @@
+---
+title: "Symmetry Itself"
+date: 26/July/2026
+date-modified: today
+order: 20
+categories:
+  - Change
+  - Canonical Movements
+  - Immunity
+---
+
+## Introduction
+
+TBWU!!
+
+Notes: use the material from my Order and Chaos modules to write this up, and introduce the maths seamlessly here. 
+
+- Objects have symmetries! ( Plural!!) 

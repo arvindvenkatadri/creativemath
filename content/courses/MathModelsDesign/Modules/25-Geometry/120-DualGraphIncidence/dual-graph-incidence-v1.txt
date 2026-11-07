@@ -1,0 +1,160 @@
+---
+title: "The Dual Graph of a Mirror Design: Incidence Matrices and Eulerian Paths"
+subtitle: "From the Mirror Indicator Matrix to the 4-regular step graph and back"
+author: "Arvind V."
+date: "2026-11-04"
+categories: [kolam, lusona, graphs, incidence-matrix, eulerian, gerdes]
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: true
+---
+
+## Introduction
+
+In the companion module [Mirror Matrices](mirror-matrices-kolam.qmd) we treated the Mirror Indicator Matrix as a convenient design tool: its entries tell us where to place double-sided mirrors, and a 45° light ray bouncing off those mirrors produces a kolam or lusona.  
+
+That construction has a precise graph-theoretic counterpart. The mid-points of the edges of the rectangular grid, together with the possible 45° steps that connect them, form a **4-regular graph** (every vertex has degree 4). Placing a mirror is equivalent to choosing, at certain vertices, which pair of edges will be joined. The light-ray path is then an **Eulerian path** (or circuit) in a modified version of this graph.
+
+This module makes that correspondence explicit. We define the dual “step graph,” build its incidence matrix, show how the Mirror Indicator Matrix modifies the incidence structure, and recover the same curves we drew earlier—now as walks on a graph whose algebraic properties we can inspect directly.
+
+## The rectangular grid and its step graph
+
+Let the pulli (dots) sit at the integer points \(\{0,1,\dots,c-1\} \times \{0,1,\dots,r-1\}\).  
+
+The **step graph** \(G\) is constructed as follows:
+
+- Vertices of \(G\) are the mid-points of the unit-grid edges (or, equivalently, the centres of the unit squares—both models are common; we use the mid-edge model because it matches Gerdes’ light-ray description most closely).
+- Two vertices of \(G\) are joined by an edge when a 45° light ray can travel from one mid-point to the next without crossing a pulli.
+
+In the absence of internal mirrors the graph is 4-regular: at every internal mid-point a ray can continue straight, turn left, or turn right (the fourth direction is the one it arrived from). The outer boundary supplies the reflecting walls.
+
+A classical observation (Gerdes, Jablan, and others) is that a monolinear mirror curve corresponds to an Eulerian circuit in this graph after the mirrors have been interpreted as forced pairings of edges.
+
+## Incidence matrix of the step graph
+
+Recall that the (oriented) incidence matrix \(B\) of a directed graph has:
+
+- one row per vertex,
+- one column per edge,
+- \(B_{v,e} = -1\) if edge \(e\) leaves \(v\), \(+1\) if edge \(e\) enters \(v\), and \(0\) otherwise.
+
+For our undirected step graph we may work with the unoriented incidence matrix (0-1) or with a signed version that records a consistent orientation of the 45° directions. Both are useful:
+
+- The kernel of the signed incidence matrix describes circulations (exactly the closed light-ray paths).
+- The support of the matrix tells us which mid-points are adjacent.
+
+Below we build a small example in R.
+
+```{r}
+#| label: step-graph-incidence
+#| echo: true
+
+# Small 3 x 3 pulli grid → step graph on the mid-points
+# We list the mid-edge vertices and the possible 45° steps
+
+# Vertices: label them by (type, i, j)
+# type "H" = horizontal mid-edge, "V" = vertical mid-edge
+vertices <- expand.grid(
+  type = c("H", "V"),
+  i = 0:2,
+  j = 0:2
+)
+vertices <- subset(vertices, 
+  (type == "H" & j < 2) | (type == "V" & i < 2)
+)
+vertices$id <- seq_len(nrow(vertices))
+print(vertices)
+
+# For illustration we create a few edges of the step graph
+# (a full enumeration is routine but lengthy; the pattern is clear)
+# Each edge connects two mid-points that a 45° ray can traverse
+edges <- data.frame(
+  from = c(1, 2, 3, 4),
+  to   = c(5, 6, 7, 8),
+  label = c("step1", "step2", "step3", "step4")
+)
+
+# Unoriented incidence matrix (rows = vertices, columns = edges)
+nV <- nrow(vertices)
+nE <- nrow(edges)
+B <- matrix(0, nrow = nV, ncol = nE)
+for (k in 1:nE) {
+  B[edges$from[k], k] <- 1
+  B[edges$to[k],   k] <- 1
+}
+colnames(B) <- edges$label
+rownames(B) <- paste0(vertices$type, vertices$i, vertices$j)
+B
+```
+
+The matrix \(B\) above is only a fragment; the same construction scales immediately to any \(r \times c\). Once you have \(B\), standard linear-algebra operations become available:
+
+- \(\operatorname{rank}(B)\) and the dimension of its kernel tell you about the cycle space (the possible closed curves).
+- Multiplying by an all-ones vector recovers vertex degrees (all 4 in the interior).
+
+## How the Mirror Indicator Matrix modifies the graph
+
+The Mirror Indicator Matrix \(M\) of the previous module does not add or delete vertices; it changes the *pairing* of edges at certain mid-points.
+
+- A 0-entry leaves the four possible 45° continuations free (or subject only to the outer wall).
+- A 1-entry (vertical mirror) forces the identification of the left-going and right-going steps: the ray that arrives must leave by reflection.
+- A 2-entry does the same for the vertical direction.
+- A 3-entry imposes both constraints.
+
+In matrix language this can be expressed by replacing selected columns of the incidence matrix (or by adding a diagonal “constraint” matrix that equates certain edge variables). The resulting modified incidence matrix \(B_M\) has the property that its kernel consists precisely of the flows that respect the mirrors. An Eulerian circuit in the modified graph is exactly a monolinear kolam/lusona.
+
+### Small algebraic check
+
+```{r}
+#| label: mirror-constraint
+#| echo: true
+
+# Suppose we have a signed incidence matrix B_signed for the free step graph
+# and a 0-1 vector m that marks the mirrored mid-points.
+# The constrained system is B_signed %*% f = 0 together with
+# extra linear conditions that force reflection.
+
+# Toy example: two edges that a vertical mirror should identify
+# We simply set their flow variables equal.
+# (In a full implementation one builds the equalities from M.)
+
+constraint <- matrix(c(1, -1), nrow = 1)  # f1 - f2 = 0
+# The full constrained matrix would be rbind(B_signed, constraint)
+# Its kernel dimension drops by 1 for each independent mirror,
+# corresponding to the loss of one free choice at that vertex.
+```
+
+## Recovering the curve as an Eulerian path
+
+Once the modified graph is in hand, any standard algorithm that finds an Eulerian circuit (Hierholzer’s algorithm, for example) will produce the sequence of mid-points visited by the light ray. Plotting those mid-points and connecting them with straight 45° segments yields exactly the same polygonal path that the ray-tracer of the previous module produced. Smoothing the corners gives the traditional kolam or lusona.
+
+Because we now have the incidence matrix, we can also:
+
+- compute the number of distinct monolinear components (the dimension of the cycle space after constraints),
+- test algebraically whether a proposed set of mirrors preserves monolinearity,
+- export the path as a simple edge list for use in p5.js or other drawing tools.
+
+## Relation to classical network matrices
+
+The signed incidence matrix of the step graph is a network matrix in the sense of Tutte. Consequently it is totally unimodular, and many integer-flow questions (for example, “does there exist a 0-1 circulation that uses every edge exactly once?”) can be answered by linear programming over the reals. This supplies a rigorous reason why the light-ray construction is so well-behaved: the underlying combinatorial object is a network matrix whose mirror constraints remain totally unimodular.
+
+## Exercises
+
+1. For a 2-by-2 grid of pulli, list all mid-edge vertices and write the full unoriented incidence matrix of the step graph. Verify that every internal vertex has degree 4.
+2. Add a single vertical mirror and show, by row operations or by direct enumeration, that the dimension of the cycle space decreases by exactly one.
+3. Implement Hierholzer’s algorithm on the modified graph for the symmetric-cross example of the previous module and confirm that the edge sequence matches the path drawn by the 45° ray-tracer.
+4. **Project.** Take the adjacency matrix of a small real network, interpret a thresholded version as a Mirror Indicator Matrix, build the corresponding constrained incidence matrix, and extract an Eulerian circuit. Compare the algebraic symmetries of the incidence matrix with the geometric symmetries of the resulting kolam.
+
+## References
+
+1. Paulus Gerdes. *Lunda Geometry*. Lulu, 2007.
+2. Slavik Jablan et al. “Mirror-curves and knot mosaics.” arXiv:1106.3784.
+3. William Tutte. “From matrices to graphs.” *Canadian Journal of Mathematics*, 1965 (network matrices).
+4. The companion module *Mirror Matrices: From Networks to Kolams, Lusona and Rangoli*.
+
+---
+
+*The incidence-matrix viewpoint makes precise the claim that “editing the Mirror Indicator Matrix is the same as editing a network.” Once the matrix is in hand, every tool of linear algebra and graph theory becomes a design operation.*

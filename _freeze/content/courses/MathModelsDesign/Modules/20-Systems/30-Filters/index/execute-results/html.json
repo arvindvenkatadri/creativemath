@@ -1,17 +1,13 @@
 {
-  "hash": "7b14838b838a74a6a0880aadd3157ab3",
+  "hash": "b6d60491e1a4dc721ab606a679821257",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Filters\"\norder: 30\ndate: 11/Dec/2025\ndate-modified: \" 2026-02-18 \"\n\n---\n\n\n::: {.cell}\n\n:::\n\n\n\n\n\n## References\n\n1. <https://ccrma.stanford.edu/~jos/filters/> \n\n",
+    "markdown": "---\ntitle: \"Filters\"\norder: 30\ndate: 11/Dec/2025\ndate-modified: today\ndescription: \"Filters are mathematical tools used to process signals and data, often to remove noise or extract useful information. They are widely used in various fields, including engineering, physics, and data science. In this module, we will explore different types of filters, their applications, and how they can be implemented in R.\"\n\n---\n\n\n::: {.cell}\n\n:::\n\n\n\n\n\n## References\n\n1. <https://ccrma.stanford.edu/~jos/filters/> \n1. Tim Babb.*The Kalman Filter in Pictures*.<https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/>\n1. The Kalman Filter Website for Students. <https://thekalmanfilter.com/>\n1. <https://sites.google.com/view/ramseyfaragher/papers> \n1. Kalman Filter in Julia. <https://github.com/wkearn/Kalman.jl> \n\n\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
-    "includes": {
-      "include-in-header": [
-        "<link href=\"../../../../../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../../../../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
-      ]
-    },
+    "includes": {},
     "engineDependencies": {},
     "preserve": {},
     "postProcess": true

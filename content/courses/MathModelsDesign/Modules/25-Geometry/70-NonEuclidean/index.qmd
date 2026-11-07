@@ -1,8 +1,7 @@
 ---
 title: "Non-Euclidean Geometry"
-author: "Arvind V."
 date: 22/July/2024
-date-modified: " `r Sys.Date()` "
+date-modified: today
 order: 70
 abstract: ""
 citation: true
@@ -23,12 +22,12 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-#devtools::install_github("https://github.com/AdamRahman/sdpt3r")
-#devtools::install_github("https://github.com/stla/PlaneGeometry")
+# devtools::install_github("https://github.com/AdamRahman/sdpt3r")
+# devtools::install_github("https://github.com/stla/PlaneGeometry")
 library(PlaneGeometry)
 ```
 
-# Exeter point
+### Exeter point
 
 The *Exeter point* is defined as follows on Wikipedia. 
 
@@ -84,7 +83,7 @@ par(opar)
 ```
 
 
-# Circles tangent to three circles
+### Circles tangent to three circles
 
 Let $\mathcal{C}_1$, $\mathcal{C}_2$ and $\mathcal{C}_3$ be three circles with 
 respective radii $r_1$, $r_2$ and $r_3$ such that $r_3 < r_1$ and $r_3 < r_2$. 
@@ -139,7 +138,7 @@ par(opar)
 ```
 
 
-# Apollonius circle of a triangle
+### Apollonius circle of a triangle
 
 There are several circles called "Apollonius circle". 
 We take the one defined as follows, with respect to a reference triangle:
@@ -189,7 +188,7 @@ ApolloniusCircle$radius
 ```
 
 
-# Filling the lapping area of two circles
+### Filling the lapping area of two circles
 
 Let two circles intersecting at two points. 
 How to fill the lapping area of the two circles?
@@ -221,7 +220,7 @@ par(opar)
 ```
 
 
-# Hyperbolic tessellation 
+### Hyperbolic tessellation 
 
 In the help page of the `Circle` R6 class (`?Circle`), we show how to draw 
 a hyperbolic triangle with the help of the method 
@@ -432,7 +431,7 @@ tessellation2(
 ```
 
 
-# Director circle of an ellipse 
+### Director circle of an ellipse 
 
 Let's draw the [director circle](https://en.wikipedia.org/wiki/Director_circle) 
 of an ellipse. We start by constructing the minimum bounding box of the ellipse.
@@ -488,12 +487,12 @@ par(opar)
 ```
 
 
-# Playing with Steiner chains
+### Playing with Steiner chains
 
 The `PlaneGeometry` package has a function `SteinerChain` which generates 
 a Steiner chain of circles.
 
-## Elliptical Steiner chain
+#### Elliptical Steiner chain
 
 By applying an affine transformation to a Steiner chain, we can get an 
 elliptical Steiner chain.
@@ -558,7 +557,7 @@ save_gif(
 
 ![](https://github.com/stla/PlaneGeometry/raw/master/inst/imgs/SteinerChainElliptical.gif){width=60%}
 
-## Nested Steiner chains
+#### Nested Steiner chains
 
 We can choose the exterior circle of the Steiner chain. Therefore, given a 
 circle of a Steiner chain, we can nest another Steiner chain in this circle.
@@ -590,7 +589,7 @@ Of course you can also nest elliptical Steiner chains, and animate the
 picture!
 
 
-# Elliptical billiard
+### Elliptical billiard
 
 The following code plots the trajectory of a ball on an elliptical billiard.
 
@@ -648,7 +647,7 @@ par(opar)
 ```
 
 
-# An illustration of inversions
+### An illustration of inversions
 
 A *generalized circle* is either a circle or a line. The following code 
 generates a family of generalized circles by repeatedly applying inversions:
@@ -786,7 +785,7 @@ par(opar)
 ```
 
 
-# Schottky circles
+### Schottky circles
 
 This construction is taken from the book *Indra's Pearls: The Vision of Felix Klein*.
 
@@ -908,7 +907,7 @@ Here is the same picture but with better quality:
 I realized this picture with the **tikzDevice** package.
 
 
-# Modular tesselation
+### Modular tesselation
 
 I did this animation after I came across the paper 
 [Complex Variables Visualized](https://www3.risc.jku.at/publications/download/risc_5011/DiplomaThesisPonweiser.pdf) written by Thomas Ponweiser. This is the paper 
@@ -995,7 +994,7 @@ save_gif(
 ![](https://github.com/stla/PlaneGeometry/raw/master/inst/imgs/modularTessellation_compressed.gif){width=60%}
 
 
-# Apollonian gasket
+### Apollonian gasket
 
 It is not hard to draw an Apollonian gasket with `PlaneGeometry`. We do a 
 function, in order to use it later to do an animation.
@@ -1185,7 +1184,7 @@ par(opar)
 ![](https://github.com/stla/PlaneGeometry/raw/master/inst/imgs/ApollonianMobius.gif){width=60%}
 
 
-# Another Apollonian fractal
+### Another Apollonian fractal
 
 Let's do another Apollonian fractal which uses the inner Soddy circle. 
 As you can see, the code is short:
@@ -1255,7 +1254,7 @@ movie3d(
 ![](https://github.com/stla/PlaneGeometry/raw/master/inst/imgs/Apollony_compressed.gif){width=40%}
 
 
-# Malfatti gasket
+### Malfatti gasket
 
 Now we will do something a bit more complicated. We will take a triangle, fill 
 each of its three Malfatti circles with an Apollonian gasket, and fill the 
@@ -1429,7 +1428,7 @@ As an exercise, you can add some animation to this picture, by animating the
 three circular gaskets.
 
 
-# Circular Malfatti gasket
+### Circular Malfatti gasket
 
 Yet another Malfatti based Apollonian gasket. This one uses the outer 
 Soddy circle, which has a negative radius!
@@ -1543,7 +1542,7 @@ CircularMalfattiGasket(
 ![](https://github.com/stla/PlaneGeometry/raw/master/inst/imgs/MalfattiCircularGasket.png){width=80%}
 
 
-# Hyperbola
+### Hyperbola
 
 Finally, in order to illustrate the `Hyperbola` objects, we will check the 
 so-called "triangle tangent-asymptotes" theorem. Observe the figure below. 

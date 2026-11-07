@@ -4,7 +4,7 @@ subtitle: ""
 subject: "Shapes and Code"
 abstract: ""
 date: 03/March/2025
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 20
 code-fold: true
 categories:
@@ -15,20 +15,45 @@ editor:
     wrap: 72
 ---
 
-```{r setup, include=FALSE}
+{{< include /_setup_claude_made.qmd >}}
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+#| echo: false
+#| 
 library(blogdown)
 library(tidyverse)
 library(ggformula)
+library(mosaic)
 library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
-library(rgl) # Interactive 3D plots for explanation
-library(plotly)
-knitr::knit_hooks$set(webgl = hook_webgl)
-#library(caracas)
+
+# pak::pak("seankross/p5")
+library(p5)
+library(symengine) # Maths Engine that does not depend upon Python!
+
+```
+
+
+```{r}
+#| label: Extra Pedagogical Packages
+#| echo: false
+#| message: false
+
+library(checkdown)
+library(epoxy)
+library(grateful)
+
+#devtools::install_github("mccarthy-m-g/embedr")
+library(embedr) # Embed multimedia in HTML files
+
 library(downloadthis)
 library(knitr)
 library(kableExtra)
+
 ## Markdown boiler plate stuff!!
 # ![An Elephant](elephant.png){#fig-elephant}
 # This is illustrated well by @fig-elephant.
@@ -44,101 +69,52 @@ library(kableExtra)
 #     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
 #    existing file
 #    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
-
-```
-
-```{r}
-#| label: Extra Pedagogical Packages
-#| echo: false
-#| message: false
-
-library(checkdown)
-library(epoxy)
-library(grateful)
-library(MKdescr)
-library(shinylive) # To create a Shiny app in a Quarto HTML doc
-# Will not work if webr is also used in the SAME Quarto doc!
-library(sysfonts)
-library(gfonts)
-library(kableExtra)
-# library(conflicted)
-# conflicted::conflicts_prefer(dplyr::filter, dplyr::count, dplyr::last, dplyr::glimpse, base::max)
-library(downloadthis)
-#devtools::install_github("mccarthy-m-g/embedr")
-library(embedr) # Embed multimedia in HTML files
-```
-
-
-```{r}
-#| label: Plot Sizing and theming
-#| echo: false
-#| message: false
-#| results: hide
-
-# https://stackoverflow.com/questions/74491138/ggplot-custom-fonts-not-working-in-quarto
-
-# Chunk options
-knitr::opts_chunk$set(
- fig.width = 7,
- fig.asp = 0.618, # Golden Ratio
- #out.width = "80%",
- fig.align = "center"
-)
-### Ggplot Theme
-### https://rpubs.com/mclaire19/ggplot2-custom-themes
-
-theme_custom <- function(){ 
-    font <- "Roboto Condensed"   #assign font family up front
-    
-    theme_classic(base_size = 14) %+replace%    #replace elements we want to change
-    
-    theme(
-      panel.grid.minor = element_blank(),    #strip minor gridlines
-      text = element_text(family = font),
-      #text elements
-      plot.title = element_text(             #title
-                   family = font,            #set font family
-                   #size = 20,               #set font size
-                   face = 'bold',            #bold typeface
-                   hjust = 0,                #left align
-                   #vjust = 2                #raise slightly
-                   margin=margin(0,0,10,0)
-),               
-      
-      plot.subtitle = element_text(          #subtitle
-                   family = font,            #font family
-                   #size = 14,                #font size
-                   hjust = 0,
-                   margin=margin(2,0,5,0)
-),               
-      
-      plot.caption = element_text(           #caption
-                   family = font,            #font family
-                   size = 8,                 #font size
-                   hjust = 1),               #right align
-      
-      axis.title = element_text(             #axis titles
-                   family = font,            #font family
-                   size = 10                 #font size
-),
-      
-      axis.text = element_text(              #axis text
-                   family = font,            #axis family
-                   size = 8)               #font size
-    )
-}
-
-# Set graph theme
-theme_set(new = theme_custom())
-#
 ```
 
 
 ## Introduction
 
+What might these figures betoken??
+
+```{r}
+#| label: fig-flow-field
+#| fig-cap: "Flow Field: Vectors at each point in a Plane"
+#| fig-subcap: 
+#| - A
+#| - B
+#| echo: false
+#| 
+
+flow_field(dx ~ x+y, dy~ x-y, domain(x=0:6, y=0:3)) |>
+  gf_labs(title = "Flow Field") |> gf_theme(theme_madhatter())
+vectorfield_plot(x ~ -y, y ~ x, bounds(x=-1:1, y=-1:1), transform=function(x) x^0.2 ) |> gf_theme(theme_madhatter())
+
+```
+
+## Discussion #1
+
+Each figure[^1] shows a bunch of `arrows`, centered at different locations on a regular grid. What sort of *quantities* could these arrows describe?
+
+Clearly the arrows' `size` and their `direction` has something to do with how they represent some underlying phenomena. 
+
+Could @fig-flow-field-1 represent say wind flow over a region? Yes the air is quite still around (0, 0), but picks up in force and also angle as we move rightwards. If you were going to fly a kite with this wind pattern, where would you stand, and where would you point your kite at?
+
+And could @fig-flow-field-2 represent say the flow of water in a whirlpool? Can you swim?
 
 
+## Discussion #2
+
+- Each of these arrows is a `vector`: the arrows show both the *force* `magnitude` and its `direction`
+## Wait, But Why?
+
+- We need Quantities that have both magnitude and direction, together at the same time. Think `force`, `velocity`, `acceleration`, `momentum`, `torque`, `magnetic field`, `electric field`, etc.
+- A `vector` is such a quantity. 
+- With `two components` ( at least ) a `vector` is able to achieve this dual purpose at the same time! It is a terrific Mathematical Tool!
 
 ## References
 
 1. <https://www.math.hkust.edu.hk/~machas/vector-calculus-for-engineers.pdf>
+
+
+
+[^1]: Data Visualization geeks will call this a `scatter plot` with arrows used instead of points. 

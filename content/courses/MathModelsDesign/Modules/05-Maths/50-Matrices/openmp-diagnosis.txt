@@ -1,0 +1,2 @@
+Loaded namespaces:
+base, cli, codetools, compiler, datasets, digest, dplyr, evaluate, farver, fastmap, generics, ggplot2, glue, graphics, grDevices, grid, gtable, htmltools, htmlwidgets, jsonlite, knitr, lifecycle, magrittr, methods, otel, pillar, pkgconfig, R6, ragg, RColorBrewer, rlang, rmarkdown, rstudioapi, S7, scales, stats, systemfonts, textshaping, tibble, tidyselect, tools, utils, vctrs, withr, xfun, yaml

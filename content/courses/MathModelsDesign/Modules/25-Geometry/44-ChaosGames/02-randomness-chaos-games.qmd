@@ -1,0 +1,154 @@
+---
+title: "Randomness and Chaos Games"
+subtitle: "How Simple Random Choices Produce Structured Patterns"
+format: 
+  html:
+    embed-resources: true
+    theme: cosmo
+execute:
+  echo: true
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+set.seed(42)
+```
+
+# The Chaos Game
+
+The classic chaos game generates the Sierpinski triangle by repeatedly moving halfway toward a randomly chosen vertex of a triangle. Despite pure randomness, a highly ordered fractal appears.
+
+## R implementation
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-cap: "Chaos game on a triangle (Sierpinski) — density view"
+
+vertices <- matrix(c(0, 0, 1, 0, 0.5, sqrt(3)/2), ncol = 2, byrow = TRUE)
+n_points <- 40000
+pts <- matrix(0, n_points, 2)
+pts[1, ] <- c(0.5, 0.3)
+
+for (i in 2:n_points) {
+  v <- vertices[sample(1:3, 1), ]
+  pts[i, ] <- (pts[i-1, ] + v) / 2
+}
+
+df <- as.data.frame(pts[-c(1:100), ])   # drop transient
+names(df) <- c("x", "y")
+
+ggplot(df, aes(x, y)) +
+  stat_bin2d(bins = 150) +
+  scale_fill_viridis_c(option = "plasma", trans = "log10") +
+  coord_fixed() +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+## p5.js: live chaos game
+
+```{=html}
+<div id="chaos-game"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<script>
+new p5((p) => {
+  let verts = [];
+  let x, y;
+  let n = 0;
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    p.background(255);
+    verts = [
+      p.createVector(50, 350),
+      p.createVector(350, 350),
+      p.createVector(200, 50)
+    ];
+    x = 200; y = 200;
+    p.stroke(0);
+    p.strokeWeight(1);
+  };
+  p.draw = () => {
+    for (let i = 0; i < 20; i++) {
+      let v = verts[p.floor(p.random(3))];
+      x = (x + v.x) / 2;
+      y = (y + v.y) / 2;
+      p.point(x, y);
+    }
+  };
+}, document.getElementById("chaos-game"));
+</script>
+```
+
+# Other Chaos Games
+
+## Square with restricted choices (Barnsley-like)
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-cap: "Chaos game on a square with a simple restriction — density view"
+
+verts <- matrix(c(0,0, 1,0, 1,1, 0,1), ncol = 2, byrow = TRUE)
+n_points <- 50000
+pts <- matrix(0, n_points, 2)
+pts[1,] <- c(0.5, 0.5)
+prev <- 1
+
+for (i in 2:n_points) {
+  choices <- setdiff(1:4, prev)
+  v_idx <- sample(choices, 1)
+  v <- verts[v_idx, ]
+  pts[i,] <- (pts[i-1,] + v) / 2
+  prev <- v_idx
+}
+
+df <- as.data.frame(pts[-c(1:200), ])
+names(df) <- c("x","y")
+
+ggplot(df, aes(x,y)) +
+  stat_bin2d(bins = 120) +
+  scale_fill_viridis_c(option = "magma", trans = "sqrt") +
+  coord_fixed() +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+## p5.js: variable number of vertices
+
+```{=html}
+<div id="poly-chaos"></div>
+<script>
+new p5((p) => {
+  let verts = [];
+  let x, y;
+  let sides = 5;
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    p.background(255);
+    for (let i = 0; i < sides; i++) {
+      let a = p.TWO_PI * i / sides - p.HALF_PI;
+      verts.push(p.createVector(200 + 150 * p.cos(a), 200 + 150 * p.sin(a)));
+    }
+    x = 200; y = 200;
+  };
+  p.draw = () => {
+    for (let i = 0; i < 30; i++) {
+      let v = verts[p.floor(p.random(sides))];
+      x = (x + v.x) / 2;
+      y = (y + v.y) / 2;
+      p.stroke(50, 100, 180, 100);
+      p.point(x, y);
+    }
+  };
+}, document.getElementById("poly-chaos"));
+</script>
+```
+
+# Key Observation
+
+Randomness alone does not produce symmetry. The *rules* that restrict which random choices are allowed (or how the next point is computed) inject the symmetry. In the Sierpinski case the three vertices and the “halfway” rule together force the triangular symmetry we see.
+

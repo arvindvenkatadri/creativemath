@@ -4,7 +4,7 @@ subtitle: "Can you Dance?"
 subject: "Using Classification to Detect Human Pose"
 abstract: ""
 date: 03/Dec/2024
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 10
 categories:
 - Classification
@@ -23,6 +23,7 @@ editor:
 library(tidyverse)
 library(ggformula)
 library(torch)
+# remotes::install_github("mlverse/torchaudio")
 library(torchaudio)
 library(torchdatasets)
 library(keras)

@@ -4,7 +4,7 @@ subtitle: "Random Functions and Surprising Shapes"
 subject: ""
 abstract: ""
 date: 28/Jan/2025
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 44
 categories:
 - Iterated Functions
@@ -25,7 +25,7 @@ draft: true
 library(blogdown)
 library(tidyverse)
 library(ggformula)
-library(mosaicCalc) # Analytic Calculus
+# library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
 library(caracas)
