@@ -7,17 +7,24 @@ description: "Filters are mathematical tools used to process signals and data, o
 
 ---
 
+---
+
+{{< include /_setup_claude_made.qmd >}}
+
 ```{r}
 #| label: setup
 #| echo: false
 #| message: false
 #| warning: false
 
-library(gsignal) # for signal processing
+library(tidyverse)
+library(ggformula)
+
 library(ggdiagram) # For drawing diagrams
 library(ggcube) # for 3D plotting
+
+library(gsignal) # for signal processing
 library(mvtnorm) # for multivariate normal distribution
-library(mosaic)
 
 ```
 

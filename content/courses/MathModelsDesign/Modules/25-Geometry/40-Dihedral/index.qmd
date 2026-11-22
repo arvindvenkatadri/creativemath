@@ -1,0 +1,106 @@
+---
+title: "Dihedral Symmetry"
+subtitle: "Reflections and Rotations Together — Simple Visual Examples"
+format:
+  html:
+    embed-resources: true
+    include-in-header:
+      - text: |
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
+execute:
+  echo: true
+  warning: false
+code-fold: true
+date: 26/July/2026
+date-modified: today
+order: 40
+categories:
+  - Change
+  - Canonical Movements
+  - Immunity
+  - Groups
+---
+
+{{< include /_setup_claude_made.qmd >}}
+
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+library(dplyr)
+library(ggdiagram)
+
+```
+
+
+## Dihedral Symmetry ( $\mathbb{D}_{n}$ )
+
+Dihedral groups combine rotations of order $n$ with reflections. These are the symmetries of regular polygons.
+
+### R example: regular pentagon and its symmetries
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| echo: false
+#| fig-cap: "Regular pentagon (D5 symmetry)"
+
+n <- 5
+angles <- seq(0, 2*pi, length.out = n + 1)
+poly <- data.frame(
+  x = cos(angles),
+  y = sin(angles)
+)
+
+ggplot(poly, aes(x, y)) +
+  geom_polygon(fill = "gold", alpha = 0.6, color = "black") +
+  coord_fixed() +
+  theme_minimal() +
+  labs(title = "Dihedral group D5")
+```
+
+### p5.js: kaleidoscope-style dihedral drawing
+
+```{=html}
+<div id="dihedral-sketch"></div>
+<script>
+new p5((p) => {
+  let n = 6;
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    p.background(255);
+  };
+  p.draw = () => {
+    if (p.mouseIsPressed) {
+      p.translate(200, 200);
+      for (let i = 0; i < n; i++) {
+        p.push();
+        p.rotate(i * p.TWO_PI / n);
+        p.stroke(p.random(100, 200), p.random(100, 200), p.random(100, 200));
+        p.strokeWeight(2);
+        let x = p.mouseX - 200;
+        let y = p.mouseY - 200;
+        p.line(0, 0, x, y);
+        p.line(0, 0, x, -y); // reflection
+        p.pop();
+      }
+    }
+  };
+}, document.getElementById("dihedral-sketch"));
+</script>
+<p><em>Click and drag. The sketch applies both rotations and reflections of order 6.</em></p>
+
+```
+
+## {{< iconify mingcute thought-line >}} Wait, But Why?
+
+TBWU.
+
+## Design Notes 
+
+- **Rotational only** ($\mathbb{Z}_{n}$): swirling, pinwheel-like, no mirror lines.
+- **Reflection only** ($\mathbb{R}_{𝑛} = \{ {e,m} \}$: bilateral balance (faces, logos, architecture).
+- **Dihedral** ($\mathbb{D}_{n}$ ): the most common decorative symmetry (snowflakes, flowers, rose windows, tiles).
+
+These geometric ideas become the constraints we later impose on iterative and random processes.
+

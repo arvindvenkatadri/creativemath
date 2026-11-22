@@ -1,0 +1,238 @@
+---
+title: "The Maths of Kolam and Lusona"
+subtitle: ""
+subject: "Shapes and Code"
+abstract: ""
+date: 09/Nov/2026
+date-modified: today
+order: 65
+categories:
+- Kolam
+- Sona
+- Networks
+- Nodes and Edges
+- Eulerian path
+- Hamiltonian Path
+image: ""
+---
+
+```{r}
+#| label: setup
+#| echo: false
+# install.packages("devtools")
+# devtools::install_github("hadley/emo")
+library(emo)
+
+```
+
+
+
+## The Mathematics of Kolam
+
+We will follow the *Lunda Geometry* treatment of Gerdes here, and also briefly( Ha! Briefly!!) touch upon the S. Jablan's treatment based on *Knot Theory*. 
+
+TBWU. 
+
+ - Combine Karnaugh Maps, Network Adjacency Matrics, Cayley Symmetry Matrices, and Paulus Gerdus' Modulo-m Lunda matrices into a unified "Kolam Symmetry Matrix". 
+ - Discuss the similarity to Wang tiles.
+ 
+ Questions:
+ - Can we generate random KSMs and find "symmetry on average", in the manner of Field and Golubitsky?
+ - Can we mimic Kolam Tiles / Saty Raghavachary's video in code?
+ - How "simple" can the code be?
+ 
+ 
+### Basics of Lunda Geometry and Kolam
+
+For more inspiration, see
+[here](https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm). This is a multipage article with many different grid+mirror arrangements! There is also an intriguing technique shown therein of **colouring the squares in the grid** alternatively white and black, to generate very symmetric shaded patterns!
+
+### Kolams and Knot Theory
+
+Slavik Jablan, Ljiljana Radović, and Radmila Sazdanović
+[MIRROR-CURVES AND KNOT MOSAICS](https://ar5iv.labs.arxiv.org/html/1106.3784)
+
+Slavik Jablan, [**Mirror Curves**](https://archive.bridgesmathart.org/2001/bridges2001-233.pdf)
+
+## Kolams with Code
+
+Work in (slow....) Progress!!!
+
+::: {.panel-tabset .nav-pills style="background: whitesmoke;"}
+
+
+
+### Using p5.js
+
+```{=html}
+<div id="sona-sketch"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+<script>
+// Self-contained p5.js sketch in instance mode
+// so it embeds cleanly inside a Quarto HTML document.
+
+const sonaSketch = (p) => {
+  // ========== STEP 1: Canonical pieces ==========
+  const pieces = {
+    straight_h: { pts: [[0, 0.5], [1, 0.5]] },
+    straight_v: { pts: [[0.5, 0], [0.5, 1]] },
+    turn_ne:    { pts: [[0.5, 1], [1, 0.5]] },
+    turn_nw:    { pts: [[0, 0.5], [0.5, 1]] },
+    turn_se:    { pts: [[1, 0.5], [0.5, 0]] },
+    turn_sw:    { pts: [[0, 0.5], [0.5, 0]] },
+    bounce_h:   { pts: [[0, 0.5], [0.5, 0.3], [1, 0.5]] },
+    bounce_v:   { pts: [[0.5, 0], [0.3, 0.5], [0.5, 1]] }
+  };
+  const pieceNames = Object.keys(pieces);
+
+  // ========== STEP 2: Sampling & aligning ==========
+  const m = 6;          // rows
+  const n = 8;          // columns
+  const cell = 50;      // pixel size of each cell
+  let grid = [];
+
+  p.setup = () => {
+    const cnv = p.createCanvas(n * cell, m * cell);
+    cnv.parent("sona-sketch");   // attach to the div above
+
+    // sample a piece for every cell
+    for (let i = 0; i < n; i++) {
+      grid[i] = [];
+      for (let j = 0; j < m; j++) {
+        grid[i][j] = p.random(pieceNames);
+      }
+    }
+    p.noLoop();
+  };
+
+  p.draw = () => {
+    p.background(252);
+
+    // reference dots (classic sona/Kolam points)
+    p.fill(90);
+    p.noStroke();
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < m; j++) {
+        p.circle((i + 0.5) * cell, p.height - (j + 0.5) * cell, 6);
+      }
+    }
+
+    // draw the randomly sampled pieces
+    p.stroke(50, 110, 180);
+    p.strokeWeight(3);
+    p.noFill();
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < m; j++) {
+        const piece = pieces[grid[i][j]];
+        p.beginShape();
+        for (const pt of piece.pts) {
+          const px = (i + pt[0]) * cell;
+          const py = p.height - (j + pt[1]) * cell;
+          p.vertex(px, py);
+        }
+        p.endShape();
+      }
+    }
+  };
+};
+
+// launch the sketch
+new p5(sonaSketch);
+</script>
+```
+
+
+
+
+
+### Using R
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# ========== STEP 1: Canonical pieces ==========
+# Each piece is a list of line segments inside the unit square [0,1]×[0,1]
+# Ports: which sides it connects (N=1, E=2, S=3, W=4)
+
+pieces <- list(
+  straight_h = list(segs = data.frame(x=c(0,1), y=c(0.5,0.5)), ports=c(2,4)),
+  straight_v = list(segs = data.frame(x=c(0.5,0.5), y=c(0,1)), ports=c(1,3)),
+  turn_ne    = list(segs = data.frame(x=c(0.5,1), y=c(1,0.5)), ports=c(1,2)),
+  turn_nw    = list(segs = data.frame(x=c(0,0.5), y=c(0.5,1)), ports=c(1,4)),
+  turn_se    = list(segs = data.frame(x=c(0.5,1), y=c(0,0.5)), ports=c(2,3)),
+  turn_sw    = list(segs = data.frame(x=c(0,0.5), y=c(0.5,0)), ports=c(3,4)),
+  bounce_h   = list(segs = data.frame(x=c(0,0.5,1), y=c(0.5,0.3,0.5)), ports=c(2,4)), # mirror-like
+  bounce_v   = list(segs = data.frame(x=c(0.5,0.3,0.5), y=c(0,0.5,1)), ports=c(1,3))
+)
+
+piece_names <- names(pieces)
+
+# ========== STEP 2: Sampling & aligning ==========
+m <- 6; n <- 8; set.seed(123)
+
+# sample a piece for every cell
+grid <- expand.grid(i = 1:n, j = 1:m) %>%
+  mutate(piece = sample(piece_names, n(), replace = TRUE))
+
+# expand into drawable segments, translated to cell position
+draw_data <- grid %>%
+  rowwise() %>%
+  do({
+    p <- pieces[[.$piece]]
+    data.frame(
+      i = .$i, j = .$j,
+      x = p$segs$x + .$i - 1,
+      y = p$segs$y + .$j - 1,
+      group = paste(.$i, .$j, sep = "_")
+    )
+  }) %>% ungroup()
+
+# optional: dots at cell centres (classic sona reference points)
+dots <- expand.grid(x = 0.5:(n-0.5), y = 0.5:(m-0.5))
+
+# plot
+ggplot() +
+  geom_point(data = dots, aes(x, y), colour = "grey50", size = 2) +
+  geom_path(data = draw_data, aes(x, y, group = group),
+            colour = "steelblue", linewidth = 1.2) +
+  coord_fixed() +
+  theme_void() +
+  labs(title = "Randomly sampled canonical pieces → sona/Kolam attempt")
+
+```
+
+:::
+
+
+## {{< iconify mingcute thought-line >}} Wait, But Why?
+
+Kolams and Sona are powerful metaphors for [graphs and networks](../../../../Analytics/Descriptive/Modules/100-Networks/index.qmd). These ideas show up in a variety of situations, such as tranportation networks, supply-chain, friendship networks, tracing literary and artistic influence, and so on. 
+
+## {{< iconify ooui references-ltr >}} References
+
+1. Jurgen Koller. *Kolams and Sona*. <https://mathematische-basteleien.de/kolams.htm>
+1. Syamala Chenulu. *Teaching Mathematics through the ART OF KOLAM*
+1.  Mirror Designs and Mirror Curves: Comparing Kolam and Tchokwe Art. <https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm>
+1.  YANAGISAWA, Kiwamu & Nagata, Shojiro. (2007). *Fundamental Study on Design System of Kolam Pattern*. <https://www.researchgate.net/publication/237442288_Fundamental_Study_on_Design_System_of_Kolam_Pattern>
+1. Paulus Gerdes. *Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries*.
+{{< pdf ../../../../../materials/pdfs/Kolam/lunda_geometry.pdf >}}
+1. Visual Mathematics. Mathematical Institute of the Serbian Academy of Sciences and Arts. Editor: Ljiljana Radovic. ISSN: 1821-1437. <https://www.mi.sanu.ac.rs/vismath/>
+1.  Anu Reddy and Alex McLean.(March 2024). *Drawing Kolam Patterns in Stitches and Code*. <https://alpaca.pubpub.org/pub/eljjyi80/release/6>
+1. Labs Without Borders on Medium. (Nov 29, 2020). *Folkloric Graph Theory: The Mathematics of Kolam.* <https://liubauer.medium.com/mathematics-of-kolam-folkloric-graph-theory-4b3acc79d5cb> 
+
+
+## Additional Reading
+
+1. Symmetry Journal. <https://www.mdpi.com/journal/symmetry> [ Open Access]
+1. Some kolam like patterns for inspiration. <https://www.pinterest.com/gbenainous/p5js-teaching-ideas/>
+1.  Dr. Gift Siromoney's webpage. <https://www.cmi.ac.in/gift/Kolam.htm>
+1.  Imaginary.Org. *Frozen Light App*.
+    <https://www.imaginary.org/program/frozenlight>
+1.  <https://kolamtiles.com>
+1.  <https://algorithmicpattern.org>
+1.  Ascher, M. (2002). *The Kolam Tradition: A tradition of
+    figure-drawing in southern India expresses mathematical ideas and
+    has attracted the attention of computer science*. American
+    Scientist, 90(1), 56+. <https://www.jstor.org/stable/27857597>

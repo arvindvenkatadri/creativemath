@@ -1,79 +1,39 @@
 [
   {
-    "listing": "/content/courses/MathModelsDesign/Modules/500-Tech/listing.html",
+    "listing": "/content/courses/MathModelsDesign/Modules/25-Geometry/listing.html",
     "items": [
-      "/content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html",
-      "/content/courses/MathModelsDesign/Modules/500-Tech/10-StartingSound/index.html",
-      "/content/courses/MathModelsDesign/Modules/500-Tech/20-AddingLibrariesToP5Js/index.html",
-      "/content/courses/MathModelsDesign/Modules/500-Tech/30-Constructors/index.html",
-      "/content/courses/MathModelsDesign/Modules/500-Tech/50-OSC/index.html"
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/20-Rotation/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/50-Permutations/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/60-Planar/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/140-Fractals/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/30-Reflection/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/40-Dihedral/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/110-AffineFractals/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/150-LSystems/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/360-Kolams/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/370-KolamMath/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/100-IteratedFunctions/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/100-IteratedFunctions/03-iterative-functions-symmetry.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/1000-Notes/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/120-ChaosGames/02-randomness-chaos-games.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/130-SymmetryOnAverage/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/300-MirrorMatrix/index.html",
+      "/content/courses/MathModelsDesign/Modules/25-Geometry/350-LundaGeometry/index.html"
     ]
   },
   {
-    "listing": "/content/courses/MathModelsDesign/Modules/05-Maths/listing.html",
+    "listing": "/content/courses/MathModelsDesign/Modules/20-Systems/listing.html",
     "items": [
-      "/content/courses/MathModelsDesign/Modules/05-Maths/10-ComplexNumbers/index.html",
-      "/content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html",
-      "/content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html",
-      "/content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.html",
-      "/content/courses/MathModelsDesign/Modules/05-Maths/70-Test/index.html"
-    ]
-  },
-  {
-    "listing": "/content/courses/MathModelsDesign/Modules/55-Connections/listing.html",
-    "items": [
-      "/content/courses/MathModelsDesign/Modules/55-Connections/10-GraphNetworks/index.html"
-    ]
-  },
-  {
-    "listing": "/content/courses/MathModelsDesign/Modules/100-AI/listing.html",
-    "items": [
-      "/content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html",
-      "/content/courses/MathModelsDesign/Modules/100-AI/20-Perceptron/index.html",
-      "/content/courses/MathModelsDesign/Modules/100-AI/30-MLP/index.html",
-      "/content/courses/MathModelsDesign/Modules/100-AI/40-BackProp/index.html",
-      "/content/courses/MathModelsDesign/Modules/100-AI/50-GradientDescent/index.html",
-      "/content/courses/MathModelsDesign/Modules/100-AI/55-HandCalculation/index.html",
-      "/content/courses/MathModelsDesign/Modules/100-AI/60-Convnet/index.html",
-      "/content/courses/MathModelsDesign/Modules/100-AI/200-LLMs/index.html"
-    ]
-  },
-  {
-    "listing": "/content/courses/MathModelsDesign/Modules/65-Graphs/listing.html",
-    "items": [
-      "/content/courses/MathModelsDesign/Modules/65-Graphs/10-Adjacency/01-graphs-adjacency.html",
-      "/content/courses/MathModelsDesign/Modules/65-Graphs/20-MirrorMatrices/02-idealized-mirror.html",
-      "/content/courses/MathModelsDesign/Modules/65-Graphs/30-SymmetryAverage/03-symmetry-on-average.html"
-    ]
-  },
-  {
-    "listing": "/content/courses/MathModelsDesign/Modules/45-Uncertainty/listing.html",
-    "items": [
-      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/10-Chance/index.html",
-      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/50-Thoughts/index.html",
-      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/20-Chaos/index.html",
-      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/30-Agents/index.html",
-      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/40-Time/index.html"
-    ]
-  },
-  {
-    "listing": "/content/courses/MathModelsDesign/Modules/35-Media/listing.html",
-    "items": [
-      "/content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html",
-      "/content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.html",
-      "/content/courses/MathModelsDesign/Modules/35-Media/70-MakingNoise/index.html",
-      "/content/courses/MathModelsDesign/Modules/35-Media/100-KarplusStrong/index.html",
-      "/content/courses/MathModelsDesign/Modules/35-Media/1000-SoundGlossary/index.html"
-    ]
-  },
-  {
-    "listing": "/content/courses/ComputationalWorlds/listing.html",
-    "items": []
-  },
-  {
-    "listing": "/content/courses/listing.html",
-    "items": [
-      "/content/courses/MathModelsDesign/listing.html"
+      "/content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/15-PhasorDiagrams/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/20-SamplingAliasing/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/90-Modulation/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/100-Gaussian/index.html",
+      "/content/courses/MathModelsDesign/Modules/20-Systems/120-Kalman/index.html"
     ]
   },
   {
@@ -93,17 +53,69 @@
     ]
   },
   {
-    "listing": "/content/courses/MathModelsDesign/Modules/20-Systems/listing.html",
+    "listing": "/content/courses/listing.html",
     "items": [
-      "/content/courses/MathModelsDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/15-PhasorDiagrams/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/20-SamplingAliasing/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/30-Filters/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/80-Convolution/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/90-Modulation/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/100-Gaussian/index.html",
-      "/content/courses/MathModelsDesign/Modules/20-Systems/120-Kalman/index.html"
+      "/content/courses/MathModelsDesign/listing.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/ComputationalWorlds/listing.html",
+    "items": []
+  },
+  {
+    "listing": "/content/courses/MathModelsDesign/Modules/35-Media/listing.html",
+    "items": [
+      "/content/courses/MathModelsDesign/Modules/35-Media/50-AdditiveSynth/index.html",
+      "/content/courses/MathModelsDesign/Modules/35-Media/60-FMSynth/index.html",
+      "/content/courses/MathModelsDesign/Modules/35-Media/70-MakingNoise/index.html",
+      "/content/courses/MathModelsDesign/Modules/35-Media/100-KarplusStrong/index.html",
+      "/content/courses/MathModelsDesign/Modules/35-Media/1000-SoundGlossary/index.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/MathModelsDesign/Modules/45-Uncertainty/listing.html",
+    "items": [
+      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/10-Chance/index.html",
+      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/50-Thoughts/index.html",
+      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/20-Chaos/index.html",
+      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/30-Agents/index.html",
+      "/content/courses/MathModelsDesign/Modules/45-Uncertainty/40-Time/index.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/MathModelsDesign/Modules/65-Graphs/listing.html",
+    "items": [
+      "/content/courses/MathModelsDesign/Modules/65-Graphs/10-Adjacency/01-graphs-adjacency.html",
+      "/content/courses/MathModelsDesign/Modules/65-Graphs/20-MirrorMatrices/02-idealized-mirror.html",
+      "/content/courses/MathModelsDesign/Modules/65-Graphs/30-SymmetryAverage/03-symmetry-on-average.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/MathModelsDesign/Modules/100-AI/listing.html",
+    "items": [
+      "/content/courses/MathModelsDesign/Modules/100-AI/10-NeuralNets/index.html",
+      "/content/courses/MathModelsDesign/Modules/100-AI/20-Perceptron/index.html",
+      "/content/courses/MathModelsDesign/Modules/100-AI/30-MLP/index.html",
+      "/content/courses/MathModelsDesign/Modules/100-AI/40-BackProp/index.html",
+      "/content/courses/MathModelsDesign/Modules/100-AI/50-GradientDescent/index.html",
+      "/content/courses/MathModelsDesign/Modules/100-AI/55-HandCalculation/index.html",
+      "/content/courses/MathModelsDesign/Modules/100-AI/60-Convnet/index.html",
+      "/content/courses/MathModelsDesign/Modules/100-AI/200-LLMs/index.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/MathModelsDesign/Modules/55-Connections/listing.html",
+    "items": [
+      "/content/courses/MathModelsDesign/Modules/55-Connections/10-GraphNetworks/index.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/MathModelsDesign/Modules/05-Maths/listing.html",
+    "items": [
+      "/content/courses/MathModelsDesign/Modules/05-Maths/10-ComplexNumbers/index.html",
+      "/content/courses/MathModelsDesign/Modules/05-Maths/20-Vectors/index.html",
+      "/content/courses/MathModelsDesign/Modules/05-Maths/50-Matrices/index.html",
+      "/content/courses/MathModelsDesign/Modules/05-Maths/60-Orthogonality/index.html"
     ]
   },
   {
@@ -111,25 +123,14 @@
     "items": []
   },
   {
-    "listing": "/content/courses/MathModelsDesign/Modules/25-Geometry/listing.html",
+    "listing": "/content/courses/MathModelsDesign/Modules/500-Tech/listing.html",
     "items": [
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/22-Permutations/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/24-Rotational/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/26-Planar/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/50-LSystems/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/100-MirrorMatrix/mirror-matrices-kolam.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/120-DualGraphIncidence/dual-graph-incidence.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/140-LundaGeometry/lunda-designs.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/01-types-of-symmetry.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/40-IteratedFunctions/03-iterative-functions-symmetry.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/44-ChaosGames/02-randomness-chaos-games.html",
-      "/content/courses/MathModelsDesign/Modules/25-Geometry/46-SymmetryOnAverage/04-symmetry-on-average.html"
+      "/content/courses/MathModelsDesign/Modules/500-Tech/01-Tools/index.html",
+      "/content/courses/MathModelsDesign/Modules/500-Tech/05-Rotation/index.html",
+      "/content/courses/MathModelsDesign/Modules/500-Tech/10-StartingSound/index.html",
+      "/content/courses/MathModelsDesign/Modules/500-Tech/20-AddingLibrariesToP5Js/index.html",
+      "/content/courses/MathModelsDesign/Modules/500-Tech/30-Constructors/index.html",
+      "/content/courses/MathModelsDesign/Modules/500-Tech/50-OSC/index.html"
     ]
   }
 ]

@@ -1,0 +1,169 @@
+---
+title: "Rotational Symmetry"
+subtitle: "Rotation Groups — Simple Visual Examples"
+format: 
+  html:
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+code-fold: true
+date: 26/July/2026
+date-modified: today
+order: 20
+categories:
+  - Change
+  - Canonical Movements
+  - Immunity
+  - Groups
+---
+
+{{< include /_setup_claude_made.qmd >}}
+
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+library(dplyr)
+library(ggdiagram)
+```
+
+## Rotational Symmetry
+
+Assume we have a plane 2D geomtric shape on the table. How would we rotate it with our hand? Two fingers: the thumb to **anchor** the rotation, and one other finger to rotate the object. 
+Where would you place the thumb? On the point where you imagine the **axis of rotation** to be; an imaginary line rising *vertically* from the surface. And the other finger would be placed *on the periphery* of the object. This is your repeatable **canonical movement** in this instance.
+
+How do we describe this with math? Two ways. A `set`, and a `matrix`.
+
+### Cyclic Symmetry Group
+
+A **`cyclic symmetry group`** is a `set` $\mathbb{C}_{𝑛}$ contains the symmetries produced by repeatedly applying one basic rotation. For a 2D object, it has $n$ elements: the identity plus $n−1$ rotations by multiples of $360^\circ /n$. So what does this `set` contain?
+
+$$
+\mathbb{C}_{𝑛} = \{ {e,r,r^2,…,r^{n−1}} \}
+$${#eq-cyclic-symmetric-group}
+
+where:
+
+- $e$ is the identity operator: “do nothing.”
+- $r$ is one basic rotation, usually by $360^\circ /n$
+- $r^k$ means applying that rotation $k$ times, equivalent to rotating by $k \times 360^\circ /n$
+- $r^n = e$ because $n$ repetitions return the object to its starting position.
+
+
+```{=html}
+<div id="rotational-sketch"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<script>
+new p5((p) => {
+  let n = 5;
+  let angle = 0;
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    p.background(255);
+  };
+  p.draw = () => {
+    p.background(240);
+    p.translate(200, 200);
+    for (let i = 0; i < n; i++) {
+      p.push();
+      p.rotate(angle + i * p.TWO_PI / n);
+      p.fill(100, 150, 220, 180);
+      p.noStroke();
+      p.ellipse(80, 0, 30, 30);
+      p.pop();
+    }
+    angle += 0.01;
+  };
+}, document.getElementById("rotational-sketch"));
+</script>
+```
+
+
+### A Rotation Matrix
+
+If we had a set of 2D points ${x,y}$ then we can write their rotation as a transformation of their coordinates to a new position, representing a rotation **about a notional axis of rotation**. What might such an axis look like?
+
+
+```{r}
+#| label: fig-rotation-matrix-calculations
+#| fig-cap: "Rotation Matrix calculations"
+#| echo: false
+#| 
+
+ggdiagram() +
+  {c1 <- ob_circle(center = ob_point(0, 0), radius = 3)} +
+  {p60 <- c1@point_at(60, size = 4)} +
+  {p0  <- c1@point_at(0,  size = 4)} +
+  # Label for the 60° point: "A(x, y)"
+  p60@label(
+    label      = paste0("B", p60@auto_label),
+    polar_just = ob_polar(60, 1.5),
+    vjust      = 1.2,
+    size       = 16
+  ) +
+  # Label for the 0° point: "B(x, y)"
+  p0@label(
+    label      = paste0("A", p0@auto_label),
+    polar_just = ob_polar(0, 1.5),
+    vjust      = 1.2,
+    size       = 16
+  ) +
+  # Optional: label the center as well
+  c1@center@label(
+    label = paste0("O", c1@center@auto_label),
+    vjust = 1.2,
+    size  = 16
+  ) + 
+  ob_segment(
+    c1@center,c1@point_at(0),
+    color = "black",
+    label = ob_label(paste0("*r* = ", c1@radius), angle = 0, vjust = 0.5)
+  ) +
+  ob_segment(
+    c1@center,
+    c1@point_at(60),
+    color = "black"
+  ) +
+  ob_arc(radius = 1, start = degree(0), end = 60, label = degree(60), 
+      arrow_head = arrowhead(),
+      arrow_fins = arrowhead(), 
+      arrowhead_length = 8)
+
+```
+We rotate point $A$ about the origin $O$ and obtain $B$. And we transform the original coordinates of A to those of B, using a matrix multiplication:
+
+$$
+\begin{pmatrix}
+x_B \\
+y_B
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos 60^\circ & -\sin 60^\circ \\
+\sin 60^\circ & \cos 60^\circ
+\end{pmatrix}
+\begin{pmatrix}
+x_A \\
+y_A
+\end{pmatrix}
+$${#eq-rotation-matrix}
+
+so:
+
+$$
+x_B = x_A \cos 60^\circ - y_A \sin 60^\circ, \qquad
+y_B = x_A \sin 60^\circ + y_A \cos 60^\circ
+$$
+## {{< iconify mingcute thought-line >}} Wait, But Why?
+
+TBWU.
+
+## Design Notes 
+
+- **Rotational only** ($\mathbb{Z}_{n}$): swirling, pinwheel-like, no mirror lines.
+- **Reflection only** ($\mathbb{R}_{𝑛} = \{ {e,m} \}$: bilateral balance (faces, logos, architecture).
+- **Dihedral** ($\mathbb{D}_{n}$ ): the most common decorative symmetry (snowflakes, flowers, rose windows, tiles).
+
+These geometric ideas become the constraints we later impose on iterative and random processes.
+

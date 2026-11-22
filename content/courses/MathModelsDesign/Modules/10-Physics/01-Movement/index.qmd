@@ -2,15 +2,12 @@
 title: <iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Dancing With Newton
 abstract: ""
 date: 07/Feb/2025
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 10
 code-fold: true
 categories:
 - mechanics
-citation: true
-editor: 
-  markdown: 
-    wrap: 72
+
 ---
 
 ```{r}

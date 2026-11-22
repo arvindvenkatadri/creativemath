@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.11.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2024-05-02">
-<title>Fourier Series and Fourier Transform – Applied Math for Makers</title>
+<title>Fourier Series and Fourier Transform – Applied Math for Makers and Artists</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,26 +24,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 <script src="../../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../../../site_libs/quarto-nav/headroom.min.js"></script>
@@ -65,7 +46,7 @@ div.csl-indent {
 <link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-85f7a32731ed2b609fa7be27e34d4366.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-7a1d14f50645d6335187906f5103aab9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-ef779530aa6215dae3f133b0cb589380.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -124,10 +105,10 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<meta property="og:title" content="Fourier Series and Fourier Transform – Applied Math for Makers">
+<meta property="og:title" content="Fourier Series and Fourier Transform – Applied Math for Makers and Artists">
 <meta property="og:description" content="This is Arvind V.’s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences.">
-<meta property="og:site_name" content="Applied Math for Makers">
-<meta name="twitter:title" content="Fourier Series and Fourier Transform – Applied Math for Makers">
+<meta property="og:site_name" content="Applied Math for Makers and Artists">
+<meta name="twitter:title" content="Fourier Series and Fourier Transform – Applied Math for Makers and Artists">
 <meta name="twitter:description" content="This is Arvind V.’s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -137,7 +118,7 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../../../../index.html">
-    <span class="navbar-title">Applied Math for Makers</span>
+    <span class="navbar-title">Applied Math for Makers and Artists</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -180,7 +161,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Artists and Designers</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html">Fourier Series and Fourier Transform</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Applied Math for Makers and Artists</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html">Fourier Series and Fourier Transform</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -203,8 +184,8 @@ window.Quarto = {
 <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathModelsDesign/listing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text" id="quarto-sidebar-section-1-label">Math Models for Artists and Designers</span></a>
-            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section: Math Models for Artists and Designers">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Applied Math for Makers and Artists</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section: Applied Math for Makers and Artists">
               <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
             </button> 
       </div>
@@ -219,11 +200,8 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools and Installation</span></a>
-  </div>
-</li>
+ <span class="menu-text">content/courses/MathModelsDesign/Modules/500-Tech/05-Tools/index.qmd</span>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/500-Tech/10-StartingSound/index.html" class="sidebar-item-text sidebar-link">
@@ -343,62 +321,92 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Movement and Animation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><iconify-icon icon="ph:circles-three-fill" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Circles</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/20-Symmetry/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Symmetry Itself</span></a>
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/20-Rotation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rotational Symmetry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/22-Permutations/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/30-Reflection/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reflection Symmetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/40-Dihedral/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dihedral Symmetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/50-Permutations/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Permutations and Symmetry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/24-Rotational/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Rotational Symmetry Revisited</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/26-Planar/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/60-Planar/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Symmetries in a Plane</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/30-Fractals/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fractals</span></a>
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/100-IteratedFunctions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Iterated Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/42-AffineFractals/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/110-AffineFractals/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Affine Transformation Fractals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/50-LSystems/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/130-SymmetryOnAverage/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomness + Iterative Functions = Symmetry on Average</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/140-Fractals/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fractals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/150-LSystems/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">L-Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/60-Kolams/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/300-MirrorMatrix/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mirror Matrices: From Networks to Kolams, Lusona and Rangoli</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/350-LundaGeometry/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lunda Designs: Zeroing, Shading and Modulo Arithmetic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/360-Kolams/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kolams and Lusona</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/370-KolamMath/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Maths of Kolam and Lusona</span></a>
   </div>
 </li>
       </ul>
@@ -547,7 +555,7 @@ window.Quarto = {
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Math Models for Artists and Designers</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html">Fourier Series and Fourier Transform</a></li></ol></nav><div class="quarto-title">
+<main class="content column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/listing.html">Applied Math for Makers and Artists</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/index.html">Fourier Series and Fourier Transform</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">Fourier Series and Fourier Transform</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Euler Formula</div>
@@ -571,7 +579,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 31, 2026</p>
+      <p class="date-modified">November 22, 2026</p>
     </div>
   </div>
     
@@ -579,7 +587,8 @@ window.Quarto = {
   
 
 
-</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</header><hr>
+<section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Can <a href="../../../../../../content/courses/MathModelsDesign/Modules/25-Geometry/10-Circles/index.html">Circles</a> do more for us than draw these lovely patterns? Can they give us an <em>alphabet</em>, a universal way of generating and representing many forms of interest? Can we treat them like a bunch of kitchen ingredients, that we throw into a recipe to conjure up new dishes that look different?</p>
 </section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
@@ -781,60 +790,9 @@ Histogram \sim Frequency~Density &lt;=&gt; Fourier~Series \sim Fourier~Transform
 <li><a href="https://dogbotic.com" class="uri">https://dogbotic.com</a></li>
 <li><a href="https://gjmvanboxtel.r-universe.dev/gsignal" class="uri">https://gjmvanboxtel.r-universe.dev/gsignal</a></li>
 </ol>
-<div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" role="list">
-<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations">
-<iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead><tr class="header">
-<th style="text-align: left;">Package</th>
-<th style="text-align: left;">Version</th>
-<th style="text-align: left;">Citation</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">ambient</td>
-<td style="text-align: left;">1.0.3</td>
-<td style="text-align: left;"><span class="citation" data-cites="ambient">Pedersen and Peck (<a href="#ref-ambient" role="doc-biblioref">2025</a>)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">gsignal</td>
-<td style="text-align: left;">0.3.7</td>
-<td style="text-align: left;"><span class="citation" data-cites="gsignal">Van Boxtel, G.J.M., et al. (<a href="#ref-gsignal" role="doc-biblioref">2021</a>)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">mosaicCalc</td>
-<td style="text-align: left;">0.6.4</td>
-<td style="text-align: left;"><span class="citation" data-cites="mosaicCalc">Kaplan et al. (<a href="#ref-mosaicCalc" role="doc-biblioref">2024</a>)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="ref-mosaicCalc" class="csl-entry" role="listitem">
-Kaplan, Daniel T., Randall Pruim, and Nicholas J. Horton. 2024. <em><span class="nocase">mosaicCalc</span>: R-Language Based Calculus Operations for Teaching</em>. <a href="https://doi.org/10.32614/CRAN.package.mosaicCalc">https://doi.org/10.32614/CRAN.package.mosaicCalc</a>.
-</div>
-<div id="ref-ambient" class="csl-entry" role="listitem">
-Pedersen, Thomas Lin, and Jordan Peck. 2025. <em><span class="nocase">ambient</span>: A Generator of Multidimensional Noise</em>. <a href="https://doi.org/10.32614/CRAN.package.ambient">https://doi.org/10.32614/CRAN.package.ambient</a>.
-</div>
-<div id="ref-gsignal" class="csl-entry" role="listitem">
-Van Boxtel, G.J.M., et al. 2021. <em><span class="nocase">gsignal</span>: Signal Processing</em>. <a href="https://github.com/gjmvanboxtel/gsignal">https://github.com/gjmvanboxtel/gsignal</a>.
-</div>
-</section>
-</div>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><div class="code-copy-outer-scaffold"><pre class="sourceCode quarto-appendix-bibtex code-with-copy"><code class="sourceCode bibtex">@online{2024,
-  author = {},
-  title = {Fourier {Series} and {Fourier} {Transform}},
-  date = {2024-05-02},
-  url = {https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/},
-  langid = {en}
-}
-</code></pre><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-<span>“Fourier Series and Fourier Transform.”</span> 2024. May 2. <a href="https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/">https://mathformakers.netlify.app/content/courses/MathModelsDesign/Modules/20-Systems/25-FourierSeries/</a>.
-</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();

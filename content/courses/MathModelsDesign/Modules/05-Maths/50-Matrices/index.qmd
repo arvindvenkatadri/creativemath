@@ -10,28 +10,72 @@ code-fold: true
 categories:
 - Matrices
 - Matrix Operations
-citation: true
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
 {{< include /_setup_claude_made.qmd >}}
 
+---
+
 ```{r setup, include=FALSE}
-library(blogdown)
 library(tidyverse)
 library(ggformula)
-library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
-
+library(ggdiagram)
 # pak::pak("seankross/p5")
 library(p5)
-library(symengine) # Symbolic Maths Engine that does not depend upon Python!
-# library(RcppArmadillo) # Numerical Math Calculator
+##
+library(symengine) # Maths Engine that does not depend upon Python!
+# library(mosaicCalc) # Analytic Calculus
+# library(pracma) # For numerical analysis and linear algebra
+# library(Ryacas) # Symbolic Algebra
+
+symengine_latex_matrix <- function(
+  A,
+  label = NULL,
+  caption = NULL,
+  inline = FALSE
+) {
+  # Accept a symengine DenseMatrix or an ordinary R matrix
+  m <- if (inherits(A, "DenseMatrix")) as.matrix(A) else A
+
+  # Ensure all entries are character strings
+  m <- matrix(
+    vapply(m, function(x) as.character(x), character(1)),
+    nrow = nrow(m),
+    ncol = ncol(m)
+  )
+
+  rows <- apply(m, 1, function(row) paste(row, collapse = " & "))
+
+  latex_matrix <- paste0(
+    "\\begin{bmatrix}\n",
+    paste(rows, collapse = " \\\\\n"),
+    "\n\\end{bmatrix}"
+  )
+
+  if (isTRUE(inline)) {
+    return(paste0("$", latex_matrix, "$"))
+  }
+
+  # Display equation
+  output <- paste0("$$\n", latex_matrix, "\n$$")
+
+  # Optional Quarto equation label
+  if (!is.null(label)) {
+    output <- paste0(output, " {#", label, "}")
+  }
+
+  # Optional caption BELOW the equation
+  if (!is.null(caption)) {
+    output <- paste0(output, "\n\n*", caption, "*")
+  }
+
+  output
+}
 
 ```
+
 
 
 ```{r}
@@ -129,25 +173,39 @@ $$ {#eq-3-by-1-matrix}
 ::::
 
 ## Transpose
+
 A matrix transpose is accomplished by writing rows as columns and vice versa. Hence an $r~ \times ~ c$ matrix becomes transposed into a $c~ \times ~ r$ matrix, as shown below:
 
 :::: {.columns}
 ::: {.column width=48%}
 ```{r}
 #| echo: false
+#| output: asis
+#| fig-align: center
+#| 
 A <- symengine::Matrix(data = c("a", "b", "c","d", "1","2"), nrow = 2, ncol = 3) 
-A
+cat(symengine_latex_matrix(A))
+cat("\n\n")
 
 ```
 
 :::
+
+::: {.column width=4%}
+:::
+
 ::: {.column width=48%}
 ```{r}
 #| echo: false
-t(A)
+#| output: asis
+
+A <- symengine::Matrix(data = c("a", "b", "c","d", "1","2"), nrow = 2, ncol = 3) 
+B <- t(A)
+cat(symengine_latex_matrix(B))
 
 ```
 :::
+
 ::::
 
 
@@ -156,63 +214,64 @@ t(A)
 Matrices can be added or subtracted when they are of the ***same*** dimensions, rows and columns. Matrix elements are added or subtracted in element-wise fashion.
 
 
-### Addition
+:::: {.columns}
+
+::: {.column width=40%}
 ```{r}
 #| echo: false
+#| output: asis
+#| tbl-cap: "Two Matrices"
+#| 
 A <- symengine::Matrix(c("a", "b", "0", "1"), 2, 2)
 B <- symengine::Matrix(c("a", "b", "c", "1"), 2, 2)
-A
-B
-```
+cat(symengine_latex_matrix(A))
+cat(symengine_latex_matrix(B))
 
-:::: {.columns}
-::: {.column width=30%}
-```{r}
-#| echo: false
-A + B
 ```
 :::
+
 
 ::: {.column width=30%}
 ```{r}
 #| echo: false
-B
+#| output: asis
+#| fig-cap: "Addition"
+#| 
+A <- symengine::Matrix(c("a", "b", "0", "1"), 2, 2)
+B <- symengine::Matrix(c("a", "b", "c", "1"), 2, 2)
+C <- A + B
+cat(symengine_latex_matrix(C))
+
 ```
+
 :::
+
 ::: {.column width=30%}
+
 ```{r}
 #| echo: false
-A + B
+#| output: asis
+#| tbl-cap: "Subtraction"
+#| 
+A <- symengine::Matrix(c("a", "b", "0", "1"), 2, 2)
+B <- symengine::Matrix(c("a", "b", "c", "1"), 2, 2)
+C <- A - B
+cat(symengine_latex_matrix(C))
+
 ```
+
 :::
 ::::
 
-### Subtraction
-```{r}
-#| echo: false
-A <- matrix_(c("a", "b", "0", "1"), 2, 2) %>% as_sym()
-B <- matrix_(c("a", "b", "c", "1"), 2, 2) %>% as_sym()
-```
-
 :::: {.columns}
-::: {.column width=30%}
-```{r}
-#| echo: false
-A
-```
-:::
-
-::: {.column width=30%}
-```{r}
-#| echo: false
-B
-```
+::: {.column width=40%}
+$$\text{Matrices A and B}$$
 :::
 ::: {.column width=30%}
-```{r}
-#| echo: false
-A - B
-```
+$$\text{A + B}$$
+:::
+::: {.column width=30%}
+$$\text{A - B}$$
 :::
 ::::
 
@@ -228,44 +287,55 @@ Suppose there are three SMI peasants who bought two kinds of food and drink:
 
 Samosas cost 20 and chai costs 10. How much do they pay?
 
-```{r}
-#| echo: false
-Orders <- matrix_(c(2,3,0,1,0,2),3,2) 
-Prices <- matrix_(c(20, 10), 2,1) 
-Bills <- Orders %*% Prices
-#A;B;C
-# tex(A)
-# tex(B)
-#tex(C)
-```
-
 :::: {.columns}
 ::: {.column width=30%}
-$$
-\left[\begin{matrix}\color{red}{2} & \color{blue}{1}\\\\\color{red}{3} & \color{blue}{0}\\\\\color{red}{0} & \color{blue}{2}\end{matrix}\right]
-$$
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Prices <- Matrix(c(20, 10), 2,1) 
+cat(symengine_latex_matrix(Orders))
+
+
+```
 :::
+
 ::: {.column width=30%}
-$$
-\left[\begin{matrix}\color{red}{20}\\\\\color{blue}{10}\end{matrix}\right]
-$$
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Prices <- Matrix(c(20, 10), 2,1) 
+cat(symengine_latex_matrix(Prices))
+
+```
 :::
+
 ::: {.column width=30%}
-$$
-\left[\begin{matrix}50\\\\60\\\\20\end{matrix}\right]
-$$
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Prices <- Matrix(c(20, 10), 2,1) 
+Bills <- Orders %*% Prices
+cat(symengine_latex_matrix(Bills))
+```
 :::
+
 ::::
 
 :::: {.columns}
 ::: {.column width=30%}
-$$Orders$$
+$$\text{Orders}$$
 :::
 ::: {.column width=30%}
-$$Prices$$
+$$\text{Prices}$$
 :::
 ::: {.column width=30%}
-$$Bills$$
+$$\text{Bill Amounts}$$
 :::
 ::::
 
@@ -277,48 +347,64 @@ Suppose they had two options for shops? And the prices were different?
 - Samosas cost 20 and chai costs 10 at Shop#1. (as before)
 - Samosas cost 15 and chai costs 15 at Shop#2. 
 
+:::: {.columns}
+::: {.column width=30%}
+
 ```{r}
 #| echo: false
-Orders <- matrix_(c(2,3,0,1,0,2),3,2) 
-Menus <- matrix_(c(20, 10, 15,15), 2,2) 
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Menus <- Matrix(c(20, 10, 15,15), 2,2) 
 Amounts <- Orders %*% Menus
-# A2;B2;C2
-# tex(A2)
-# tex(B2)
-# tex(C2)
+cat(symengine_latex_matrix(Orders))
+
 ```
 
-:::: {.columns}
-::: {.column width=30%}
-$$
-\left[\begin{matrix}\color{red}{2} & \color{blue}{1}\\\\\color{red}{3} & \color{blue}{0}\\\\\color{red}{0} & \color{blue}{2}\end{matrix}\right]
-$$
 :::
 ::: {.column width=30%}
-$$
-\left[\begin{matrix}20 & 15\\\\10 & 15\end{matrix}\right]
-$$
+
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Menus <- Matrix(c(20, 10, 15,15), 2,2) 
+Amounts <- Orders %*% Menus
+cat(symengine_latex_matrix(Menus))
+
+```
+
 :::
 ::: {.column width=30%}
-$$
-\left[\begin{matrix}50 & 45\\\\60 & 45\\\\20 & 30\end{matrix}\right]
-$$
+
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Menus <- Matrix(c(20, 10, 15,15), 2,2) 
+Amounts <- Orders %*% Menus
+cat(symengine_latex_matrix(Amounts))
+
+```
 :::
 ::::
 
 :::: {.columns}
 ::: {.column width=30%}
-$$Orders$$
+$$\text{Orders}$$
 :::
 ::: {.column width=30%}
-$$Menus$$
+$$\text{Shop Price Lists}$$
 :::
 ::: {.column width=30%}
-$$Amounts$$
+$$\text{Peasant Bill Options}$$
 :::
 ::::
 
-Shop#2 is cheaper. Drag *Peasant#3* and go there, *Peasant#1* and *Peasant#2*.
+
+Shop#2 is cheaper for *Peasant#1*, and *Peasant#2*. For *Peasant#3*, Shop#1 is preferable. Drag *Peasant#3* and go to Shop#2, *Peasant#1* and *Peasant#2*.
 
 How did this multiplication happen?
 

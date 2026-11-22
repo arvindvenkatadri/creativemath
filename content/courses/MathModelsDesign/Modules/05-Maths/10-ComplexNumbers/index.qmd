@@ -14,27 +14,25 @@ categories:
 - Julia
 - Algorithmic Patterns
 - Symmetry
-bibliography: 
-  - grateful-refs.bib
-citation: true
-editor: 
-  markdown: 
-    wrap: 72
+
 ---
 
 {{< include /_setup_claude_made.qmd >}}
 
 ```{r setup, include=FALSE}
-library(blogdown)
 library(tidyverse)
 library(ggformula)
-library(mosaicCalc) # Analytic Calculus
 library(ambient) # Noise generation in R
 library(plot3D) # 3D plots for explanation
-
+library(ggdiagram)
 # pak::pak("seankross/p5")
 library(p5)
+##
 library(symengine) # Maths Engine that does not depend upon Python!
+library(mosaicCalc) # Analytic Calculus
+library(pracma) # For Linear Algebra
+library(Ryacas) # Symbolic Algebra
+
 ```
 
 
@@ -81,9 +79,6 @@ One of the most basic kinds of numbers we will need are, of course, *Complex Num
 Dude, what's the square root of -1?? `r emoji::emoji("scream_cat")`
 `r emoji::emoji("scream_cat")` `r emoji::emoji("scream_cat")`!! And,
 what can you do repeatedly to arrive at $[-1, 0]$?
-
-
-
 
 
 {{< video https://youtu.be/DznD05F1DLI >}}

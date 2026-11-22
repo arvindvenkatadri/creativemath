@@ -1,0 +1,183 @@
+---
+title: "Reflection Symmetry"
+subtitle: "Reflections — Simple Visual Examples"
+format: 
+  html:
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+code-fold: true
+date: 26/July/2026
+date-modified: today
+order: 30
+categories:
+  - Change
+  - Canonical Movements
+  - Immunity
+  - Groups
+---
+
+{{< include /_setup_claude_made.qmd >}}
+
+```{r}
+#| label: setup
+#| include: false
+library(ggplot2)
+library(dplyr)
+library(ggdiagram)
+```
+
+
+## Reflection Symmetry
+
+Mirror symmetry is usually explored across a *reference* **line** (often the vertical or horizontal axis). In contrast to **rotation**, this reference line *lies in the same plane as the 2D shape* under consideration!
+
+How do we define this mathematically? 
+
+A `Reflection Set` would have just two entries: 
+
+$$
+\mathbb{R}_{𝑛} = \{ {e,m} \}
+$${#eq-reflection-symmetric-group}
+
+because $m^2 = e$; the mirror image of a mirror image is the original object. 
+
+As a matrix, we can write the reflection operation in a similar way compared to rotation: We use a *reference mirror line*, and flip the object to "the other side" of the mirror. We naturally specify that this *reference mirror line* is at an angle $\theta$ wrt to our $X-axis$. So, in 2D, reflection through a line that makes an angle $\theta$ with the positive $x$-axis is given by the matrix
+
+$$R_{\text{ref}}(\theta)
+=
+\begin{pmatrix}
+\cos 2\theta & \sin 2\theta \\
+\sin 2\theta & -\cos 2\theta
+\end{pmatrix}
+$${#eq-reflection-matrix}
+
+Special cases:
+
+Reflection across the $x$-axis ($\theta = 0$):
+$$\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$$
+Reflection across the $y$-axis ($\theta = 90^\circ$):
+$$\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$$
+Reflection across the line $y = x$ ($\theta = 45^\circ$):
+$$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
+These matrices are `orthogonal` with determinant $-1$, which is the algebraic signature of a reflection.
+
+
+## R example
+
+```{r}
+#| label: fig-mirror-symmetry
+#| fig-height: 4
+#| fig-width: 6
+#| fig-cap: "A shape and its mirror image (outlines + light fill)"
+#| echo: false
+#| 
+
+base <- data.frame(
+  x = c(0, 1, 1.5, 1, 0),
+  y = c(0, 0.5, 0, -0.5, 0)
+)
+mirror <- data.frame(x = -base$x, y = base$y)
+
+ggplot() +
+  geom_polygon(data = base, aes(x, y), fill = "coral", alpha = 0.25, color = "coral", linewidth = 1) +
+  geom_polygon(data = mirror, aes(x, y), fill = "steelblue", alpha = 0.25, color = "steelblue", linewidth = 1) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray40") +
+  coord_fixed(xlim = c(-2, 2), ylim = c(-1, 1)) +
+  theme_minimal()
+```
+
+## p5.js: draw with mirror symmetry
+
+```{=html}
+<div id="mirror-sketch"></div>
+<script>
+new p5((p) => {
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    p.background(255);
+  };
+  p.draw = () => {
+    if (p.mouseIsPressed) {
+      let x = p.mouseX - 200;
+      let y = p.mouseY - 200;
+      p.stroke(0);
+      p.strokeWeight(3);
+      p.point(200 + x, 200 + y);
+      p.point(200 - x, 200 + y); // vertical mirror
+    }
+  };
+}, document.getElementById("mirror-sketch"));
+</script>
+<p><em>Click and drag to draw. The sketch mirrors your strokes across the vertical axis.</em></p>
+```
+
+# Dihedral Symmetry (\( D_n \))
+
+Dihedral groups combine rotations of order \( n \) with reflections. These are the symmetries of regular polygons.
+
+## R example: regular pentagon and its symmetries
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-cap: "Regular pentagon (D5 symmetry)"
+
+n <- 5
+angles <- seq(0, 2*pi, length.out = n + 1)
+poly <- data.frame(
+  x = cos(angles),
+  y = sin(angles)
+)
+
+ggplot(poly, aes(x, y)) +
+  geom_polygon(fill = "gold", alpha = 0.6, color = "black") +
+  coord_fixed() +
+  theme_minimal() +
+  labs(title = "Dihedral group D5")
+```
+
+## p5.js: kaleidoscope-style dihedral drawing
+
+```{=html}
+<div id="dihedral-sketch"></div>
+<script>
+new p5((p) => {
+  let n = 6;
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    p.background(255);
+  };
+  p.draw = () => {
+    if (p.mouseIsPressed) {
+      p.translate(200, 200);
+      for (let i = 0; i < n; i++) {
+        p.push();
+        p.rotate(i * p.TWO_PI / n);
+        p.stroke(p.random(100, 200), p.random(100, 200), p.random(100, 200));
+        p.strokeWeight(2);
+        let x = p.mouseX - 200;
+        let y = p.mouseY - 200;
+        p.line(0, 0, x, y);
+        p.line(0, 0, x, -y); // reflection
+        p.pop();
+      }
+    }
+  };
+}, document.getElementById("dihedral-sketch"));
+</script>
+<p><em>Click and drag. The sketch applies both rotations and reflections of order 6.</em></p>
+```
+
+## {{< iconify mingcute thought-line >}} Wait, But Why?
+
+TBWU.
+
+## Design Notes 
+
+- **Rotational only** ($\mathbb{Z}_{n}$): swirling, pinwheel-like, no mirror lines.
+- **Reflection only** ($\mathbb{R}_{𝑛} = \{ {e,m} \}$: bilateral balance (faces, logos, architecture).
+- **Dihedral** ($\mathbb{D}_{n}$ ): the most common decorative symmetry (snowflakes, flowers, rose windows, tiles).
+
+These geometric ideas become the constraints we later impose on iterative and random processes.

@@ -18,17 +18,17 @@ library(igraph)
 set.seed(42)
 ```
 
-# Adjacency Matrices
+## Adjacency Matrices
 
 An **adjacency matrix** \( A \) of a graph records who is connected to whom:
 
-\[
+$$
 A_{ij} = 
 \begin{cases}
 1 & \text{if there is an edge from } i \text{ to } j \\
 0 & \text{otherwise}
 \end{cases}
-\]
+$$
 
 Nothing forces \( A_{ij} = A_{ji} \). A directed edge can exist in one direction only. That is the technical starting point: relationships need not be symmetric.
 
@@ -38,16 +38,18 @@ Nothing forces \( A_{ij} = A_{ji} \). A directed edge can exist in one direction
 #| fig-height: 4.5
 #| fig-width: 7
 #| fig-cap: "A small directed graph and its (non-symmetric) adjacency matrix"
+#| echo: false
+#| 
 
-g <- graph_from_literal(1-+2, 1-+3, 2-+3, 3-+4, 4-+2, 2-+1)
-A <- as_adjacency_matrix(g, sparse = FALSE)
+g <- igraph::graph_from_literal(1-+2, 1-+3, 2-+3, 3-+4, 4-+2, 2-+1)
+A <- igraph::as_adjacency_matrix(g, sparse = FALSE)
 
 par(mfrow = c(1, 2))
-plot(g, vertex.color = "lightblue", edge.arrow.size = 0.6,
+plot(g, vertex.color = "lightblue", vertex.size = 24, edge.arrow.size = 0.8,
      main = "Directed graph")
-image(t(A[nrow(A):1, ]), axes = FALSE, col = c("white", "steelblue"),
+graphics::image(t(A[nrow(A):1, ]), axes = FALSE, col = c("white", "steelblue"),
       main = "Adjacency matrix A")
-box()
+graphics::box()
 ```
 
 ```{r}

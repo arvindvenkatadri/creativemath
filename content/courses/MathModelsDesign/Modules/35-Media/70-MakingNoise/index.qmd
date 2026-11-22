@@ -4,29 +4,28 @@ subtitle: "Meeting Ken Perlin"
 abstract: "Can you make the same random noise again?"
 date: 2024-Nov-07
 date-modified: today
+include-in-header:
+  - text: <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/p5.min.js"></script>
 order: 30
 categories:
 - Noise Generation
 - Perlin Noise
 - Simplex Noise
-bibliography: 
-  - grateful-refs.bib
-citation: true
 editor: 
   markdown: 
     wrap: 72
 ---
 
+{{< include /_setup_claude_made.qmd >}}
+
 ```{r setup, include=FALSE}
 #library(blogdown)
 library(tidyverse)
 library(ggformula)
-library(ggiraph)
-library(ggcube) # New package for 3D plots (May2026)
-library(ggpointless) # fancy extra geoms for better diagrams
-library(ggdiagram) # What is says
-###
-library(mosaicCalc) # Analytic Calculus
+# library(ggcube) # New package for 3D plots (May2026)
+# library(ggpointless) # fancy extra geoms for better diagrams
+# library(ggdiagram) # What is says
+
 library(ambient) # Noise generation in R
 library(plotly)
 #library(plot3D) # 3D plots for explanation
@@ -55,148 +54,7 @@ library(kableExtra)
 
 ```
 
-
-```{r}
-#| label: Extra Pedagogical Packages
-#| echo: false
-#| message: false
-
-library(epoxy)
-library(grateful)
-library(sysfonts)
-library(gfonts)
-library(downloadthis)
-library(kableExtra)
-#devtools::install_github("mccarthy-m-g/embedr")
-library(embedr) # Embed multimedia in HTML files
-
-```
-
-
-```{r}
-#| label: plot-theme-ggplot4
-#| cache: false
-#| echo: false
-#| messages: false
-#| warning: false
-#| 
-library(systemfonts)
-library(showtext)
-library(marquee)
-library(ggtext)
-library(ggrepel)
-## Clean the slate
-systemfonts::clear_local_fonts()
-systemfonts::clear_registry()
-##
-showtext_opts(dpi = 96) #set DPI for showtext
-sysfonts::font_add(family = "Alegreya",
-  regular = "../../../../../../fonts/Alegreya-Regular.ttf",
-  bold = "../../../../../../fonts/Alegreya-Bold.ttf",
-  italic = "../../../../../../fonts/Alegreya-Italic.ttf",
-  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf")
-
-sysfonts::font_add(family = "Roboto Condensed", 
-  regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
-  bold = "../../../../../../fonts/RobotoCondensed-Bold.ttf",
-  italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
-  bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
-showtext_auto(enable = TRUE) #enable showtext
-##
-# Chunk options
-knitr::opts_chunk$set(
- fig.width = 6,
- fig.asp = 0.618, # Golden Ratio
- #out.width = "80%",
- fig.align = "center"
-)
-##
-theme_custom <- function(){ 
-
-    theme_bw(base_size = 10) + 
-    
-    # theme(panel.widths = unit(11, "cm"), 
-    #       panel.heights = unit(6.79, "cm")) + # Golden Ratio
-    
-    theme(plot.margin = margin_auto(t = 1, r = 2, b = 1, l = 1, unit = "cm"),
-          plot.background = element_rect(fill = "bisque",
-                                         colour = "black",
-                                         linewidth = 1)) + 
-            
-    theme_sub_axis(title = element_text(family = "Roboto Condensed", 
-                                       size = 10),
-                   text = element_text(family = "Roboto Condensed", 
-                                       size = 8)) + 
-    
-    theme_sub_legend(text = element_text(family = "Roboto Condensed", 
-                                         size = 6),
-                     title = element_text(family = "Alegreya", 
-                                          size = 8)) + 
-    
-    theme_sub_plot(title = element_text(family = "Alegreya", 
-                                        size = 14, face = "bold"),
-                   title.position = "plot",
-                   subtitle = element_text(family = "Alegreya", 
-                                           size = 10),
-                   caption = element_text(family = "Alegreya", 
-                                          size = 6),
-                   caption.position = "plot") 
-    
-}
-
-## Use available fonts in ggplot text geoms too!
-ggplot2::update_geom_defaults(geom = "text", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "label", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-
-ggplot2::update_geom_defaults(geom = "marquee", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "text_repel", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "label_repel", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-
-## Set the theme
-ggplot2::theme_set(new = theme_custom())
-
-## tinytable options
-options("tinytable_tt_digits" = 2)
-options("tinytable_format_num_fmt" = "significant_cell")
-options(tinytable_html_mathjax = TRUE)
-
-
-## Set defaults for flextable
-flextable::set_flextable_defaults(font.family = "Roboto Condensed")
-
-```
-<br>
-
+---
 ```{r}
 #| label: fig-tron-the-movie
 #| echo: FALSE
@@ -231,9 +89,10 @@ Perlin Noise based Textures
 
 Ok, this is going to be a long explanation!!!
 
-#### A. Inner Product Computation
+#### A. The Bed of Arrows
 
-Let us take some inspiration from the Mahabharata first: Here is an evocative picture of an event from the great epic, where Bheeshma is lying on a bed of arrows, and the arrows are piercing his body in random directions. The arrows are like the gradient vectors in Perlin Noise, and the point of interest is like Bheeshma's body. The dot product of the gradient vectors with the difference vectors to the point of interest gives us the noise value at that point.:
+Let us take some inspiration from the Mahabharata first: Here is an evocative picture of an event from the great epic, where Bheeshma is lying on a bed of arrows, and the arrows are piercing his body in random directions. The arrows are like the gradient vectors in Perlin Noise, and the point of interest is like Bheeshma's body. 
+
 
 ```{r}
 #| label: fig-bheeshma
@@ -248,52 +107,48 @@ knitr::include_graphics("../../../../../materials/images/Bheeshma.jpeg")
 ```
 
 Let us start by dividing up 2D space ( for now!!) into square-shaped
-cells. At each vertex we randomly place a [**unit gradient
-vector**]{.purple} labelled $r_{i}$ that points in a random direction.
+cells. At each vertex we place a **[unit gradient
+vector]{.purple}** labelled $\pmb{\color{purple}{r_{i}}}$ that points in a random direction.
+
+
+#### B. The Four Dot Products
+
+
 See the figure below:
 
 <center>
-
-<iframe width="680px" height="680px" src="https://editor.p5js.org/arvindv/full/6CosUsBQt">
-
+<iframe width="680px" height="500px"
+src="https://editor.p5js.org/arvindv/full/J4djkb9_n">
 </iframe>
-
 </center>
-
 
 We wish to calculate the Perlin Noise amount at [any point of
 interest]{.green} inside the cell.
 
 -   We draw [difference vectors to the point]{.red} from each of the 4
     vertices.
--   We compute the [**vector dot
-    product**](https://www.youtube.com/watch?v=DHPfoqiE4yQ&pp=ygUaaW5uZXIgcHJvZHVjdCBjb2RpbmcgdHJhaW4%3D)
-    with each of the $r_{i}$ and the above difference vectors. ( 4 dot
-    products )
+-   We compute the [**vector dot product**](https://www.youtube.com/watch?v=DHPfoqiE4yQ&pp=ygUaaW5uZXIgcHJvZHVjdCBjb2RpbmcgdHJhaW4%3D)
+    with each of the $\pmb{\color{purple}{r_{i}}}$ and the above difference vectors. ( 4 dot products )
 -   These are shown in the text print at the side of the figure.
 
 ::: callout-note
 ### [Dot Products](https://www.math.hkust.edu.hk/~machas/vector-calculus-for-engineers.pdf) are Scalars with Polarity
 
 Note how the 4 dot products change as you move the mouse/touchpad. This
-changes the 4 gradient vectors and hence the scalar dot products change
+changes the location of the POI and hence the scalar dot products change
 in amplitude **and** polarity.
 
 In a typical Perlin Noise implementation, the gradient vectors are
-**fixed** after an initial setup. So each gradient vector generates a
-range of dot-product values as the point of interest moves within the
-cell.
+**fixed** after an initial setup. 
 :::
 
-#### B. Interpolation of Dot Product values
+#### C. Weighted Combining of Dot Product values
 
-With the 4 scalar dot products, we are now ready to compute the Perlin
-Noise value at the point of interest. There are several ways of doing
-this:
+With the ***4 scalar dot products***, we are now ready to compute the Perlin Noise value at the point of interest. There are several ways of doing this:
 
--   Simply take the average
+-   Simply take their average.
 -   Take a **weighted** average, with fixed weights.
--   Use a weighting/interpolating function: The closer a point of
+-   Use a *weighting/interpolating function*: The closer a point of
     interest is to one or other of the cell vertices, the higher is the
     contribution of the corresponding dot-product.
 
@@ -304,21 +159,18 @@ $$
 f(t) = 6t^5-15t^4+10t^3
 $$ {#eq-interpolation-function}
 
-and looks like this:
+and looks like this Darth Vader cape, one from each vertex :
 
 ```{r}
-#| label: interpolating-function
+#| label: fig-interpolating-function
+#| fig-cap: :Interpolating Function for Perlin Noise
 #| echo: false
 #| out-width: "75%"
 #| out-height: "75%"
 
-# Set graph theme
-theme_set(new = theme_custom())
-#
-
 ## Unit Square Surface
 gf_polygon(c(0,0.25, 0.25,0) ~ c(0,0.25, 0.75,1), 
-           fill = "grey90") %>% 
+           fill = "grey90", colour = "black") %>% 
 ## Interpolating function from V(0,0)
   gf_fun(6*(1-x)^5 - 15 * (1-x)^4 + 10* (1-x)^3 ~ x, 
        xlim = c(0, 1), linetype = "dashed") %>% 
@@ -327,6 +179,8 @@ gf_polygon(c(0,0.25, 0.25,0) ~ c(0,0.25, 0.75,1),
        title = "Interpolating Function", 
        subtitle = "Used from each vertex of a unit square area",
        ylab = "Dot Product Weighting\n from Vertex(0,0)") %>% 
+## Reference vertical at (0,0)
+  gf_segment(1 + 0 ~ 0 + 0) |> 
   
 ## Gradient Vectors
   gf_segment(0 + 0.125 ~ 0 + 0.2,  
@@ -335,6 +189,13 @@ gf_polygon(c(0,0.25, 0.25,0) ~ c(0,0.25, 0.75,1),
   gf_segment(0 + 0.125 ~ 1 + 0.75, 
              arrow = arrow(ends = "last", angle = 10),
              colour = ~"Gradient2", linewidth = 1) %>% 
+  gf_segment(0.25 + 0.5 ~ 0.25 + 0.1,  
+             arrow = arrow(ends = "last", angle = 10),
+             colour = ~"Gradient3",linewidth = 1) %>% 
+  gf_segment(0.25 + 0.65 ~ 0.75 + 1.0, 
+             arrow = arrow(ends = "last", angle = 10),
+             colour = ~"Gradient4", linewidth = 1) %>% 
+  
   ## Tilted Y-axis
   gf_segment(0 + 0.35 ~ 0 + 0.35, 
              #arrow = arrow(ends = "last", angle = 10), 
@@ -483,7 +344,8 @@ ends of the range of the function (t = 0 and t = 1).
 
 
 $$
-\begin{array}{lcl}f'(t) & = & \ \frac{d}{dt}[6*t^5 - 15*t^4 + 10*t^3]\\
+\begin{array}
+{lcl}f'(t) & = & \ \frac{d}{dt}[6*t^5 - 15*t^4 + 10*t^3]\\
 & = & 30 * (t^4 - 2 * t^3 + t^2)\\
 & = & 0  \ \text{@ t = 0 and t = 1}
 \end{array}
@@ -491,7 +353,8 @@ $$
 
 
 $$
-\begin{array}{lcl}f''(t) & = & \ \frac{d^2}{dt^2}[6*t^5 - 15*t^4 + 10*t^3]\\
+\begin{array}
+{lcl}f''(t) & = & \ \frac{d^2}{dt^2}[6*t^5 - 15*t^4 + 10*t^3]\\
 & = &60 * (2 * t^3 - 3 * t^2 + t)\\
 & = & 0  \ \text{@ t = 0 and t = 1}
 \end{array}
@@ -501,6 +364,11 @@ $$
 This ensures that there are not sudden changes in the noise function
 near about the vertices.
 :::
+
+So how is this interpolation function used in practice? 
+
+The variable $t$ is the **distance of the point of interest from any/each vertex**, normalized to the range [0,1]. If we imagine the point of interest moving around inside the cell, then there are *four overlapping interpolating Darth Vader capes*, one from each of the vertices. 
+These capes, shaped as the function $f(t)$, are weights for each vertex's dot product. The closer the point is to a vertex, the higher the weight for that vertex's dot product in the final noise value. If a point of interest is **at** one of the vertices, the other three dot products make no contribution to the Perlin Noise value there. 
 
 #### D. Fractal Overlay and Combining
 
@@ -550,17 +418,244 @@ S-curves, followed by 2n-1 linear interpolations. "]{.f5 .f4-m .f3-l
 ## {{< iconify ph chart-scatter-bold >}} Creating Textures and Waveforms with Perlin Noise
 
 ::: {.panel-tabset .nav-pills style="background: whitesmoke;"}
+
 ### Using p5.js
 
 Here is a landscape generated using Perlin Noise:
 
-<center>
+```{=html}
+<script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.min.js"></script>
 
-<iframe width="780px" height="600px" src="https://editor.p5js.org/arvindv/full/hk6DRAchQ">
+<div id="terrain-map" style="margin: 1rem 0;"></div>
 
-</iframe>
+<details>
+  <summary style="cursor:pointer; font-weight:600; margin-bottom:0.5rem;">Show / hide p5.js code</summary>
+  <pre style="background:#f6f8fa; padding:1rem; border-radius:6px; overflow-x:auto; font-size:0.85em;"><code>/**
+ * Procedural Terrain Map
+ *
+ * Uses Perlin noise to create a landscape of water, sand, grass, and trees.
+ * Arrow keys pan the view. Mouse wheel zooms.
+ *
+ * Written for undergraduate Art &amp; Design students.
+ */
 
-</center>
+// A small class that stores the rules for one kind of terrain
+class TerrainType {
+  constructor(minHeight, maxHeight, minColor, maxColor, lerpAdjustment = 0) {
+    this.minHeight = minHeight;       // lowest noise value for this terrain
+    this.maxHeight = maxHeight;       // highest noise value for this terrain
+    this.minColor = minColor;         // color at the low end of the range
+    this.maxColor = maxColor;         // color at the high end of the range
+    this.lerpAdjustment = lerpAdjustment; // optional bias when blending colors
+  }
+}
+
+// The four terrain types
+let waterTerrain, sandTerrain, grassTerrain, treesTerrain;
+
+// How zoomed-in the map is (larger = closer)
+let zoomFactor = 100;
+
+// Only rebuild the map when the user pans or zooms
+let mapChanged = true;
+
+// Offsets that let us slide across the infinite noise field
+let xOffset = 10000;
+let yOffset = 10000;
+
+const cameraSpeed = 10; // how fast the arrow keys move the view
+
+function setup() {
+  // Create the canvas and place it inside the div
+  const cnv = createCanvas(600, 600);
+  cnv.parent("terrain-map");
+
+  // More detail in the noise
+  noiseDetail(9, 0.5);
+
+  // Define the four terrain layers and their colors
+  waterTerrain = new TerrainType(0.2, 0.4, color(30, 176, 251), color(40, 255, 255));
+  sandTerrain  = new TerrainType(0.4, 0.5, color(215, 192, 158), color(255, 246, 193), 0.3);
+  grassTerrain = new TerrainType(0.5, 0.7, color(2, 166, 155), color(118, 239, 124));
+  treesTerrain = new TerrainType(0.7, 0.75, color(22, 181, 141), color(10, 145, 113), -0.5);
+}
+
+function draw() {
+  // Pan with the arrow keys
+  if (keyIsDown(RIGHT_ARROW)) { xOffset += (1 / zoomFactor) * cameraSpeed; mapChanged = true; }
+  if (keyIsDown(LEFT_ARROW))  { xOffset -= (1 / zoomFactor) * cameraSpeed; mapChanged = true; }
+  if (keyIsDown(UP_ARROW))    { yOffset -= (1 / zoomFactor) * cameraSpeed; mapChanged = true; }
+  if (keyIsDown(DOWN_ARROW))  { yOffset += (1 / zoomFactor) * cameraSpeed; mapChanged = true; }
+
+  // Skip the expensive work if nothing changed
+  if (!mapChanged) return;
+
+  // Visit every pixel
+  for (let x = 0; x < width; x++) {
+    for (let y = 0; y < height; y++) {
+      // Turn the pixel location into a location in noise space
+      const xVal = (x - width / 2) / zoomFactor + xOffset;
+      const yVal = (y - height / 2) / zoomFactor + yOffset;
+      const noiseValue = noise(xVal, yVal);
+
+      // Choose a color according to the noise height
+      let terrainColor;
+      if (noiseValue < waterTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, waterTerrain);
+      } else if (noiseValue < sandTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, sandTerrain);
+      } else if (noiseValue < grassTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, grassTerrain);
+      } else {
+        terrainColor = getTerrainColor(noiseValue, treesTerrain);
+      }
+
+      set(x, y, terrainColor);
+    }
+  }
+
+  updatePixels();
+  mapChanged = false;
+}
+
+// Blend the two colors of a terrain type based on the noise value
+function getTerrainColor(noiseValue, mapType) {
+  const amount = normalizeRange(noiseValue, mapType.minHeight, mapType.maxHeight);
+  return lerpColor(mapType.minColor, mapType.maxColor, amount + mapType.lerpAdjustment);
+}
+
+// Convert a number into the 0–1 range between min and max
+// (renamed so it does not clash with p5's own normalize)
+function normalizeRange(value, min, max) {
+  if (value > max) return 1;
+  if (value < min) return 0;
+  return (value - min) / (max - min);
+}
+
+// Zoom with the mouse wheel
+function mouseWheel(event) {
+  zoomFactor -= event.delta / 10;
+  zoomFactor = Math.max(10, zoomFactor);
+  mapChanged = true;
+}</code></pre>
+</details>
+
+<script>
+/**
+ * Procedural Terrain Map
+ *
+ * Uses Perlin noise to create a landscape of water, sand, grass, and trees.
+ * Arrow keys pan the view. Mouse wheel zooms.
+ *
+ * Written for undergraduate Art & Design students.
+ */
+
+// A small class that stores the rules for one kind of terrain
+class TerrainType {
+  constructor(minHeight, maxHeight, minColor, maxColor, lerpAdjustment = 0) {
+    this.minHeight = minHeight;       // lowest noise value for this terrain
+    this.maxHeight = maxHeight;       // highest noise value for this terrain
+    this.minColor = minColor;         // color at the low end of the range
+    this.maxColor = maxColor;         // color at the high end of the range
+    this.lerpAdjustment = lerpAdjustment; // optional bias when blending colors
+  }
+}
+
+// The four terrain types
+let waterTerrain, sandTerrain, grassTerrain, treesTerrain;
+
+// How zoomed-in the map is (larger = closer)
+let zoomFactor = 100;
+
+// Only rebuild the map when the user pans or zooms
+let mapChanged = true;
+
+// Offsets that let us slide across the infinite noise field
+let xOffset = 10000;
+let yOffset = 10000;
+
+const cameraSpeed = 10; // how fast the arrow keys move the view
+
+function setup() {
+  // Create the canvas and place it inside the div
+  const cnv = createCanvas(600, 600);
+  cnv.parent("terrain-map");
+
+  // More detail in the noise
+  noiseDetail(9, 0.5);
+
+  // Define the four terrain layers and their colors
+  waterTerrain = new TerrainType(0.2, 0.4, color(30, 176, 251), color(40, 255, 255));
+  sandTerrain  = new TerrainType(0.4, 0.5, color(215, 192, 158), color(255, 246, 193), 0.3);
+  grassTerrain = new TerrainType(0.5, 0.7, color(2, 166, 155), color(118, 239, 124));
+  treesTerrain = new TerrainType(0.7, 0.75, color(22, 181, 141), color(10, 145, 113), -0.5);
+}
+
+function draw() {
+  // Pan with the arrow keys
+  if (keyIsDown(RIGHT_ARROW)) { xOffset += (1 / zoomFactor) * cameraSpeed; mapChanged = true; }
+  if (keyIsDown(LEFT_ARROW))  { xOffset -= (1 / zoomFactor) * cameraSpeed; mapChanged = true; }
+  if (keyIsDown(UP_ARROW))    { yOffset -= (1 / zoomFactor) * cameraSpeed; mapChanged = true; }
+  if (keyIsDown(DOWN_ARROW))  { yOffset += (1 / zoomFactor) * cameraSpeed; mapChanged = true; }
+
+  // Skip the expensive work if nothing changed
+  if (!mapChanged) return;
+
+  // Visit every pixel
+  for (let x = 0; x < width; x++) {
+    for (let y = 0; y < height; y++) {
+      // Turn the pixel location into a location in noise space
+      const xVal = (x - width / 2) / zoomFactor + xOffset;
+      const yVal = (y - height / 2) / zoomFactor + yOffset;
+      const noiseValue = noise(xVal, yVal);
+
+      // Choose a color according to the noise height
+      let terrainColor;
+      if (noiseValue < waterTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, waterTerrain);
+      } else if (noiseValue < sandTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, sandTerrain);
+      } else if (noiseValue < grassTerrain.maxHeight) {
+        terrainColor = getTerrainColor(noiseValue, grassTerrain);
+      } else {
+        terrainColor = getTerrainColor(noiseValue, treesTerrain);
+      }
+
+      set(x, y, terrainColor);
+    }
+  }
+
+  updatePixels();
+  mapChanged = false;
+}
+
+// Blend the two colors of a terrain type based on the noise value
+function getTerrainColor(noiseValue, mapType) {
+  const amount = normalizeRange(noiseValue, mapType.minHeight, mapType.maxHeight);
+  return lerpColor(mapType.minColor, mapType.maxColor, amount + mapType.lerpAdjustment);
+}
+
+// Convert a number into the 0–1 range between min and max
+// (renamed so it does not clash with p5's own normalize)
+function normalizeRange(value, min, max) {
+  if (value > max) return 1;
+  if (value < min) return 0;
+  return (value - min) / (max - min);
+}
+
+// Zoom with the mouse wheel
+function mouseWheel(event) {
+  zoomFactor -= event.delta / 10;
+  zoomFactor = Math.max(10, zoomFactor);
+  mapChanged = true;
+}
+</script>
+
+```
+
+
+
+
 
 ### Using R
 
@@ -597,12 +692,13 @@ including Perlin Noise. The commands are: `gen_perlin()` and
     used:
 
 ```{r}
-#| label: perlin-noise-r-2
+#| label: fig-perlin-noise-r-2
+#| fig-cap: Perlin Noise Example
+#| code-fold: true
 #| warning: false
-#| layout-ncol: 2
 
 noise2 <- noise_perlin(
-  dim = c(400, 400), # height/width
+  dim = c(500, 500), # height/width
   frequency = 0.01, # Lower = less granular, more organic
   interpolator = "quintic", #'linear', 'hermite', or 'quintic'
   fractal = "fbm", # Try "billow" , "rigid-multi"
@@ -613,21 +709,24 @@ noise2 <- noise_perlin(
   pertubation_amplitude = 1 # Note the incorrect spelling
 )
 ## generates a matrix
-noise2 %>% as_tibble()
+# noise2 %>% as_tibble()
 # Plot the matrix
 plot(as.raster(normalise(noise2)))
   
 ```
 
 ```{r}
-#| label: perlin-noise-r-3
-#| layout-ncol: 2
+#| label: fig-perlin-noise-r-3
+#| fig-cap: Perlin Noise Example (500 x 500)
+#| code-fold: true
+#| 
 # Using the generator
-grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
+grid <- long_grid(seq(1, 10, length.out = 500), seq(1, 10, length.out = 500))
 grid$noise <- gen_perlin(grid$x, grid$y, 
                          octaves = 5, 
                          frequency = 1.2)
-plot(grid, noise)
+# plot(grid, noise)
+# grid
 ##
 grid %>% 
   gf_point(y ~ x, colour = ~ noise, 
@@ -702,20 +801,3 @@ Of course there are videos by Dan Shiffman on the topic of Perlin Noise:
 1. Strudel
 1. Pure Data
 1. Envion <https://www.peamarte.it/env/envion_v3.6.html>
-
-::: {#refs style="font-size: 60%;"}
-###### {{< iconify lucide package-check >}} R Package Citations
-
-```{r}
-#| echo: false
-#scan_packages()
-cite_packages(
-  output = "table",
-  out.dir = ".",
-  out.format = "html",
-  pkgs = c("ambient")
-) %>%
-  knitr::kable(format = "simple")
-
-```
-:::

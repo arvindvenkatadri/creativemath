@@ -1,0 +1,15 @@
+{
+  "hash": "d23d38a39c51eb8b47f0354711cf50d7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Dihedral Symmetry\"\nsubtitle: \"Reflections and Rotations Together — Simple Visual Examples\"\nformat:\n  html:\n    embed-resources: true\n    include-in-header:\n      - text: |\n          <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js\"></script>\nexecute:\n  echo: true\n  warning: false\ncode-fold: true\ndate: 26/July/2026\ndate-modified: today\norder: 40\ncategories:\n  - Change\n  - Canonical Movements\n  - Immunity\n  - Groups\n---\n\n---\n# Course-wide knitr / Quarto defaults.\n# Pages should include this file and then load only the packages that lesson needs.\nknitr:\n  opts_chunk:\n    echo: true\n    warning: false\n    message: false\n    fig-align: center\n    fig-width: 6\n    fig-asp: 0.618\n    dpi: 96\n    out-width: \"75%\"\n    # ragg is fine for points/lines; fonts are registered with systemfonts below\n    # so ggrepel can see the same families. Do not pair ragg with showtext-only fonts.\n    dev: \"ragg_png\"\n---\n\n\n::: {.cell layout-align=\"center\"}\n\n:::\n\n\n\n\n\n\n\n## Dihedral Symmetry ( $\\mathbb{D}_{n}$ )\n\nDihedral groups combine rotations of order $n$ with reflections. These are the symmetries of regular polygons.\n\n### R example: regular pentagon and its symmetries\n\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![Regular pentagon (D5 symmetry)](index_files/figure-html/unnamed-chunk-1-1.png){fig-align='center' width=75%}\n:::\n:::\n\n\n### p5.js: kaleidoscope-style dihedral drawing\n\n```{=html}\n<div id=\"dihedral-sketch\"></div>\n<script>\nnew p5((p) => {\n  let n = 6;\n  p.setup = () => {\n    p.createCanvas(400, 400);\n    p.background(255);\n  };\n  p.draw = () => {\n    if (p.mouseIsPressed) {\n      p.translate(200, 200);\n      for (let i = 0; i < n; i++) {\n        p.push();\n        p.rotate(i * p.TWO_PI / n);\n        p.stroke(p.random(100, 200), p.random(100, 200), p.random(100, 200));\n        p.strokeWeight(2);\n        let x = p.mouseX - 200;\n        let y = p.mouseY - 200;\n        p.line(0, 0, x, y);\n        p.line(0, 0, x, -y); // reflection\n        p.pop();\n      }\n    }\n  };\n}, document.getElementById(\"dihedral-sketch\"));\n</script>\n<p><em>Click and drag. The sketch applies both rotations and reflections of order 6.</em></p>\n\n```\n\n## {{< iconify mingcute thought-line >}} Wait, But Why?\n\nTBWU.\n\n## Design Notes \n\n- **Rotational only** ($\\mathbb{Z}_{n}$): swirling, pinwheel-like, no mirror lines.\n- **Reflection only** ($\\mathbb{R}_{𝑛} = \\{ {e,m} \\}$: bilateral balance (faces, logos, architecture).\n- **Dihedral** ($\\mathbb{D}_{n}$ ): the most common decorative symmetry (snowflakes, flowers, rose windows, tiles).\n\nThese geometric ideas become the constraints we later impose on iterative and random processes.\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

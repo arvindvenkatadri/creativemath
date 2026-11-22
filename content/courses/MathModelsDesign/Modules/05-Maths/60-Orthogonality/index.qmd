@@ -12,10 +12,7 @@ categories:
 - Perpendicular
 - Vector
 - Dot Product
-citation: true
-editor: 
-  markdown: 
-    wrap: 72
+
 ---
 
 ```{r setup, include=FALSE}

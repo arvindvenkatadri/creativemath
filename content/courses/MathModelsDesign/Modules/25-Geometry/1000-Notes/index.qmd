@@ -1,0 +1,19 @@
+---
+title: "Geometry: Notes and Questions to Myself"
+date: 09/Nov/2026
+date-modified: today
+---
+
+Some questions and ideas for me to explore, and hopefully introduce in my class as I develop this course further. 
+
+## Lunda Geometry
+
+A. Unit Square Colouring Schemes
+
+  - Can the colouring of the Lunda tiling be based not just on Modulo-n arithmetic, but also include the vectorial direction of pairs of numbers vs that of adjacent pairs of numbers, all in a 8 X 8 unit grid around the pulli-s?
+  - Can the colouring of pairs of adjacent unit square tiles be based on the type `step` that goes through them (upward/downward towards-right-diagonal / upward/downward towards-left-diagonal / rightward loop / leftward loop etc...). How many colours do we need? Use the idea of tiles/shapes from Saty Raghupathy.
+  
+B. Unit Square Numbering Schemes
+
+  - The lusona unit squares when enumerated creat a set of m X m square cells whose numbers add up to $0 modulo m$. Can this be related to Gray Encoding in Signal Constellations, following Gottfried Ungerboeck?
+  
