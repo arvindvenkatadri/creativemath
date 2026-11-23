@@ -1,0 +1,161 @@
+---
+title: "Symmetry on Average"
+subtitle: "Chaos **and** Randomness"
+format: 
+  html:
+    embed-resources: true
+    theme: cosmo
+execute:
+  echo: true
+  warning: false
+---
+
+---
+
+{{< include /_setup_claude_made.qmd >}}
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+set.seed(7)
+
+```
+
+## The Central Idea
+
+A single chaotic trajectory cannot be periodic, so it cannot possess a non-trivial symmetry.  Yet when we look at the *density* of a long orbit (or the attractor itself), clear symmetry often appears.  This is “symmetry on average”—the phenomenon explored in Field & Golubitsky’s *Symmetric Chaos*.
+
+The mechanism is simple: iterate a map that *commutes* with a symmetry group (an equivariant map). The attractor is then invariant under that group.
+
+## Classic symmetric icon map (order 5)
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+#| fig-cap: "Density plot of a 5-fold symmetric chaotic attractor"
+
+# Field–Golubitsky style map tuned for visible structure (not a solid disk)
+icon <- function(z, lambda = -1.8, alpha = 2.0, gamma = 1.0, m = 5) {
+  r2 <- Mod(z)^2
+  (lambda + alpha * r2) * z + gamma * Conj(z)^(m - 1)
+}
+
+n <- 150000
+z <- 0.1 + 0.3i
+pts <- complex(n)
+for (i in 1:n) {
+  z <- icon(z)
+  pts[i] <- z
+}
+pts <- pts[-(1:2000)]          # discard transient
+pts <- pts[abs(pts) < 2]       # keep only the attractor region
+
+df <- data.frame(x = Re(pts), y = Im(pts))
+
+ggplot(df, aes(x, y)) +
+  stat_bin2d(bins = 80) +
+  scale_fill_viridis_c(option = "inferno", trans = "log10", na.value = "black") +
+  coord_fixed() +
+  theme_void() +
+  theme(legend.position = "none",
+        plot.background = element_rect(fill = "black", color = NA))
+```
+
+## p5.js: interactive density accumulation
+
+```{=html}
+<div id="symmetric-chaos"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<script>
+new p5((p) => {
+  let z;
+  let m = 5;
+  let lambda = 1.6, gamma = 0.5;
+  let density;
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    density = p.createGraphics(400, 400);
+    density.background(0);
+    density.colorMode(p.HSB, 255);
+    z = p.createVector(0.1, 0.2);
+  };
+  p.draw = () => {
+    for (let i = 0; i < 200; i++) {
+      // complex multiply / conjugate power roughly
+      let x = z.x, y = z.y;
+      let r2 = x*x + y*y;
+      // λ z (1 - |z|²)
+      let nx = lambda * x * (1 - r2);
+      let ny = lambda * y * (1 - r2);
+      // + γ conj(z)^{m-1}  (approximate for small m by angle)
+      let ang = p.atan2(y, x);
+      let mag = p.sqrt(r2);
+      let ang2 = -ang * (m - 1);
+      let mag2 = p.pow(mag, m - 1);
+      nx += gamma * mag2 * p.cos(ang2);
+      ny += gamma * mag2 * p.sin(ang2);
+      z.set(nx, ny);
+      
+      let px = p.map(z.x, -1.5, 1.5, 0, 400);
+      let py = p.map(z.y, -1.5, 1.5, 0, 400);
+      density.stroke(p.frameCount % 255, 200, 255, 30);
+      density.point(px, py);
+    }
+    p.image(density, 0, 0);
+  };
+}, document.getElementById("symmetric-chaos"));
+</script>
+<p><em>The sketch accumulates points; color cycles slowly. The five-fold symmetry emerges from the density.</em></p>
+```
+
+## Chaos Game as a Special Case
+
+The chaos games of Document 2 are exactly this phenomenon for piecewise-linear equivariant maps.  
+The “average” (the histogram of visits) is the symmetric attractor.
+
+### Density version of the Sierpinski chaos game
+
+```{r}
+#| fig-height: 4.5
+#| fig-width: 4.5
+#| fig-cap: "Visit-frequency coloring of the chaos game"
+
+vertices <- matrix(c(0,0, 1,0, 0.5, sqrt(3)/2), ncol=2, byrow=TRUE)
+n <- 60000
+pts <- matrix(0, n, 2)
+pts[1,] <- c(0.5, 0.3)
+for (i in 2:n) {
+  v <- vertices[sample(3,1),]
+  pts[i,] <- (pts[i-1,] + v)/2
+}
+df <- as.data.frame(pts[-c(1:300),])
+names(df) <- c("x","y")
+
+ggplot(df, aes(x,y)) +
+  stat_bin2d(bins = 90) +
+  scale_fill_viridis_c(option = "magma", trans = "log10", na.value = "white") +
+  coord_fixed() +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+## Design Implications for Art Students
+
+- **Equivariance is the design constraint**: write (or choose) a rule that treats symmetric points the same way. The long-term picture will automatically be symmetric.
+- **Color = density**: the aesthetic decisions move to palette, contrast, and which regions you emphasize—exactly as in the Field–Golubitsky images.
+- **Parameters are knobs**: small changes in coefficients produce continuous families of related symmetric designs. This is parametric generative art with a mathematical guarantee of symmetry.
+- **From instantaneous to average**: the same idea appears in physical systems (Faraday waves, etc.). A single frame may look noisy; the time average reveals the symmetry.
+
+## Minimal working formula
+
+For cyclic symmetry of order \( m \):
+
+\[
+z_{n+1} = \bigl(\lambda + \alpha |z_n|^2\bigr) z_n + \gamma \overline{z_n}^{m-1}
+\]
+
+(with optional small imaginary term \( i\omega z \) to break pure reflection symmetry and obtain pure rotational symmetry).
+
+Iterate from a random start, discard the first thousand points, and color by visit count. That is the entire pipeline from the 1995 paper, reduced to a few lines of code.
+

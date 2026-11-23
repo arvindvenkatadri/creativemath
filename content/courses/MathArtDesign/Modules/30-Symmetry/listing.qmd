@@ -1,0 +1,17 @@
+---
+title: "Symmetry"
+subtitle: "Smoke, Mirrors, and Kaleidoscopes"
+date: '2022-12-31'
+order: 30
+listing:
+  type: table
+  sort: "order"
+  sort-ui: false
+  filter-ui: false
+  contents: "*/*.qmd"
+  fields: [title,reading-time]
+  table-striped: true
+  table-hover: true
+  categories: numbered
+---
+

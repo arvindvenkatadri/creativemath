@@ -1,0 +1,431 @@
+---
+title: <iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Matrix Algebra Whirlwind Tour
+subtitle: ""
+subject: ""
+abstract: ""
+date: 12/April/2025
+date-modified: today
+order: 50
+code-fold: true
+categories:
+- Matrices
+- Matrix Operations
+---
+
+{{< include /_setup_claude_made.qmd >}}
+
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggformula)
+library(ggdiagram)
+library(matlib) # Matrix Functions for Teaching and Learning Linear Algebra
+# pak::pak("seankross/p5")
+library(p5)
+##
+library(symengine) # Maths Engine that does not depend upon Python!
+# library(mosaicCalc) # Analytic Calculus
+# library(pracma) # For numerical analysis and linear algebra
+# library(Ryacas) # Symbolic Algebra
+
+symengine_latex_matrix <- function(
+  A,
+  label = NULL,
+  caption = NULL,
+  inline = FALSE
+) {
+  # Accept a symengine DenseMatrix or an ordinary R matrix
+  m <- if (inherits(A, "DenseMatrix")) as.matrix(A) else A
+
+  # Ensure all entries are character strings
+  m <- matrix(
+    vapply(m, function(x) as.character(x), character(1)),
+    nrow = nrow(m),
+    ncol = ncol(m)
+  )
+
+  rows <- apply(m, 1, function(row) paste(row, collapse = " & "))
+
+  latex_matrix <- paste0(
+    "\\begin{bmatrix}\n",
+    paste(rows, collapse = " \\\\\n"),
+    "\n\\end{bmatrix}"
+  )
+
+  if (isTRUE(inline)) {
+    return(paste0("$", latex_matrix, "$"))
+  }
+
+  # Display equation
+  output <- paste0("$$\n", latex_matrix, "\n$$")
+
+  # Optional Quarto equation label
+  if (!is.null(label)) {
+    output <- paste0(output, " {#", label, "}")
+  }
+
+  # Optional caption BELOW the equation
+  if (!is.null(caption)) {
+    output <- paste0(output, "\n\n*", caption, "*")
+  }
+
+  output
+}
+
+```
+
+
+
+```{r}
+#| label: Extra Pedagogical Packages
+#| echo: false
+#| message: false
+
+library(checkdown)
+library(epoxy)
+library(grateful)
+
+#devtools::install_github("mccarthy-m-g/embedr")
+library(embedr) # Embed multimedia in HTML files
+
+library(downloadthis)
+library(knitr)
+library(kableExtra)
+
+## Markdown boiler plate stuff!!
+# ![An Elephant](elephant.png){#fig-elephant}
+# This is illustrated well by @fig-elephant.
+# 
+# ### Figure Panel Divs
+#     ::: {#fig-elephants layout-ncol=2}
+#     ![Surus](surus.png){#fig-surus}
+#     ![Hanno](hanno.png){#fig-hanno}
+#      Famous Elephants
+#     :::
+#     Adding download buttons
+#     data that has been read in
+#     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
+#    existing file
+#    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
+```
+
+
+## Introduction
+
+In this hopefully short and crisp tour, we will look at elementary operations on matrices: transpose, addition/subtraction and multiplication, and finally the inverse.
+
+## What is a Matrix?
+
+An rectangular array of numbers, arranged with rows and columns. A few examples are:
+
+:::: {.columns}
+::: {.column width=48%}
+@eq-3-by-3-matrix is a 3 x 3 matrix (3 rows and 3 columns).
+:::
+::: {.column width=48%}
+$$
+\begin{bmatrix}
+2,3,3\\
+3,1,2\\
+1,2,4\\
+\end{bmatrix}
+$$ {#eq-3-by-3-matrix}
+:::
+
+::: {.column width=48%}
+@eq-3-by-4-matrix is a 3 x 4 matrix (3 rows and 4 columns).
+:::
+::: {.column width=48%}
+$$
+\begin{bmatrix}
+2,3,3,4\\
+3,1,2,3\\
+1,2,4,1\\
+\end{bmatrix}
+$$ {#eq-3-by-4-matrix}
+:::
+
+::: {.column width=48%}
+@eq-1-by-4-matrix is a 1 x 4 matrix (1 rows and 4 columns).
+:::
+::: {.column width=48%}
+$$
+\begin{bmatrix}
+2 ~ 3 ~ 4 ~ 2\\
+\end{bmatrix}
+$$ {#eq-1-by-4-matrix}
+:::
+
+::: {.column width=48%}
+@eq-3-by-4-matrix is a 3 x 1 matrix (3 rows and 1 columns).
+:::
+::: {.column width=48%}
+$$
+\begin{bmatrix}
+2\\
+3\\
+1\\
+\end{bmatrix}
+$$ {#eq-3-by-1-matrix}
+:::
+::::
+
+## Transpose
+
+A matrix transpose is accomplished by writing rows as columns and vice versa. Hence an $r~ \times ~ c$ matrix becomes transposed into a $c~ \times ~ r$ matrix, as shown below:
+
+:::: {.columns}
+::: {.column width=48%}
+```{r}
+#| echo: false
+#| output: asis
+#| fig-align: center
+#| 
+A <- symengine::Matrix(data = c("a", "b", "c","d", "1","2"), nrow = 2, ncol = 3) 
+cat(symengine_latex_matrix(A))
+cat("\n\n")
+
+```
+
+:::
+
+::: {.column width=4%}
+:::
+
+::: {.column width=48%}
+```{r}
+#| echo: false
+#| output: asis
+
+A <- symengine::Matrix(data = c("a", "b", "c","d", "1","2"), nrow = 2, ncol = 3) 
+B <- t(A)
+cat(symengine_latex_matrix(B))
+
+```
+:::
+
+::::
+
+
+## Addition and Subtraction
+
+Matrices can be added or subtracted when they are of the ***same*** dimensions, rows and columns. Matrix elements are added or subtracted in element-wise fashion.
+
+
+:::: {.columns}
+
+::: {.column width=40%}
+```{r}
+#| echo: false
+#| output: asis
+#| tbl-cap: "Two Matrices"
+#| 
+A <- symengine::Matrix(c("a", "b", "0", "1"), 2, 2)
+B <- symengine::Matrix(c("a", "b", "c", "1"), 2, 2)
+cat(symengine_latex_matrix(A))
+cat(symengine_latex_matrix(B))
+
+```
+:::
+
+
+::: {.column width=30%}
+```{r}
+#| echo: false
+#| output: asis
+#| fig-cap: "Addition"
+#| 
+A <- symengine::Matrix(c("a", "b", "0", "1"), 2, 2)
+B <- symengine::Matrix(c("a", "b", "c", "1"), 2, 2)
+C <- A + B
+cat(symengine_latex_matrix(C))
+
+```
+
+:::
+
+::: {.column width=30%}
+
+```{r}
+#| echo: false
+#| output: asis
+#| tbl-cap: "Subtraction"
+#| 
+A <- symengine::Matrix(c("a", "b", "0", "1"), 2, 2)
+B <- symengine::Matrix(c("a", "b", "c", "1"), 2, 2)
+C <- A - B
+cat(symengine_latex_matrix(C))
+
+```
+
+:::
+::::
+
+:::: {.columns}
+::: {.column width=40%}
+$$\text{Matrices A and B}$$
+:::
+::: {.column width=30%}
+$$\text{A + B}$$
+:::
+::: {.column width=30%}
+$$\text{A - B}$$
+:::
+::::
+
+## Multiplication
+
+Matrix multiplication can be visualized in many ways!! According to Gilbert Strang's famous book on Linear Algebra, there are no less than 4 very useful ways. Let us understand perhaps the easiest one, *Linear combination of Columns*.
+
+Suppose there are three SMI peasants who bought two kinds of food and drink:
+
+- Peasant A: 2 samosas and 1 chai
+- Peasant B: 3 samosas and 0 chai
+- Peasant C: 0 samosa and 2 chai-s (Just before Arvind's R class.)
+
+Samosas cost 20 and chai costs 10. How much do they pay?
+
+:::: {.columns}
+::: {.column width=30%}
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Prices <- Matrix(c(20, 10), 2,1) 
+cat(symengine_latex_matrix(Orders))
+
+
+```
+:::
+
+::: {.column width=30%}
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Prices <- Matrix(c(20, 10), 2,1) 
+cat(symengine_latex_matrix(Prices))
+
+```
+:::
+
+::: {.column width=30%}
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Prices <- Matrix(c(20, 10), 2,1) 
+Bills <- Orders %*% Prices
+cat(symengine_latex_matrix(Bills))
+```
+:::
+
+::::
+
+:::: {.columns}
+::: {.column width=30%}
+$$\text{Orders}$$
+:::
+::: {.column width=30%}
+$$\text{Prices}$$
+:::
+::: {.column width=30%}
+$$\text{Bill Amounts}$$
+:::
+::::
+
+
+We see that the first number $20$ in B multiplies the entire first column in A, and the second number $10$ multiplies the entire second column in A. These two multiplied columns are **added** to get the matrix C.
+
+Suppose they had two options for shops? And the prices were different?
+
+- Samosas cost 20 and chai costs 10 at Shop#1. (as before)
+- Samosas cost 15 and chai costs 15 at Shop#2. 
+
+:::: {.columns}
+::: {.column width=30%}
+
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Menus <- Matrix(c(20, 10, 15,15), 2,2) 
+Amounts <- Orders %*% Menus
+cat(symengine_latex_matrix(Orders))
+
+```
+
+:::
+::: {.column width=30%}
+
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Menus <- Matrix(c(20, 10, 15,15), 2,2) 
+Amounts <- Orders %*% Menus
+cat(symengine_latex_matrix(Menus))
+
+```
+
+:::
+::: {.column width=30%}
+
+```{r}
+#| echo: false
+#| output: asis
+#| 
+Orders <- Matrix(c(2,3,0,1,0,2),3,2) 
+Menus <- Matrix(c(20, 10, 15,15), 2,2) 
+Amounts <- Orders %*% Menus
+cat(symengine_latex_matrix(Amounts))
+
+```
+:::
+::::
+
+:::: {.columns}
+::: {.column width=30%}
+$$\text{Orders}$$
+:::
+::: {.column width=30%}
+$$\text{Shop Price Lists}$$
+:::
+::: {.column width=30%}
+$$\text{Peasant Bill Options}$$
+:::
+::::
+
+
+Shop#2 is cheaper for *Peasant#1*, and *Peasant#2*. For *Peasant#3*, Shop#1 is preferable. Drag *Peasant#3* and go to Shop#2, *Peasant#1* and *Peasant#2*.
+
+How did this multiplication happen?
+
+Same story as with one shop/prices, repeated to handle the second shop.
+Matrix B2 now has *two* columns for prices, for Shop#1 and Shop#2.
+Multiplication takes each column in B2 and does the same weighted-column-addition with A2. Hence two columns of answers in C2.
+
+::: callout-important
+### Matrix Multiplication in 4 ways
+As shown in Gilbert Strang's book, there are 4 ways of thinking about matrix multiplication:
+
+- Our method of weighting *columns* in A using *columns* B and adding
+- Weighting *rows* in B using *rows* in A and adding
+- Multiplying *individual values* from *rows* in A and *columns* in B and adding up, for each location in C. ( This is the common textbook method)
+- Multiplying rows in A and columns in B. ( A *vectorized* version of the previous method).
+
+For now, this one method should suffice. 
+:::
+
+## References
+
+1. Gilbert Strang. Linear Algebra and its Applications. Thomson/Brooks-Cole.
+1. Glenn Henshaw.(Sep 28, 2019) *Three Ways to Understand Matrix Multiplication*. <https://ghenshaw-work.medium.com/3-ways-to-understand-matrix-multiplication-fe8a007d7b26>
+
+
