@@ -270,9 +270,10 @@ Kolams and Sona are powerful metaphors for [graphs and networks](../../../../Ana
 1. Jurgen Koller. *Kolams and Sona*. <https://mathematische-basteleien.de/kolams.htm>
 1. Syamala Chenulu. *Teaching Mathematics through the ART OF KOLAM*
 1.  Mirror Designs and Mirror Curves: Comparing Kolam and Tchokwe Art. <https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm>
+1. Venkatraman GOPALAN*, Brian K. VANLEEUWEN. *A topological approach to creating any pulli kolam, an artform from
+South India*. <https://arxiv.org/pdf/1503.02130>
 1.  YANAGISAWA, Kiwamu & Nagata, Shojiro. (2007). *Fundamental Study on Design System of Kolam Pattern*. <https://www.researchgate.net/publication/237442288_Fundamental_Study_on_Design_System_of_Kolam_Pattern>
-1. Paulus Gerdes. *Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries*.
-{{< pdf ../../../../../materials/pdfs/Kolam/lunda_geometry.pdf >}}
+1. Paulus Gerdes. *Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries*. [PDF](../../../../../materials/pdfs/Kolam/lunda_geometry.pdf)
 1. Venkatraman Gopalan.(April 23 2023).*Symmetry Classification and Enumeration of Square-Tile Sikku Kolams*. <https://arxiv.org/pdf/2304.14134v1>
 
 

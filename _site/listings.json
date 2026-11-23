@@ -26,6 +26,28 @@
     ]
   },
   {
+    "listing": "/content/courses/MathArtDesign/Modules/60-Connection/listing.html",
+    "items": [
+      "/content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/360-Kolams/index.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/370-KolamMath/index.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/30-SymmetryAverage/03-symmetry-on-average.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/300-MirrorMatrix/index.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/ComputationalWorlds/listing.html",
+    "items": []
+  },
+  {
+    "listing": "/content/courses/listing.html",
+    "items": []
+  },
+  {
     "listing": "/content/courses/MathArtDesign/listing.html",
     "items": [
       "/content/courses/MathArtDesign/Modules/05-Maths/listing.html",
@@ -39,27 +61,6 @@
       "/content/courses/MathArtDesign/Modules/100-AI/listing.html",
       "/content/courses/MathArtDesign/Modules/500-Tech/listing.html",
       "/content/courses/MathArtDesign/Modules/1000-Projects/index.html"
-    ]
-  },
-  {
-    "listing": "/content/courses/listing.html",
-    "items": []
-  },
-  {
-    "listing": "/content/courses/ComputationalWorlds/listing.html",
-    "items": []
-  },
-  {
-    "listing": "/content/courses/MathArtDesign/Modules/60-Connection/listing.html",
-    "items": [
-      "/content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html",
-      "/content/courses/MathArtDesign/Modules/60-Connection/360-Kolams/index.html",
-      "/content/courses/MathArtDesign/Modules/60-Connection/370-KolamMath/index.html",
-      "/content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html",
-      "/content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html",
-      "/content/courses/MathArtDesign/Modules/60-Connection/30-SymmetryAverage/03-symmetry-on-average.html",
-      "/content/courses/MathArtDesign/Modules/60-Connection/300-MirrorMatrix/index.html",
-      "/content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html"
     ]
   },
   {

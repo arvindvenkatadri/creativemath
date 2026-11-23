@@ -1904,7 +1904,7 @@
     "href": "content/courses/MathArtDesign/Modules/60-Connection/370-KolamMath/index.html#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references",
     "title": "The Maths of Kolam and Lusona",
     "section": "\n References",
-    "text": "References\n\nJurgen Koller. Kolams and Sona. https://mathematische-basteleien.de/kolams.htm\n\nSyamala Chenulu. Teaching Mathematics through the ART OF KOLAM\n\nMirror Designs and Mirror Curves: Comparing Kolam and Tchokwe Art. https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm\n\nYANAGISAWA, Kiwamu & Nagata, Shojiro. (2007). Fundamental Study on Design System of Kolam Pattern. https://www.researchgate.net/publication/237442288_Fundamental_Study_on_Design_System_of_Kolam_Pattern\n\nPaulus Gerdes. Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries.   Download PDF File\n   \n    Unable to display PDF file. Download instead.\n  \n  \nVenkatraman Gopalan.(April 23 2023).Symmetry Classification and Enumeration of Square-Tile Sikku Kolams. https://arxiv.org/pdf/2304.14134v1",
+    "text": "References\n\nJurgen Koller. Kolams and Sona. https://mathematische-basteleien.de/kolams.htm\n\nSyamala Chenulu. Teaching Mathematics through the ART OF KOLAM\n\nMirror Designs and Mirror Curves: Comparing Kolam and Tchokwe Art. https://www.mi.sanu.ac.rs/vismath/paulus/pg1.htm\n\nVenkatraman GOPALAN, Brian K. VANLEEUWEN. A topological approach to creating any pulli kolam, an artform from South India*. https://arxiv.org/pdf/1503.02130\n\nYANAGISAWA, Kiwamu & Nagata, Shojiro. (2007). Fundamental Study on Design System of Kolam Pattern. https://www.researchgate.net/publication/237442288_Fundamental_Study_on_Design_System_of_Kolam_Pattern\n\nPaulus Gerdes. Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries. PDF\n\nVenkatraman Gopalan.(April 23 2023).Symmetry Classification and Enumeration of Square-Tile Sikku Kolams. https://arxiv.org/pdf/2304.14134v1",
     "crumbs": [
       "Applied Math for Makers and Artists",
       "Connection",
@@ -1955,280 +1955,6 @@
     "title": "Symmetry on Average",
     "section": "",
     "text": "Field and Golubitsky generate symmetric images by iterating a map that is equivariant under a chosen symmetry group (usually a cyclic or dihedral group of order ( m )).\nThe basic family of maps (in the complex plane) takes the form\n[ z (+ |z|^2 + (z^m) + i) z + ^{m-1}. ]\n\nThe polynomial is constructed so that it commutes with rotation by ( 2/m ) (and, when ( = 0 ), with reflections). That is the mathematical embodiment of the symmetry: if ( z ) is on the attractor then so is every rotated (and reflected) copy.\nIteration of the map is chaotic for many parameter values: a single trajectory wanders aperiodically and never settles into a periodic orbit that itself possesses the symmetry.\nThe density of a long trajectory (how often the orbit visits each pixel) nevertheless inherits the full symmetry of the map. Colouring by visit count therefore produces a picture whose symmetry is visible only “on average.”\n\nThis is precisely the passage from an idealized mirror constraint to symmetry-on-average in the presence of chaotic “noise.”\n\nA classic example uses the reduced form in which ( = -) (the complex logistic map plus a symmetry-breaking term):\n[ z (- |z|^2) z + ^{4}. ]\n\nShow the Codelibrary(grid)\n\n# --- Parameters: Emperor's Cloak ---------------------------------------\nn &lt;- 5\nlambda &lt;- -1.806\nalpha &lt;- 1.806\nbeta &lt;- 0\nomega &lt;- 0\ngamma &lt;- 1\n\ncloak_step &lt;- function(z) {\n  (lambda + alpha * (Re(z)^2 + Im(z)^2) + beta * Re(z^n) + 1i * omega) * z +\n    gamma * Conj(z)^(n - 1)\n}\n\n# --- Many orbits in parallel -------------------------------------------\nset.seed(1)\nn_orbits &lt;- 20000\nz &lt;- complex(\n  real = rnorm(n_orbits, sd = 0.1),\n  imaginary = rnorm(n_orbits, sd = 0.1)\n)\nfor (i in 1:500) z &lt;- cloak_step(z) # burn-in\n\n# --- Pass 1: bounds -----------------------------------------------------\nL &lt;- 0\nzz &lt;- z\nfor (i in 1:300) {\n  zz &lt;- cloak_step(zz)\n  L &lt;- max(L, abs(Re(zz)), abs(Im(zz)))\n}\nL &lt;- L * 1.05\n\n# --- Pass 2: 2D histogram ----------------------------------------------\nN &lt;- 800\ncounts &lt;- numeric(N * N)\nfor (i in 1:1000) {\n  z &lt;- cloak_step(z)\n  ix &lt;- floor((Re(z) + L) / (2 * L) * N) + 1L\n  iy &lt;- floor((Im(z) + L) / (2 * L) * N) + 1L\n  ok &lt;- is.finite(ix) & is.finite(iy) & ix &gt;= 1L & ix &lt;= N & iy &gt;= 1L & iy &lt;= N\n  counts &lt;- counts + tabulate((iy[ok] - 1L) * N + ix[ok], nbins = N * N)\n}\n\n# --- Density -&gt; colour --------------------------------------------------\nd &lt;- log1p(counts) / log1p(quantile(counts[counts &gt; 0], 0.999))\nd &lt;- pmin(d, 1)\nstops &lt;- c(0, 0.10, 0.30, 0.50, 0.72, 1)\npal &lt;- col2rgb(c(\"black\", \"#FFE9FF\", \"yellow\", \"red\", \"#00D600\", \"white\"))\nch &lt;- lapply(1:3, function(k) approx(stops, pal[k, ], xout = d)$y)\ncols &lt;- rgb(ch[[1]], ch[[2]], ch[[3]], maxColorValue = 255)\n\nimg &lt;- t(matrix(cols, N, N))[N:1, ] # rows = y (top first), cols = x\n\n# --- Draw on the active device (Quarto captures this) ------------------\ngrid.newpage()\ngrid.raster(img, interpolate = FALSE)\n\n\n\n\n\n\nFigure 1: The Emperor’s Cloak symmetric icon (Field & Golubitsky).\n\n\n\n\n\nShow the Codelibrary(symengine)\nlibrary(ggplot2)\n\n# --- Parameters: Emperor's Cloak ---------------------------------------\nn &lt;- 5\nlambda &lt;- -1.806\nalpha &lt;- 1.806\nbeta &lt;- 0\nomega &lt;- 0\ngamma &lt;- 1\n\n# --- Symbolic map, using real/imaginary pairs --------------------------\nx &lt;- S(\"x\")\ny &lt;- S(\"y\")\ncmul &lt;- function(a, b) {\n  list(\n    re = a$re * b$re - a$im * b$im,\n    im = a$re * b$im + a$im * b$re\n  )\n}\ncpow &lt;- function(a, k) {\n  r &lt;- list(re = S(\"1\"), im = S(\"0\"))\n  for (i in seq_len(k)) r &lt;- cmul(r, a)\n  r\n}\n\nzn &lt;- cpow(list(re = x, im = y), n) # z^n\nzc1 &lt;- cpow(list(re = x, im = -y), n - 1) # conj(z)^(n-1)\n\np &lt;- lambda + alpha * (x^2 + y^2) + beta * zn$re\nfx &lt;- expand(p * x - omega * y + gamma * zc1$re)\nfy &lt;- expand(p * y + omega * x + gamma * zc1$im)\n\nfx\n\n(Add)   -1.806*x + 1.806*x*y^2.0 - 6.0*x^2*y^2 + 1.0*x^4 + 1.806*x^3.0 + 1.0*y^4\n\nShow the Codefy # inspect the expanded polynomials (optional)\n\n(Add)   -1.806*y + 4.0*x*y^3 - 4.0*x^3*y + 1.806*x^2.0*y + 1.806*y^3.0\n\nShow the Code# --- Turn the symbolic polynomials into plain R functions ---------------\nto_r_fun &lt;- function(expr) {\n  e &lt;- parse(text = as.character(expr))[[1]] # \"**\" parses as \"^\" in R\n  function(x, y) eval(e, list(x = x, y = y))\n}\nf_x &lt;- to_r_fun(fx)\nf_y &lt;- to_r_fun(fy)\n\n# Quick check against a direct complex-number calculation (optional)\nz0 &lt;- complex(real = 0.3, imaginary = -0.2)\nz1 &lt;- (lambda + alpha * Mod(z0)^2 + beta * Re(z0^n) + 1i * omega) * z0 +\n  gamma * Conj(z0)^(n - 1)\nall.equal(c(f_x(0.3, -0.2), f_y(0.3, -0.2)), c(Re(z1), Im(z1)))\n\n[1] TRUE\n\nShow the Code# --- Many orbits in parallel -------------------------------------------\nset.seed(1)\nn_orbits &lt;- 20000\npx &lt;- rnorm(n_orbits, sd = 0.1)\npy &lt;- rnorm(n_orbits, sd = 0.1)\n\niterate &lt;- function() {\n  nx &lt;- f_x(x = px, y = py)\n  ny &lt;- f_y(x = px, y = py)\n  px &lt;&lt;- nx\n  py &lt;&lt;- ny\n}\nfor (i in 1:500) iterate() # burn-in\n\n# Pass 1: bounds\nL &lt;- 0\nsx &lt;- px\nsy &lt;- py\nfor (i in 1:300) {\n  nx &lt;- f_x(x = sx, y = sy)\n  ny &lt;- f_y(x = sx, y = sy)\n  sx &lt;- nx\n  sy &lt;- ny\n  L &lt;- max(L, abs(sx), abs(sy))\n}\nL &lt;- L * 1.05\n\n# Pass 2: 2D histogram\nN &lt;- 800\ncounts &lt;- numeric(N * N)\nfor (i in 1:1000) {\n  iterate()\n  ix &lt;- floor((px + L) / (2 * L) * N) + 1L\n  iy &lt;- floor((py + L) / (2 * L) * N) + 1L\n  ok &lt;- is.finite(ix) & is.finite(iy) & ix &gt;= 1L & ix &lt;= N & iy &gt;= 1L & iy &lt;= N\n  counts &lt;- counts + tabulate((iy[ok] - 1L) * N + ix[ok], nbins = N * N)\n}\n\n# --- ggplot2 -------------------------------------------------------------\ncentres &lt;- seq(-L, L, length.out = N + 1)[-1] - L / N\ncloak &lt;- data.frame(\n  x = rep(centres, times = N), # ix varies fastest, matching the count index\n  y = rep(centres, each = N),\n  d = pmin(1, log1p(counts) / log1p(quantile(counts[counts &gt; 0], 0.999)))\n)\n\nggplot(cloak, aes(x, y, fill = d)) +\n  geom_raster() +\n  scale_fill_gradientn(\n    colours = c(\"black\", \"#FFE9FF\", \"yellow\", \"red\", \"#00D600\", \"white\"),\n    values = c(0, 0.10, 0.30, 0.50, 0.72, 1),\n    limits = c(0, 1), guide = \"none\"\n  ) +\n  coord_fixed(expand = FALSE) +\n  theme_void() +\n  theme(plot.background = element_rect(fill = \"black\", colour = NA))\n\n\n\n\n\n\nFigure 2: The Emperor’s Cloak, built with symengine and drawn with ggplot2.\n\n\n\n\n\n\nEmperor’s Cloak accumulating in real time. The five-fold symmetry appears only in the density.\n\nThe same construction with ( m = 3 ) and different coefficients yields a triangular icon.\n\nShow the Codeicon3 &lt;- function(z, lambda = 1.5, alpha = -1.0, gamma = -0.8) {\n  r2 &lt;- Mod(z)^2\n  (lambda + alpha * r2) * z + gamma * Conj(z)^2\n}\n\nn &lt;- 100000\nz &lt;- 0.2 + 0.1i\npts &lt;- complex(n)\nfor (i in 1:n) {\n  z &lt;- icon3(z)\n  pts[i] &lt;- z\n}\npts &lt;- pts[-(1:1000)]\npts &lt;- pts[abs(pts) &lt; 1.6]\n\ndf &lt;- data.frame(x = Re(pts), y = Im(pts))\n\nggplot(df, aes(x, y)) +\n  stat_bin2d(bins = 70) +\n  scale_fill_viridis_c(option = \"magma\", trans = \"log10\", na.value = \"black\") +\n  coord_fixed() +\n  theme_void() +\n  theme(\n    legend.position = \"none\",\n    plot.background = element_rect(fill = \"black\", color = NA)\n  )\n\n\n\n\n\n\nTriangular symmetric icon (m = 3)\n\n\n\nThe choice of the equivariant polynomial fixes the mathematical symmetry; the chaotic iteration supplies the randomness; the coloured density reveals the symmetry on average. That is the entire Field–Golubitsky design pipeline."
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "",
-    "text": "In the module on Mirror Matrices a light ray travelling at 45° between the pulli, reflecting off mirrors, produces a kolam or lusona. Paulus Gerdes observed that the same construction yields a second, equally striking family of figures once we pay attention to the unit squares the ray passes through.\nIf we colour those unit squares according to a simple rule — most often “black when the row-plus-column index is even, white otherwise,” or more generally modulo (k) — we obtain the high-contrast geometric patterns he named Lunda designs. The colouring rule is completely determined by the path of the ray; equivalently, it can be read off from a chessboard-style “zeroing” of an auxiliary matrix. This short module makes that step explicit and supplies both R and p5.js code so you can experiment with the shading yourself.",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#introduction",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#introduction",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "",
-    "text": "In the module on Mirror Matrices a light ray travelling at 45° between the pulli, reflecting off mirrors, produces a kolam or lusona. Paulus Gerdes observed that the same construction yields a second, equally striking family of figures once we pay attention to the unit squares the ray passes through.\nIf we colour those unit squares according to a simple rule — most often “black when the row-plus-column index is even, white otherwise,” or more generally modulo (k) — we obtain the high-contrast geometric patterns he named Lunda designs. The colouring rule is completely determined by the path of the ray; equivalently, it can be read off from a chessboard-style “zeroing” of an auxiliary matrix. This short module makes that step explicit and supplies both R and p5.js code so you can experiment with the shading yourself.",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#from-mirror-curve-to-coloured-squares",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#from-mirror-curve-to-coloured-squares",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "From mirror curve to coloured squares",
-    "text": "From mirror curve to coloured squares\nRecall that a rectangle-filling mirror curve passes through every unit square of the grid exactly once (when the dimensions are coprime and the mirrors are “correct”). Number the unit squares by their lower-left corner ((i,j)), where (i) runs over rows and (j) over columns.\nGerdes’ basic observation is:\n\nColour the square ((i,j)) black if (i+j) is even, white if (i+j) is odd\n(or, more generally, colour it according to ((i+j) k)).\n\nBecause the ray itself advances by steps of ((,)), consecutive squares it visits always have opposite parity of (i+j). Consequently the colouring is consistent along the whole curve and produces a crisp black-and-white (or (k)-coloured) tiling.\nThe same rule can be expressed by “zeroing out a chessboard pattern” in a matrix whose entries mark the unit squares: set every entry where (i+j) is even to 0 (or to a background value) and leave the others free to receive the colour of the curve. That is the phrase that appears in the Mirror Matrices module.",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#a-tiny-example",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#a-tiny-example",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "A tiny example",
-    "text": "A tiny example\nConsider a (4) array of unit squares. The parity matrix of (i+j) is\n\\[\n\\begin{bmatrix}\n0 & 1 & 0 & 1 \\\\\n1 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 1 \\\\\n1 & 0 & 1 & 0\n\\end{bmatrix}\n\\]\n(0 = even, 1 = odd). Colouring even cells white and odd cells black already gives the classic checkerboard Lunda design. When a mirror curve threads through these cells, the black squares it “claims” form one of Gerdes’ characteristic motifs.",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#r-code-parity-shading-of-a-mirror-curve",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#r-code-parity-shading-of-a-mirror-curve",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "R code: parity shading of a mirror curve",
-    "text": "R code: parity shading of a mirror curve\nThe chunk below re-uses the ray-tracer idea from the Mirror Matrices module, records every unit square the ray enters, and paints those squares according to ((i+j)).\n\nlibrary(ggplot2)\n\n# Simple 45° ray on a grid (no internal mirrors for clarity)\ntrace_squares &lt;- function(rows, cols, max_steps = 200) {\n  x &lt;- 0.5\n  y &lt;- 0.5\n  dx &lt;- 1\n  dy &lt;- 1\n  squares &lt;- data.frame(i = integer(), j = integer())\n  for (s in 1:max_steps) {\n    i &lt;- floor(y)\n    j &lt;- floor(x)\n    if (i &gt;= 0 && i &lt; rows && j &gt;= 0 && j &lt; cols) {\n      squares &lt;- rbind(squares, data.frame(i = i, j = j))\n    }\n    # bounce off outer walls\n    if (x + dx * 0.5 &lt; 0 || x + dx * 0.5 &gt; cols) dx &lt;- -dx\n    if (y + dy * 0.5 &lt; 0 || y + dy * 0.5 &gt; rows) dy &lt;- -dy\n    x &lt;- x + dx * 0.5\n    y &lt;- y + dy * 0.5\n    if (s &gt; 10 && abs(x - 0.5) &lt; 0.1 && abs(y - 0.5) &lt; 0.1) break\n  }\n  unique(squares)\n}\n\nsq &lt;- trace_squares(6, 6)\nsq$parity &lt;- (sq$i + sq$j) %% 2\nsq$fill &lt;- ifelse(sq$parity == 0, \"white\", \"black\")\n\nggplot(sq, aes(j, i, fill = fill)) +\n  geom_tile(colour = \"grey70\", linewidth = 0.3) +\n  scale_fill_identity() +\n  coord_equal() +\n  theme_void() +\n  labs(title = \"Lunda shading: unit squares coloured by (i+j) mod 2\")\n\n\n\n\n\n\n\nChange the modulus (replace %% 2 by %% 3 or %% 4) to obtain multi-colour Lunda designs. Adding internal mirrors (as in the previous module) simply changes which squares are visited; the colouring rule stays the same.",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#p5.js-sketch-interactive-lunda-shading",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#p5.js-sketch-interactive-lunda-shading",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "p5.js sketch: interactive Lunda shading",
-    "text": "p5.js sketch: interactive Lunda shading\nPaste into the p5.js Web Editor. The sketch draws a 45° ray and colours each unit square it enters according to parity.\n// Lunda shading: colour unit squares by (i+j) mod 2\n// while a 45° ray travels between the pulli\n\nlet rows = 8, cols = 8;\nlet cell = 50;\nlet margin = 40;\nlet path = [];\nlet t = 0;\n\nfunction setup() {\n  createCanvas(cols*cell + 2*margin, rows*cell + 2*margin);\n  generatePath();\n}\n\nfunction draw() {\n  background(245);\n  translate(margin, margin);\n\n  // Draw all unit squares, coloured if visited\n  let visited = {};\n  let n = min(floor(t), path.length);\n  for (let k = 0; k &lt; n; k++) {\n    let i = floor(path[k].y / cell);\n    let j = floor(path[k].x / cell);\n    visited[i+\",\"+j] = true;\n  }\n\n  for (let i = 0; i &lt; rows; i++) {\n    for (let j = 0; j &lt; cols; j++) {\n      if (visited[i+\",\"+j]) {\n        fill((i+j) % 2 === 0 ? 255 : 30);\n      } else {\n        fill(230);\n      }\n      stroke(180);\n      rect(j*cell, i*cell, cell, cell);\n    }\n  }\n\n  // Pulli\n  fill(20); noStroke();\n  for (let i = 0; i &lt;= rows; i++)\n    for (let j = 0; j &lt;= cols; j++)\n      circle(j*cell, i*cell, 6);\n\n  // Ray\n  noFill(); stroke(30,90,180); strokeWeight(2);\n  beginShape();\n  for (let k = 0; k &lt; n; k++) vertex(path[k].x, path[k].y);\n  endShape();\n\n  t += 0.8;\n  if (t &gt; path.length + 30) t = 0;\n}\n\nfunction generatePath() {\n  path = [];\n  let x = 0.5*cell, y = 0.5*cell;\n  let dx = 1, dy = 1;\n  for (let s = 0; s &lt; 300; s++) {\n    path.push({x, y});\n    if (x + dx*cell*0.5 &lt; 0 || x + dx*cell*0.5 &gt; cols*cell) dx = -dx;\n    if (y + dy*cell*0.5 &lt; 0 || y + dy*cell*0.5 &gt; rows*cell) dy = -dy;\n    x += dx * cell * 0.5;\n    y += dy * cell * 0.5;\n  }\n}",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#design-variations",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#design-variations",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "Design variations",
-    "text": "Design variations\n\n\nModulo (k): replace the parity test by (i+j) % k and map the residue to a palette of (k) colours.\n\nChessboard zeroing: build a matrix that is zero wherever (i+j) is even; the non-zero cells are exactly the ones that receive the “foreground” colour of the Lunda design.\n\nWith mirrors: combine the ray-tracer of the Mirror Matrices module with the shading rule above. The mirrors change the route, the modulo rule still colours the squares the route visits.",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#exercises",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#exercises",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "Exercises",
-    "text": "Exercises\n\nGenerate the Lunda design for a (5) grid with no internal mirrors. How many black squares does the single curve claim?\nChange the colouring to ((i+j)). Describe the new pattern.\nAdd one vertical mirror (entry 1 in the Mirror Indicator Matrix) and re-colour. Which squares change colour?\n\nProject. Start from a real network’s adjacency matrix, threshold it to a Mirror Indicator Matrix, trace the resulting curve, and apply Lunda shading. Does any symmetry of the original network survive in the black-and-white design?",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#references",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#references",
-    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
-    "section": "References",
-    "text": "References\n\nPaulus Gerdes. Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries. Lulu, 2007. (Chapters on the generation of Lunda-designs and enumeration modulo 2.)\nPaulus Gerdes. “On Lunda-designs and some of their symmetries.” Visual Mathematics, 1999.\nCompanion module Mirror Matrices: From Networks to Kolams, Lusona and Rangoli.\n\n\nThe phrase “zeroing out a chessboard pattern” that appears in the Mirror Matrices module is exactly the construction shown here: the parity (or modulo-(k)) colouring of the unit squares visited by the mirror curve.",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection",
-      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html",
-    "title": "Graphs and Adjacency Matrices",
-    "section": "",
-    "text": "An adjacency matrix ( A ) of a graph records who is connected to whom:\n\\[\nA_{ij} =\n\\begin{cases}\n1 & \\text{if there is an edge from } i \\text{ to } j \\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\nNothing forces ( A_{ij} = A_{ji} ). A directed edge can exist in one direction only. That is the technical starting point: relationships need not be symmetric."
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#adjacency-matrices",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#adjacency-matrices",
-    "title": "Graphs and Adjacency Matrices",
-    "section": "",
-    "text": "An adjacency matrix ( A ) of a graph records who is connected to whom:\n\\[\nA_{ij} =\n\\begin{cases}\n1 & \\text{if there is an edge from } i \\text{ to } j \\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\nNothing forces ( A_{ij} = A_{ji} ). A directed edge can exist in one direction only. That is the technical starting point: relationships need not be symmetric."
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#directed-graph-asymmetric",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#directed-graph-asymmetric",
-    "title": "Graphs and Adjacency Matrices",
-    "section": "Directed graph (asymmetric)",
-    "text": "Directed graph (asymmetric)\n\n\n\n\nA small directed graph and its (non-symmetric) adjacency matrix\n\n\n\n\n\n  1 2 3 4\n1 0 1 1 0\n2 1 0 1 0\n3 0 0 0 1\n4 0 1 0 0"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#undirected-graph-forced-symmetry",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#undirected-graph-forced-symmetry",
-    "title": "Graphs and Adjacency Matrices",
-    "section": "Undirected graph (forced symmetry)",
-    "text": "Undirected graph (forced symmetry)\nWhen every edge is mutual we obtain an undirected graph. Its adjacency matrix satisfies ( A = A^) — the matrix is equal to its own transpose (its “mirror”).\n\ng_und &lt;- as.undirected(g, mode = \"collapse\")\nA_und &lt;- as_adjacency_matrix(g_und, sparse = FALSE)\n\npar(mfrow = c(1, 2))\nplot(g_und, vertex.color = \"lightgreen\", main = \"Undirected graph\")\nimage(t(A_und[nrow(A_und):1, ]),\n  axes = FALSE, col = c(\"white\", \"darkgreen\"),\n  main = \"Symmetric adjacency matrix\"\n)\nbox()\n\n\n\nThe same vertices made undirected: A becomes symmetric"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#p5.js-draw-directed-vs.-mutual-links",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#p5.js-draw-directed-vs.-mutual-links",
-    "title": "Graphs and Adjacency Matrices",
-    "section": "p5.js: draw directed vs. mutual links",
-    "text": "p5.js: draw directed vs. mutual links\n\nClick to add directed edges. Nothing forces the reverse edge to exist."
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html",
-    "title": "An Idealized World",
-    "section": "",
-    "text": "Suppose we refuse asymmetry. We insist that every edge runs both ways, or, more strongly, that the whole pattern is unchanged when we reflect it.\nTechnically this means we work only with matrices that equal their own transpose:\n[ M = M^ ]\nWe call such an object a mirror matrix. Geometrically it is the adjacency matrix of an undirected graph, or the incidence structure of a figure that possesses reflection symmetry.\n\n\ng_dir &lt;- sample_gnm(8, 12, directed = TRUE)\nA_dir &lt;- as_adjacency_matrix(g_dir, sparse = FALSE)\n# mirror: average with transpose (or logical OR)\nM &lt;- pmax(A_dir, t(A_dir)) # 1 if either direction exists\n\npar(mfrow = c(1, 2))\nimage(t(A_dir[nrow(A_dir):1, ]),\n  axes = FALSE, col = c(\"white\", \"firebrick\"),\n  main = \"Original (possibly asymmetric)\"\n)\nimage(t(M[nrow(M):1, ]),\n  axes = FALSE, col = c(\"white\", \"steelblue\"),\n  main = \"Mirror matrix M = max(A, Aᵀ)\"\n)\n\n\n\nAn arbitrary directed graph symmetrized into a mirror matrix\n\n\n\n\nThe same ideal appears in the plane: a shape that is identical to its reflection.\n\nmotif &lt;- data.frame(\n  x = c(0, 0.8, 1.2, 0.6, 0),\n  y = c(0, 0.4, -0.1, -0.6, 0)\n)\nmirror &lt;- data.frame(x = -motif$x, y = motif$y)\n\nggplot() +\n  geom_polygon(\n    data = motif, aes(x, y), fill = \"coral\", alpha = 0.3,\n    color = \"coral\", linewidth = 1\n  ) +\n  geom_polygon(\n    data = mirror, aes(x, y), fill = \"steelblue\", alpha = 0.3,\n    color = \"steelblue\", linewidth = 1\n  ) +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  coord_fixed() +\n  theme_minimal() +\n  labs(title = \"Idealized bilateral symmetry\")\n\n\n\nA motif and its perfect mirror\n\n\n\n\n\nDraw on one side; the other side is forced to be an exact mirror.\n\nFull dihedral symmetry ( D_n ) is the strongest mirror ideal: the figure is unchanged by any of the ( n ) rotations and any of the ( n ) reflections of a regular ( n )-gon.\n\nn &lt;- 6\nang &lt;- seq(0, 2 * pi, length.out = n + 1)\npoly &lt;- data.frame(x = cos(ang), y = sin(ang))\nggplot(poly, aes(x, y)) +\n  geom_polygon(fill = \"gold\", alpha = 0.4, color = \"black\", linewidth = 1) +\n  coord_fixed() +\n  theme_void()\n\n\n\nRegular hexagon — the D6 mirror ideal"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#forcing-the-mirror",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#forcing-the-mirror",
-    "title": "An Idealized World",
-    "section": "",
-    "text": "g_dir &lt;- sample_gnm(8, 12, directed = TRUE)\nA_dir &lt;- as_adjacency_matrix(g_dir, sparse = FALSE)\n# mirror: average with transpose (or logical OR)\nM &lt;- pmax(A_dir, t(A_dir)) # 1 if either direction exists\n\npar(mfrow = c(1, 2))\nimage(t(A_dir[nrow(A_dir):1, ]),\n  axes = FALSE, col = c(\"white\", \"firebrick\"),\n  main = \"Original (possibly asymmetric)\"\n)\nimage(t(M[nrow(M):1, ]),\n  axes = FALSE, col = c(\"white\", \"steelblue\"),\n  main = \"Mirror matrix M = max(A, Aᵀ)\"\n)\n\n\n\nAn arbitrary directed graph symmetrized into a mirror matrix"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#geometric-mirror-symmetry",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#geometric-mirror-symmetry",
-    "title": "An Idealized World",
-    "section": "",
-    "text": "The same ideal appears in the plane: a shape that is identical to its reflection.\n\nmotif &lt;- data.frame(\n  x = c(0, 0.8, 1.2, 0.6, 0),\n  y = c(0, 0.4, -0.1, -0.6, 0)\n)\nmirror &lt;- data.frame(x = -motif$x, y = motif$y)\n\nggplot() +\n  geom_polygon(\n    data = motif, aes(x, y), fill = \"coral\", alpha = 0.3,\n    color = \"coral\", linewidth = 1\n  ) +\n  geom_polygon(\n    data = mirror, aes(x, y), fill = \"steelblue\", alpha = 0.3,\n    color = \"steelblue\", linewidth = 1\n  ) +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  coord_fixed() +\n  theme_minimal() +\n  labs(title = \"Idealized bilateral symmetry\")\n\n\n\nA motif and its perfect mirror"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#p5.js-live-mirror-drawing",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#p5.js-live-mirror-drawing",
-    "title": "An Idealized World",
-    "section": "",
-    "text": "Draw on one side; the other side is forced to be an exact mirror."
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#dihedral-ideal",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#dihedral-ideal",
-    "title": "An Idealized World",
-    "section": "",
-    "text": "Full dihedral symmetry ( D_n ) is the strongest mirror ideal: the figure is unchanged by any of the ( n ) rotations and any of the ( n ) reflections of a regular ( n )-gon.\n\nn &lt;- 6\nang &lt;- seq(0, 2 * pi, length.out = n + 1)\npoly &lt;- data.frame(x = cos(ang), y = sin(ang))\nggplot(poly, aes(x, y)) +\n  geom_polygon(fill = \"gold\", alpha = 0.4, color = \"black\", linewidth = 1) +\n  coord_fixed() +\n  theme_void()\n\n\n\nRegular hexagon — the D6 mirror ideal"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/listing.html#introduction",
-    "href": "content/courses/MathArtDesign/listing.html#introduction",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "Introduction",
-    "text": "Introduction\nWe will study several Mathematical Concepts and apply them to Art and Design. Their methods will be examined and then coded in p5.js to implement projects of interest. (We might on a later occasion try to use q5.js / p5play.js. Other open source tools (FOSS) and Javascript libraries may also be introduced as and when needed and as and when I learn and get excited about them. )\nThis course stands on “three legs”: Maths, Code + Tech, and Artifacts, as shown below. As this course grows and hopefully becomes more un-popular ;-D, more and more of these modules below will become reality!\n\nMath Experiments with Code\n\n\nMaths\nCode + Tech\nArtifacts\n\n\n\n\nIterated FunctionsComplex NumbersRandom NumbersVector AlgebraPerlin Noise\np5.js / q5.js / p5play.jsShapesStack, Push and Pull, TranslateVectorsRecursionConstructors and OOP\nFractalsKolamsAngolan Sona PatternsL-Systems SymmetriesTextures\n\n\nLinear Systems  Impulse ResponsesConvolutionElectrical System Theory (poles; zeroes; resonance…)?DSP basics?AM/FM/PM Modulation?Fourier SeriesBessel Functions? Waves; Echoes ?Non-linearities; Saturation; Hysteresis ?\nAdding External Physics and Sound Librariesp5.soundCamera, Sound and MicHandphone based InteractionsOSP Protocol based interactions with external hardware over WiFi / BT\nSoundVideoTextCrowd-Sourced acts (jam session; flash-techno mob…)?Mouse - Touchpad Orchestra?\n\n\nNeural Net Basics Matrix AlgebraTrainingBackpropagationGradient DescentClassification, Regression, Clustering\nml5.js libraries\nMulti-Layer PerceptronsConvolutional Neural NetworksPose, Gesture, and Face Detection\n\n\nComplexity and Emergent Phenomena?\nInterfacing p5.js with Makey-Makey / Arduino / Raspberry Pi?Sensors?Working with other materials like sand, water, paper, wood, cloth, balloons ?“Action at a Distance” using say quantum entanglement IFTTT?\nFriendship Networks? Games?Public Space InstallationsSimulationsRemote Education with Gesture tracking and live Coding?“Literary” Events with Tech?\n\n\nI’ll\nBe\nBack",
-    "crumbs": [
-      "Applied Math for Makers and Artists"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/listing.html#references",
-    "href": "content/courses/MathArtDesign/listing.html#references",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "References",
-    "text": "References\n\nCourse Abstract written by Arnold Schwarzenegger..\nAnd how?\np5.js Educational Resources. https://beta.p5js.org/education-resources/\n\n\nGeneral\n\nBret Victor. Learnable Programming. https://worrydream.com/LearnableProgramming/\nMichael Nielsen.(February 2016). Toward an exploratory medium for mathematics. https://cognitivemedium.com/emm/emm.html\nRune Madsen. Programming Design Systems. https://programmingdesignsystems.com. A free digital book that teaches a practical introduction to the new foundations of graphic design.\nColah’s ( not Kolha’s🦊, you dear Marathi pests! ) Blog. https://colah.github.io/\n\n\n\np5.js, p5play.js, q5.js, and Processing\n\nOlder versions of p5.js &lt;p5.js.&gt;\nGetting Started with p5.js https://p5js.org/tutorials/setting-up-your-environment/\nCoding Rainbow: Basic-est set of videos on p5.js https://youtube.com/playlist?list=PLglp04UYZK_PrN6xWo_nJ-8kzyXDyFUwi&si=BWSDVX9-Bt85KXdO\nCoding Train with Dan Shiffman:\n\nWebsite: https://thecodingtrain.com/\nGithub: https://github.com/CodingTrain/website-archive\n\np5.js Wiki. https://github.com/processing/p5.js/wiki\np5.js at CodeAcademy https://www.codecademy.com/learn/learn-p5js\np5.js at HappyCoding https://happycoding.io/tutorials/p5js/\nOpenProcessing https://openprocessing.org\nhttps://www.codecademy.com/content-items/5e5c0d2a7b20535fbe8aed05e739e027\np5play Game Engine https://p5play.org/ p5play is for creating interactive art and games with the Box2D physics engine.\nq5.js Home https://q5js.org/home/\n\n\n\nR-language-related Resources\n\nThomas Lin Pedersen:\n\nWebsite: https://www.data-imaginist.com/art\nWebsite: https://ambient.data-imaginist.com/index.html (R package ambient)\nGithub:\n\nAntonio Sánchez Chinchón:\n\nWebsite: https://fronkonstin.com\nGithub: https://github.com/aschinchon/abstractions\n\nDanielle Navarro’s Generative Art:\n\nWebsite: https://art-from-code.netlify.app\nGithub: https://github.com/arvindvenkatadri/art-from-code (forked by me)\nWebsite: https://art-from-code.netlify.app\n\nClaus Wilke:\n\nWebsite: https://clauswilke.com/art/\n\nGenerative Art by Katharina Brunner:\n\nGithub:https://github.com/cutterkom/generativeart\nWebpage:https://katharinabrunner.de/generativeart/\n\nWilliam Chase:\n\nWebsite: https://www.williamrchase.com/\nGithub: https://github.com/will-r-chase\nBlog Posts: https://www.williamrchase.com/writing/\n\nhttps://buttondown.email/willchase/archive/the-generative-art-dataviz-spectrum/\nhttps://www.williamrchase.com/post/strange-attractors-12-months-of-art-february/\nhttps://www.williamrchase.com/writing/2019-09-30-flow-fields-12-months-of-art-september/\nhttps://www.williamrchase.com/writing/2019-08-30-12-months-of-art-august/\nPoisson Disc sampling https://www.williamrchase.com/writing/2019-07-29-textues-and-geometric-shapes-12-months-of-art-july/ and the poissoned R package by @coolbutuseless\n\n\nMarcus Volz:\n\nWebsite: https://marcusvolz.com\nGithub: https://github.com/marcusvolz\n\nhttps://generative.substack.com/p/generative-art-and-r\nGenerative Art. https://paulvanderlaken.com/2020/05/02/generative-art-computer-design-painting/\nR-tistry with ggplot: https://www.bigbookofr.com/art.html#thinking-outside-the-grid---a-bare-bones-intro-to-rtistry-concepts-in-r-using-ggplot\nhttps://www.rforscience.com/scientific-computing.html\n\n\n\nDeep Learning and AI\n\nPractical Deep Learning for Coders. https://course.fast.ai/\nMichael Nielsen. http://neuralnetworksanddeeplearning.com/index.html\nIan Goodfellow and Yoshua Bengio and Aaron Courville. Deep Learning Book. https://www.deeplearningbook.org/\nDive into Deep Learning. Interactive deep learning book with code, math, and discussions. Implemented with PyTorch, NumPy/MXNet, JAX, and TensorFlowUsing Other Tools. https://www.d2l.ai/index.html\nSimon Scardapane. Alice’s Adventures in Differentiable Wonderland. https://www.sscardapane.it/assets/alice/Alice_book_volume_1.pdf\nFrançois Fleuret. The Little Book of Deep Learning. https://fleuret.org/public/lbdl.pdf\nFrank Rosenblatt. Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms. https://gwern.net/doc/ai/nn/1962-rosenblatt-principlesofneurodynamics.pdf\nWarren S. McCulloch, Walter Pitts (1943). A Logical Calculus of the Ideas of Immanent in Nervous Activity. BULLETIN OF MATHEMATICAL BIOPHYSICS VOLUME 5, 1943. &lt;https://www.aemea.org/math/McCulloch_Pitts_1943.pdfhttps://www.aemea.org/math/McCulloch_Pitts_1943.pdf\n\n\n\nOther Tools\n\nhttps://generatecoll.medium.com/how-i-used-excel-to-create-abstract-album-artwork-fee740d4414f\nRandom Digital Beauty. https://anaselk.com/p/generative-r/\nMaking Explanations (tools): https://explorabl.es/tools/\nUsing p5 in R. Yeah. https://alistaire.rbind.io/blog/p5-in-r/\ncreateCanvas Podcast. https://soundcloud.com/processingfoundation\nhttps://processingfoundation.org/education\nhttps://nannou.cc\nhttps://openframeworks.cc/\nhttps://libcinder.org\nSophia Crespo: (makes speculative biological creatures using neural networks)\n\nWebsite: https://sofiacrespo.com/\nWebsite: https://entangledothers.studio/\nGithub:\n\nR for Scientific Visualization. https://www.rforscience.com/visualisation.html\nR for Scientific Computing. https://www.rforscience.com/scientific-computing.html",
-    "crumbs": [
-      "Applied Math for Makers and Artists"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/listing.html#other-interesting-websites-and-works",
-    "href": "content/courses/MathArtDesign/listing.html#other-interesting-websites-and-works",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "Other Interesting Websites and Works",
-    "text": "Other Interesting Websites and Works\n\nThe Book of Shaders by Patricio Gonzalez Vivo and Jen Lowe. https://thebookofshaders.com/\nScott Murray’s D3 Art page: https://scottmurray.org/\nInigo Quilez, Digital Artist: https://iquilezles.org/ (ShaderToy, GraphToy, and MadeThisThing)\nReddit Generative Art Forum. https://www.reddit.com/r/generative/\nAI tools for Journalists. https://journaliststoolbox.ai/ A vast list of tools for every purpose you can think of.",
-    "crumbs": [
-      "Applied Math for Makers and Artists"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/listing.html#creative-coding-courses-elsewhere",
-    "href": "content/courses/MathArtDesign/listing.html#creative-coding-courses-elsewhere",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "Creative Coding Courses Elsewhere",
-    "text": "Creative Coding Courses Elsewhere\n\nAllison Parrish. https://creative-coding.decontextualize.com\nMatthew Bardin. https://pdm.lsupathways.org\nTim Cortina at Carnegie Mellon Univ2. https://www.cs.cmu.edu/~tcortina/15104-f20/lectures/",
-    "crumbs": [
-      "Applied Math for Makers and Artists"
-    ]
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/listing.html#learning-modules",
-    "href": "content/courses/MathArtDesign/listing.html#learning-modules",
-    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
-    "section": "Learning Modules",
-    "text": "Learning Modules",
-    "crumbs": [
-      "Applied Math for Makers and Artists"
-    ]
-  },
-  {
-    "objectID": "content/courses/listing.html",
-    "href": "content/courses/listing.html",
-    "title": "Teaching",
-    "section": "",
-    "text": "Here are the courses that I teach:\n\n\n\n\n\n\n\n\n\nTitle\nSubtitle\nDate\n\n\n\n\n\nNo matching items\n Back to top"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html",
-    "title": "Working with Networks",
-    "section": "",
-    "text": "Do you think your friends have more friends than you have? Do you think that you are outside the herd, and that what you think or do is from your own mind?\nAnyways…"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#introduction",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#introduction",
-    "title": "Working with Networks",
-    "section": "",
-    "text": "Do you think your friends have more friends than you have? Do you think that you are outside the herd, and that what you think or do is from your own mind?\nAnyways…"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#activities",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#activities",
-    "title": "Working with Networks",
-    "section": "Activities",
-    "text": "Activities\nActivity-1: Secret Santa Game\nLet us play this in the vanilla way: Paper chits with names in a bin and drawing them in turn. What can go wrong with this?\nShould we use this instead? https://www.drawnames.com.sg/secret-santa-generator\nDiscussion: Nodes, Links, Link Directionality, Connected and Disconnected Networks\nActivity-2: Barabasi Cocktail Party Game\nThis is a game “invented” by Alberto-Laszlo Barabasi, a Network Science pioneer and expert, who has written a wonderful, and wonderfully acessible, book on Network Science, available online http://networksciencebook.com/\nDiscussion: Network Mechanisms, Information Flow, Giant Component,Emergence\nActivity-3: Indian Surnames Game\n\nHow many common India surnames do we know? Let us write them on the board.\nEach of us will now look at each surname and recollect how many people they know with that surname.\nWrite down the score for each surname.\nLet’s plot this on (yet another ) network!!\nTry also to create a map using this website: The Memory Underground https://memoryunderground.com\n\n\nDiscussion: Node Degree, Giant Component?  Small Worlds?  Multi-Link network, Link Values or Costs\nActivity-4: Way-Spotting Game\nNow that we have an idea of nodes, links and costs, let us get an experience of some more network science ideas:\n\nMake groups of 3.\nHead over to http://www.wayspotting.com/index.html\n\nPlay!! Make a note of your route each time ( your “traversal” of the network)\nNote if you can see the following:\n\n\n\nFrequently Used Nodes\nFrequently used Links\n\n\n\nSee here for more info: https://medium.com/@ran_katzir/teaching-network-science-using-board-games-f78489a3b3bd\n\n\nDiscussion: Network Traversal, Node Degree, Centrality, Betweenness, Link Values or Costs\nActivity-5: Hi, I am Kevin Bacon, SMI Foundation 2022 Batch\nLet us find a Keven Bacon in SMI Foundation Studies Programme!!\n\nCollect friends Data from across college/class, import and plot, analyze and comment\nUse this online tool at DataBasic.io https://databasic.io to Connect the Dots, OR\nEven more fun at at GraphCommons https://graphcommons.com/graphs/new\n\n\nDiscussion: Node Degree, Centrality, Betweenness, Link Values or Costs\nActivity-6: Can you Introduce me to Chandler, again?\n\nTake your favourite Literary Work / TV Serial / Movie and create a Network Database for it.\nVisualize it either with or without tech tools From Teach Engineering, this Activity Sheet https://www.teachengineering.org/activities/view/uno_graphtheory_lesson01_activity2\n\nCan also use Graph Comicshttps://aviz.fr/~bbach/graphcomics/\n\n\nDiscussion: Networks are everywhere, Cannot \"unsee\" them, You are a node and you are a link..are you?\nActivity-7: Why are all Metro Maps at 45 degrees?\n\nhttps://artsandculture.google.com/asset/the-tate-gallery-by-tube-david-booth/PAG-Gx_SV2jNiw?hl=en\nhttps://search.r-project.org/CRAN/refmans/ggraph/html/layout_tbl_graph_metro.html\nHenry Beck’s London Underground Map. https://artsandculture.google.com/asset/underground-map-henry-c-beck-london-transport-and-waterlow-sons-ltd/fAHJweSexswKxw?hl=en and\n\nhttps://g.co/arts/UNfBm6QL5kukYm4r9"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#references",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#references",
-    "title": "Working with Networks",
-    "section": "References",
-    "text": "References\n\nDmitry Zinoniev, Network Science Intro Slides, https://www.slideshare.net/DmitryZinoviev/workshop-20212296\nMark Newman, The Physics of Networks,Read the PDF\nA Network oriented short story. Frigyes Karinthy, “Chains”. Read PDF\nWho told you about Srishti? Where? Read Mark Granovetter, The Strength of Weak Ties. https://www.cs.cmu.edu/~jure/pub/papers/granovetter73ties.pdf\nPlamen Ch. Ivanov.(30 June 2021) The New Field of Network Physiology: Building the Human Physiolome. https://doi.org/10.3389/fnetp.2021.711778"
-  },
-  {
-    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/listing.html",
-    "href": "content/courses/MathArtDesign/Modules/60-Connection/listing.html",
-    "title": "Connections",
-    "section": "",
-    "text": "Title\n\n\n\nReading Time\n\n\n\n\n\n\n\n\n\n\n\nWorking with Networks\n\n\n3 min\n\n\n\n\n\n\n\n\n\nKolams and Lusona\n\n\n9 min\n\n\n\n\n\n\n\n\n\nThe Maths of Kolam and Lusona\n\n\n10 min\n\n\n\n\n\n\n\n\n\nGraphs and Adjacency Matrices\n\n\n3 min\n\n\n\n\n\n\n\n\n\nAn Idealized World\n\n\n3 min\n\n\n\n\n\n\n\n\n\nSymmetry on Average\n\n\n12 min\n\n\n\n\n\n\n\n\n\nMirror Matrices: From Networks to Kolams, Lusona and Rangoli\n\n\n62 min\n\n\n\n\n\n\n\n\n\nLunda Designs: Zeroing, Shading and Modulo Arithmetic\n\n\n7 min\n\n\n\n\n\n\nNo matching items\n Back to top",
-    "crumbs": [
-      "Applied Math for Makers and Artists",
-      "Connection"
-    ]
   },
   {
     "objectID": "content/courses/MathArtDesign/Modules/60-Connection/300-MirrorMatrix/index.html",
@@ -2360,6 +2086,340 @@
       "Applied Math for Makers and Artists",
       "Connection",
       "Mirror Matrices: From Networks to Kolams, Lusona and Rangoli"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/listing.html",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/listing.html",
+    "title": "Connections",
+    "section": "",
+    "text": "Title\n\n\n\nReading Time\n\n\n\n\n\n\n\n\n\n\n\nWorking with Networks\n\n\n3 min\n\n\n\n\n\n\n\n\n\nKolams and Lusona\n\n\n9 min\n\n\n\n\n\n\n\n\n\nThe Maths of Kolam and Lusona\n\n\n10 min\n\n\n\n\n\n\n\n\n\nVoronoi Kolam\n\n\n35 min\n\n\n\n\n\n\n\n\n\nGraphs and Adjacency Matrices\n\n\n3 min\n\n\n\n\n\n\n\n\n\nAn Idealized World\n\n\n3 min\n\n\n\n\n\n\n\n\n\nSymmetry on Average\n\n\n12 min\n\n\n\n\n\n\n\n\n\nMirror Matrices: From Networks to Kolams, Lusona and Rangoli\n\n\n62 min\n\n\n\n\n\n\n\n\n\nLunda Designs: Zeroing, Shading and Modulo Arithmetic\n\n\n7 min\n\n\n\n\n\n\nNo matching items\n Back to top",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html",
+    "title": "Working with Networks",
+    "section": "",
+    "text": "Do you think your friends have more friends than you have? Do you think that you are outside the herd, and that what you think or do is from your own mind?\nAnyways…"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#introduction",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#introduction",
+    "title": "Working with Networks",
+    "section": "",
+    "text": "Do you think your friends have more friends than you have? Do you think that you are outside the herd, and that what you think or do is from your own mind?\nAnyways…"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#activities",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#activities",
+    "title": "Working with Networks",
+    "section": "Activities",
+    "text": "Activities\nActivity-1: Secret Santa Game\nLet us play this in the vanilla way: Paper chits with names in a bin and drawing them in turn. What can go wrong with this?\nShould we use this instead? https://www.drawnames.com.sg/secret-santa-generator\nDiscussion: Nodes, Links, Link Directionality, Connected and Disconnected Networks\nActivity-2: Barabasi Cocktail Party Game\nThis is a game “invented” by Alberto-Laszlo Barabasi, a Network Science pioneer and expert, who has written a wonderful, and wonderfully acessible, book on Network Science, available online http://networksciencebook.com/\nDiscussion: Network Mechanisms, Information Flow, Giant Component,Emergence\nActivity-3: Indian Surnames Game\n\nHow many common India surnames do we know? Let us write them on the board.\nEach of us will now look at each surname and recollect how many people they know with that surname.\nWrite down the score for each surname.\nLet’s plot this on (yet another ) network!!\nTry also to create a map using this website: The Memory Underground https://memoryunderground.com\n\n\nDiscussion: Node Degree, Giant Component?  Small Worlds?  Multi-Link network, Link Values or Costs\nActivity-4: Way-Spotting Game\nNow that we have an idea of nodes, links and costs, let us get an experience of some more network science ideas:\n\nMake groups of 3.\nHead over to http://www.wayspotting.com/index.html\n\nPlay!! Make a note of your route each time ( your “traversal” of the network)\nNote if you can see the following:\n\n\n\nFrequently Used Nodes\nFrequently used Links\n\n\n\nSee here for more info: https://medium.com/@ran_katzir/teaching-network-science-using-board-games-f78489a3b3bd\n\n\nDiscussion: Network Traversal, Node Degree, Centrality, Betweenness, Link Values or Costs\nActivity-5: Hi, I am Kevin Bacon, SMI Foundation 2022 Batch\nLet us find a Keven Bacon in SMI Foundation Studies Programme!!\n\nCollect friends Data from across college/class, import and plot, analyze and comment\nUse this online tool at DataBasic.io https://databasic.io to Connect the Dots, OR\nEven more fun at at GraphCommons https://graphcommons.com/graphs/new\n\n\nDiscussion: Node Degree, Centrality, Betweenness, Link Values or Costs\nActivity-6: Can you Introduce me to Chandler, again?\n\nTake your favourite Literary Work / TV Serial / Movie and create a Network Database for it.\nVisualize it either with or without tech tools From Teach Engineering, this Activity Sheet https://www.teachengineering.org/activities/view/uno_graphtheory_lesson01_activity2\n\nCan also use Graph Comicshttps://aviz.fr/~bbach/graphcomics/\n\n\nDiscussion: Networks are everywhere, Cannot \"unsee\" them, You are a node and you are a link..are you?\nActivity-7: Why are all Metro Maps at 45 degrees?\n\nhttps://artsandculture.google.com/asset/the-tate-gallery-by-tube-david-booth/PAG-Gx_SV2jNiw?hl=en\nhttps://search.r-project.org/CRAN/refmans/ggraph/html/layout_tbl_graph_metro.html\nHenry Beck’s London Underground Map. https://artsandculture.google.com/asset/underground-map-henry-c-beck-london-transport-and-waterlow-sons-ltd/fAHJweSexswKxw?hl=en and\n\nhttps://g.co/arts/UNfBm6QL5kukYm4r9"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#references",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html#references",
+    "title": "Working with Networks",
+    "section": "References",
+    "text": "References\n\nDmitry Zinoniev, Network Science Intro Slides, https://www.slideshare.net/DmitryZinoviev/workshop-20212296\nMark Newman, The Physics of Networks,Read the PDF\nA Network oriented short story. Frigyes Karinthy, “Chains”. Read PDF\nWho told you about Srishti? Where? Read Mark Granovetter, The Strength of Weak Ties. https://www.cs.cmu.edu/~jure/pub/papers/granovetter73ties.pdf\nPlamen Ch. Ivanov.(30 June 2021) The New Field of Network Physiology: Building the Human Physiolome. https://doi.org/10.3389/fnetp.2021.711778"
+  },
+  {
+    "objectID": "content/courses/listing.html",
+    "href": "content/courses/listing.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "Here are the courses that I teach:\n\n\n\n\n\n\n\n\n\nTitle\nSubtitle\nDate\n\n\n\n\n\nNo matching items\n Back to top"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/listing.html#introduction",
+    "href": "content/courses/MathArtDesign/listing.html#introduction",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "Introduction",
+    "text": "Introduction\nWe will study several Mathematical Concepts and apply them to Art and Design. Their methods will be examined and then coded in p5.js to implement projects of interest. (We might on a later occasion try to use q5.js / p5play.js. Other open source tools (FOSS) and Javascript libraries may also be introduced as and when needed and as and when I learn and get excited about them. )\nThis course stands on “three legs”: Maths, Code + Tech, and Artifacts, as shown below. As this course grows and hopefully becomes more un-popular ;-D, more and more of these modules below will become reality!\n\nMath Experiments with Code\n\n\nMaths\nCode + Tech\nArtifacts\n\n\n\n\nIterated FunctionsComplex NumbersRandom NumbersVector AlgebraPerlin Noise\np5.js / q5.js / p5play.jsShapesStack, Push and Pull, TranslateVectorsRecursionConstructors and OOP\nFractalsKolamsAngolan Sona PatternsL-Systems SymmetriesTextures\n\n\nLinear Systems  Impulse ResponsesConvolutionElectrical System Theory (poles; zeroes; resonance…)?DSP basics?AM/FM/PM Modulation?Fourier SeriesBessel Functions? Waves; Echoes ?Non-linearities; Saturation; Hysteresis ?\nAdding External Physics and Sound Librariesp5.soundCamera, Sound and MicHandphone based InteractionsOSP Protocol based interactions with external hardware over WiFi / BT\nSoundVideoTextCrowd-Sourced acts (jam session; flash-techno mob…)?Mouse - Touchpad Orchestra?\n\n\nNeural Net Basics Matrix AlgebraTrainingBackpropagationGradient DescentClassification, Regression, Clustering\nml5.js libraries\nMulti-Layer PerceptronsConvolutional Neural NetworksPose, Gesture, and Face Detection\n\n\nComplexity and Emergent Phenomena?\nInterfacing p5.js with Makey-Makey / Arduino / Raspberry Pi?Sensors?Working with other materials like sand, water, paper, wood, cloth, balloons ?“Action at a Distance” using say quantum entanglement IFTTT?\nFriendship Networks? Games?Public Space InstallationsSimulationsRemote Education with Gesture tracking and live Coding?“Literary” Events with Tech?\n\n\nI’ll\nBe\nBack",
+    "crumbs": [
+      "Applied Math for Makers and Artists"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/listing.html#references",
+    "href": "content/courses/MathArtDesign/listing.html#references",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "References",
+    "text": "References\n\nCourse Abstract written by Arnold Schwarzenegger..\nAnd how?\np5.js Educational Resources. https://beta.p5js.org/education-resources/\n\n\nGeneral\n\nBret Victor. Learnable Programming. https://worrydream.com/LearnableProgramming/\nMichael Nielsen.(February 2016). Toward an exploratory medium for mathematics. https://cognitivemedium.com/emm/emm.html\nRune Madsen. Programming Design Systems. https://programmingdesignsystems.com. A free digital book that teaches a practical introduction to the new foundations of graphic design.\nColah’s ( not Kolha’s🦊, you dear Marathi pests! ) Blog. https://colah.github.io/\n\n\n\np5.js, p5play.js, q5.js, and Processing\n\nOlder versions of p5.js &lt;p5.js.&gt;\nGetting Started with p5.js https://p5js.org/tutorials/setting-up-your-environment/\nCoding Rainbow: Basic-est set of videos on p5.js https://youtube.com/playlist?list=PLglp04UYZK_PrN6xWo_nJ-8kzyXDyFUwi&si=BWSDVX9-Bt85KXdO\nCoding Train with Dan Shiffman:\n\nWebsite: https://thecodingtrain.com/\nGithub: https://github.com/CodingTrain/website-archive\n\np5.js Wiki. https://github.com/processing/p5.js/wiki\np5.js at CodeAcademy https://www.codecademy.com/learn/learn-p5js\np5.js at HappyCoding https://happycoding.io/tutorials/p5js/\nOpenProcessing https://openprocessing.org\nhttps://www.codecademy.com/content-items/5e5c0d2a7b20535fbe8aed05e739e027\np5play Game Engine https://p5play.org/ p5play is for creating interactive art and games with the Box2D physics engine.\nq5.js Home https://q5js.org/home/\n\n\n\nR-language-related Resources\n\nThomas Lin Pedersen:\n\nWebsite: https://www.data-imaginist.com/art\nWebsite: https://ambient.data-imaginist.com/index.html (R package ambient)\nGithub:\n\nAntonio Sánchez Chinchón:\n\nWebsite: https://fronkonstin.com\nGithub: https://github.com/aschinchon/abstractions\n\nDanielle Navarro’s Generative Art:\n\nWebsite: https://art-from-code.netlify.app\nGithub: https://github.com/arvindvenkatadri/art-from-code (forked by me)\nWebsite: https://art-from-code.netlify.app\n\nClaus Wilke:\n\nWebsite: https://clauswilke.com/art/\n\nGenerative Art by Katharina Brunner:\n\nGithub:https://github.com/cutterkom/generativeart\nWebpage:https://katharinabrunner.de/generativeart/\n\nWilliam Chase:\n\nWebsite: https://www.williamrchase.com/\nGithub: https://github.com/will-r-chase\nBlog Posts: https://www.williamrchase.com/writing/\n\nhttps://buttondown.email/willchase/archive/the-generative-art-dataviz-spectrum/\nhttps://www.williamrchase.com/post/strange-attractors-12-months-of-art-february/\nhttps://www.williamrchase.com/writing/2019-09-30-flow-fields-12-months-of-art-september/\nhttps://www.williamrchase.com/writing/2019-08-30-12-months-of-art-august/\nPoisson Disc sampling https://www.williamrchase.com/writing/2019-07-29-textues-and-geometric-shapes-12-months-of-art-july/ and the poissoned R package by @coolbutuseless\n\n\nMarcus Volz:\n\nWebsite: https://marcusvolz.com\nGithub: https://github.com/marcusvolz\n\nhttps://generative.substack.com/p/generative-art-and-r\nGenerative Art. https://paulvanderlaken.com/2020/05/02/generative-art-computer-design-painting/\nR-tistry with ggplot: https://www.bigbookofr.com/art.html#thinking-outside-the-grid---a-bare-bones-intro-to-rtistry-concepts-in-r-using-ggplot\nhttps://www.rforscience.com/scientific-computing.html\n\n\n\nDeep Learning and AI\n\nPractical Deep Learning for Coders. https://course.fast.ai/\nMichael Nielsen. http://neuralnetworksanddeeplearning.com/index.html\nIan Goodfellow and Yoshua Bengio and Aaron Courville. Deep Learning Book. https://www.deeplearningbook.org/\nDive into Deep Learning. Interactive deep learning book with code, math, and discussions. Implemented with PyTorch, NumPy/MXNet, JAX, and TensorFlowUsing Other Tools. https://www.d2l.ai/index.html\nSimon Scardapane. Alice’s Adventures in Differentiable Wonderland. https://www.sscardapane.it/assets/alice/Alice_book_volume_1.pdf\nFrançois Fleuret. The Little Book of Deep Learning. https://fleuret.org/public/lbdl.pdf\nFrank Rosenblatt. Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms. https://gwern.net/doc/ai/nn/1962-rosenblatt-principlesofneurodynamics.pdf\nWarren S. McCulloch, Walter Pitts (1943). A Logical Calculus of the Ideas of Immanent in Nervous Activity. BULLETIN OF MATHEMATICAL BIOPHYSICS VOLUME 5, 1943. &lt;https://www.aemea.org/math/McCulloch_Pitts_1943.pdfhttps://www.aemea.org/math/McCulloch_Pitts_1943.pdf\n\n\n\nOther Tools\n\nhttps://generatecoll.medium.com/how-i-used-excel-to-create-abstract-album-artwork-fee740d4414f\nRandom Digital Beauty. https://anaselk.com/p/generative-r/\nMaking Explanations (tools): https://explorabl.es/tools/\nUsing p5 in R. Yeah. https://alistaire.rbind.io/blog/p5-in-r/\ncreateCanvas Podcast. https://soundcloud.com/processingfoundation\nhttps://processingfoundation.org/education\nhttps://nannou.cc\nhttps://openframeworks.cc/\nhttps://libcinder.org\nSophia Crespo: (makes speculative biological creatures using neural networks)\n\nWebsite: https://sofiacrespo.com/\nWebsite: https://entangledothers.studio/\nGithub:\n\nR for Scientific Visualization. https://www.rforscience.com/visualisation.html\nR for Scientific Computing. https://www.rforscience.com/scientific-computing.html",
+    "crumbs": [
+      "Applied Math for Makers and Artists"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/listing.html#other-interesting-websites-and-works",
+    "href": "content/courses/MathArtDesign/listing.html#other-interesting-websites-and-works",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "Other Interesting Websites and Works",
+    "text": "Other Interesting Websites and Works\n\nThe Book of Shaders by Patricio Gonzalez Vivo and Jen Lowe. https://thebookofshaders.com/\nScott Murray’s D3 Art page: https://scottmurray.org/\nInigo Quilez, Digital Artist: https://iquilezles.org/ (ShaderToy, GraphToy, and MadeThisThing)\nReddit Generative Art Forum. https://www.reddit.com/r/generative/\nAI tools for Journalists. https://journaliststoolbox.ai/ A vast list of tools for every purpose you can think of.",
+    "crumbs": [
+      "Applied Math for Makers and Artists"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/listing.html#creative-coding-courses-elsewhere",
+    "href": "content/courses/MathArtDesign/listing.html#creative-coding-courses-elsewhere",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "Creative Coding Courses Elsewhere",
+    "text": "Creative Coding Courses Elsewhere\n\nAllison Parrish. https://creative-coding.decontextualize.com\nMatthew Bardin. https://pdm.lsupathways.org\nTim Cortina at Carnegie Mellon Univ2. https://www.cs.cmu.edu/~tcortina/15104-f20/lectures/",
+    "crumbs": [
+      "Applied Math for Makers and Artists"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/listing.html#learning-modules",
+    "href": "content/courses/MathArtDesign/listing.html#learning-modules",
+    "title": "Using matters of Life and Death Math and Code to Create Novel Experiences",
+    "section": "Learning Modules",
+    "text": "Learning Modules",
+    "crumbs": [
+      "Applied Math for Makers and Artists"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html",
+    "title": "An Idealized World",
+    "section": "",
+    "text": "Suppose we refuse asymmetry. We insist that every edge runs both ways, or, more strongly, that the whole pattern is unchanged when we reflect it.\nTechnically this means we work only with matrices that equal their own transpose:\n[ M = M^ ]\nWe call such an object a mirror matrix. Geometrically it is the adjacency matrix of an undirected graph, or the incidence structure of a figure that possesses reflection symmetry.\n\n\ng_dir &lt;- sample_gnm(8, 12, directed = TRUE)\nA_dir &lt;- as_adjacency_matrix(g_dir, sparse = FALSE)\n# mirror: average with transpose (or logical OR)\nM &lt;- pmax(A_dir, t(A_dir)) # 1 if either direction exists\n\npar(mfrow = c(1, 2))\nimage(t(A_dir[nrow(A_dir):1, ]),\n  axes = FALSE, col = c(\"white\", \"firebrick\"),\n  main = \"Original (possibly asymmetric)\"\n)\nimage(t(M[nrow(M):1, ]),\n  axes = FALSE, col = c(\"white\", \"steelblue\"),\n  main = \"Mirror matrix M = max(A, Aᵀ)\"\n)\n\n\n\nAn arbitrary directed graph symmetrized into a mirror matrix\n\n\n\n\nThe same ideal appears in the plane: a shape that is identical to its reflection.\n\nmotif &lt;- data.frame(\n  x = c(0, 0.8, 1.2, 0.6, 0),\n  y = c(0, 0.4, -0.1, -0.6, 0)\n)\nmirror &lt;- data.frame(x = -motif$x, y = motif$y)\n\nggplot() +\n  geom_polygon(\n    data = motif, aes(x, y), fill = \"coral\", alpha = 0.3,\n    color = \"coral\", linewidth = 1\n  ) +\n  geom_polygon(\n    data = mirror, aes(x, y), fill = \"steelblue\", alpha = 0.3,\n    color = \"steelblue\", linewidth = 1\n  ) +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  coord_fixed() +\n  theme_minimal() +\n  labs(title = \"Idealized bilateral symmetry\")\n\n\n\nA motif and its perfect mirror\n\n\n\n\n\nDraw on one side; the other side is forced to be an exact mirror.\n\nFull dihedral symmetry ( D_n ) is the strongest mirror ideal: the figure is unchanged by any of the ( n ) rotations and any of the ( n ) reflections of a regular ( n )-gon.\n\nn &lt;- 6\nang &lt;- seq(0, 2 * pi, length.out = n + 1)\npoly &lt;- data.frame(x = cos(ang), y = sin(ang))\nggplot(poly, aes(x, y)) +\n  geom_polygon(fill = \"gold\", alpha = 0.4, color = \"black\", linewidth = 1) +\n  coord_fixed() +\n  theme_void()\n\n\n\nRegular hexagon — the D6 mirror ideal"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#forcing-the-mirror",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#forcing-the-mirror",
+    "title": "An Idealized World",
+    "section": "",
+    "text": "g_dir &lt;- sample_gnm(8, 12, directed = TRUE)\nA_dir &lt;- as_adjacency_matrix(g_dir, sparse = FALSE)\n# mirror: average with transpose (or logical OR)\nM &lt;- pmax(A_dir, t(A_dir)) # 1 if either direction exists\n\npar(mfrow = c(1, 2))\nimage(t(A_dir[nrow(A_dir):1, ]),\n  axes = FALSE, col = c(\"white\", \"firebrick\"),\n  main = \"Original (possibly asymmetric)\"\n)\nimage(t(M[nrow(M):1, ]),\n  axes = FALSE, col = c(\"white\", \"steelblue\"),\n  main = \"Mirror matrix M = max(A, Aᵀ)\"\n)\n\n\n\nAn arbitrary directed graph symmetrized into a mirror matrix"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#geometric-mirror-symmetry",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#geometric-mirror-symmetry",
+    "title": "An Idealized World",
+    "section": "",
+    "text": "The same ideal appears in the plane: a shape that is identical to its reflection.\n\nmotif &lt;- data.frame(\n  x = c(0, 0.8, 1.2, 0.6, 0),\n  y = c(0, 0.4, -0.1, -0.6, 0)\n)\nmirror &lt;- data.frame(x = -motif$x, y = motif$y)\n\nggplot() +\n  geom_polygon(\n    data = motif, aes(x, y), fill = \"coral\", alpha = 0.3,\n    color = \"coral\", linewidth = 1\n  ) +\n  geom_polygon(\n    data = mirror, aes(x, y), fill = \"steelblue\", alpha = 0.3,\n    color = \"steelblue\", linewidth = 1\n  ) +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  coord_fixed() +\n  theme_minimal() +\n  labs(title = \"Idealized bilateral symmetry\")\n\n\n\nA motif and its perfect mirror"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#p5.js-live-mirror-drawing",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#p5.js-live-mirror-drawing",
+    "title": "An Idealized World",
+    "section": "",
+    "text": "Draw on one side; the other side is forced to be an exact mirror."
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#dihedral-ideal",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/20-MirrorMatrices/02-idealized-mirror.html#dihedral-ideal",
+    "title": "An Idealized World",
+    "section": "",
+    "text": "Full dihedral symmetry ( D_n ) is the strongest mirror ideal: the figure is unchanged by any of the ( n ) rotations and any of the ( n ) reflections of a regular ( n )-gon.\n\nn &lt;- 6\nang &lt;- seq(0, 2 * pi, length.out = n + 1)\npoly &lt;- data.frame(x = cos(ang), y = sin(ang))\nggplot(poly, aes(x, y)) +\n  geom_polygon(fill = \"gold\", alpha = 0.4, color = \"black\", linewidth = 1) +\n  coord_fixed() +\n  theme_void()\n\n\n\nRegular hexagon — the D6 mirror ideal"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html",
+    "title": "Graphs and Adjacency Matrices",
+    "section": "",
+    "text": "An adjacency matrix ( A ) of a graph records who is connected to whom:\n\\[\nA_{ij} =\n\\begin{cases}\n1 & \\text{if there is an edge from } i \\text{ to } j \\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\nNothing forces ( A_{ij} = A_{ji} ). A directed edge can exist in one direction only. That is the technical starting point: relationships need not be symmetric."
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#adjacency-matrices",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#adjacency-matrices",
+    "title": "Graphs and Adjacency Matrices",
+    "section": "",
+    "text": "An adjacency matrix ( A ) of a graph records who is connected to whom:\n\\[\nA_{ij} =\n\\begin{cases}\n1 & \\text{if there is an edge from } i \\text{ to } j \\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\nNothing forces ( A_{ij} = A_{ji} ). A directed edge can exist in one direction only. That is the technical starting point: relationships need not be symmetric."
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#directed-graph-asymmetric",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#directed-graph-asymmetric",
+    "title": "Graphs and Adjacency Matrices",
+    "section": "Directed graph (asymmetric)",
+    "text": "Directed graph (asymmetric)\n\n\n\n\nA small directed graph and its (non-symmetric) adjacency matrix\n\n\n\n\n\n  1 2 3 4\n1 0 1 1 0\n2 1 0 1 0\n3 0 0 0 1\n4 0 1 0 0"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#undirected-graph-forced-symmetry",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#undirected-graph-forced-symmetry",
+    "title": "Graphs and Adjacency Matrices",
+    "section": "Undirected graph (forced symmetry)",
+    "text": "Undirected graph (forced symmetry)\nWhen every edge is mutual we obtain an undirected graph. Its adjacency matrix satisfies ( A = A^) — the matrix is equal to its own transpose (its “mirror”).\n\ng_und &lt;- as.undirected(g, mode = \"collapse\")\nA_und &lt;- as_adjacency_matrix(g_und, sparse = FALSE)\n\npar(mfrow = c(1, 2))\nplot(g_und, vertex.color = \"lightgreen\", main = \"Undirected graph\")\nimage(t(A_und[nrow(A_und):1, ]),\n  axes = FALSE, col = c(\"white\", \"darkgreen\"),\n  main = \"Symmetric adjacency matrix\"\n)\nbox()\n\n\n\nThe same vertices made undirected: A becomes symmetric"
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#p5.js-draw-directed-vs.-mutual-links",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/10-Adjacency/01-graphs-adjacency.html#p5.js-draw-directed-vs.-mutual-links",
+    "title": "Graphs and Adjacency Matrices",
+    "section": "p5.js: draw directed vs. mutual links",
+    "text": "p5.js: draw directed vs. mutual links\n\nClick to add directed edges. Nothing forces the reverse edge to exist."
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "",
+    "text": "In the module on Mirror Matrices a light ray travelling at 45° between the pulli, reflecting off mirrors, produces a kolam or lusona. Paulus Gerdes observed that the same construction yields a second, equally striking family of figures once we pay attention to the unit squares the ray passes through.\nIf we colour those unit squares according to a simple rule — most often “black when the row-plus-column index is even, white otherwise,” or more generally modulo (k) — we obtain the high-contrast geometric patterns he named Lunda designs. The colouring rule is completely determined by the path of the ray; equivalently, it can be read off from a chessboard-style “zeroing” of an auxiliary matrix. This short module makes that step explicit and supplies both R and p5.js code so you can experiment with the shading yourself.",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#introduction",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#introduction",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "",
+    "text": "In the module on Mirror Matrices a light ray travelling at 45° between the pulli, reflecting off mirrors, produces a kolam or lusona. Paulus Gerdes observed that the same construction yields a second, equally striking family of figures once we pay attention to the unit squares the ray passes through.\nIf we colour those unit squares according to a simple rule — most often “black when the row-plus-column index is even, white otherwise,” or more generally modulo (k) — we obtain the high-contrast geometric patterns he named Lunda designs. The colouring rule is completely determined by the path of the ray; equivalently, it can be read off from a chessboard-style “zeroing” of an auxiliary matrix. This short module makes that step explicit and supplies both R and p5.js code so you can experiment with the shading yourself.",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#from-mirror-curve-to-coloured-squares",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#from-mirror-curve-to-coloured-squares",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "From mirror curve to coloured squares",
+    "text": "From mirror curve to coloured squares\nRecall that a rectangle-filling mirror curve passes through every unit square of the grid exactly once (when the dimensions are coprime and the mirrors are “correct”). Number the unit squares by their lower-left corner ((i,j)), where (i) runs over rows and (j) over columns.\nGerdes’ basic observation is:\n\nColour the square ((i,j)) black if (i+j) is even, white if (i+j) is odd\n(or, more generally, colour it according to ((i+j) k)).\n\nBecause the ray itself advances by steps of ((,)), consecutive squares it visits always have opposite parity of (i+j). Consequently the colouring is consistent along the whole curve and produces a crisp black-and-white (or (k)-coloured) tiling.\nThe same rule can be expressed by “zeroing out a chessboard pattern” in a matrix whose entries mark the unit squares: set every entry where (i+j) is even to 0 (or to a background value) and leave the others free to receive the colour of the curve. That is the phrase that appears in the Mirror Matrices module.",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#a-tiny-example",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#a-tiny-example",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "A tiny example",
+    "text": "A tiny example\nConsider a (4) array of unit squares. The parity matrix of (i+j) is\n\\[\n\\begin{bmatrix}\n0 & 1 & 0 & 1 \\\\\n1 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 1 \\\\\n1 & 0 & 1 & 0\n\\end{bmatrix}\n\\]\n(0 = even, 1 = odd). Colouring even cells white and odd cells black already gives the classic checkerboard Lunda design. When a mirror curve threads through these cells, the black squares it “claims” form one of Gerdes’ characteristic motifs.",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#r-code-parity-shading-of-a-mirror-curve",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#r-code-parity-shading-of-a-mirror-curve",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "R code: parity shading of a mirror curve",
+    "text": "R code: parity shading of a mirror curve\nThe chunk below re-uses the ray-tracer idea from the Mirror Matrices module, records every unit square the ray enters, and paints those squares according to ((i+j)).\n\nShow the Codelibrary(ggplot2)\n\n# Simple 45° ray on a grid (no internal mirrors for clarity)\ntrace_squares &lt;- function(rows, cols, max_steps = 200) {\n  x &lt;- 0.5\n  y &lt;- 0.5\n  dx &lt;- 1\n  dy &lt;- 1\n  squares &lt;- data.frame(i = integer(), j = integer())\n  for (s in 1:max_steps) {\n    i &lt;- floor(y)\n    j &lt;- floor(x)\n    if (i &gt;= 0 && i &lt; rows && j &gt;= 0 && j &lt; cols) {\n      squares &lt;- rbind(squares, data.frame(i = i, j = j))\n    }\n    # bounce off outer walls\n    if (x + dx * 0.5 &lt; 0 || x + dx * 0.5 &gt; cols) dx &lt;- -dx\n    if (y + dy * 0.5 &lt; 0 || y + dy * 0.5 &gt; rows) dy &lt;- -dy\n    x &lt;- x + dx * 0.5\n    y &lt;- y + dy * 0.5\n    if (s &gt; 10 && abs(x - 0.5) &lt; 0.1 && abs(y - 0.5) &lt; 0.1) break\n  }\n  unique(squares)\n}\n\nsq &lt;- trace_squares(6, 6)\nsq$parity &lt;- (sq$i + sq$j) %% 2\nsq$fill &lt;- ifelse(sq$parity == 0, \"white\", \"black\")\n\nggplot(sq, aes(j, i, fill = fill)) +\n  geom_tile(colour = \"grey70\", linewidth = 0.3) +\n  scale_fill_identity() +\n  coord_equal() +\n  theme_void() +\n  labs(title = \"Lunda shading: unit squares coloured by (i+j) mod 2\")\n\n\n\n\n\n\n\nChange the modulus (replace %% 2 by %% 3 or %% 4) to obtain multi-colour Lunda designs. Adding internal mirrors (as in the previous module) simply changes which squares are visited; the colouring rule stays the same.",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#p5.js-sketch-interactive-lunda-shading",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#p5.js-sketch-interactive-lunda-shading",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "p5.js sketch: interactive Lunda shading",
+    "text": "p5.js sketch: interactive Lunda shading\nPaste into the p5.js Web Editor. The sketch draws a 45° ray and colours each unit square it enters according to parity.\n// Lunda shading: colour unit squares by (i+j) mod 2\n// while a 45° ray travels between the pulli\n\nlet rows = 8, cols = 8;\nlet cell = 50;\nlet margin = 40;\nlet path = [];\nlet t = 0;\n\nfunction setup() {\n  createCanvas(cols*cell + 2*margin, rows*cell + 2*margin);\n  generatePath();\n}\n\nfunction draw() {\n  background(245);\n  translate(margin, margin);\n\n  // Draw all unit squares, coloured if visited\n  let visited = {};\n  let n = min(floor(t), path.length);\n  for (let k = 0; k &lt; n; k++) {\n    let i = floor(path[k].y / cell);\n    let j = floor(path[k].x / cell);\n    visited[i+\",\"+j] = true;\n  }\n\n  for (let i = 0; i &lt; rows; i++) {\n    for (let j = 0; j &lt; cols; j++) {\n      if (visited[i+\",\"+j]) {\n        fill((i+j) % 2 === 0 ? 255 : 30);\n      } else {\n        fill(230);\n      }\n      stroke(180);\n      rect(j*cell, i*cell, cell, cell);\n    }\n  }\n\n  // Pulli\n  fill(20); noStroke();\n  for (let i = 0; i &lt;= rows; i++)\n    for (let j = 0; j &lt;= cols; j++)\n      circle(j*cell, i*cell, 6);\n\n  // Ray\n  noFill(); stroke(30,90,180); strokeWeight(2);\n  beginShape();\n  for (let k = 0; k &lt; n; k++) vertex(path[k].x, path[k].y);\n  endShape();\n\n  t += 0.8;\n  if (t &gt; path.length + 30) t = 0;\n}\n\nfunction generatePath() {\n  path = [];\n  let x = 0.5*cell, y = 0.5*cell;\n  let dx = 1, dy = 1;\n  for (let s = 0; s &lt; 300; s++) {\n    path.push({x, y});\n    if (x + dx*cell*0.5 &lt; 0 || x + dx*cell*0.5 &gt; cols*cell) dx = -dx;\n    if (y + dy*cell*0.5 &lt; 0 || y + dy*cell*0.5 &gt; rows*cell) dy = -dy;\n    x += dx * cell * 0.5;\n    y += dy * cell * 0.5;\n  }\n}",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#design-variations",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#design-variations",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "Design variations",
+    "text": "Design variations\n\n\nModulo (k): replace the parity test by (i+j) % k and map the residue to a palette of (k) colours.\n\nChessboard zeroing: build a matrix that is zero wherever (i+j) is even; the non-zero cells are exactly the ones that receive the “foreground” colour of the Lunda design.\n\nWith mirrors: combine the ray-tracer of the Mirror Matrices module with the shading rule above. The mirrors change the route, the modulo rule still colours the squares the route visits.",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#exercises",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#exercises",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "Exercises",
+    "text": "Exercises\n\nGenerate the Lunda design for a (5) grid with no internal mirrors. How many black squares does the single curve claim?\nChange the colouring to ((i+j)). Describe the new pattern.\nAdd one vertical mirror (entry 1 in the Mirror Indicator Matrix) and re-colour. Which squares change colour?\n\nProject. Start from a real network’s adjacency matrix, threshold it to a Mirror Indicator Matrix, trace the resulting curve, and apply Lunda shading. Does any symmetry of the original network survive in the black-and-white design?",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#references",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html#references",
+    "title": "Lunda Designs: Zeroing, Shading and Modulo Arithmetic",
+    "section": "References",
+    "text": "References\n\nPaulus Gerdes. Lunda Geometry: Mirror Curves, Designs, Knots, Polyominoes, Patterns, Symmetries. Lulu, 2007. (Chapters on the generation of Lunda-designs and enumeration modulo 2.)\nPaulus Gerdes. “On Lunda-designs and some of their symmetries.” Visual Mathematics, 1999.\nCompanion module Mirror Matrices: From Networks to Kolams, Lusona and Rangoli.\n\n\nThe phrase “zeroing out a chessboard pattern” that appears in the Mirror Matrices module is exactly the construction shown here: the parity (or modulo-(k)) colouring of the unit squares visited by the mirror curve.",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#introduction",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#introduction",
+    "title": "Voronoi Kolam",
+    "section": "Introduction",
+    "text": "Introduction\nA good way to view Kolam construction is to take a parent-child sort of operation: we plot the Voronoi diagram of the grid of points, and then following Gopalan[], we selectively remove some of the boundaries of the Voronoi. We can also add an artistic dimension, but “curving out” the trajectories so that they encircle the pulli-s rather than dart past them.\nStep 1: Voronoi of a general grid\nIf we plot a grid of points on a square grid, then it should be clear that the Voronoi boundaries of the assemblage of points is simply the perpendicular-bisectors of the segments joining adjacent points. See Figure 1 below:\n\n\nWith R\nWith p5.js\n\n\n\n\nShow the Codepts &lt;- expand.grid(x = 1:5, y = 1:3)\n\nggplot(pts, aes(x, y)) +\n  geom_voronoi_tile(aes(fill = interaction(x, y)),\n    bound = c(0.5, 5.5, 0.5, 3.5),\n    colour = \"white\", show.legend = FALSE\n  ) +\n  geom_voronoi_segment(bound = c(0.5, 5.5, 0.5, 3.5), colour = \"black\") +\n  geom_point(colour = \"firebrick\", size = 3) +\n  coord_fixed() +\n  labs(title = \"Rectangular Grid with Voronoi Boundaries\") +\n  theme_minimal()\n\n\n\n\n\n\nFigure 1: Grid of Points with Voronoi Boundaries\n\n\n\n\n\n\n\n\n\n\n\nStep 2: Random Modification to Voronoi\nIf we were to randomly drop Voronoi boundary edges between some pairs of adjacent points, we would get something like this:\n\n\nWith R\nWith p5.js\n\n\n\n\nShow the Codeset.seed(42)\n\npts &lt;- expand.grid(x = 1:5, y = 1:3)\n\n# Vertical edges: separate horizontally adjacent points (4 x 3 = 12 edges)\nv_edges &lt;- with(\n  expand.grid(x = 1:4, y = 1:3),\n  data.frame(\n    x = x + 0.5, xend = x + 0.5,\n    y = y - 0.5, yend = y + 0.5\n  )\n)\n\n# Horizontal edges: separate vertically adjacent points (5 x 2 = 10 edges)\nh_edges &lt;- with(\n  expand.grid(x = 1:5, y = 1:2),\n  data.frame(\n    x = x - 0.5, xend = x + 0.5,\n    y = y + 0.5, yend = y + 0.5\n  )\n)\n\nedges &lt;- rbind(v_edges, h_edges)\n\n# Randomly keep ~60% of the interior edges\ndrop_prob &lt;- 0.4\nedges &lt;- edges[runif(nrow(edges)) &gt; drop_prob, ]\n\n# Outer bounding rectangle (always kept)\nrect &lt;- data.frame(xmin = 0.5, xmax = 5.5, ymin = 0.5, ymax = 3.5)\n\nggplot() +\n  geom_rect(\n    data = rect,\n    aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),\n    fill = NA, colour = \"black\", linewidth = 0.8\n  ) +\n  geom_segment(\n    data = edges,\n    aes(x = x, y = y, xend = xend, yend = yend),\n    colour = \"steelblue\", linewidth = 0.8\n  ) +\n  geom_point(data = pts, aes(x, y), colour = \"firebrick\", size = 3) +\n  coord_fixed() +\n  theme_minimal() +\n  labs(\n    title = \"Grid Voronoi with random boundaries removed\",\n    x = NULL, y = NULL\n  )\n\n\n\n\n\n\nFigure 2: Grid with 2-Way mirrors\n\n\n\n\n\n\n\n\n\n\n\nStep 3: Let there be light and mirrors\nNow let us pretend that these boundaries are double-sided mirrors. And further that as mathemagicians, we can we insert a ray of light diagonally into any cell and watch it bounce around.\nThe resultant light paths could look like Figure 3:\n\n\nWith R\nWith p5.js\n\n\n\n\nShow the Code# ---- 1. Mirror layout (same construction as the previous chunk) ----------\nmake_edges &lt;- function(seed = 42, drop_prob = 0.4) {\n  set.seed(seed)\n  v &lt;- with(\n    expand.grid(x = 1:4, y = 1:3),\n    data.frame(x = x + 0.5, xend = x + 0.5, y = y - 0.5, yend = y + 0.5)\n  )\n  h &lt;- with(\n    expand.grid(x = 1:5, y = 1:2),\n    data.frame(x = x - 0.5, xend = x + 0.5, y = y + 0.5, yend = y + 0.5)\n  )\n  e &lt;- rbind(v, h)\n  e[runif(nrow(e)) &gt; drop_prob, ]\n}\n\n# ---- 2. Ray tracing ------------------------------------------------------\ntrace_loops &lt;- function(edges, nx = 5, ny = 3) {\n  # Keys for the surviving interior mirrors\n  vert &lt;- edges$x == edges$xend\n  keep &lt;- c(\n    sprintf(\"V%.2f,%.2f\", edges$x[vert], (edges$y[vert] + edges$yend[vert]) / 2),\n    sprintf(\"H%.2f,%.2f\", (edges$x[!vert] + edges$xend[!vert]) / 2, edges$y[!vert])\n  )\n\n  is_half &lt;- function(a) abs(a - round(a)) &gt; 0.25\n\n  # Apply the wall at point p to direction d (reflect if mirror, else pass)\n  interact &lt;- function(p, d) {\n    if (is_half(p[1])) { # vertical wall at x = p[1]\n      m &lt;- p[1] %in% c(0.5, nx + 0.5) ||\n        sprintf(\"V%.2f,%.2f\", p[1], p[2]) %in% keep\n      if (m) d[1] &lt;- -d[1]\n    } else { # horizontal wall at y = p[2]\n      m &lt;- p[2] %in% c(0.5, ny + 0.5) ||\n        sprintf(\"H%.2f,%.2f\", p[1], p[2]) %in% keep\n      if (m) d[2] &lt;- -d[2]\n    }\n    d\n  }\n\n  chord_id &lt;- function(p, d) sprintf(\"%.2f,%.2f\", p[1] + 0.25 * d[1], p[2] + 0.25 * d[2])\n\n  # Every cell has 4 chords (a diamond); each is a possible starting segment\n  starts &lt;- do.call(rbind, lapply(seq_len(nx * ny), function(k) {\n    i &lt;- (k - 1) %% nx + 1\n    j &lt;- (k - 1) %/% nx + 1\n    data.frame(\n      px = c(i - .5, i, i + .5, i), py = c(j, j + .5, j, j - .5),\n      dx = c(1, 1, -1, -1), dy = c(1, -1, -1, 1)\n    )\n  }))\n\n  used &lt;- character(0)\n  loops &lt;- list()\n\n  for (s in seq_len(nrow(starts))) {\n    p0 &lt;- c(starts$px[s], starts$py[s])\n    d0 &lt;- c(starts$dx[s], starts$dy[s])\n    if (chord_id(p0, d0) %in% used) next\n\n    p &lt;- p0\n    d &lt;- d0\n    path &lt;- list(p)\n    repeat {\n      used &lt;- c(used, chord_id(p, d))\n      p &lt;- p + 0.5 * d\n      d &lt;- interact(p, d)\n      path[[length(path) + 1]] &lt;- p\n      if (all(p == p0) && all(d == d0)) break\n    }\n    loops[[length(loops) + 1]] &lt;- data.frame(do.call(rbind, path)) |&gt;\n      setNames(c(\"x\", \"y\")) |&gt;\n      transform(loop = length(loops) + 1)\n  }\n  do.call(rbind, loops)\n}\n\n# ---- 3. Run and plot -----------------------------------------------------\nedges &lt;- make_edges(seed = 42, drop_prob = 0.4)\npaths &lt;- trace_loops(edges)\npaths$loop &lt;- factor(paths$loop)\n\ncat(\"Number of closed light loops:\", nlevels(paths$loop), \"\\n\")\n\nNumber of closed light loops: 10 \n\nShow the Codepts &lt;- expand.grid(x = 1:5, y = 1:3)\nrect &lt;- data.frame(xmin = 0.5, xmax = 5.5, ymin = 0.5, ymax = 3.5)\n\nggplot() +\n  geom_path(data = paths, aes(x, y, colour = loop, group = loop), linewidth = 2) +\n  geom_rect(\n    data = rect, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),\n    fill = NA, colour = \"black\", linewidth = 1.2\n  ) +\n  geom_segment(\n    data = edges, aes(x = x, y = y, xend = xend, yend = yend),\n    colour = \"black\", linewidth = 1.2\n  ) +\n  geom_point(data = pts, aes(x, y), colour = \"grey40\", size = 1.5) +\n  coord_fixed() +\n  theme_minimal() +\n  theme(legend.position = \"none\") +\n  labs(\n    title = \"Closed light paths bouncing between two-sided mirrors\",\n    x = NULL, y = NULL\n  )\n\n\n\n\n\n\nFigure 3: 2-Way Mirrors and Light Rays\n\n\n\n\n\n\n\n\n\n\n\nThis is almost a kolam! But not monolinear! How can we make it more like a kolam?\nStep 4: Bend the Light\nLet’s bend the laws of physics and bend the light to reflect off the mirrors using bezier curves, rather than straight lines! Here is what we might get Figure 4:\n\n\nWith R\nWith p5.js\n\n\n\n\nShow the Code# ---- Curved reflections: reuses `paths`, `edges`, `pts`, `rect` ----------\nstopifnot(exists(\"paths\"), exists(\"edges\"), exists(\"pts\"), exists(\"rect\"))\n\n# Largest achievable gap for a given curvature (see notes)\nmax_gap &lt;- function(curvature) 0.25 - 0.1875 * curvature\n\n# Round off one closed loop. v: data frame x, y (last row repeats the first)\ncurve_loop &lt;- function(v, s, w, n) {\n  v &lt;- as.matrix(v[, c(\"x\", \"y\")])\n  v &lt;- v[-nrow(v), , drop = FALSE] # drop duplicated closing point\n  N &lt;- nrow(v)\n  prv &lt;- c(N, seq_len(N - 1))\n  nxt &lt;- c(2:N, 1)\n  d_in &lt;- (v - v[prv, ]) / 0.5 # direction of arriving chord\n  d_out &lt;- (v[nxt, ] - v) / 0.5 # direction of leaving chord\n  t &lt;- seq(0, 1, length.out = n)\n\n  out &lt;- vector(\"list\", N)\n  for (k in seq_len(N)) {\n    m &lt;- v[k, ]\n    if (all(d_in[k, ] == d_out[k, ])) { # ray passes through: no bounce\n      out[[k]] &lt;- matrix(m, nrow = 1)\n      next\n    }\n    P0 &lt;- m - s * d_in[k, ] # curve leaves the incoming ray\n    P3 &lt;- m + s * d_out[k, ] # curve rejoins the outgoing ray\n    P1 &lt;- P0 + w * (m - P0) # control points pulled toward\n    P2 &lt;- P3 + w * (m - P3) # the mirror point by w\n    out[[k]] &lt;- outer((1 - t)^3, P0) + outer(3 * (1 - t)^2 * t, P1) +\n      outer(3 * (1 - t) * t^2, P2) + outer(t^3, P3)\n  }\n  res &lt;- do.call(rbind, out)\n  res &lt;- rbind(res, res[1, ]) # close the loop\n  setNames(as.data.frame(res), c(\"x\", \"y\"))\n}\n\n# gap       : distance from the mirror to the apex of each curve (grid units)\n# curvature : 0 = straight chamfer across the corner, 1 = fully rounded bend\ncurve_paths &lt;- function(paths, gap = 0.05, curvature = 0.7, n = 25) {\n  stopifnot(gap &gt;= 0, curvature &gt;= 0, curvature &lt;= 1)\n\n  s &lt;- 4 * gap / (4 - 3 * curvature) # setback along the rays\n  if (s &gt; 0.25) { # neighbouring bounces would collide\n    warning(sprintf(\n      \"gap %.3f too large for curvature %.2f; using max gap %.3f\",\n      gap, curvature, max_gap(curvature)\n    ))\n    s &lt;- 0.25\n  }\n\n  pieces &lt;- lapply(split(paths, paths$loop), curve_loop, s = s, w = curvature, n = n)\n  out &lt;- do.call(rbind, Map(\n    function(d, id) {\n      d$loop &lt;- id\n      d\n    },\n    pieces, names(pieces)\n  ))\n  out$loop &lt;- factor(out$loop, levels = levels(paths$loop))\n  out\n}\n\n# ---- Run and plot --------------------------------------------------------\ncurved &lt;- curve_paths(paths, gap = 0.1, curvature = 0.75)\n\nggplot() +\n  geom_path(data = curved, aes(x, y, colour = loop, group = loop), linewidth = 2) +\n  geom_rect(\n    data = rect, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),\n    fill = NA, colour = \"black\", linewidth = 1.2\n  ) +\n  geom_segment(\n    data = edges, aes(x = x, y = y, xend = xend, yend = yend),\n    colour = \"black\", linewidth = 1.2\n  ) +\n  geom_point(data = pts, aes(x, y), colour = \"grey40\", size = 1.5) +\n  coord_fixed() +\n  theme_minimal() +\n  theme(legend.position = \"none\") +\n  labs(title = \"Curved reflections off two-sided mirrors\", x = NULL, y = NULL)\n\n# Notes:\n# Gap: this is the perpendicular distance from the mirror to the apex of the curve, in grid units where neighbouring points are 1 apart. gap = 0 reproduces the sharp geometric bounce.\n# Curvature: at 0, the corner is cut by a straight chord with two abrupt kinks. At 1, the bend is spread out into a smooth arc. The curve is tangent to the incoming and outgoing rays for any curvature above 0.\n# Limit on the gap: each chord has a bounce at both ends and is 0.5 long, so each curve can start at most 0.25 from its mirror point. That makes the maximum gap 0.25 - 0.1875 * curvature, which is 0.25 at curvature 0 but only about 0.06 at curvature 1. Larger requests are clamped with a warning. If you need bigger gaps with round bends, the bounces would have to be spaced further apart, for example by using a coarser mirror grid.\n# Topology: the loops and the cells they fill are unchanged, because the curves replace only the vertex geometry, not the tracing. So all 15 cells are still covered, and the loop count printed earlier still applies.\n\n\n\n\n\n\nFigure 4: Curved Reflections",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Voronoi Kolam"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#discussion",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#discussion",
+    "title": "Voronoi Kolam",
+    "section": "Discussion",
+    "text": "Discussion\n\nA kolam is a curved rendering of a Voronoi Diagram of a set of points\nBy modelling the Voronoi itself as a set of doubles-sided mirrors, we get the starting point to generate a kolam for a set of points\nWe can then insert light into the grid, and watch it reflect off the mirror-walls of the Voronoi.\nIf we retain the full Voronoi, we will get diamonds of light around each point\nIf we *remove parts of the Voronoi , then the light rays can travel over longer paths, before returning to form some sort of closed path\nAnd if we make the reflections curvy using bezier curves, that is the kolam, albeit not necessarily monolinear",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Voronoi Kolam"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#design-process",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#design-process",
+    "title": "Voronoi Kolam",
+    "section": "Design Process",
+    "text": "Design Process\n\nGenerate a set of points on a square grid;\nEnclose these in a logical boundary shape ( rectangle in the above diagrams );\nGenerate the Voronoi diagram for the points, and bound the Voronoi with the enclosing shape;\nRemove parts of the Voronoi, where you want the kolam-light-path to continue. Here lies the artistry! Try to remove these in a symmetric fashion\nRe-run your code to let the light travel over the new set of paths\nThere!!",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Voronoi Kolam"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#wait-but-why",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#wait-but-why",
+    "title": "Voronoi Kolam",
+    "section": "Wait, But Why?",
+    "text": "Wait, But Why?\n\nThere are many ways to creating symmetry and shapes\nFor Kolam and Lusona, we have seen matrices, mirrors, knots, and voronoi diagrams as vehicles to visualize and create them\nWhich method do you like the most?\nWhat is unique about each method?\nHow are they related? ( of course!!)",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Voronoi Kolam"
+    ]
+  },
+  {
+    "objectID": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#references",
+    "href": "content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html#references",
+    "title": "Voronoi Kolam",
+    "section": "References",
+    "text": "References",
+    "crumbs": [
+      "Applied Math for Makers and Artists",
+      "Connection",
+      "Voronoi Kolam"
     ]
   },
   {

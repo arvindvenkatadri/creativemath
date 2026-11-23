@@ -125,6 +125,7 @@ website:
                 - content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.qmd
                 - content/courses/MathArtDesign/Modules/60-Connection/360-Kolams/index.qmd
                 - content/courses/MathArtDesign/Modules/60-Connection/370-KolamMath/index.qmd
+                - content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.qmd
 
 ######################################################
               - section: "Sound and Media"

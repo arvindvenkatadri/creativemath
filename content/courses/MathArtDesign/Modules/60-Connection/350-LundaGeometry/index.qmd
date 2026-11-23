@@ -1,15 +1,11 @@
 ---
 title: "Lunda Designs: Zeroing, Shading and Modulo Arithmetic"
 subtitle: "How Gerdes turned mirror curves into black-and-white geometric patterns"
-author: "Arvind V."
 date: "2026-11-05"
+ate_modified: today
 categories: [lunda, gerdes, kolam, lusona, modulo, shading]
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    code-fold: false
-    code-tools: true
+code-fold: true
+
 ---
 
 ## Introduction
