@@ -113,7 +113,8 @@ new p5((p) => {
 <p><em>Click and drag to draw. The sketch mirrors your strokes across the vertical axis.</em></p>
 ```
 
-# Dihedral Symmetry (\( D_n \))
+::: {.content-hidden}
+## Dihedral Symmetry ($D_n$)
 
 Dihedral groups combine rotations of order \( n \) with reflections. These are the symmetries of regular polygons.
 
@@ -169,6 +170,8 @@ new p5((p) => {
 </script>
 <p><em>Click and drag. The sketch applies both rotations and reflections of order 6.</em></p>
 ```
+
+:::
 
 ## {{< iconify mingcute thought-line >}} Wait, But Why?
 

@@ -24,26 +24,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 <script src="../../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../../../site_libs/quarto-nav/headroom.min.js"></script>
@@ -52,7 +33,7 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../../../">
-<link href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html" rel="next">
+<link href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.html" rel="next">
 <link href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index.html" rel="prev">
 <link href="../../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
 <script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -62,10 +43,14 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-85f7a32731ed2b609fa7be27e34d4366.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-237ff50d47e81bb9e48d559a9c4572dc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-237ff50d47e81bb9e48d559a9c4572dc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-237ff50d47e81bb9e48d559a9c4572dc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-ef779530aa6215dae3f133b0cb589380.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-f435b9dc7b524d12ede98336e1dec763.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-dark-f435b9dc7b524d12ede98336e1dec763.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-f435b9dc7b524d12ede98336e1dec763.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -224,14 +209,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/500-Tech/01-Tools/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools and Installation</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/500-Tech/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Movement and Animation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/500-Tech/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Movement and Animation</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/500-Tech/01-Tools/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tools and Installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -318,14 +303,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sampling And Aliasing</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fourier Series and Fourier Transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Series and Fourier Transform</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling And Aliasing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,6 +323,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/80-Convolution/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Convolution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/90-Modulation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Modulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/120-Kalman/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Kalman Filter</span></a>
   </div>
 </li>
       </ul>
@@ -365,6 +362,18 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/50-Permutations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Permutations and Symmetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/60-Planar/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetries in a Plane</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/30-Reflection/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection Symmetry</span></a>
   </div>
@@ -377,14 +386,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/50-Permutations/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Permutations and Symmetry</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/60-Planar/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Symmetries in a Plane</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/1000-Notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geometry: Notes and Questions to Myself</span></a>
   </div>
 </li>
       </ul>
@@ -400,8 +403,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth2 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Iterated Functions</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fractals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -418,20 +421,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Symmetry on Average</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fractals</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">L-Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Iterated Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetry on Average</span></a>
   </div>
 </li>
       </ul>
@@ -447,31 +450,55 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/300-MirrorMatrix/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕹 I am Insta Famous</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/20-Adjacency/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphs and Adjacency Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/30-MirrorMatrices/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An Idealized World</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/100-MirrorMatrix/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mirror Matrices: From Networks to Kolams, Lusona and Rangoli</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/200-DualGraphIncidence/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Dual Graph of a Mirror Design: Incidence Matrices and Eulerian Paths</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/300-LundaGeometry/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lunda Designs: Zeroing, Shading and Modulo Arithmetic</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/360-Kolams/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/400-Kolams/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kolams and Lusona</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/370-KolamMath/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/500-KolamMath/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Maths of Kolam and Lusona</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/600-VoroKolam/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Voronoi Kolam</span></a>
   </div>
 </li>
@@ -563,25 +590,24 @@ window.Quarto = {
  <span class="menu-text">AI by Hand</span></a>
   </div>
 </li>
-      </ul>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../../../../../content/courses/MathArtDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text" id="quarto-sidebar-section-10-label">Projects</span></a>
-            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-controls="quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section: Projects">
-              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
-            </button> 
-      </div>
-      <ul id="quarto-sidebar-section-10" aria-labelledby="quarto-sidebar-section-10-label" class="collapse list-unstyled sidebar-section depth2 ">
-<li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Projects</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/100-AI/60-Convnet/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Convolutional Neural Nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/100-AI/200-LLMs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Large Language Models</span></a>
   </div>
 </li>
       </ul>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Projects</span></span>
+  </li>
       </ul>
 </li>
     </ul>
@@ -629,7 +655,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 23, 2026</p>
+      <p class="date-modified">November 24, 2026</p>
     </div>
   </div>
     
@@ -653,7 +679,7 @@ window.Quarto = {
 </li>
 </ul></section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
-<p><a title="Zoharby, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Sierpinski_chaos_animated.gif"><img width="512" alt="Sierpinski chaos animated" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sierpinski_chaos_animated.gif/512px-Sierpinski_chaos_animated.gif?20080608150150"></a></p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Sierpinski_chaos_animated.gif" title="Zoharby, Public domain, via Wikimedia Commons"><img width="330" height="286" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Sierpinski_chaos_animated.gif/330px-Sierpinski_chaos_animated.gif?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail" srcset="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Sierpinski_chaos_animated.gif/330px-Sierpinski_chaos_animated.gif?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail 330w" sizes="auto" loading="lazy" alt="Sierpinski chaos animated"></a></p>
 <p>And how about this? Click anywhere on the canvas to restart the graphic and see what happens!</p>
 <iframe width="512" height="512" src="https://editor.p5js.org/ylegall/full/e0cEX1LDZ">
 </iframe>
@@ -664,7 +690,7 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../../../../../materials/images/Eglash-book-cover.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../../../../../materials/images/Eglash-book-cover.jpg" class="quarto-figure quarto-figure-center figure-img" style="height:50.0%" width="167"></a></p>
+<figure class="figure"><p><a href="../../../../../materials/images/Eglash-book-cover.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../../../../../materials/images/Eglash-book-cover.jpg" class="quarto-figure quarto-figure-center figure-img" style="width:75.0%;height:50.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -684,48 +710,6 @@ window.Quarto = {
 <li>
 </li><li>
 </li></ol>
-<div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" role="list">
-<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations">
-<iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead><tr class="header">
-<th style="text-align: left;">Package</th>
-<th style="text-align: left;">Version</th>
-<th style="text-align: left;">Citation</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">ambient</td>
-<td style="text-align: left;">1.0.3</td>
-<td style="text-align: left;"><span class="citation" data-cites="ambient">Pedersen and Peck (<a href="#ref-ambient" role="doc-biblioref">2025</a>)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">mosaicCalc</td>
-<td style="text-align: left;">0.6.4</td>
-<td style="text-align: left;"><span class="citation" data-cites="mosaicCalc">Kaplan et al. (<a href="#ref-mosaicCalc" role="doc-biblioref">2024</a>)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">plot3D</td>
-<td style="text-align: left;">1.4.2</td>
-<td style="text-align: left;"><span class="citation" data-cites="plot3D">Soetaert (<a href="#ref-plot3D" role="doc-biblioref">2025</a>)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="ref-mosaicCalc" class="csl-entry" role="listitem">
-Kaplan, Daniel T., Randall Pruim, and Nicholas J. Horton. 2024. <em><span class="nocase">mosaicCalc</span>: R-Language Based Calculus Operations for Teaching</em>. <a href="https://doi.org/10.32614/CRAN.package.mosaicCalc">https://doi.org/10.32614/CRAN.package.mosaicCalc</a>.
-</div>
-<div id="ref-ambient" class="csl-entry" role="listitem">
-Pedersen, Thomas Lin, and Jordan Peck. 2025. <em><span class="nocase">ambient</span>: A Generator of Multidimensional Noise</em>. <a href="https://doi.org/10.32614/CRAN.package.ambient">https://doi.org/10.32614/CRAN.package.ambient</a>.
-</div>
-<div id="ref-plot3D" class="csl-entry" role="listitem">
-Soetaert, Karline. 2025. <em>plot3D: Plotting Multi-Dimensional Data</em>. <a href="https://doi.org/10.32614/CRAN.package.plot3D">https://doi.org/10.32614/CRAN.package.plot3D</a>.
-</div>
-</section>
-</div>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1234,8 +1218,8 @@ Soetaert, Karline. 2025. <em>plot3D: Plotting Multi-Dimensional Data</em>. <a hr
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html" class="pagination-link" aria-label="Symmetry on Average">
-        <span class="nav-page-text">Symmetry on Average</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.html" class="pagination-link" aria-label="L-Systems">
+        <span class="nav-page-text">L-Systems</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

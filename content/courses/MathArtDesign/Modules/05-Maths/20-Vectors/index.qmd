@@ -18,52 +18,9 @@ categories:
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(ggformula)
-library(ambient) # Noise generation in R
-library(plot3D) # 3D plots for explanation
 library(ggdiagram)
-# pak::pak("seankross/p5")
-library(p5)
-##
-library(symengine) # Maths Engine that does not depend upon Python!
-library(mosaicCalc) # Analytic Calculus
-library(pracma) # For Linear Algebra
-library(Ryacas) # Symbolic Algebra
+library(mosaicCalc)
 
-```
-
-
-
-```{r}
-#| label: Extra Pedagogical Packages
-#| echo: false
-#| message: false
-
-library(checkdown)
-library(epoxy)
-library(grateful)
-
-#devtools::install_github("mccarthy-m-g/embedr")
-library(embedr) # Embed multimedia in HTML files
-
-library(downloadthis)
-library(knitr)
-library(kableExtra)
-
-## Markdown boiler plate stuff!!
-# ![An Elephant](elephant.png){#fig-elephant}
-# This is illustrated well by @fig-elephant.
-# 
-# ### Figure Panel Divs
-#     ::: {#fig-elephants layout-ncol=2}
-#     ![Surus](surus.png){#fig-surus}
-#     ![Hanno](hanno.png){#fig-hanno}
-#      Famous Elephants
-#     :::
-#     Adding download buttons
-#     data that has been read in
-#     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
-#    existing file
-#    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
 ```
 
 ---

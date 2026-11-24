@@ -4,7 +4,7 @@ subtitle: ""
 subject: "Shapes and Code"
 abstract: ""
 date: 02/May/2024
-date-modified: "`r Sys.Date()`"
+date-modified: today
 order: 50
 categories:
 - Iterated Functions
@@ -144,6 +144,9 @@ Let us see how we can create **"Algorithmic Trees"**.
 
 We will use the package `LindenmayerR` to create our tree.
 
+{{< include /_setup_claude_made.qmd >}}
+
+
 ```{r}
 #| label: setup
 #| code-fold: true
@@ -192,6 +195,7 @@ drawLsys(
   st = c(50, 10, 90) # Root Position x, y, angle from bottom-left
 )
 ```
+
 
 A more complex, and more botanical-looking, tree or seaweed:
 

@@ -1,42 +1,57 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - fonts/*
+
   preview:
     port: 4040
     browser: true
 
+knitr:
+  opts_chunk:
+    echo: true
+    warning: false
+    message: false
+    fig-align: center
+    fig-width: 7
+    fig-asp: 0.618
+    dpi: 96
+    out-width: "75%"
+    dev: ragg_png
+    tidy: styler
+
 page-layout: full
+
+brand: _brand.yml
 
 execute:
   freeze: auto
-  cache: true
-  # echo: true
-  # warning: true
-  # message: true
-  error: true # errors will not stop rendering!
+  cache: false
+  error: true
 
 website:
+  title: "Applied Math for Makers and Artists"
+  description: >-
+    Arvind V.'s website for teaching mathematics and systems to artists and
+    designers who want to use mathematics as a tool for making artifacts and
+    experiences.
+  site-url: https://mathformakers.netlify.app/
+  repo-url: https://github.com/arvindvenkatadri/creativemath
+  favicon: content/materials/icon-park-twotone--concept-sharing.svg
+  open-graph: true
+  twitter-card: true
+  search: true
+  reader-mode: true
+
   page-navigation: true
   back-to-top-navigation: true
   bread-crumbs: true
-  open-graph: true
-  search: true
-  twitter-card: true
-  title: "Applied Math for Makers and Artists"
-  site-url: "https://mathformakers.netlify.app/"
-  repo-url: "https://github.com/arvindvenkatadri/creativemath"
-  description: "This is Arvind V.'s website for teaching Maths and Systems for Artists and Designers who want to use Math as a Tool for Making: Artifacts and Experiences."
-  favicon: "content/materials/icon-park-twotone--concept-sharing.svg"
-  google-analytics: "" 
-  reader-mode: true
-  
+
   navbar:
-    #background: info
-    #foreground: secondary
     pinned: false
     collapse: true
     collapse-below: lg
-      
     right:
       - icon: github
         href: https://github.com/arvindvenkatadri/creativemath
@@ -48,178 +63,204 @@ website:
         href: mailto:arvind.venkatadri@gmail.com
 
   sidebar:
-    style: "docked"
-    background: secondary
+    style: docked
     alignment: left
     collapse-level: 2
     search: true
-    logo: "content/materials/images/Catterpillar.jpg"
+    logo: content/materials/images/Catterpillar.jpg
+
     contents:
-          - section: "Applied Math for Makers and Artists"
-            href: content/courses/MathArtDesign/listing.qmd
-            contents: 
+      - section: "Applied Math for Makers and Artists"
+        href: content/courses/MathArtDesign/listing.qmd
+        contents:
+
+          - section: "Tools and Tech"
+            href: content/courses/MathArtDesign/Modules/500-Tech/listing.qmd
+            contents:
+              - auto: "content/courses/MathArtDesign/Modules/500-Tech/*/index.qmd"
+
+          - section: "Math Basics"
+            href: content/courses/MathArtDesign/Modules/05-Maths/listing.qmd
+            contents:
+              - auto: "content/courses/MathArtDesign/Modules/05-Maths/*/index.qmd"
+
+          - section: "Systems"
+            href: content/courses/MathArtDesign/Modules/20-Systems/listing.qmd
+            contents:
+              - auto: "content/courses/MathArtDesign/Modules/20-Systems/*/index.qmd"
+
+          - section: "Symmetry"
+            href: content/courses/MathArtDesign/Modules/30-Symmetry/listing.qmd
+            contents:
+              - auto: "content/courses/MathArtDesign/Modules/30-Symmetry/*/index.qmd"
+
+          - section: "Iteration"
+            href: content/courses/MathArtDesign/Modules/40-Iteration/listing.qmd
+            contents:
+              - auto: "content/courses/MathArtDesign/Modules/40-Iteration/*/index.qmd"
+
+          - section: "Connection"
+            href: content/courses/MathArtDesign/Modules/60-Connection/listing.qmd
+            contents:
+              - auto: "content/courses/MathArtDesign/Modules/60-Connection/*/index.qmd"
+
+          - section: "Sound and Media"
+            href: content/courses/MathArtDesign/Modules/70-Media/listing.qmd
+            contents:
+              - auto: "content/courses/MathArtDesign/Modules/70-Media/*/index.qmd"
+
+          - section: "AI"
+            href: content/courses/MathArtDesign/Modules/100-AI/listing.qmd
+            contents:
+              - auto: "content/courses/MathArtDesign/Modules/100-AI/*/index.qmd"
+
+          - section: "Projects"
+            href: content/courses/MathArtDesign/Modules/1000-Projects/index.qmd
             
-#######################################
-              - section: "Tools and Tech"
-                href: content/courses/MathArtDesign/Modules/500-Tech/listing.qmd
-                contents:
-                - content/courses/MathArtDesign/Modules/500-Tech/01-Tools/index.qmd
-                - content/courses/MathArtDesign/Modules/500-Tech/05-Rotation/index.qmd
-                - content/courses/MathArtDesign/Modules/500-Tech/10-StartingSound/index.qmd
-                - content/courses/MathArtDesign/Modules/500-Tech/20-AddingLibrariesToP5Js/index.qmd
-                - content/courses/MathArtDesign/Modules/500-Tech/30-Constructors/index.qmd
-                - content/courses/MathArtDesign/Modules/500-Tech/50-OSC/index.qmd         
-              
- ######################################
-              - section: "Math Basics"
-                href: content/courses/MathArtDesign/Modules/05-Maths/listing.qmd
-                contents:
-                - content/courses/MathArtDesign/Modules/05-Maths/10-ComplexNumbers/index.qmd
-                - content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.qmd
-#               - content/courses/MathArtDesign/Modules/05-Maths/30-Probability/index.qmd
-                - content/courses/MathArtDesign/Modules/05-Maths/50-Matrices/index.qmd            
-                - content/courses/MathArtDesign/Modules/05-Maths/60-Orthogonality/index.qmd            
-#                - content/courses/MathArtDesign/Modules/05-Maths/70-MultiDimensionGeometry/index.qmd    
-   
- ######################################             
-              - section: "Systems"
-                href: content/courses/MathArtDesign/Modules/20-Systems/listing.qmd
-                contents:
-                - content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.qmd
-                - content/courses/MathArtDesign/Modules/20-Systems/15-PhasorDiagrams/index.qmd
-                - content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.qmd
-                - content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.qmd
-                - content/courses/MathArtDesign/Modules/20-Systems/30-Filters/index.qmd
-                - content/courses/MathArtDesign/Modules/20-Systems/80-Convolution/index.qmd
+    # contents:
+    #   - section: "Applied Math for Makers and Artists"
+    #     href: content/courses/MathArtDesign/listing.qmd
+    #     contents:
+    #       - section: "Tools and Tech"
+    #         href: content/courses/MathArtDesign/Modules/500-Tech/listing.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/500-Tech/01-Tools/index.qmd
+    #           - content/courses/MathArtDesign/Modules/500-Tech/05-Rotation/index.qmd
+    #           - content/courses/MathArtDesign/Modules/500-Tech/10-StartingSound/index.qmd
+    #           - content/courses/MathArtDesign/Modules/500-Tech/20-AddingLibrariesToP5Js/index.qmd
+    #           - content/courses/MathArtDesign/Modules/500-Tech/30-Constructors/index.qmd
+    #           - content/courses/MathArtDesign/Modules/500-Tech/50-OSC/index.qmd
+    # 
+    #       - section: "Math Basics"
+    #         href: content/courses/MathArtDesign/Modules/05-Maths/listing.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/05-Maths/10-ComplexNumbers/index.qmd
+    #           - content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.qmd
+    #           # - content/courses/MathArtDesign/Modules/05-Maths/30-Probability/index.qmd
+    #           - content/courses/MathArtDesign/Modules/05-Maths/50-Matrices/index.qmd
+    #           - content/courses/MathArtDesign/Modules/05-Maths/60-Orthogonality/index.qmd
+    #           # - content/courses/MathArtDesign/Modules/05-Maths/70-MultiDimensionGeometry/index.qmd
+    # 
+    #       - section: "Systems"
+    #         href: content/courses/MathArtDesign/Modules/20-Systems/listing.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.qmd
+    #           - content/courses/MathArtDesign/Modules/20-Systems/15-PhasorDiagrams/index.qmd
+    #           - content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.qmd
+    #           - content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.qmd
+    #           - content/courses/MathArtDesign/Modules/20-Systems/30-Filters/index.qmd
+    #           - content/courses/MathArtDesign/Modules/20-Systems/80-Convolution/index.qmd
+    # 
+    #       - section: "Symmetry"
+    #         href: content/courses/MathArtDesign/Modules/30-Symmetry/listing.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/30-Symmetry/10-Circles/index.qmd
+    #           - content/courses/MathArtDesign/Modules/30-Symmetry/20-Rotation/index.qmd
+    #           - content/courses/MathArtDesign/Modules/30-Symmetry/30-Reflection/index.qmd
+    #           - content/courses/MathArtDesign/Modules/30-Symmetry/40-Dihedral/index.qmd
+    #           - content/courses/MathArtDesign/Modules/30-Symmetry/50-Permutations/index.qmd
+    #           - content/courses/MathArtDesign/Modules/30-Symmetry/60-Planar/index.qmd
+    #           - content/courses/MathArtDesign/Modules/30-Symmetry/400-NonEuclidean/index.qmd
+    #           - content/courses/MathArtDesign/Modules/30-Symmetry/500-Art/index.qmd
+    # 
+    #       - section: "Iteration"
+    #         href: content/courses/MathArtDesign/Modules/40-Iteration/listing.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.qmd
+    #           - content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index.qmd
+    #           - content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/index.qmd
+    #           - content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.qmd
+    #           - content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.qmd
+    #           - content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.qmd
+    # 
+    #       - section: "Connection"
+    #         href: content/courses/MathArtDesign/Modules/60-Connection/listing.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/60-Connection/300-MirrorMatrix/index.qmd
+    #           - content/courses/MathArtDesign/Modules/60-Connection/325-DualGraphIncidence/index.qmd
+    #           - content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.qmd
+    #           - content/courses/MathArtDesign/Modules/60-Connection/360-Kolams/index.qmd
+    #           - content/courses/MathArtDesign/Modules/60-Connection/370-KolamMath/index.qmd
+    #           - content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.qmd
+    # 
+    #       - section: "Sound and Media"
+    #         href: content/courses/MathArtDesign/Modules/70-Media/listing.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/70-Media/50-AdditiveSynth/index.qmd
+    #           - content/courses/MathArtDesign/Modules/70-Media/60-FMSynth/index.qmd
+    #           - content/courses/MathArtDesign/Modules/70-Media/70-MakingNoise/index.qmd
+    #           - content/courses/MathArtDesign/Modules/70-Media/100-KarplusStrong/index.qmd
+    #           # - content/courses/MathArtDesign/Modules/70-Media/30-Video/index.qmd
+    #           # - content/courses/MathArtDesign/Modules/70-Media/40-Text/index.qmd
+    #           - content/courses/MathArtDesign/Modules/70-Media/1000-SoundGlossary/index.qmd
+    # 
+    #       # - section: "Uncertainty"
+    #       #   href: content/courses/MathArtDesign/Modules/45-Uncertainty/listing.qmd
+    #       #   contents:
+    #       #     - content/courses/MathArtDesign/Modules/45-Uncertainty/10-Chance/index.qmd
+    #       #     - content/courses/MathArtDesign/Modules/45-Uncertainty/20-Chaos/index.qmd
+    #       #     - content/courses/MathArtDesign/Modules/45-Uncertainty/30-Agents/index.qmd
+    #       #     - content/courses/MathArtDesign/Modules/45-Uncertainty/40-Time/index.qmd
+    #       #     - content/courses/MathArtDesign/Modules/45-Uncertainty/50-Thoughts/index.qmd
+    # 
+    #       - section: "AI"
+    #         href: content/courses/MathArtDesign/Modules/100-AI/listing.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/100-AI/10-NeuralNets/index.qmd
+    #           - content/courses/MathArtDesign/Modules/100-AI/20-Perceptron/index.qmd
+    #           - content/courses/MathArtDesign/Modules/100-AI/30-MLP/index.qmd
+    #           - content/courses/MathArtDesign/Modules/100-AI/40-BackProp/index.qmd
+    #           - content/courses/MathArtDesign/Modules/100-AI/50-GradientDescent/index.qmd
+    #           - content/courses/MathArtDesign/Modules/100-AI/55-HandCalculation/index.qmd
+    #           - content/courses/MathArtDesign/Modules/100-AI/60-ConvNet/index.qmd
+    #           # - content/courses/MathArtDesign/Modules/100-AI/200-LLMs/index.qmd
+    # 
+    #       - section: "Projects"
+    #         href: content/courses/MathArtDesign/Modules/1000-Projects/index.qmd
+    #         contents:
+    #           - content/courses/MathArtDesign/Modules/1000-Projects/index.qmd
 
- ######################################              
-              - section: "Symmetry"
-                href: content/courses/MathArtDesign/Modules/30-Symmetry/listing.qmd
-                contents:
-                - content/courses/MathArtDesign/Modules/30-Symmetry/10-Circles/index.qmd
-                - content/courses/MathArtDesign/Modules/30-Symmetry/20-Rotation/index.qmd
-                - content/courses/MathArtDesign/Modules/30-Symmetry/30-Reflection/index.qmd
-                - content/courses/MathArtDesign/Modules/30-Symmetry/40-Dihedral/index.qmd
-                - content/courses/MathArtDesign/Modules/30-Symmetry/50-Permutations/index.qmd
-                - content/courses/MathArtDesign/Modules/30-Symmetry/60-Planar/index.qmd
-                - content/courses/MathArtDesign/Modules/30-Symmetry/400-NonEuclidean/index.qmd
-                - content/courses/MathArtDesign/Modules/30-Symmetry/500-Art/index.qmd
-                
- ######################################                
-              - section: "Iteration"
-                href: content/courses/MathArtDesign/Modules/40-Iteration/listing.qmd
-                contents:
-                - content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.qmd 
-                - content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index.qmd
-                - content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/index.qmd 
-                - content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.qmd
-                - content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.qmd
-                - content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.qmd
-                
- ######################################                  
-              - section: "Connection"
-                href: content/courses/MathArtDesign/Modules/60-Connection/listing.qmd
-                contents:
-                - content/courses/MathArtDesign/Modules/60-Connection/300-MirrorMatrix/index.qmd
-                - content/courses/MathArtDesign/Modules/60-Connection/325-DualGraphIncidence/index.qmd
-                - content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.qmd
-                - content/courses/MathArtDesign/Modules/60-Connection/360-Kolams/index.qmd
-                - content/courses/MathArtDesign/Modules/60-Connection/370-KolamMath/index.qmd
-                - content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.qmd
-
-######################################################
-              - section: "Sound and Media"
-                href: content/courses/MathArtDesign/Modules/70-Media/listing.qmd
-                contents:
-                - content/courses/MathArtDesign/Modules/70-Media/50-AdditiveSynth/index.qmd
-                - content/courses/MathArtDesign/Modules/70-Media/60-FMSynth/index.qmd
-                - content/courses/MathArtDesign/Modules/70-Media/70-MakingNoise/index.qmd
-                - content/courses/MathArtDesign/Modules/70-Media/100-KarplusStrong/index.qmd
-#               - content/courses/MathArtDesign/Modules/70-Media/30-Video/index.qmd 
-#               - content/courses/MathArtDesign/Modules/70-Media/40-Text/index.qmd 
-                - content/courses/MathArtDesign/Modules/70-Media/1000-SoundGlossary/index.qmd
- 
-###################################################               
-              # - section: "Uncertainty"
-              #   href: content/courses/MathArtDesign/Modules/45-Uncertainty/listing.qmd
-              #   contents:                 
-              #   - content/courses/MathArtDesign/Modules/45-Uncertainty/10-Chance/index.qmd 
-              #   - content/courses/MathArtDesign/Modules/45-Uncertainty/20-Chaos/index.qmd 
-              #   - content/courses/MathArtDesign/Modules/45-Uncertainty/30-Agents/index.qmd
-              #   - content/courses/MathArtDesign/Modules/45-Uncertainty/40-Time/index.qmd
-              #   - content/courses/MathArtDesign/Modules/45-Uncertainty/50-Thoughts/index.qmd
-                 
-
-################################################################
-              - section: "AI"
-                href: content/courses/MathArtDesign/Modules/100-AI/listing.qmd
-                contents:                        
-                - content/courses/MathArtDesign/Modules/100-AI/10-NeuralNets/index.qmd
-                - content/courses/MathArtDesign/Modules/100-AI/20-Perceptron/index.qmd
-                - content/courses/MathArtDesign/Modules/100-AI/30-MLP/index.qmd
-                - content/courses/MathArtDesign/Modules/100-AI/40-BackProp/index.qmd
-                - content/courses/MathArtDesign/Modules/100-AI/50-GradientDescent/index.qmd
-                - content/courses/MathArtDesign/Modules/100-AI/55-HandCalculation/index.qmd
-                - content/courses/MathArtDesign/Modules/100-AI/60-ConvNet/index.qmd
-#               - content/courses/MathArtDesign/Modules/100-AI/200-LLMs/index.qmd
-
-              - section: "Projects"
-                href: content/courses/MathArtDesign/Modules/1000-Projects/index.qmd
-                contents:                        
-                - content/courses/MathArtDesign/Modules/1000-Projects/index.qmd
-
-#####################################################       
   page-footer:
     center: "Website made with ❤️ and [Quarto](https://quarto.org/), by Arvind V."
-    right:  Hosted by Netlify [{{< iconify simple-icons netlify >}}](https://www.netlify.com).
-    left:  "License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)"
+    right: "Hosted by Netlify [{{< iconify simple-icons netlify >}}](https://www.netlify.com)."
+    left: "License: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)"
     background: light
- 
+
 format:
   html:
+    theme:
+      - lux
+      # - css/custom.scss
+
     smooth-scroll: true
-    fontsize: "medium"
-    theme: lux
-    # css:
-    #   - css/brite.scss
-    #   - css/roboto-condensed.css
-    #   - css/vollkorn.css
-    #   - css/fraunces.css
-    #   - css/styles.css
-    #backgroundcolor: "aliceblue"
-    mainfont: Roboto Condensed
-    monofont: Fira Code
+    fontsize: large
+
     link-external-icon: true
     link-external-newwindow: true
     citations-hover: true
     footnotes-hover: true
-    page-navigation: true
-    back-to-top-navigation: true
-    bread-crumbs: true
+
     code-tools: false
     code-copy: true
-    code-block-border-left: "black"
+    code-block-border-left: black
     code-block-bg: "#E7FBFE"
     code-fold: false
     code-summary: "Show the Code"
     code-overflow: scroll
-    code-line-numbers: false # not with code-link:true
+    code-line-numbers: false
     code-link: true
     code-annotations: true
     format-links: true
     highlight-style: tango
+
     reference-location: document
     cap-location: bottom
     df-print: kable
+
     toc: true
     fig-align: center
     fig-cap-location: bottom
-    # fig-asp: 0.618
-    # fig-width: 4
-    out-height: "60%"  # how large it appears on the page
-    out-width: "60%"  # how large it appears on the page
-    # fig-height: 4
-    fig-dpi: 300
+    out-width: "75%"
 
     filters:
       - d2
@@ -228,13 +269,15 @@ format:
       - quarto
       - line-highlight
       - shinylive
-      - gadenbuie/tachyons # Causes strange code wrapping with decimals!
+      - gadenbuie/tachyons
 
     d2:
       format: svg
       embed_mode: raw
+
     webr:
-      channel-type: "automatic"
+      channel-type: automatic
+
     mermaid:
       theme: forest
 
@@ -244,20 +287,14 @@ format:
       margin-width: 250px
       gutter-width: 1.5rem
 
-  
-editor: 
+editor:
   source:
-    markdown: 
+    markdown:
       wrap: 72
-lightbox: # Based on internal Quarto feature
+
+lightbox:
   match: auto
   effect: zoom
   desc-position: right
   loop: false
-
-knitr:
-  opts_chunk: 
-    tidy: 'styler'
-    
-
-
+  

@@ -11,12 +11,7 @@ categories:
 - Fractals
 - Mandelbrot
 - Julia
-bibliography: 
-  - grateful-refs.bib
-citation: true
-editor: 
-  markdown: 
-    wrap: 72
+
 ---
 
 :::: pa4
@@ -52,6 +47,7 @@ Korzh</a> on
 Explore some jewels here: <https://math.hws.edu/eck/js/mandelbrot/MB.html>
 
 
+{{< include /_setup_claude_made.qmd >}}
 
 ## An Introduction to Fractals
 

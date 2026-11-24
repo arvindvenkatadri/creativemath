@@ -59,26 +59,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 <script src="../../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../../../site_libs/quarto-nav/headroom.min.js"></script>
@@ -88,7 +69,7 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../../../">
 <link href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/index.html" rel="next">
-<link href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html" rel="prev">
+<link href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html" rel="prev">
 <link href="../../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
 <script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -97,10 +78,14 @@ div.csl-indent {
 <script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-85f7a32731ed2b609fa7be27e34d4366.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-237ff50d47e81bb9e48d559a9c4572dc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-237ff50d47e81bb9e48d559a9c4572dc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-237ff50d47e81bb9e48d559a9c4572dc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../../site_libs/bootstrap/bootstrap-ef779530aa6215dae3f133b0cb589380.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-f435b9dc7b524d12ede98336e1dec763.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-dark-f435b9dc7b524d12ede98336e1dec763.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-f435b9dc7b524d12ede98336e1dec763.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../../../../../site_libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
 <script src="../../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script src="../../../../../../site_libs/quarto-contrib/videojs/video.min.js"></script>
@@ -165,8 +150,8 @@ window.Quarto = {
 <meta property="og:description" content="Created in Translation">
 <meta property="og:image" content="https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index_files/figure-html/unnamed-chunk-1-1.png">
 <meta property="og:site_name" content="Applied Math for Makers and Artists">
-<meta property="og:image:height" content="3000">
-<meta property="og:image:width" content="4200">
+<meta property="og:image:height" content="830">
+<meta property="og:image:width" content="1344">
 <meta name="twitter:title" content=" Affine Transformation Fractals – Applied Math for Makers and Artists">
 <meta name="twitter:description" content="Created in Translation">
 <meta name="twitter:image" content="https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index_files/figure-html/unnamed-chunk-1-1.png">
@@ -261,14 +246,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/500-Tech/01-Tools/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools and Installation</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/500-Tech/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Movement and Animation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/500-Tech/05-Rotation/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Movement and Animation</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/500-Tech/01-Tools/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tools and Installation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -355,14 +340,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sampling And Aliasing</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fourier Series and Fourier Transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fourier Series and Fourier Transform</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling And Aliasing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -375,6 +360,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/80-Convolution/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Convolution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/90-Modulation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Modulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/120-Kalman/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Kalman Filter</span></a>
   </div>
 </li>
       </ul>
@@ -402,6 +399,18 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/50-Permutations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Permutations and Symmetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/60-Planar/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetries in a Plane</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/30-Reflection/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection Symmetry</span></a>
   </div>
@@ -414,14 +423,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/50-Permutations/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Permutations and Symmetry</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/60-Planar/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Symmetries in a Plane</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/1000-Notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geometry: Notes and Questions to Myself</span></a>
   </div>
 </li>
       </ul>
@@ -437,8 +440,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth2 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Iterated Functions</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fractals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -455,20 +458,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Symmetry on Average</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fractals</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">L-Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Iterated Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symmetry on Average</span></a>
   </div>
 </li>
       </ul>
@@ -484,31 +487,55 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/300-MirrorMatrix/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕹 I am Insta Famous</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/20-Adjacency/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphs and Adjacency Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/30-MirrorMatrices/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An Idealized World</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/100-MirrorMatrix/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mirror Matrices: From Networks to Kolams, Lusona and Rangoli</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/350-LundaGeometry/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/200-DualGraphIncidence/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Dual Graph of a Mirror Design: Incidence Matrices and Eulerian Paths</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/300-LundaGeometry/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lunda Designs: Zeroing, Shading and Modulo Arithmetic</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/360-Kolams/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/400-Kolams/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kolams and Lusona</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/370-KolamMath/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/500-KolamMath/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Maths of Kolam and Lusona</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/400-VoroKolam/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/60-Connection/600-VoroKolam/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Voronoi Kolam</span></a>
   </div>
 </li>
@@ -600,25 +627,24 @@ window.Quarto = {
  <span class="menu-text">AI by Hand</span></a>
   </div>
 </li>
-      </ul>
-</li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../../../../../content/courses/MathArtDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text" id="quarto-sidebar-section-10-label">Projects</span></a>
-            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-controls="quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section: Projects">
-              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
-            </button> 
-      </div>
-      <ul id="quarto-sidebar-section-10" aria-labelledby="quarto-sidebar-section-10-label" class="collapse list-unstyled sidebar-section depth2 ">
-<li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/1000-Projects/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Projects</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/100-AI/60-Convnet/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Convolutional Neural Nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/100-AI/200-LLMs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Large Language Models</span></a>
   </div>
 </li>
       </ul>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Projects</span></span>
+  </li>
       </ul>
 </li>
     </ul>
@@ -667,7 +693,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 23, 2026</p>
+      <p class="date-modified">November 24, 2026</p>
     </div>
   </div>
     
@@ -678,10 +704,10 @@ window.Quarto = {
 </header><hr>
 <section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e6966792069636f6e73382069646561203e7d7d-inspiration">
 <iconify-icon inline="" icon="icons8:idea" aria-label="Icon idea from icons8 Iconify.design set." title="Icon idea from icons8 Iconify.design set."></iconify-icon> Inspiration</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
@@ -698,11 +724,11 @@ window.Quarto = {
 <li>Wait for the pattern to emerge.</li>
 </ol>
 <p>See the figure below to get an idea of this process.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-emerging-fractal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-emerging-fractal" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-emerging-fractal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../../../../materials/images/Emerging-Barnesly.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: Emerging Fractal"><img src="../../../../../materials/images/Emerging-Barnesly.png" class="img-fluid figure-img" width="186"></a>
+<a href="../../../../../materials/images/Emerging-Barnesly.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: Emerging Fractal"><img src="../../../../../materials/images/Emerging-Barnesly.png" class="quarto-figure quarto-figure-center figure-img" style="width:150.0%;height:150.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-emerging-fractal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Emerging Fractal
@@ -715,9 +741,13 @@ Figure&nbsp;1: Emerging Fractal
 <p>So what to do? Just like with the <a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1</a> algorithm that simplified a great deal of AI algorithms, we have recourse to what is called the <a href="https://mathematica.stackexchange.com/questions/124919/construction-steps-of-barnsleys-fern"><strong>Barnsley Algorithm</strong></a>. NOTE: especially note the terrific pictures on this stackexchange page!</p>
 </section><section id="what-is-a-transformation" class="level2"><h2 class="anchored" data-anchor-id="what-is-a-transformation">What is a Transformation?</h2>
 <p>If 2D-space were a sheet of rubber…what could you do with it? Well, you could stretch in any direction, and rotate it too.</p>
-How do these transformations work? ::: <div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/kYB8IZa5AuE" width="560" height="400" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-
-<p>Linear Transformations :::</p>
+<p>How do these transformations work?</p>
+<div>
+<center>
+<div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/kYB8IZa5AuE" width="560" height="400" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</center>
+<p>Linear Transformations</p>
+</div>
 <p>First let us understand what are <strong><em>Affine Transformations</em></strong> and then build our fractals.</p>
 </section><section id="what-is-an-affine-transformation" class="level2"><h2 class="anchored" data-anchor-id="what-is-an-affine-transformation">What is an Affine Transformation?</h2>
 <p>Affine Transformations are defined as a transformations of a space that are:</p>
@@ -818,7 +848,7 @@ Figure&nbsp;7: Translation Along Y
 <p>With this approach, the points rapidly land up on the fractal which builds up over multiple iterations. We can start anywhere in space and it will still converge.</p>
 <p>The additional feature of the Barnsley algorithm is the <strong>randomness</strong>: since most fractals use not one but several affine transformations to create a multiplicity of forms, at each iteration we can randomly choose between them!</p>
 <p>The block diagram of the Barnsley Algorithm looks like this:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div>
 <!--?xml version="1.0" encoding="utf-8"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" data-d2-version="v0.9.0" preserveaspectratio="xMinYMin meet" viewbox="0 0 2832 1049"><svg class="d2-4254673134 d2-svg" width="2832" height="1049" viewbox="-1064 -184 2832 1049"><rect x="-1064" y="-184" width="2832" height="1049" rx="0" fill="#FFFFFF" class=" fill-N7" stroke-width="0"></rect><style type="text/css">
 .d2-4254673134 .text {
@@ -893,7 +923,12 @@ Figure&nbsp;7: Translation Along Y
 <iframe width="780px" height="600px" src="https://editor.p5js.org/codingtrain/full/G4V940Y8V">
 </iframe>
 <p>How to understand this sketch? Here is Dan Shiffman again!</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/JFugGF1URNo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div>
+<center>
+<div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/JFugGF1URNo" width="560" height="400" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</center>
+<p>Barnsley Fern</p>
+</div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>In the code below, the Affine transformations <span class="math inline">\(Af_i\)</span> are of the form</p>
@@ -918,40 +953,25 @@ AF_i = A_i * X + B_i, ~ i = 1...4
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 </div>
 </div>
 </div>
+<div class="cell" data-layout-align="center">
 $$
 <span class="math display">\[\begin{bmatrix}
 0.00 &amp; 0.00 \\
@@ -976,17 +996,22 @@ $$
 0.36 &amp;  0.24 \\
 \end{bmatrix}\]</span>
 <p>$$</p>
+</div>
+<div class="cell" data-layout-align="center">
 <p><span id="eq-svn"><span class="math display">\[
 \mathbf{X} = \mathbf{U} \mathbf{\Lambda} \mathbf{V}
 \tag{2}\]</span></span></p>
+</div>
+<div class="cell" data-layout-align="center">
 $$
 <span class="math display">\[\begin{bmatrix}
 0.00 &amp; 0.00 \\
 0.00 &amp; 0.18 \\
 \end{bmatrix}\]</span>
 <p>$$ {#eq-A1}</p>
+</div>
 <p>And the four options for the <span class="math inline">\(B_i\)</span> matrices are:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Four Simple translation Matrices</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"list"</span>, length <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
@@ -995,43 +1020,27 @@ $$
 <span><span class="va">b</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.54</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">as_sym</span><span class="op">(</span><span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">b</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">b</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">b</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 </div>
 <p>By randomly choosing any of the <span class="math inline">\(16\)</span> resulting transformations, with different but fixed probablilities, we compute and render the Barnsley fern:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Iteratively build the fern</span></span>
 <span><span class="fu">theme_set</span><span class="op">(</span><span class="fu">theme_custom</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
@@ -1063,133 +1072,85 @@ caracas::install_sympy()</code></pre>
 <span>  title <span class="op">=</span> <span class="st">"Barnsley Fern"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="2100"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">as_sym</span><span class="op">(</span><span class="va">A</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">A</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu">as_sym</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <p>Vertical movement with Shrinkage</p>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">as_sym</span><span class="op">(</span><span class="va">A</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">A</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu">as_sym</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <p>Modest Shrinkage of Both X and Y, X more than Y</p>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">as_sym</span><span class="op">(</span><span class="va">A</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">A</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu">as_sym</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <p>Large Shrinkage of Both X and Y, Y more than X</p>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">as_sym</span><span class="op">(</span><span class="va">A</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <details class="code-fold"><summary>Show the Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-source-line-numbers="nil" data-code-line-numbers="nil"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as_sym</span><span class="op">(</span><span class="va">A</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu">as_sym</span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-error">
-<pre data-code-line-numbers=""><code>Error in `ensure_sympy()`:
-! Both Python3 and 'SymPy' &gt;= 1.4 must be available.
-Please verify Python version with 'reticulate::py_config()'.
-Remember to configure reticulate (e.g. 'reticulate::use_condaenv("anaconda3")') before loading caracas.
-To install SymPy, please run this command:
-caracas::install_sympy()</code></pre>
+<pre data-code-line-numbers=""><code>Error in `as_sym()`:
+! could not find function "as_sym"</code></pre>
 </div>
 <p>Shrinkage of Both X and Y, X more than Y</p>
 </div>
@@ -1224,40 +1185,6 @@ caracas::install_sympy()</code></pre>
 <li>Barnsley Fern @ Wikipedia <a href="https://en.wikipedia.org/wiki/Barnsley_fern" class="uri">https://en.wikipedia.org/wiki/Barnsley_fern</a>
 </li>
 </ol>
-<div id="refs" class="references csl-bib-body hanging-indent" style="font-size: 60%;" role="list">
-<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations" class="level6"><h6 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206c7563696465207061636b6167652d636865636b203e7d7d-r-package-citations">
-<iconify-icon inline="" icon="lucide:package-check" aria-label="Icon package-check from lucide Iconify.design set." title="Icon package-check from lucide Iconify.design set."></iconify-icon> R Package Citations</h6>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead><tr class="header">
-<th style="text-align: left;">Package</th>
-<th style="text-align: left;">Version</th>
-<th style="text-align: left;">Citation</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">caracas</td>
-<td style="text-align: left;">2.1.1</td>
-<td style="text-align: left;"><span class="citation" data-cites="caracas">Andersen and Højsgaard (<a href="#ref-caracas" role="doc-biblioref">2023</a>)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">matlib</td>
-<td style="text-align: left;">1.0.1</td>
-<td style="text-align: left;"><span class="citation" data-cites="matlib">Friendly et al. (<a href="#ref-matlib" role="doc-biblioref">2025</a>)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="ref-caracas" class="csl-entry" role="listitem">
-Andersen, Mikkel Meyer, and Søren Højsgaard. 2023. <em><span class="nocase">caracas</span>: Computer Algebra</em>. <a href="https://doi.org/10.32614/CRAN.package.caracas">https://doi.org/10.32614/CRAN.package.caracas</a>.
-</div>
-<div id="ref-matlib" class="csl-entry" role="listitem">
-Friendly, Michael, John Fox, and Phil Chalmers. 2025. <em><span class="nocase">matlib</span>: Matrix Functions for Teaching and Learning Linear Algebra and Multivariate Statistics</em>. <a href="https://doi.org/10.32614/CRAN.package.matlib">https://doi.org/10.32614/CRAN.package.matlib</a>.
-</div>
-</section>
-</div>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1761,8 +1688,8 @@ Friendly, Michael, John Fox, and Phil Chalmers. 2025. <em><span class="nocase">m
   </script><script type="application/javascript">
   window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script><nav class="page-navigation column-body" aria-label="Page"><div class="nav-page nav-page-previous">
-      <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html" class="pagination-link" aria-label="<iconify-icon icon=&quot;mdi:reiterate&quot; width=&quot;1.2em&quot; height=&quot;1.2em&quot;></iconify-icon> <iconify-icon icon=&quot;gravity-ui:function&quot; width=&quot;1.2em&quot; height=&quot;1.2em&quot;></iconify-icon> Iterated Functions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><iconify-icon icon="mdi:reiterate" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Iterated Functions</span>
+      <a href="../../../../../../content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html" class="pagination-link" aria-label="Fractals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Fractals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

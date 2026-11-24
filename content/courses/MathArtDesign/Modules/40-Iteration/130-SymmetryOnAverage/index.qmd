@@ -18,6 +18,7 @@ execute:
 #| label: setup
 #| include: false
 library(tidyverse)
+library(ggdiagram)
 set.seed(7)
 
 ```

@@ -1,0 +1,30 @@
+typography:
+  fonts:
+    - family: Alegreya
+      source: file
+      files:
+        - path: fonts/Alegreya-Regular.ttf
+        - path: fonts/Alegreya-Bold.ttf
+
+    - family: Roboto Condensed
+      source: file
+      files:
+        - path: fonts/RobotoCondensed-Regular.ttf
+        # - path: fonts/RobotoCondensed-Bold.ttf
+
+    - family: Fira Code
+      source: file
+      files:
+        - path: fonts/fira-code-v22-latin-300.woff2
+        - path: fonts/fira-code-v22-latin-500.woff2
+        - path: fonts/fira-code-v22-latin-600.woff2
+        - path: fonts/fira-code-v22-latin-700.woff2
+
+  base:
+    family: Roboto Condensed
+
+  headings:
+    family: Alegreya
+    
+  monospace:
+    family: Fira Code

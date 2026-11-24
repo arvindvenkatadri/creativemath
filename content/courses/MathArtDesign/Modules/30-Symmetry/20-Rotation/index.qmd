@@ -26,6 +26,7 @@ categories:
 library(ggplot2)
 library(dplyr)
 library(ggdiagram)
+
 ```
 
 ## Rotational Symmetry
@@ -155,6 +156,7 @@ $$
 x_B = x_A \cos 60^\circ - y_A \sin 60^\circ, \qquad
 y_B = x_A \sin 60^\circ + y_A \cos 60^\circ
 $$
+
 ## {{< iconify mingcute thought-line >}} Wait, But Why?
 
 TBWU.

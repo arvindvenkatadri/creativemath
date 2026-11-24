@@ -9,6 +9,8 @@ categories:
   - Elizabeth Barett Browning
 ---
 
+{{< include /_setup_claude_made.qmd >}}
+
 ## Introduction
 
 TBWU!!

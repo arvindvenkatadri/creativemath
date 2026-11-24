@@ -17,10 +17,8 @@ categories:
 - Trajectories
 bibliography: 
   - grateful-refs.bib
-citation: true
-editor: 
-  markdown: 
-    wrap: 72
+
+---
 
 ---
 

@@ -13,190 +13,25 @@ categories:
   - Aliasing
   - Harmonic Synth
   - Inharmonic Synth
-bibliography: 
-  - grateful-refs.bib
-citation: true
-editor: 
-  markdown: 
-    wrap: 72
+
 ---
 
+{{< include /_setup_claude_made.qmd >}}
+
+
 ```{r setup, include=FALSE}
-library(blogdown)
 library(tidyverse)
 library(ggformula)
-library(mosaicCalc) # Analytic Calculus
-library(ambient) # Noise generation in R
-library(plot3D) # 3D plots for explanation
-library(rgl) # Interactive 3D plots for explanation
-options(rgl.useNULL = TRUE)
-library(plotly)
-knitr::knit_hooks$set(webgl = hook_webgl)
-#library(caracas)
-library(downloadthis)
-library(knitr)
-library(kableExtra)
-## Markdown boiler plate stuff!!
-# ![An Elephant](elephant.png){#fig-elephant}
-# This is illustrated well by @fig-elephant.
-# 
-# ### Figure Panel Divs
-#     ::: {#fig-elephants layout-ncol=2}
-#     ![Surus](surus.png){#fig-surus}
-#     ![Hanno](hanno.png){#fig-hanno}
-#      Famous Elephants
-#     :::
-#     Adding download buttons
-#     data that has been read in
-#     {{< downloadthis ../../../../materials/Data/housing_train.csv dname="house_prices" label="Download the House Prices Dataset" icon="database-fill-down" type="info" >}}
-#    existing file
-#    {{< downloadthis Orange/grouped-summaries.ows dname="grouped_summaries" label="Download the Orange Workflow" icon="database-fill-down" type="info" >}} 
-
-```
-
-```{r}
-#| label: Extra Pedagogical Packages
-#| echo: false
-#| message: false
-
-library(checkdown)
-library(epoxy)
-library(grateful)
-library(MKdescr)
-library(shinylive) # To create a Shiny app in a Quarto HTML doc
-# Will not work if webr is also used in the SAME Quarto doc!
-library(sysfonts)
-library(gfonts)
-library(kableExtra)
-# library(conflicted)
-# conflicted::conflicts_prefer(dplyr::filter, dplyr::count, dplyr::last, dplyr::glimpse, base::max)
-library(downloadthis)
-#devtools::install_github("mccarthy-m-g/embedr")
-library(embedr) # Embed multimedia in HTML files
-```
-
-
-```{r}
-#| label: plot-theme-ggplot4
-#| cache: false
-#| echo: false
-#| messages: false
-#| warning: false
-#| 
-library(systemfonts)
-library(showtext)
-library(marquee)
-library(ggtext)
+library(ggdiagram)
 library(ggrepel)
-## Clean the slate
-systemfonts::clear_local_fonts()
-systemfonts::clear_registry()
-##
-showtext_opts(dpi = 96) #set DPI for showtext
-sysfonts::font_add(family = "Alegreya",
-  regular = "../../../../../../fonts/Alegreya-Regular.ttf",
-  bold = "../../../../../../fonts/Alegreya-Bold.ttf",
-  italic = "../../../../../../fonts/Alegreya-Italic.ttf",
-  bolditalic = "../../../../../../fonts/Alegreya-BoldItalic.ttf")
+library(marquee)
+```
 
-sysfonts::font_add(family = "Roboto Condensed", 
-  regular = "../../../../../../fonts/RobotoCondensed-Regular.ttf",
-  bold = "../../../../../../fonts/RobotoCondensed-Bold.ttf",
-  italic = "../../../../../../fonts/RobotoCondensed-Italic.ttf",
-  bolditalic = "../../../../../../fonts/RobotoCondensed-BoldItalic.ttf")
-showtext_auto(enable = TRUE) #enable showtext
-##
-# Chunk options
-knitr::opts_chunk$set(
- fig.width = 6,
- fig.asp = 0.618, # Golden Ratio
- #out.width = "80%",
- fig.align = "center"
-)
-##
-theme_custom <- function(){ 
-
-    theme_bw(base_size = 10) + 
-    
-    # theme(panel.widths = unit(11, "cm"), 
-    #       panel.heights = unit(6.79, "cm")) + # Golden Ratio
-    
-    theme(plot.margin = margin_auto(t = 1, r = 2, b = 1, l = 1, unit = "cm"),
-          plot.background = element_rect(fill = "bisque",
-                                         colour = "black",
-                                         linewidth = 1)) + 
-            
-    theme_sub_axis(title = element_text(family = "Roboto Condensed", 
-                                       size = 10),
-                   text = element_text(family = "Roboto Condensed", 
-                                       size = 8)) + 
-    
-    theme_sub_legend(text = element_text(family = "Roboto Condensed", 
-                                         size = 6),
-                     title = element_text(family = "Alegreya", 
-                                          size = 8)) + 
-    
-    theme_sub_plot(title = element_text(family = "Alegreya", 
-                                        size = 14, face = "bold"),
-                   title.position = "plot",
-                   subtitle = element_text(family = "Alegreya", 
-                                           size = 10),
-                   caption = element_text(family = "Alegreya", 
-                                          size = 6),
-                   caption.position = "plot") 
-    
-}
-
-## Use available fonts in ggplot text geoms too!
-ggplot2::update_geom_defaults(geom = "text", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "label", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-
-ggplot2::update_geom_defaults(geom = "marquee", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "text_repel", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-ggplot2::update_geom_defaults(geom = "label_repel", new = list(
-  family = "Roboto Condensed",
-  face = "plain",
-  size = 3.5,
-  color = "#2b2b2b"
-)
-)
-
-## Set the theme
-ggplot2::theme_set(new = theme_custom())
-
-## tinytable options
-options("tinytable_tt_digits" = 2)
-options("tinytable_format_num_fmt" = "significant_cell")
-options(tinytable_html_mathjax = TRUE)
-
-
-## Set defaults for flextable
-flextable::set_flextable_defaults(font.family = "Roboto Condensed")
-
+```{r}
+#| label: course-setup
+#| include: false
+#| 
+source(here::here("R", "course-setup.R"))
 ```
 
 
@@ -248,6 +83,7 @@ where
 -   $\color{red}{\omega_m}$ is the Frequency of the `modulation` wave, the `rate` at which FM changes the `carrier's` frequency
 -   $\Delta_{\omega}$ is an amplitude-like parameter, which controls the
     `amount` of frequency deviation.
+    
 Here is a Block Diagram for FM:
 ```{r}
 #| label: fig-fm-mod
@@ -256,8 +92,6 @@ Here is a Block Diagram for FM:
 #| warning: false
 #| fig-cap: "FM Modulation Block Diagram"
 #| 
-library(ggdiagram)
-library(ggplot2)
 
 my_font <- "Roboto Condensed"
 my_font_size <- 20
@@ -266,11 +100,11 @@ my_point_size <- 2
 # my_colors <- viridis::viridis(2, begin = .25, end = .5)
 my_colors <- c("#3B528B", "#21908C")
 
-theme_set(
-  theme_minimal(
-    base_size = my_font_size,
-    base_family = my_font) +
-    theme(axis.title.y = element_text(angle = 0, vjust = 0.5)))
+# theme_set(
+#   theme_minimal(
+#     base_size = my_font_size,
+#     base_family = my_font) +
+#     theme(axis.title.y = element_text(angle = 0, vjust = 0.5)))
 
 bp <- ggdiagram(
   font_family = my_font,
@@ -424,8 +258,7 @@ This looks like the phase of the carrier (the portion inside parentheses in @eq-
 #| label: fig-fm-phase
 #| fig-cap: FM Wave Instantaneous Phase
 #| echo: false
-
-theme_set(new = theme_custom())
+#| 
 t <-  seq(0, 0.1, length.out = 801)
 y <- t + 0.005*sin(100*t)
 plot(t,y,type = "l", ylab = "Phase (radians)", xlab = "Time (s)", main = "FM Instantaneous Phase")
@@ -433,7 +266,6 @@ lines(t,t)
 
 ```
 
-    
 
 There is a linear portion from the original unmodulated carrier (slope = $\omega_c$) with an added-on ***sine wave*** that tends to increase and reduce the phase periodically. 
 
@@ -455,20 +287,30 @@ So much for time waveforms.
 What we *hear* is more easily understood using the frequency spectrum. To understand the spectrum of the FM wave, we need to expand the @eq-fm-1. Doing so, we would obtain a rather intimidating, but ultimately rewarding expansion:
 
 $$
-\Large{x_{fm}(t) = A_c \Bigg[ cos(\omega_ct)*\color{orange}{cos(Isin(\omega_mt))} \color{black}{-} \\
-sin(\omega_ct)*{\color{red}{sin(Isin(\omega_mt))}}\Bigg]}\Large
+\begin{flalign*}
+x_{\mathrm{fm}}(t) &= A_c \Bigg[
+\cos(\omega_c t)\cdot
+{\color{orange}{\cos\!\big(I\sin(\omega_m t)\big)}}
+-
+{\color{red}{\sin\!\big(I\sin(\omega_m t)\big)}}
+\sin(\omega_c t)
+\Bigg] &&
+\end{flalign*}
 $${#eq-simple-trig-expansion}
 
-[A $sin$ and a $cos$ ***inside*** a $sin$ and a $cos$]{style="background-color: yellow;"} ??!! How do we expand that?? Well, we have two identities:
+
+[A $sin$ and a $cos$ ***inside*** a $sin$ and a $cos$]{style="background-color: yellow;"} ??!! How do we expand that??
+
+Well, we have two identities:
 
 $$
-\Large\color{orange}{cos(Isin(\omega_mt))} = {J_0(I) + 2 \sum_{n=1}^{\infty} J_{2n}(I)~ * ~ cos(2n \omega_m t)}\Large
+\boxed{\Large\color{orange}{cos(Isin(\omega_mt))} = {J_0(I) + 2 \sum_{n=1}^{\infty} J_{2n}(I)~ * ~ cos(2n \omega_m t)}\Large}
 $$ {#eq-bessel-expansion-1}
 
 and
 
 $$
-\Large\color{red}{sin(Isin(\omega_mt))} = {2 \sum_{n=0}^{\infty} J_{2n+1}(I)~ * ~ sin((2n+1) \omega_m t)}\Large
+\boxed{\Large\color{red}{sin(Isin(\omega_mt))} = {2 \sum_{n=0}^{\infty} J_{2n+1}(I)~ * ~ sin((2n+1) \omega_m t)}\Large}
 $$ {#eq-bessel-expansion-2}
 
 where the $\color{blue}{J_n(I)}$ are the [Bessel functions of the first kind of order n.]{style="background-color: yellow;"} (More on these beautiful creatures shortly!)
@@ -476,6 +318,7 @@ where the $\color{blue}{J_n(I)}$ are the [Bessel functions of the first kind of 
 Plugging these into the @eq-simple-trig-expansion, we get:
 
 ::: column-page-right
+
 $$
 \begin{flalign}
 x_{fm}(t) &= A_c \Bigg[\cos(\omega_ct) \Bigg( J_0(I) + 2 \sum_{n=1}^{\infty} J_{2n}(I) cos(2n \omega_m t) \Bigg) - 
@@ -491,43 +334,68 @@ $$
 
 And using the *much-loved-and-much-feared* $\color{red}{cosAcosB}$ and $\color{blue}{sinAsinB}$ expansions:
 
-::: column-page
 $$
 \begin{flalign}
-x_{fm}(t) &= A_c \Bigg[ J_0(I) cos(\omega_ct) +
-\sum_{n=1}^{\infty} J_{2n}(I) {\color{red}{\Big( cos((\omega_c + 2n \omega_m)t) + cos((\omega_c - 2n \omega_m)t) \Big)}} {\color{green}{~\pmb{+++}}}
-\sum_{n=0}^{\infty} J_{2n+1}(I) {\color{blue}{\Big( cos((\omega_c + (2n+1) \omega_m)t) - cos((\omega_c - (2n+1) \omega_m)t) \Big)}} \Bigg]\\
-&= A_c \Bigg[ J_0(I) cos(\omega_ct) +
-\sum_{n=1}^{\infty} J_{n}(I) \Big( cos((\omega_c + n \omega_m)t) + (-1)^n*cos((\omega_c - n \omega_m)t) \Big) \Bigg] //What?? How??? Where?? When??
+x_{\mathrm{fm}}(t) &= A_c \Bigg[ J_0(I)\cos(\omega_c t)
+{\color{green}{\pmb{+++}}} \notag \\
+&\quad + \sum_{n=1}^{\infty} J_{2n}(I)
+{\color{red}{\Big(\cos((\omega_c + 2n\omega_m)t)
++ \cos((\omega_c - 2n\omega_m)t)\Big)}}
+{\color{green}{\pmb{+++}}} \notag \\
+&\quad + \sum_{n=0}^{\infty} J_{2n+1}(I)
+{\color{blue}{\Big(\cos((\omega_c + (2n+1)\omega_m)t)
+- \cos((\omega_c - (2n+1)\omega_m)t)\Big)}}
+\Bigg] \notag \\
+&= A_c \Bigg[ J_0(I)\cos(\omega_c t)
++ \sum_{n=1}^{\infty} J_n(I)
+\Big(\cos((\omega_c + n\omega_m)t)
++ (-1)^n\cos((\omega_c - n\omega_m)t)\Big)
+\Bigg]  //What?? How??? Where?? When??
 \end{flalign}
 $$
 
-::: {.grid}
 
-::: {.g-col-6}
+
+::: column-page
 
 And so finally:
 
 $$
-{\boxed{\begin{multline*}
-x_{fm}(t) = A_c \bigg[ {J_0(I)} {\cos(\omega_c t) ~ \text{//carrier}}\\
-+ {J_1(I)} \bigg(cos(\omega_c + \omega_m)t - cos(\omega_c - \omega_m)t\bigg) ~ \text{//first order sidebands}\\
-+ {J_2(I)}\bigg(cos(\omega_c + 2\omega_m)t + cos(\omega_c - 2\omega_m)t\bigg) ~ \text{//second order sidebands}\\
-+ {J_3(I)}\bigg(cos(\omega_c + 3\omega_m)t - cos(\omega_c - 3\omega_m)t\bigg) ~ \text{//third order sidebands}\\
-...\\
-+ {J_n(I)}\bigg(cos(\omega_c + n\omega_m)t + (-1)^n*cos(\omega_c - n\omega_m)t\bigg)\bigg] ~ \text{//nth order sidebands}
-\end{multline*}}}
+\boxed{
+\begin{aligned}
+x_{\mathrm{fm}}(t) = A_c \Bigg[&
+J_0(I)\cos(\omega_c t)
+&& \text{// carrier} \\
+&+ J_1(I)\Big(\cos((\omega_c+\omega_m)t)
+- \cos((\omega_c-\omega_m)t)\Big)
+&& \text{// first-order sidebands} \\
+&+ J_2(I)\Big(\cos((\omega_c+2\omega_m)t)
++ \cos((\omega_c-2\omega_m)t)\Big)
+&& \text{// second-order sidebands} \\
+&+ J_3(I)\Big(\cos((\omega_c+3\omega_m)t)
+- \cos((\omega_c-3\omega_m)t)\Big)
+&& \text{// third-order sidebands} \\
+&\ \ \vdots \nonumber \\
+&+ J_n(I)\Big(\cos((\omega_c+n\omega_m)t)
++(-1)^n\cos((\omega_c-n\omega_m)t)\Big)
+&& \text{// $n$th-order sidebands}
+\Bigg]
+\end{aligned}
+}
 $${#eq-fm-2}
 
 :::
 
-::: {.g-col-6}
+
+
 We can plot a graph of FM carrier + sideband amplitudes vs frequency. What does this look like?
 
 ```{r}
 #| label: fig-fm-spectrum
 #| fig-cap: "FM Spectrum"
 #| echo: false
+#| out-width: "75%"
+#| out-height: "75%"
 
 wc <-  440
 wm <- 200
@@ -550,23 +418,17 @@ my_data %>%
     x = "Frequency (Hz)",
     y = "Amplitude (Bessel Function Value)"
   ) +
-  scale_colour_brewer(palette = "Set1") + 
-  theme_custom()
+  scale_colour_brewer(palette = "Set1") +
+  theme(
+      legend.position = "none",
+      axis.title.y = element_text(angle = 90, vjust = 0.5))
 
 ```
 
-:::
+The spectrum is symmetric *on either side of the carrier* of course, with `sidebands` going off in both directions, in pairs.  To recap, we see that with FM:
 
-:::
-
-:::
-
-
-In FM, [the modulation process takes power from the carrier and distributes it into the sidebands]{style="background-color:yellow;"}. Since the instantaneous frequency is proportional to the modulating signal, we get a mathematical structure that looks like $cos(\omega_c t + I*cos(\omega_m t))$. Expanding this using trigonometric identities and Taylor series leads to the Bessel functions as weights for the sidebands. 
-
-The spectrum is symmetric of course, with `sidebands` going off in both directions in pairs. The carrier also not necessarily the highest component, as expected. To recap, we see that with FM:
-
--   We have a `carrier` component (weighted by $\color{red}{J_0(I)}$). The carrier **disappears** for certain values of $I$ when $\color{red}{J_0(I)} = 0$;
+-   [The modulation process takes power from the carrier and distributes it into the sidebands]{style="background-color:yellow;"}.
+-   We have a `carrier` component (weighted by $\color{red}{J_0(I)}$). The carrier **disappears** for certain values of $I$ when $\color{red}{J_0(I)} = 0$; the carrier therefore not necessarily the highest component, as expected.
 -   Pairs of `sidebands` around the carrier at a separation of n-multiples of $\omega_m$, weighted by $\color{red}{J_n(I)}$. In like fashion these pairs can also disappear at the zeroes of $\color{red}{J_n(I)}$. 
 - In general, the larger the `order` $n$, the larger the $I$ needed to produce sidebands of that `order`, since $\color{red}{J_n(I)}$ are *slow starters* when $n$ is large. 
 
@@ -585,15 +447,22 @@ Frequency Modulation. The method is based on the following ideas:
 4.  The amplitude $A_c$ of the carrier wave is chosen to control the
     *loudness* of the sound.
     
-Consider what happens when we choose different values of $k$, with these ideas in mind: We will first choose $\omega_c$ and $\omega_m$ that have an integer ratio, and then later an *irrational ratio* (e.g. $\sqrt(2)$) to see the effect on the `harmonicity` of the resulting sound spectrum.
+Consider what happens when we choose different values of $k$, with these ideas in mind: We will first choose $\omega_c$ and $\omega_m$ that have an *integer ratio*, and then later an *irrational ratio* (e.g. $\sqrt(2)$) to see the effect on the `harmonicity` of the resulting sound spectrum.
+
 
 ```{r}
 #| layout-ncol: 2
 #| label: fig-chowning-1
 #| echo: false
-#| fig-cap: FM with varying index - harmonic sidebands
-
-theme_set(new = theme_custom())
+#| fig-cap: "FM synthesis harmonic sidebands for modulation indices from 0 to 5"
+#| fig-subcap:
+#|   - "Modulation index I = 0"
+#|   - "Modulation index I = 1"
+#|   - "Modulation index I = 2"
+#|   - "Modulation index I = 3"
+#|   - "Modulation index I = 4"
+#|   - "Modulation index I = 5"
+#|   
 wc <-  440
 wm <- 220
 mod_index <- seq(0,5,1)
@@ -617,11 +486,14 @@ my_fm_plot <- function(my_data, amps, mod_index){
     geom_text_repel(nudge_y = 0.05, size = 3) +
     geom_vline(xintercept = 0, colour = "grey40", linewidth = 0.2) +
     labs(
-      title = paste0("FM Synthesis Sidebands (Modulation Index I = ", mod_index, ")"),
       x = "Frequency (Hz)",
       y = "Amplitude (Bessel Function Value)"
     ) +
-    scale_colour_brewer(palette = "Set1") }
+    scale_colour_brewer(palette = "Set1") +
+theme(
+  legend.position = "none",
+  axis.title.y = element_text(angle = 90, vjust = 0.5)
+) }
 
 ##
 my_fm_plot(my_data, "amp1", mod_index[1])
@@ -632,38 +504,38 @@ my_fm_plot(my_data, "amp5", mod_index[5])
 my_fm_plot(my_data, "amp6", mod_index[6])
 
 # FM with varying index - inharmonic sidebands needs to be done?? Think!!
+# 
 ```
 
 ### Dealing with `negative frequency` sidebands
 
-Note that several sidebands go past $0$ Hz into negative territory!! How do we understand these??
+Note that several sidebands go past $0$ Hz into negative frequency territory! How do we understand these??
 
 ::: callout-note
 ### Negative Frequencies
 What could a negative frequency sideband mean??
 In reality, negative frequencies are a mathematical construct that arise from the Fourier Transform and complex exponentials. A negative frequency component can be interpreted as a positive frequency component with a phase inversion. In the context of FM synthesis, negative frequency sidebands can be thought of as contributing to the overall waveform in a way that affects its shape and timbre, but they do not correspond to physically realizable sound waves. Instead, they influence the constructive and destructive interference patterns that shape the audible spectrum.
 
-We can imagine these negative-frequency sidebands as phasors with opposite rotation direction, which when combined with positive-frequency components, yield the final time-domain signal.
+We can imagine these negative-frequency sidebands as phasors with **opposite rotation direction**, which when combined with positive-frequency components, yield the final time-domain signal.
 
 So we ***reflect*** them at $0$ with a phase inversion. Here they might combine with spectral components at positive frequencies, either constructively or destructively, depending on their relative phases and amplitudes. 
+
 This generates the final sound with its final *timbre*. 
 
 :::
 
-Let us take one example from the graphs above, say $I=4$ and see what the final spectrum looks like. Then we will code this in `p5.js` and `R` and make some noise!!
+Let us take one example from the graphs above, say $I=2$ and see what the final spectrum looks like. Then we will code this in `p5.js` and `R` and make some noise!!
 
 ```{r}
-#| layout-ncol: 2
 #| label: fig-chowning-2
 #| echo: false
 #| fig-cap: Reflecting negative frequency sidebands
-#| layout-nrow: 2
-
-theme_set(new = theme_custom())
+#| 
 wc <-  440
 wm <- 440/sqrt(2)
 mod_index <- 2
 n <- -6:6
+
 my_data <- tibble(
   order = as_factor(abs(n)),
   freqs = wc + n*wm,
@@ -671,7 +543,8 @@ my_data <- tibble(
 
 my_fm_plot <- function(my_data, amps, mod_index){
   my_data %>%
-    ggplot(aes(x = freqs, y = !!sym(amps), label = paste0("J_", order, "=", round(!!sym(amps),3)))) +
+    ggplot(aes(x = freqs, y = !!sym(amps), 
+               label = paste0("J_", order, "=", round(!!sym(amps),3)))) +
     geom_linerange(aes(ymin = 0, ymax = !!sym(amps), colour = order), 
                    linewidth = 1.2) +
     geom_point(aes(colour = order), size = 3) +
@@ -682,32 +555,41 @@ my_fm_plot <- function(my_data, amps, mod_index){
       x = "Frequency (Hz)",
       y = "Amplitude (Bessel Function Value)"
     ) +
-    scale_colour_brewer(palette = "Set1") }
+  scale_colour_brewer(palette = "Set1") + 
+  scale_x_continuous(
+      limits = c(-1500, 2500),
+      expand = expansion(mult = c(0.05, 0.05))
+    ) + 
+  scale_y_continuous(
+      limits = c(-0.5, 0.75),
+      expand = expansion(mult = c(0.05, 0.05))
+    ) + 
+  theme(
+      legend.position = "none",
+      axis.title.y = element_text(angle = 90, vjust = 0.5))
+ }
 
 ## No need to plot this again
-## my_fm_plot(my_data, "amp1", mod_index)
+my_fm_plot(my_data, "amp1", mod_index)
 
 ```
 
 ```{r}
-#| layout-ncol: 2
 #| label: fig-chowning-3
 #| echo: false
 #| fig-cap: Reflecting negative frequency sidebands
-#| fig-subcap: 
-#|   - "Harmonic Sidebands (wm = wc /n)"
-#|   - "Inharmonic Sidebands (wm = wc / sqrt(n))"
+#|   
 
-theme_set(new = theme_custom())
+# wc <-  440
+# wm <- 440/sqrt(2)
+# mod_index <- 2
+# n <- -6:6
+# 
+# my_data <- tibble(
+#   order = as_factor(abs(n)),
+#   freqs = wc + n*wm,
+#   amp1 = besselJ(nu = abs(n), x = mod_index))
 
-wc <-  440
-wm <- 440/3
-mod_index <- 2
-n <- -6:6
-my_data <- tibble(
-  order = as_factor(abs(n)),
-  freqs = wc + n * wm,
-  amp1 = besselJ(nu = abs(n), x = mod_index))
 my_data_negative <- my_data %>% 
   filter(freqs < 0) %>% 
   mutate(amp1 = - amp1, freqs = abs(freqs))
@@ -731,28 +613,39 @@ my_inverted_plot <- function(my_data, my_data_negative, amps, mod_index){
       x = "Frequency (Hz)",
       y = "Amplitude (Bessel Function Value)"
     ) +
-    scale_colour_brewer(palette = "Set1") }
+  scale_colour_brewer(palette = "Set1") + 
+  scale_x_continuous(
+      limits = c(-1500, 2500),
+      expand = expansion(mult = c(0.05, 0.05))
+    ) +
+  scale_y_continuous(
+      limits = c(-0.5, 0.75),
+      expand = expansion(mult = c(0.05, 0.05))
+    ) + 
+  theme(
+      legend.position = "none",
+      axis.title.y = element_text(angle = 90, vjust = 0.5))
+ }
 ##
 
 ##
 my_inverted_plot(my_data, my_data_negative, "amp1", mod_index)
 
 
-##
-wm2 <- 440/sqrt(3)
-my_data_2 <- tibble(
-  order = as_factor(abs(n)),
-  freqs = wc + n * wm2,
-  amp1 = besselJ(nu = abs(n), x = mod_index))
-my_data_negative_2 <- my_data %>% 
-  filter(freqs < 0) %>% 
-  mutate(amp1 = - amp1, freqs = abs(freqs))
-
-my_inverted_plot(my_data_2, my_data_negative_2, "amp1", mod_index)
+# ##
+# wm2 <- 440/sqrt(3)
+# my_data_2 <- tibble(
+#   order = as_factor(abs(n)),
+#   freqs = wc + n * wm2,
+#   amp1 = besselJ(nu = abs(n), x = mod_index))
+# my_data_negative_2 <- my_data %>% 
+#   filter(freqs < 0) %>% 
+#   mutate(amp1 = - amp1, freqs = abs(freqs))
+# 
+# my_inverted_plot(my_data_2, my_data_negative_2, "amp1", mod_index)
 
 ```
 FIGURES TO BE CHECKED!!!!
-
 
 ## Design Principles for FM (Chowning) synthesis
 
@@ -883,22 +776,6 @@ Result: An inharmonic, bell‑like tone whose energy is centered around 600 Hz b
 2.  Pure Data
 3.  Envion <https://www.peamarte.it/env/envion_v3.6.html>
 
-::: {#refs style="font-size: 60%;"}
-###### {{< iconify lucide package-check >}} R Package Citations
-
-```{r}
-#| echo: false
-#scan_packages()
-cite_packages(
-  output = "table",
-  out.dir = ".",
-  out.format = "html",
-  pkgs = c("ambient", "gm","mosaicCalc", "plot3D")
-) %>%
-  knitr::kable(format = "simple")
-
-```
-:::
 
 ## Appendices
 
@@ -947,8 +824,6 @@ legend("topright", legend = paste("nu=", nus), col = nus + 2, lwd = 1, bty="n")
 #| label: fig-bessel-functions
 #| echo: false
 #| fig-cap: "Bessel Functions"
-##
-theme_set(new = theme_custom())
 ##
 gf_fun(
   besselJ(x, nu = 0) ~ x,

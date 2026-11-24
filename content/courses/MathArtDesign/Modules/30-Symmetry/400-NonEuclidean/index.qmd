@@ -8,6 +8,8 @@ citation: true
 draft: true
 ---
 
+{{< include /_setup_claude_made.qmd >}}
+
 ## Introduction
 Topics that may be covered here:
 

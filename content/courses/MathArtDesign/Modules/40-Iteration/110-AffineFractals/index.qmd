@@ -74,7 +74,7 @@ y[i+1] <- xy[2] # Save y component
 }
 # Plot this baby
 #plot(y,x,col= "pink",cex=0.1)
-gf_point(y ~ x, colour = "lightgreen", size = 0.02,
+gf_point(y ~ x, colour = "darkgreen", size = 0.02,
          title = "Barnsley Fern") 
 
 ```
@@ -100,6 +100,8 @@ See the figure below to get an idea of this process.
 ```{r}
 #| label: fig-emerging-fractal
 #| fig-cap: "Emerging Fractal"
+#| out-width: "150%"
+#| out-height: "150%"
 #| echo: false
 
 knitr::include_graphics("../../../../../materials/images/Emerging-Barnesly.png")
@@ -131,10 +133,14 @@ If 2D-space were a sheet of rubber...what could you do with it?
 Well, you could stretch in any direction, and rotate it too. 
 
 How do these transformations work? 
-:::
+
+::: {}
+
+<center>
 {{< video https://www.youtube-nocookie.com/embed/kYB8IZa5AuE width="560" height="400" align="center" title="" >}}
 </center>
 Linear Transformations
+
 :::
 
 First let us understand what are ***Affine Transformations*** and then
@@ -428,7 +434,15 @@ src="https://editor.p5js.org/codingtrain/full/G4V940Y8V">
 
 How to understand this sketch? Here is Dan Shiffman again!
 
-{{< video https://youtu.be/JFugGF1URNo >}}
+::: {}
+
+<center>
+{{< video https://www.youtube-nocookie.com/embed/JFugGF1URNo width="560" height="400" align="center" title="" >}}
+</center>
+Barnsley Fern
+
+:::
+
 
 ### Using R
 
@@ -616,20 +630,3 @@ So we can design the affine transformations based on an intuition of how  **we m
 1. The Coding Train: Algorithmic Botany. <https://thecodingtrain.com/tracks/algorithmic-botany>
 1. Barnsley Fern @ Wikipedia <https://en.wikipedia.org/wiki/Barnsley_fern>
 
-
-::: {#refs style="font-size: 60%;"}
-###### {{< iconify lucide package-check >}} R Package Citations
-
-```{r}
-#| echo: false
-#scan_packages()
-cite_packages(
-  output = "table",
-  out.dir = ".",
-  out.format = "html",
-  pkgs = c("caracas", "matlib")
-) %>%
-  knitr::kable(format = "simple")
-
-```
-:::

@@ -7,7 +7,7 @@ knitr:
     warning: false
     message: false
     fig-align: center
-    fig-width: 6
+    fig-width: 5
     fig-asp: 0.618
     dpi: 96
     out-width: "75%"
@@ -25,10 +25,12 @@ knitr:
 library(systemfonts)
 library(ggplot2)
 ##
+### Ensure fonts in <project root>/fonts/ are available
+systemfonts::scan_local_fonts()
 systemfonts::require_font("Alegreya")
 systemfonts::require_font("Roboto Condensed")
 
-theme_madhatter <- function(base_size = 10, paper = "bisque") {
+theme_madhatter <- function(base_size = 10, paper = "moccasin") {
   ggplot2::theme_bw(base_size = base_size,
            base_family = "Roboto Condensed",
            header_family = "Alegreya",

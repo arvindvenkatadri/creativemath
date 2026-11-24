@@ -1,0 +1,13 @@
+/*-- scss:defaults --*/
+$body-color: black !default;
+
+/*-- scss:rules --*/
+body {
+  color: black;
+}
+.text-muted,
+.text-body-secondary,
+.text-body-tertiary {
+  color: black !important;
+}
+

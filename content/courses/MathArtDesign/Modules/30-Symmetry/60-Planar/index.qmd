@@ -9,6 +9,8 @@ categories:
   - Thresholds
 ---
 
+{{< include /_setup_claude_made.qmd >}}
+
 ## Introduction
 
 TBWU!!

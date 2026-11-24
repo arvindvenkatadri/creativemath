@@ -8,7 +8,7 @@ listing:
   sort: "order"
   sort-ui: false
   filter-ui: false
-  contents: "Modules/*/*.qmd"
+  contents: "*/*.qmd"
   fields: [title,reading-time]
   table-striped: true
   table-hover: true

@@ -1,0 +1,15 @@
+{
+  "hash": "b04665f0327fde2adb90f86ca92fc13b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Symmetries in a Plane\"\ndate: 26/July/2026\ndate-modified: today\norder: 24\ncategories:\n  - Canonical Movements\n  - Friezes\n  - Thresholds\n---\n\n---\n# Course-wide knitr / Quarto defaults.\n# Pages should include this file and then load only the packages that lesson needs.\nknitr:\n  opts_chunk:\n    echo: true\n    warning: false\n    message: false\n    fig-align: center\n    fig-width: 5\n    fig-asp: 0.618\n    dpi: 96\n    out-width: \"75%\"\n    # ragg is fine for points/lines; fonts are registered with systemfonts below\n    # so ggrepel can see the same families. Do not pair ragg with showtext-only fonts.\n    dev: \"ragg_png\"\n---\n\n\n::: {.cell layout-align=\"center\"}\n\n:::\n\n\n\n\n## Introduction\n\nTBWU!!\n\n## 1D Symmetries\n\n- Friezes\n- Symmetries on a Frieze\n\n\n## 2D Symmetries\n- 17 Symmetry types\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

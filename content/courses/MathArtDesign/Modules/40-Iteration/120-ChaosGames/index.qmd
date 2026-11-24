@@ -40,7 +40,8 @@ Topics that may be covered here:\
 
 ## {{< iconify icons8 idea >}} Inspiration
 
-<a title="Zoharby, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Sierpinski_chaos_animated.gif"><img width="512" alt="Sierpinski chaos animated" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Sierpinski_chaos_animated.gif/512px-Sierpinski_chaos_animated.gif?20080608150150"></a>
+<a href="https://commons.wikimedia.org/wiki/File:Sierpinski_chaos_animated.gif" title="Zoharby, Public domain, via Wikimedia Commons"><img width="330" height="286" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Sierpinski_chaos_animated.gif/330px-Sierpinski_chaos_animated.gif?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail" srcset="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Sierpinski_chaos_animated.gif/330px-Sierpinski_chaos_animated.gif?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail 330w" sizes="auto" loading="lazy" alt="Sierpinski chaos animated"></a>
+
 
 And how about this? Click anywhere on the canvas to restart the graphic and see what happens!
 
@@ -82,23 +83,4 @@ knitr::include_graphics("../../../../../materials/images/Eglash-book-cover.jpg")
 1.
 
 1.
-
-
-::: {#refs style="font-size: 60%;"}
-###### {{< iconify lucide package-check >}} R Package Citations
-
-```{r}
-#| echo: false
-#scan_packages()
-cite_packages(
-  output = "table",
-  out.dir = ".",
-  out.format = "html",
-  pkgs = c("ambient", "mosaicCalc", "plot3D")
-) %>%
-  knitr::kable(format = "simple")
-
-```
-
-:::
 
