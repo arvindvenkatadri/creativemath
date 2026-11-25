@@ -1,9 +1,9 @@
 ---
-title: "Using matters of ~~Life and Death~~ Math and  Code to Create Novel Experiences"
+title: "Applied Math for Makers and Artists"
 date: '2022-12-31'
 abstract: ""
-image: "preview.jpeg"
-image-alt: "Mandelbrot Fractal"
+image: ""
+image-alt: ""
 listing:
   type: grid
   sort: "order"
@@ -16,9 +16,7 @@ listing:
   categories: numbered
 ---
 
-<center>![](preview.jpeg)</center>
-
-<br>
+::: {.content-hidden}
 
 ## Introduction
 
@@ -184,5 +182,8 @@ become reality!
 2.  Matthew Bardin. <https://pdm.lsupathways.org>
 3.  Tim Cortina at Carnegie Mellon Univ2.
     <https://www.cs.cmu.edu/~tcortina/15104-f20/lectures/>
+
+:::
+
 
 ## Learning Modules

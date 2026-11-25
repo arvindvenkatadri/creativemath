@@ -1,7 +1,8 @@
 ---
 title: "Connections"
-subtitle: "Meeting E.M Forster"
+subtitle: "Walking with Erdos, Barabasi, and E.M Forster"
 date: '2022-12-31'
+date-modified: today
 order: 60
 listing:
   type: table

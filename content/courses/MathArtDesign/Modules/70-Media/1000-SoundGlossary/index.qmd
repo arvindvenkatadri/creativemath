@@ -36,3 +36,21 @@ Some terms will show up repeatedly in our work and we should be clear what they 
 1. `Transient`: TBW
 1. `In-harmonic`: TBW
 1. `Partials`: TBW
+
+
+## References
+
+1. Forinash and Christian. *Sound - An Interactive eBook* <https://phys.libretexts.org/Bookshelves/Waves_and_Acoustics/Sound_-_An_Interactive_eBook_(Forinash_and_Christian)> 
+1. Andrew Farnell. *Designing Sound*. 
+1. <https://pmcharrison.github.io/intro-to-music-and-science/timbre.html>
+1. Sound Waves. <https://ophysics.com/w6.html>
+1. Guitar Chord Explorer. <https://ophysics.com/fs9.html> 
+1. What Music Really is <https://www.youtube.com/channel/UCgqviysh9n4dbccXlOyWIfQ> 
+1. WebSoundArt. *p5.sound tutorial*. <https://websoundart.org/articles/20231217_tutorial-6-p5sound>
+
+## Things to Make
+
+1. The initial piano piece from [Adele (Skyfall)](https://www.youtube.com/watch?v=DeumyOzKqgI)
+1. The initial background from [Aerosmith ( I don't want to miss a thing)](https://www.youtube.com/watch?v=JkK8g6FMEXE)
+1. The initial background from [Alan Parsons Project( Eye in the Sky)](https://www.youtube.com/watch?v=Q6ZRGzx31iQ)
+1. The initial background from [Jean Michele Jarre (Magnetic Fields)](https://youtu.be/w434qhNJMdw?list=RDw434qhNJMdw)

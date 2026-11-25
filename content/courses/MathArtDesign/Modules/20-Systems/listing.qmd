@@ -1,7 +1,8 @@
 ---
 title: "Signals, Waveforms, and Electronics Systems"
-subtitle: ""
+subtitle: "Breakfast with Nyquist, Fourier, and Shannon"
 date: '2025-03-05'
+date-modified: today
 order: 20
 listing:
   type: table

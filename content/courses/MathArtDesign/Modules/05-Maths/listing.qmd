@@ -1,6 +1,6 @@
 ---
 title: "Basic Math Concepts"
-subtitle: "Dinner with Euler and Gauss"
+subtitle: "Coffee with Euler and Gauss"
 date: '2025-02-06'
 order: 05
 listing:

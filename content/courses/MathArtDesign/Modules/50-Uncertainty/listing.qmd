@@ -1,7 +1,8 @@
 ---
 title: "Uncertainty"
-subtitle: ""
+subtitle: "Speaking with Gauss, Poisson, and Laplace"
 date: '2022-12-31'
+date-modified: today
 order: 50
 listing:
   type: table

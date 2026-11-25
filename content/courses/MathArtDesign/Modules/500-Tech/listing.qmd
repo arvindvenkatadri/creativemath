@@ -1,7 +1,8 @@
 ---
 title: "Tools and Tech"
-subtitle: "Meeting Dan Shiffman"
+subtitle: "Meeting Dan Shiffman, and Hadley Wickham"
 date: '2022-12-31'
+date-modified: today
 order: 500
 listing:
   type: table

@@ -2,6 +2,7 @@
 title: "Symmetry"
 subtitle: "Smoke, Mirrors, and Kaleidoscopes"
 date: '2022-12-31'
+date-modified: today
 order: 30
 listing:
   type: table

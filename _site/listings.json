@@ -1,5 +1,21 @@
 [
   {
+    "listing": "/index.html",
+    "items": [
+      "/content/courses/MathArtDesign/Modules/05-Maths/listing.html",
+      "/content/courses/MathArtDesign/Modules/10-Physics/listing.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/listing.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/listing.html",
+      "/content/courses/MathArtDesign/Modules/30-Symmetry/listing.html",
+      "/content/courses/MathArtDesign/Modules/50-Uncertainty/listing.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/listing.html",
+      "/content/courses/MathArtDesign/Modules/70-Media/listing.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/listing.html",
+      "/content/courses/MathArtDesign/Modules/500-Tech/listing.html",
+      "/content/courses/MathArtDesign/Modules/1000-Projects/index.html"
+    ]
+  },
+  {
     "listing": "/content/courses/MathArtDesign/Modules/10-Physics/listing.html",
     "items": [
       "/content/courses/MathArtDesign/Modules/10-Physics/01-Movement/index.html"
