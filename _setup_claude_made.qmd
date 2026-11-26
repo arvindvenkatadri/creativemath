@@ -36,7 +36,7 @@ theme_madhatter <- function(base_size = 10, paper = "moccasin") {
            header_family = "Alegreya",
            paper = paper) +
     ggplot2::theme(
-      plot.margin = ggplot2::margin(t = 1, r = 1, b = 0.5, l = 0.5, unit = "cm"),
+      plot.margin = ggplot2::margin(t = 0.5, r = 1, b = 0.5, l = 0.5, unit = "cm"),
       axis.title = ggplot2::element_text(
         family = "Roboto Condensed",
         size = 10

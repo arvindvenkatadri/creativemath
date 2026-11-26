@@ -29,10 +29,11 @@ library(ggdiagram)
 
 ```
 
-## Rotational Symmetry
+## Introduction
 
 Assume we have a plane 2D geomtric shape on the table. How would we rotate it with our hand? Two fingers: the thumb to **anchor** the rotation, and one other finger to rotate the object. 
-Where would you place the thumb? On the point where you imagine the **axis of rotation** to be; an imaginary line rising *vertically* from the surface. And the other finger would be placed *on the periphery* of the object. This is your repeatable **canonical movement** in this instance.
+
+Where would you place your thumb? On the point where you imagine the **axis of rotation** to be; an imaginary line rising *vertically* from the surface. And the other finger would be placed *on the periphery* of the object. This is your repeatable **canonical movement** in this instance.
 
 How do we describe this with math? Two ways. A `set`, and a `matrix`.
 
@@ -51,39 +52,25 @@ where:
 - $r^k$ means applying that rotation $k$ times, equivalent to rotating by $k \times 360^\circ /n$
 - $r^n = e$ because $n$ repetitions return the object to its starting position.
 
-
-```{=html}
-<div id="rotational-sketch"></div>
-<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-<script>
-new p5((p) => {
-  let n = 5;
-  let angle = 0;
-  p.setup = () => {
-    p.createCanvas(400, 400);
-    p.background(255);
-  };
-  p.draw = () => {
-    p.background(240);
-    p.translate(200, 200);
-    for (let i = 0; i < n; i++) {
-      p.push();
-      p.rotate(angle + i * p.TWO_PI / n);
-      p.fill(100, 150, 220, 180);
-      p.noStroke();
-      p.ellipse(80, 0, 30, 30);
-      p.pop();
-    }
-    angle += 0.01;
-  };
-}, document.getElementById("rotational-sketch"));
-</script>
-```
+::: {#fig-rotational-symmetry}
 
 
-### A Rotation Matrix
+<center> 
+<iframe 
+data-external="1"
+width = 400 height = 450
+src="https://editor.p5js.org/arvindv/full/WPMK_tHGi">
+</iframe>
+</center>
+5-fold Rotational Symmetry
+:::
 
-If we had a set of 2D points ${x,y}$ then we can write their rotation as a transformation of their coordinates to a new position, representing a rotation **about a notional axis of rotation**. What might such an axis look like?
+
+**To recreate it:** Click on the "</>" symbol at the top of the embedded sketch, stop the execution, and copy the code. Open the [p5.js Web Editor](https://editor.p5js.org), replace the contents of `sketch.js` with the code, then click **Play**.
+
+### Rotation as a Matrix Mutiplication
+
+If we had a set of 2D points ${(x,y)}$ then we can write their rotation as a transformation of their coordinates to a new position, representing a rotation **about a notional axis of rotation**. What might such an axis look like?
 
 
 ```{r}
@@ -132,7 +119,8 @@ ggdiagram() +
       arrowhead_length = 8)
 
 ```
-We rotate point $A$ about the origin $O$ and obtain $B$. And we transform the original coordinates of A to those of B, using a matrix multiplication:
+
+[We rotate point $A$ about the origin $O$ and obtain $B$]{style="background-color:yellow;"}. And we transform the original coordinates of A to those of B, using a matrix multiplication:
 
 $$
 \begin{pmatrix}
@@ -157,10 +145,30 @@ x_B = x_A \cos 60^\circ - y_A \sin 60^\circ, \qquad
 y_B = x_A \sin 60^\circ + y_A \cos 60^\circ
 $$
 
+### Rotation in `p5.js`
+
+In the `p5.js` sketch above, we have used functions such as:
+
+    push();
+    rotate(angle + (i * TWO_PI) / n);
+    fill(100, 150, 220, 180);
+    noStroke();
+    ellipse(80, 0, 30, 30);
+    pop();
+    
+This allows us to draw a circle at a given angle, return to the origin, rotate the entire canvas by a given angle, and draw another one and so on. The angle of rotation progressively increases, as desired. 
+
+The *return to origin* is accomplished by the `push()`/`pop()` combo-functions. Every time we call `push()`, we save the current transformation state, and every time we call `pop()`, we restore the previous transformation state, which is our `origin`, at ${(200,200)}$. This is useful for creating complex shapes and patterns that require multiple transformations.
+
+The combination sequence of `push()`, `rotate()` and `pop()` helps us to create shapes that have rotational symmetry.
+
 ## {{< iconify mingcute thought-line >}} Wait, But Why?
 
-TBWU.
+- Rotational Symmetry is one of the most-easily identified, and aesthetically pleasing symmetries
+- Being able to use the `push()`, `rotate()` and `pop()` functions in `p5.js` helps us to simply and iteratively create complex rotationally-symmetric designs. 
 
+
+::: {.content-hidden}
 ## Design Notes 
 
 - **Rotational only** ($\mathbb{Z}_{n}$): swirling, pinwheel-like, no mirror lines.
@@ -168,4 +176,9 @@ TBWU.
 - **Dihedral** ($\mathbb{D}_{n}$ ): the most common decorative symmetry (snowflakes, flowers, rose windows, tiles).
 
 These geometric ideas become the constraints we later impose on iterative and random processes.
+:::
+
+## References
+
+1. [p5.js Reference `rotate`](https://p5js.org/reference/p5/rotate/)
 

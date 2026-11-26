@@ -1,5 +1,5 @@
 ---
-title: <iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors
+title: <iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Algebra Whirlwind Tour
 subtitle: ""
 subject: "Shapes and Code"
 abstract: ""
@@ -8,7 +8,11 @@ date-modified: today
 order: 20
 code-fold: true
 categories:
-- Complex
+- vector
+- Vrame of reference
+- Euclidean Space
+- Shadows
+- Coordinates
 
 ---
 
@@ -20,7 +24,7 @@ library(tidyverse)
 library(ggformula)
 library(ggdiagram)
 library(mosaicCalc)
-
+library(ggarrow)
 ```
 
 ---
@@ -37,10 +41,11 @@ What might these figures betoken??
 #| echo: false
 #| 
 
-flow_field(dx ~ x+y, dy~ x-y, domain(x=0:6, y=0:3)) |>
+mosaicCalc::flow_field(dx ~ x + y, dy ~ x - y, domain(x = 0:6, y = 0:3)) |>
   gf_labs(title = "Flow Field")
 
-vectorfield_plot(x ~ -y, y ~ x, bounds(x=-1:1, y=-1:1), transform=function(x) x^0.2 ) |>   gf_labs(title = "Vortex Field")
+mosaicCalc::vectorfield_plot(x ~ -y, y ~ x, bounds(x = -1:1, y = -1:1), transform = function(x) x^0.2 ) |>   
+  gf_labs(title = "Vortex Field")
 
 ```
 
@@ -58,12 +63,412 @@ And could @fig-flow-field-2 represent say the flow of water in a whirlpool? Can 
 ## Discussion #2
 
 - Each of these arrows is a `vector`: the arrows show both the *force* `magnitude` and its `direction`
+- How did we **know** direction? How do we know what is turning left, or right, or up or down?
+- How do we appreciate how `far` something is going? How do we measure, quantify, and work with these ideas?
+
+This brings us to the formal idea of `vector representation`. 
+
+## Vector Representation
+
+OK, so how do we *represent* vectors?
+
+
+##### Frame of Reference
+
+From the Questions in the previous section, we may have realized that we need something fixed, something steady, something that stays still and allows us to `orient` ourselves in the world, for us to appreciate movement. We need a `frame of reference` to be able to state where a vector lies and where it is headed, so to speak. We need two things:
+
+- The most common frame of reference is the `Euclidean` space, of geometry, which gives us three immutable axes: X, Y, and Z.
+- An origin, $(0,0,0)$, something we unwittingly used in the introduction earlier!
+
+In the @fig-flow-field-1 and fig-flow-field-2 we have the `X-axis` running left to right, and the `Y-axis` running bottom to top. The `origin` is at the bottom left corner of the figure.
+
+We state that all vectors of interest to us *lie within this space*. Where can that lead us?
+
+##### Shadows are Components
+
+So now that we have a frame of reference, with an origin, any vector that lies in this space automatically has *three shadows*: one on each of the three axes. These shadows are called the `components` of the vector.
+
+For both @fig-flow-field-1 and @fig-flow-field-2, each little arrow/vector there has a shadow on the X and the Y axis. (The Z-axis is not used in these figures). Each of these shadows is a `component` of the vector. Of course, since the X-axis and Y-axis are `orthogonal` to each other, these shadows are also at right angles to each other. 
+
+Note that each shadow is the result of a "light source" that is unique: for each of the three shadows, we need **three** simultaneous light sources. Each light source produces rays light that are *perpendicular* to one axis only. 
+
+Apropos, [Why are X, Y, and Z perpendicular / at right angles to one another?](../60-Orthogonality/index.qmd)
+
+##### Components to Magnitude
+
+Note how the `components`  are all at right angles to one another! It should immediately bring to mind the Pythogoras Theorem: the `vector` is a *hypotenuse* that is based on the components, even in 3D. 
+Hence we can write the magnitude of a vector in terms of its `components` are:
+$$
+|v| = \sqrt{v_x^2 + v_y^2 + v_z^2}
+$${#eq-vector-magnitude}
+
+
+##### Ends are Coordinates
+
+Each shadow has a beginning and an end, in the frame of reference. So how do we **create** vectors that have arbitrary locations? We usually *create* vectors by **starting at the origin**: we take the `components`, lay them out on the respective `axes`, and then draw the `vector` to the point to which the shadows point.
+
+Here is a math idea: clearly, the vector's `magnitude` and `direction` are the same, no matter where it is drawn in the space. From a *math standpoint* we can deal with all vectors as if they originated from $(0,0,0)$; their absolute location does not really matter. A vector drawn anywhere in the `frame of reference` can be imagined as the same vector drawn from the `origin`. 
+
+So, the `origin` is "always" part of any `vector`. And the `tip` of the `vector` is specified by `coordinate-s` in the space, which are a pair of *shadow numbers $(x,y)$*. The shadows/`coordinates` and the `vector` are just two views of the same quantity
+
+But then...if we take the @fig-flow-field-2 above, and pile all vectors at $(0,0,0)$, how is that sensible?? Are the `vector`s actually "there"? What if some were located somewhere further along in the `frame of reference`, as in the figures above?
+
+## Vector Math Operations!
+
+For this, we need other `operations` that we can perform on `vectors`: *addition/subtraction*, and from there on to *multiplication*. We will see that these operations allow us to `move` vectors around in the space, and also to `scale` them up or down.
+
+##### Vector Addition
+
+Yes. If we need to stack up vectors together, then adding their individual X-shadows and Y-shadows will give is a nice new sum vector!
+If we don't wish to make shadows, we just place the tail of the second vector and place it at the head of the first, and then the new sum vector stretches from the origin to the tip of the second vector (triangle sum or parallelogram summing of vectors).
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+```{r}
+#| label: fig-vector-addition
+#| fig-cap: "Triangle Addition"
+#| echo: false
+#| 
+
+# Define the vectors
+u <- c(3, 1)
+v <- c(1, 2)
+s <- u + v   # sum vector
+
+# Key points for the triangular (head-to-tail) method
+O <- ob_point(0, 0)               # origin
+A <- ob_point(u[1], u[2])         # tip of u = tail of v
+B <- ob_point(s[1], s[2])         # tip of v = tip of u + v
+
+# Arrowhead: a 2-column numeric matrix (from ggarrow)
+ah <- ggarrow::arrow_head_wings()
+# class(ah); dim(ah)   # matrix with 2 columns
+
+# Label font size (points)
+lab_size <- 28
+
+# Vectors as arrowed segments
+vec_u <- ob_segment(O, A, color = "#1f77b4", linewidth = 1.5, arrow_head = ah)
+vec_v <- ob_segment(A, B, color = "#d62728", linewidth = 1.5, arrow_head = ah)
+vec_s <- ob_segment(O, B, color = "#2ca02c", linewidth = 1.5, arrow_head = ah)
+
+# Labels near the segment midpoints (offset so they don't overlap lines)
+lab_u <- ob_label("u",center = ob_point(u[1] / 2,                u[2] / 2 - 0.25),
+                  color = "#1f77b4", size = lab_size)
+lab_v <- ob_label("v",     center = ob_point(u[1] + v[1] / 2 + 0.25,  u[2] + v[2] / 2 - 0.1),
+                  color = "#d62728", size = lab_size)
+lab_s <- ob_label("u + v", center = ob_point(s[1] / 2 - 0.35,         s[2] / 2 + 0.3),
+                  color = "#2ca02c", size = lab_size)
+
+# Draw
+ggplot() +
+  coord_equal(xlim = c(-0.5, 5), ylim = c(-0.7, 3.5)) +
+  theme_void() +
+  vec_u + vec_v + vec_s +
+  lab_u + lab_v + lab_s
+
+
+```
+:::
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+
+```{r}
+#| label: fig-component-addition
+#| fig-cap: "Addition of Components"
+#| echo: false
+#| 
+
+# Same vectors as before
+u <- c(3, 1)
+v <- c(1, 2)
+s <- u + v   # (4, 3)
+
+# Colours and sizes
+col_u <- "#1f77b4"; col_v <- "#d62728"; col_s <- "#2ca02c"
+lab_size  <- 28   # vector names (u, v, u + v)
+bar_size  <- 20   # numbers on the bars
+bar_width <- 14   # thickness of the component bars
+ah <- ggarrow::arrow_head_wings()
+
+O <- ob_point(0, 0)
+
+# Axes (grey)
+x_axis <- ob_segment(ob_point(-1.6, 0), ob_point(5.2, 0), color = "grey60", linewidth = 0.8)
+y_axis <- ob_segment(ob_point(0, -1.6), ob_point(0, 3.8), color = "grey60", linewidth = 0.8)
+
+# The three vectors from the origin
+vec_u <- ob_segment(O, ob_point(u[1], u[2]), color = col_u, linewidth = 1.5, arrow_head = ah)
+vec_v <- ob_segment(O, ob_point(v[1], v[2]), color = col_v, linewidth = 1.5, arrow_head = ah)
+vec_s <- ob_segment(O, ob_point(s[1], s[2]), color = col_s, linewidth = 1.5, arrow_head = ah)
+
+# Dashed guides from the tip of u + v down to the axes
+guide_x <- ob_segment(ob_point(s[1], s[2]), ob_point(s[1], 0), color = col_s, linetype = "dashed", linewidth = 0.8)
+guide_y <- ob_segment(ob_point(s[1], s[2]), ob_point(0, s[2]), color = col_s, linetype = "dashed", linewidth = 0.8)
+
+# Row / column positions for the component bars
+y1 <- -0.45; y2 <- -1.05   # x-component rows (parts, then sum)
+x1 <- -0.45; x2 <- -1.05   # y-component columns (parts, then sum)
+
+# X-components
+ux_bar <- ob_segment(ob_point(0,    y1), ob_point(u[1],        y1), color = col_u, linewidth = bar_width)
+vx_bar <- ob_segment(ob_point(u[1], y1), ob_point(u[1] + v[1], y1), color = col_v, linewidth = bar_width)
+sx_bar <- ob_segment(ob_point(0,    y2), ob_point(s[1],        y2), color = col_s, linewidth = bar_width)
+
+# Y-components
+uy_bar <- ob_segment(ob_point(x1, 0),    ob_point(x1, u[2]),        color = col_u, linewidth = bar_width)
+vy_bar <- ob_segment(ob_point(x1, u[2]), ob_point(x1, u[2] + v[2]), color = col_v, linewidth = bar_width)
+sy_bar <- ob_segment(ob_point(x2, 0),    ob_point(x2, s[2]),        color = col_s, linewidth = bar_width)
+
+# Vector names
+lab_u <- ob_label("u",     center = ob_point(u[1] + 0.35, u[2]),       color = col_u, size = lab_size)
+lab_v <- ob_label("v",     center = ob_point(v[1] - 0.3,  v[2] + 0.3), color = col_v, size = lab_size)
+lab_s <- ob_label("u + v", center = ob_point(s[1] + 0.7,  s[2] + 0.1), color = col_s, size = lab_size)
+
+# Numbers ON the component bars (white text, fill matches the bar)
+on_bar <- function(txt, x, y, col) {
+  ob_label(txt, center = ob_point(x, y), color = "white", fill = col, size = bar_size)
+}
+
+lab_ux <- on_bar("3", u[1] / 2,        y1, col_u)
+lab_vx <- on_bar("1", u[1] + v[1] / 2, y1, col_v)
+lab_sx <- on_bar("4", s[1] / 2,        y2, col_s)
+
+lab_uy <- on_bar("1", x1, u[2] / 2,        col_u)
+lab_vy <- on_bar("2", x1, u[2] + v[2] / 2, col_v)
+lab_sy <- on_bar("3", x2, s[2] / 2,        col_s)
+
+# Draw
+ggplot() +
+  coord_equal(xlim = c(-1.8, 6), ylim = c(-1.9, 4)) +
+  theme_void() +
+  x_axis + y_axis +
+  guide_x + guide_y +
+  ux_bar + vx_bar + sx_bar +
+  uy_bar + vy_bar + sy_bar +
+  vec_u + vec_v + vec_s +
+  lab_u + lab_v + lab_s +
+  lab_ux + lab_vx + lab_sx +
+  lab_uy + lab_vy + lab_sy
+
+```
+:::
+::::
+
+::: callout-note
+Vector Subtraction works the same way, except that we add $-v$ to $u$. How? By flipping the direction of $v$ and then adding it to $u$.
+:::
+
+In `p5.js` we can use `translate()` to create vectors at new locations; and of course there is a built-in data structure called `p5.Vector` that supports `vector addition`. 
+
+
+##### Vector Multiplication
+
+Given that these vector creatures possess both `magnitude` and `direction`, we managed to deal with both very deftly when it came to addition and subtraction: `translation`, and the X-Y `components` helped us to not be overly concerned. However, you might suspect that multiplication would a curious thing to achieve. 
+
+There are actually three kinds! Horrors!!
+
+###### Scalar Multiplication
+
+Just scale a single vector, using a **single** `scalar` number ( not a vector!). The thing simply grows/`scales` by that factor. The shadows lengthen and the vector lengths. Or shrink, if your `scalar` is $\cancel{<3}$ but $<1$. 
+
+The result is still a `vector`. 
+
+```{r}
+#| label: fig-scalar-mult
+#| fig-cap: "Scalar Multiplication"
+#| column: margin
+#| echo: false
+#| 
+# The vector being scaled
+u <- c(2, 1)
+
+# Colours and sizes
+col_u  <- "#1f77b4"   # u
+col_2u <- "#2ca02c"   # 2u
+col_hu <- "#ff7f0e"   # 0.5u
+col_nu <- "#d62728"   # -u
+lab_size <- 28
+off <- 0.7            # distance of each label from its arrow (data units)
+ah <- ggarrow::arrow_head_wings()
+
+# Unit vector perpendicular to u (points up-left)
+n <- c(-u[2], u[1]) / sqrt(sum(u^2))
+
+# Helpers: a vector k*u starting at 'from', and a label placed beside it
+vec <- function(from, k, col) {
+  ob_segment(ob_point(from[1], from[2]),
+             ob_point(from[1] + k * u[1], from[2] + k * u[2]),
+             color = col, linewidth = 1.5, arrow_head = ah)
+}
+# side = +1 puts the label up-left of the arrow, -1 puts it down-right
+lab <- function(txt, from, k, col, side) {
+  ob_label(txt,
+           center = ob_point(from[1] + k * u[1] / 2 + side * off * n[1],
+                             from[2] + k * u[2] / 2 + side * off * n[2]),
+           color = col, size = lab_size)
+}
+
+# Starting points (parallel copies so the vectors stay visible)
+from_u  <- c(0, 0)
+from_2u <- c(0, 1.5)
+from_hu <- c(0, -1.5)
+from_nu <- c(0, 0)
+
+# Axes (grey)
+x_axis <- ob_segment(ob_point(-3, 0), ob_point(5, 0), color = "grey60", linewidth = 0.8)
+y_axis <- ob_segment(ob_point(0, -2.6), ob_point(0, 4.2), color = "grey60", linewidth = 0.8)
+
+# Vectors
+v_u  <- vec(from_u,  1,   col_u)
+v_2u <- vec(from_2u, 2,   col_2u)
+v_hu <- vec(from_hu, 0.5, col_hu)
+v_nu <- vec(from_nu, -1,  col_nu)
+
+# Labels
+l_u  <- lab("u",    from_u,  1,   col_u,   1)
+l_2u <- lab("2u",   from_2u, 2,   col_2u,  1)
+l_hu <- lab("0.5u", from_hu, 0.5, col_hu, -1.5)
+l_nu <- lab("-u",   from_nu, -1,  col_nu, -1)
+
+# Draw
+ggplot() +
+  coord_equal(xlim = c(-3, 5), ylim = c(-2.6, 4.2)) +
+  theme_void() +
+  x_axis + y_axis +
+  v_u + v_2u + v_hu + v_nu +
+  l_u + l_2u + l_hu + l_nu
+
+```
+
+
+###### Inner, or Dot Product
+The `dot product` is something we have already encountered, but in disguise: it is the *shadow* operation! Only, it is not just the shadow of a `vector` on $X$ or on $Y$, but on *some other* `vector`. How does this work?
+
+Of course we can shine a light whose rays are perpendicular to the second vector, and then measure the shadow of the first vector on the second. The curious thing is that this shadow also depends upon the second `vector`: rather like a distorting mirror in which we appear shorter or taller, like Alice in Wonderland. The shadow is not just a function of the first vector, but also of the second vector.
+
+This is reasonable in one way: if the second `vector` is very small, then the shadow of the first one on it should be barely visible. What may be counter-intuitive is that if the second `vector` is very long, then the shadow of the first one on it should be very long too. It is as if the shadow of one is measured in **units of the other**. 
+
+We are, in the end, interested here only in the *size* of the shadow, and not its direction. Hence, the `dot product` is a number, **not a `vector`**. It is a `scalar`.
+
+The `inner product` is written as:
+$$
+u \cdot v = |u| |v| \cos(\theta)
+$${#eq-dot-product}
+
+from where we see that the `dot product` depends upon both vectors and how close in angle alignment they are. If they are parallel, the `dot product` is simply the product of their magnitudes. 
+
+`p5.js` has ready functions for `dot product` (and the upcoming)`cross product` of vectors, as well as for `vector magnitude` and `normalization`.
+
+###### Outer, or Cross Product
+
+If would be strange if products with `vectors` gave only `scalars` !! The `cross product` is such an operation: two vectors when (cross) mutliplied, result in a `vector`.  
+A metaphor for the `cross-product` could just be a spiral staircase: imagine you start at the bottom, facing in the direction of `vector`#1, and you walk up the stairs, turning counter-clockwise as you climb, until you are facing in the direction of `vector`#2. Naturally, the `height` you attain is proportional to the `angle` through with you climb. That is the resultant `outer product` `vector`, which is perpendicular to both the original vectors. And again, perhaps counter-intuitively, the resultant `vector` has a `height` = `magnitude` that is proportional to both `vectors`, not just their angle. 
+
+```{r}
+#| label: fig-cross-product
+#| fig-cap: "Cross Product is a vector"
+#| echo: false
+#| column: margin
+#| 
+
+
+# Same vectors as before, in 3D (z = 0)
+u <- c(3, 1, 0)
+v <- c(1, 2, 0)
+w <- c(u[2] * v[3] - u[3] * v[2],
+       u[3] * v[1] - u[1] * v[3],
+       u[1] * v[2] - u[2] * v[1])      # u x v = (0, 0, 5)
+
+# Colours and sizes
+col_u <- "#1f77b4"; col_v <- "#d62728"; col_w <- "#9467bd"; col_a <- "#ff7f0e"
+lab_size <- 28
+ah <- ggarrow::arrow_head_wings()
+
+# Oblique projection: x -> right, z -> up, y -> receding up-right
+k   <- 0.9                  # depth scale (larger = more stretched)
+ang <- 40 * pi / 180        # tilt of the depth axis (larger = steeper)
+proj <- function(p) c(p[1] + k * p[2] * cos(ang), p[3] + k * p[2] * sin(ang))
+pt   <- function(p) { q <- proj(p); ob_point(q[1], q[2]) }
+
+O <- pt(c(0, 0, 0))
+
+# Parallelogram spanned by u and v (the floor plane)
+corners <- rbind(c(0, 0, 0), u, u + v, v)
+para <- as.data.frame(t(apply(corners, 1, proj)))
+names(para) <- c("x", "y")
+para_fill <- geom_polygon(data = para, aes(x, y), fill = col_a, alpha = 0.35)
+
+# Completing sides (dashed, grey)
+side_u <- ob_segment(pt(v), pt(u + v), color = "grey50", linetype = "dashed", linewidth = 0.8)
+side_v <- ob_segment(pt(u), pt(u + v), color = "grey50", linetype = "dashed", linewidth = 0.8)
+
+# The three vectors from the origin
+vec_u <- ob_segment(O, pt(u), color = col_u, linewidth = 1.5, arrow_head = ah)
+vec_v <- ob_segment(O, pt(v), color = col_v, linewidth = 1.5, arrow_head = ah)
+vec_w <- ob_segment(O, pt(w), color = col_w, linewidth = 1.5, arrow_head = ah)
+
+# Label placed beside the arrow from 3D point p to q, pushed away from it
+# along the perpendicular of its *projected* direction.
+# side = +1: up-left of the arrow, side = -1: down-right.
+lab_beside <- function(txt, p, q, side, col, off = 0.6, size = lab_size) {
+  a <- proj(p); b <- proj(q)
+  d <- (b - a) / sqrt(sum((b - a)^2))
+  n <- c(-d[2], d[1])
+  m <- (a + b) / 2 + side * off * n
+  ob_label(txt, center = ob_point(m[1], m[2]), color = col, size = size)
+}
+
+o3 <- c(0, 0, 0)
+lab_u <- lab_beside("u",     o3, u, -1, col_u)
+lab_v <- lab_beside("v",     o3, v,  1, col_v)
+lab_w <- lab_beside("u × v", o3, w,  1, col_w, off = 0.9)
+lab_a <- ob_label("area = 5", center = ob_point(mean(para$x), mean(para$y)),
+                  color = "black", size = 16)
+
+# Draw
+ggplot() +
+  coord_equal(xlim = c(-2, 7), ylim = c(-1.2, 5.8)) +
+  theme_void() +
+  para_fill +
+  side_u + side_v +
+  vec_u + vec_v + vec_w +
+  lab_u + lab_v + lab_w + lab_a
+
+
+```
+
+The `cross product` is a thus vector that is perpendicular to both the vectors being multiplied. It is a vector that is orthogonal to the plane of the two vectors. We write it as:
+$$
+u \times v = |u| |v| \sin(\theta) \hat{n}
+$${#eq-vector-product}
+
+where $\hat{n}$ is a unit vector perpendicular to the plane of the two vectors.
+
+::: {.content-hidden}
+### Vector Math in `p5.js`
+
+In `p5.js` code ( as we shall see ), The beginning is the `origin`, and the end is a `coordinate` in the space. The coordinate is a pair of numbers, $(x,y)$, that tells us how far along the X-axis and Y-axis the vector's tip lies.
+
+We can use functions like `translate` to create  vectors from other initial points, and use the `p5.Vector` data structure, with its associated functions to accomplish all the operations above. 
+:::
+
 
 ## Wait, But Why?
 
 - We need Quantities that have both magnitude and direction, together at the same time. Think `force`, `velocity`, `acceleration`, `momentum`, `torque`, `magnetic field`, `electric field`, etc.
 - A `vector` is such a quantity. 
-- With `two components` ( at least ) a `vector` is able to achieve this dual purpose at the same time! It is a terrific Mathematical Tool!
+- With `two components` ( at least ) a `vector` is able to achieve this *dual purpose* at the same time! It is a terrific Mathematical Tool!
+- Many real-world physical phenomena work on the basis of the `vector` math methods we have described here. For instance, 
+  - `wind` is a vector quantity, and the `wind chill` is a function of the `wind vector` and the `temperature vector`.
+  - `water flow` is a vector quantity, and the `water current` is a function of the `water flow vector` and the `gravity vector`.
+  - `magnetic field` is a vector quantity, and the `magnetic force` is a function of the `magnetic field vector` and the `electric current vector`.
+  - `electric field` is a vector quantity, and the `electric force` is a function of the `electric field vector` and the `charge vector`.
+  - In gyroscopes, the `angular momentum` is a vector quantity, and the `precession` is a function of the `angular momentum vector` and the `torque vector`.
 
 ## References
 

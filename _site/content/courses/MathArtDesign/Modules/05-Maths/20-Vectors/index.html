@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.11.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2025-03-03">
-<title>  Vectors – Applied Math for Makers and Artists</title>
+<title>  Vector Algebra Whirlwind Tour – Applied Math for Makers and Artists</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -83,18 +83,44 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<meta property="og:title" content=" Vectors – Applied Math for Makers and Artists">
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+<meta property="og:title" content=" Vector Algebra Whirlwind Tour – Applied Math for Makers and Artists">
 <meta property="og:description" content="Arvind V.’s website for teaching mathematics and systems to artists and designers who want to use mathematics as a tool for making artifacts and experiences.">
 <meta property="og:image" content="https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index_files/figure-html/fig-flow-field-1.png">
 <meta property="og:site_name" content="Applied Math for Makers and Artists">
 <meta property="og:image:height" content="593">
 <meta property="og:image:width" content="960">
-<meta name="twitter:title" content=" Vectors – Applied Math for Makers and Artists">
+<meta name="twitter:title" content=" Vector Algebra Whirlwind Tour – Applied Math for Makers and Artists">
 <meta name="twitter:description" content="Arvind V.’s website for teaching mathematics and systems to artists and designers who want to use mathematics as a tool for making artifacts and experiences.">
 <meta name="twitter:image" content="https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index_files/figure-html/fig-flow-field-1.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="nav-sidebar docked nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site"><div class="navbar-container container-fluid">
@@ -148,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/listing.html">Course Modules</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/listing.html">Math Basics</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/listing.html">Course Modules</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/listing.html">Math Basics</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Algebra Whirlwind Tour</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -242,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</span></a>
+ <span class="menu-text"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Algebra Whirlwind Tour</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -613,16 +639,22 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#discussion-1" id="toc-discussion-1" class="nav-link" data-scroll-target="#discussion-1">Discussion #1</a></li>
   <li><a href="#discussion-2" id="toc-discussion-2" class="nav-link" data-scroll-target="#discussion-2">Discussion #2</a></li>
+  <li><a href="#vector-representation" id="toc-vector-representation" class="nav-link" data-scroll-target="#vector-representation">Vector Representation</a></li>
+  <li><a href="#vector-math-operations" id="toc-vector-math-operations" class="nav-link" data-scroll-target="#vector-math-operations">Vector Math Operations!</a></li>
   <li><a href="#wait-but-why" id="toc-wait-but-why" class="nav-link" data-scroll-target="#wait-but-why">Wait, But Why?</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/listing.html">Course Modules</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/listing.html">Math Basics</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</a></li></ol></nav><div class="quarto-title">
+<main class="content page-columns page-full column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/listing.html">Course Modules</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/listing.html">Math Basics</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Algebra Whirlwind Tour</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vectors</h1>
+<iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Algebra Whirlwind Tour</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Complex</div>
+    <div class="quarto-category">vector</div>
+    <div class="quarto-category">Vrame of reference</div>
+    <div class="quarto-category">Euclidean Space</div>
+    <div class="quarto-category">Shadows</div>
+    <div class="quarto-category">Coordinates</div>
   </div>
   </div>
 
@@ -641,7 +673,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 25, 2026</p>
+      <p class="date-modified">November 27, 2026</p>
     </div>
   </div>
     
@@ -690,11 +722,148 @@ Figure&nbsp;1: Flow Field: Vectors at each point in a Plane
 <ul>
 <li>Each of these arrows is a <code>vector</code>: the arrows show both the <em>force</em> <code>magnitude</code> and its <code>direction</code>
 </li>
-</ul></section><section id="wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="wait-but-why">Wait, But Why?</h2>
+<li>How did we <strong>know</strong> direction? How do we know what is turning left, or right, or up or down?</li>
+<li>How do we appreciate how <code>far</code> something is going? How do we measure, quantify, and work with these ideas?</li>
+</ul>
+<p>This brings us to the formal idea of <code>vector representation</code>.</p>
+</section><section id="vector-representation" class="level2"><h2 class="anchored" data-anchor-id="vector-representation">Vector Representation</h2>
+<p>OK, so how do we <em>represent</em> vectors?</p>
+<section id="frame-of-reference" class="level5"><h5 class="anchored" data-anchor-id="frame-of-reference">Frame of Reference</h5>
+<p>From the Questions in the previous section, we may have realized that we need something fixed, something steady, something that stays still and allows us to <code>orient</code> ourselves in the world, for us to appreciate movement. We need a <code>frame of reference</code> to be able to state where a vector lies and where it is headed, so to speak. We need two things:</p>
+<ul>
+<li>The most common frame of reference is the <code>Euclidean</code> space, of geometry, which gives us three immutable axes: X, Y, and Z.</li>
+<li>An origin, <span class="math inline">\((0,0,0)\)</span>, something we unwittingly used in the introduction earlier!</li>
+</ul>
+<p>In the <a href="#fig-flow-field-1" class="quarto-xref">Figure&nbsp;1 (a)</a> and fig-flow-field-2 we have the <code>X-axis</code> running left to right, and the <code>Y-axis</code> running bottom to top. The <code>origin</code> is at the bottom left corner of the figure.</p>
+<p>We state that all vectors of interest to us <em>lie within this space</em>. Where can that lead us?</p>
+</section><section id="shadows-are-components" class="level5"><h5 class="anchored" data-anchor-id="shadows-are-components">Shadows are Components</h5>
+<p>So now that we have a frame of reference, with an origin, any vector that lies in this space automatically has <em>three shadows</em>: one on each of the three axes. These shadows are called the <code>components</code> of the vector.</p>
+<p>For both <a href="#fig-flow-field-1" class="quarto-xref">Figure&nbsp;1 (a)</a> and <a href="#fig-flow-field-2" class="quarto-xref">Figure&nbsp;1 (b)</a>, each little arrow/vector there has a shadow on the X and the Y axis. (The Z-axis is not used in these figures). Each of these shadows is a <code>component</code> of the vector. Of course, since the X-axis and Y-axis are <code>orthogonal</code> to each other, these shadows are also at right angles to each other.</p>
+<p>Note that each shadow is the result of a “light source” that is unique: for each of the three shadows, we need <strong>three</strong> simultaneous light sources. Each light source produces rays light that are <em>perpendicular</em> to one axis only.</p>
+<p>Apropos, <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/60-Orthogonality/index.html">Why are X, Y, and Z perpendicular / at right angles to one another?</a></p>
+</section><section id="components-to-magnitude" class="level5"><h5 class="anchored" data-anchor-id="components-to-magnitude">Components to Magnitude</h5>
+<p>Note how the <code>components</code> are all at right angles to one another! It should immediately bring to mind the Pythogoras Theorem: the <code>vector</code> is a <em>hypotenuse</em> that is based on the components, even in 3D. Hence we can write the magnitude of a vector in terms of its <code>components</code> are: <span id="eq-vector-magnitude"><span class="math display">\[
+|v| = \sqrt{v_x^2 + v_y^2 + v_z^2}
+\tag{1}\]</span></span></p>
+</section><section id="ends-are-coordinates" class="level5"><h5 class="anchored" data-anchor-id="ends-are-coordinates">Ends are Coordinates</h5>
+<p>Each shadow has a beginning and an end, in the frame of reference. So how do we <strong>create</strong> vectors that have arbitrary locations? We usually <em>create</em> vectors by <strong>starting at the origin</strong>: we take the <code>components</code>, lay them out on the respective <code>axes</code>, and then draw the <code>vector</code> to the point to which the shadows point.</p>
+<p>Here is a math idea: clearly, the vector’s <code>magnitude</code> and <code>direction</code> are the same, no matter where it is drawn in the space. From a <em>math standpoint</em> we can deal with all vectors as if they originated from <span class="math inline">\((0,0,0)\)</span>; their absolute location does not really matter. A vector drawn anywhere in the <code>frame of reference</code> can be imagined as the same vector drawn from the <code>origin</code>.</p>
+<p>So, the <code>origin</code> is “always” part of any <code>vector</code>. And the <code>tip</code> of the <code>vector</code> is specified by <code>coordinate-s</code> in the space, which are a pair of <em>shadow numbers <span class="math inline">\((x,y)\)</span></em>. The shadows/<code>coordinates</code> and the <code>vector</code> are just two views of the same quantity</p>
+<p>But then…if we take the <a href="#fig-flow-field-2" class="quarto-xref">Figure&nbsp;1 (b)</a> above, and pile all vectors at <span class="math inline">\((0,0,0)\)</span>, how is that sensible?? Are the <code>vector</code>s actually “there”? What if some were located somewhere further along in the <code>frame of reference</code>, as in the figures above?</p>
+</section></section><section id="vector-math-operations" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="vector-math-operations">Vector Math Operations!</h2>
+<p>For this, we need other <code>operations</code> that we can perform on <code>vectors</code>: <em>addition/subtraction</em>, and from there on to <em>multiplication</em>. We will see that these operations allow us to <code>move</code> vectors around in the space, and also to <code>scale</code> them up or down.</p>
+<section id="vector-addition" class="level5"><h5 class="anchored" data-anchor-id="vector-addition">Vector Addition</h5>
+<p>Yes. If we need to stack up vectors together, then adding their individual X-shadows and Y-shadows will give is a nice new sum vector! If we don’t wish to make shadows, we just place the tail of the second vector and place it at the head of the first, and then the new sum vector stretches from the origin to the tip of the second vector (triangle sum or parallelogram summing of vectors).</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-vector-addition" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-vector-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-vector-addition-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2: Triangle Addition"><img src="index_files/figure-html/fig-vector-addition-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vector-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Triangle Addition
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-component-addition" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-component-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-component-addition-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;3: Addition of Components"><img src="index_files/figure-html/fig-component-addition-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-component-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Addition of Components
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vector Subtraction works the same way, except that we add <span class="math inline">\(-v\)</span> to <span class="math inline">\(u\)</span>. How? By flipping the direction of <span class="math inline">\(v\)</span> and then adding it to <span class="math inline">\(u\)</span>.</p>
+</div>
+</div>
+<p>In <code>p5.js</code> we can use <code>translate()</code> to create vectors at new locations; and of course there is a built-in data structure called <code>p5.Vector</code> that supports <code>vector addition</code>.</p>
+</section><section id="vector-multiplication" class="level5 page-columns page-full"><h5 class="anchored" data-anchor-id="vector-multiplication">Vector Multiplication</h5>
+<p>Given that these vector creatures possess both <code>magnitude</code> and <code>direction</code>, we managed to deal with both very deftly when it came to addition and subtraction: <code>translation</code>, and the X-Y <code>components</code> helped us to not be overly concerned. However, you might suspect that multiplication would a curious thing to achieve.</p>
+<p>There are actually three kinds! Horrors!!</p>
+<section id="scalar-multiplication" class="level6 page-columns page-full"><h6 class="anchored" data-anchor-id="scalar-multiplication">Scalar Multiplication</h6>
+<p>Just scale a single vector, using a <strong>single</strong> <code>scalar</code> number ( not a vector!). The thing simply grows/<code>scales</code> by that factor. The shadows lengthen and the vector lengths. Or shrink, if your <code>scalar</code> is <span class="math inline">\(\cancel{&lt;3}\)</span> but <span class="math inline">\(&lt;1\)</span>.</p>
+<p>The result is still a <code>vector</code>.</p>
+<div class="cell page-columns page-full" data-layout-align="center">
+
+<div class="no-row-height column-margin column-container"><div class="cell-output-display">
+<div id="fig-scalar-mult" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-scalar-mult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-scalar-mult-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;4: Scalar Multiplication"><img src="index_files/figure-html/fig-scalar-mult-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scalar-mult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Scalar Multiplication
+</figcaption></figure>
+</div>
+</div></div></div>
+</section><section id="inner-or-dot-product" class="level6"><h6 class="anchored" data-anchor-id="inner-or-dot-product">Inner, or Dot Product</h6>
+<p>The <code>dot product</code> is something we have already encountered, but in disguise: it is the <em>shadow</em> operation! Only, it is not just the shadow of a <code>vector</code> on <span class="math inline">\(X\)</span> or on <span class="math inline">\(Y\)</span>, but on <em>some other</em> <code>vector</code>. How does this work?</p>
+<p>Of course we can shine a light whose rays are perpendicular to the second vector, and then measure the shadow of the first vector on the second. The curious thing is that this shadow also depends upon the second <code>vector</code>: rather like a distorting mirror in which we appear shorter or taller, like Alice in Wonderland. The shadow is not just a function of the first vector, but also of the second vector.</p>
+<p>This is reasonable in one way: if the second <code>vector</code> is very small, then the shadow of the first one on it should be barely visible. What may be counter-intuitive is that if the second <code>vector</code> is very long, then the shadow of the first one on it should be very long too. It is as if the shadow of one is measured in <strong>units of the other</strong>.</p>
+<p>We are, in the end, interested here only in the <em>size</em> of the shadow, and not its direction. Hence, the <code>dot product</code> is a number, <strong>not a <code>vector</code></strong>. It is a <code>scalar</code>.</p>
+<p>The <code>inner product</code> is written as: <span id="eq-dot-product"><span class="math display">\[
+u \cdot v = |u| |v| \cos(\theta)
+\tag{2}\]</span></span></p>
+<p>from where we see that the <code>dot product</code> depends upon both vectors and how close in angle alignment they are. If they are parallel, the <code>dot product</code> is simply the product of their magnitudes.</p>
+<p><code>p5.js</code> has ready functions for <code>dot product</code> (and the upcoming)<code>cross product</code> of vectors, as well as for <code>vector magnitude</code> and <code>normalization</code>.</p>
+</section><section id="outer-or-cross-product" class="level6 page-columns page-full"><h6 class="anchored" data-anchor-id="outer-or-cross-product">Outer, or Cross Product</h6>
+<p>If would be strange if products with <code>vectors</code> gave only <code>scalars</code> !! The <code>cross product</code> is such an operation: two vectors when (cross) mutliplied, result in a <code>vector</code>.<br>
+A metaphor for the <code>cross-product</code> could just be a spiral staircase: imagine you start at the bottom, facing in the direction of <code>vector</code>#1, and you walk up the stairs, turning counter-clockwise as you climb, until you are facing in the direction of <code>vector</code>#2. Naturally, the <code>height</code> you attain is proportional to the <code>angle</code> through with you climb. That is the resultant <code>outer product</code> <code>vector</code>, which is perpendicular to both the original vectors. And again, perhaps counter-intuitively, the resultant <code>vector</code> has a <code>height</code> = <code>magnitude</code> that is proportional to both <code>vectors</code>, not just their angle.</p>
+<div class="cell page-columns page-full" data-layout-align="center">
+
+<div class="no-row-height column-margin column-container"><div class="cell-output-display">
+<div id="fig-cross-product" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cross-product-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-cross-product-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;5: Cross Product is a vector"><img src="index_files/figure-html/fig-cross-product-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cross-product-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Cross Product is a vector
+</figcaption></figure>
+</div>
+</div></div></div>
+<p>The <code>cross product</code> is a thus vector that is perpendicular to both the vectors being multiplied. It is a vector that is orthogonal to the plane of the two vectors. We write it as: <span id="eq-vector-product"><span class="math display">\[
+u \times v = |u| |v| \sin(\theta) \hat{n}
+\tag{3}\]</span></span></p>
+<p>where <span class="math inline">\(\hat{n}\)</span> is a unit vector perpendicular to the plane of the two vectors.</p>
+</section></section></section><section id="wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="wait-but-why">Wait, But Why?</h2>
 <ul>
 <li>We need Quantities that have both magnitude and direction, together at the same time. Think <code>force</code>, <code>velocity</code>, <code>acceleration</code>, <code>momentum</code>, <code>torque</code>, <code>magnetic field</code>, <code>electric field</code>, etc.</li>
 <li>A <code>vector</code> is such a quantity.</li>
-<li>With <code>two components</code> ( at least ) a <code>vector</code> is able to achieve this dual purpose at the same time! It is a terrific Mathematical Tool!</li>
+<li>With <code>two components</code> ( at least ) a <code>vector</code> is able to achieve this <em>dual purpose</em> at the same time! It is a terrific Mathematical Tool!</li>
+<li>Many real-world physical phenomena work on the basis of the <code>vector</code> math methods we have described here. For instance,
+<ul>
+<li>
+<code>wind</code> is a vector quantity, and the <code>wind chill</code> is a function of the <code>wind vector</code> and the <code>temperature vector</code>.</li>
+<li>
+<code>water flow</code> is a vector quantity, and the <code>water current</code> is a function of the <code>water flow vector</code> and the <code>gravity vector</code>.</li>
+<li>
+<code>magnetic field</code> is a vector quantity, and the <code>magnetic force</code> is a function of the <code>magnetic field vector</code> and the <code>electric current vector</code>.</li>
+<li>
+<code>electric field</code> is a vector quantity, and the <code>electric force</code> is a function of the <code>electric field vector</code> and the <code>charge vector</code>.</li>
+<li>In gyroscopes, the <code>angular momentum</code> is a vector quantity, and the <code>precession</code> is a function of the <code>angular momentum vector</code> and the <code>torque vector</code>.</li>
+</ul>
+</li>
 </ul></section><section id="references" class="level2"><h2 class="anchored" data-anchor-id="references">References</h2>
 <ol type="1">
 <li><a href="https://www.math.hkust.edu.hk/~machas/vector-calculus-for-engineers.pdf" class="uri">https://www.math.hkust.edu.hk/~machas/vector-calculus-for-engineers.pdf</a></li>
