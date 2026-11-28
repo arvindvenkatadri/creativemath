@@ -21,13 +21,18 @@ library(tidyverse)
 library(ggformula)
 library(ggdiagram)
 library(matlib) # Matrix Functions for Teaching and Learning Linear Algebra
+library(symengine) # Maths Engine that does not depend upon Python!
 # pak::pak("seankross/p5")
 library(p5)
-##
-library(symengine) # Maths Engine that does not depend upon Python!
-# library(mosaicCalc) # Analytic Calculus
-# library(pracma) # For numerical analysis and linear algebra
-# library(Ryacas) # Symbolic Algebra
+```
+
+
+```{r}
+#| label: symengine_helper
+#| include: false
+#| 
+
+library(symengine)
 
 symengine_latex_matrix <- function(
   A,
@@ -35,43 +40,61 @@ symengine_latex_matrix <- function(
   caption = NULL,
   inline = FALSE
 ) {
-  # Accept a symengine DenseMatrix or an ordinary R matrix
-  m <- if (inherits(A, "DenseMatrix")) as.matrix(A) else A
-
-  # Ensure all entries are character strings
-  m <- matrix(
-    vapply(m, function(x) as.character(x), character(1)),
-    nrow = nrow(m),
-    ncol = ncol(m)
+  stopifnot(
+    "`A` must be a matrix or symengine DenseMatrix" =
+      is.matrix(A) || inherits(A, "DenseMatrix")
   )
 
-  rows <- apply(m, 1, function(row) paste(row, collapse = " & "))
+  if (inherits(A, "DenseMatrix")) {
+    A <- as.matrix(A)
+  }
 
-  latex_matrix <- paste0(
-    "\\begin{bmatrix}\n",
-    paste(rows, collapse = " \\\\\n"),
-    "\n\\end{bmatrix}"
+  if (length(A) == 0L) {
+    stop("`A` must contain at least one entry.")
+  }
+
+  # Convert every entry to a character string, preserving matrix dimensions.
+  entries <- vapply(
+    A,
+    function(x) as.character(x),
+    FUN.VALUE = character(1),
+    USE.NAMES = FALSE
+  )
+
+  latex_matrix <- sprintf(
+    "\\begin{bmatrix}%s\\end{bmatrix}",
+    paste(
+      apply(matrix(entries, nrow = nrow(A)), 1, paste, collapse = " & "),
+      collapse = " \\\\ "
+    )
   )
 
   if (isTRUE(inline)) {
     return(paste0("$", latex_matrix, "$"))
   }
 
-  # Display equation
   output <- paste0("$$\n", latex_matrix, "\n$$")
 
-  # Optional Quarto equation label
   if (!is.null(label)) {
     output <- paste0(output, " {#", label, "}")
   }
 
-  # Optional caption BELOW the equation
   if (!is.null(caption)) {
     output <- paste0(output, "\n\n*", caption, "*")
   }
 
   output
 }
+
+```
+
+```{r}
+#| output: asis
+#| eval: false
+#| include: false
+#| 
+m <- matrix(c(1:9), nrow = 3, ncol = 3)
+cat(symengine_latex_matrix(m))
 
 ```
 
@@ -376,21 +399,14 @@ Same story as with one shop/prices, repeated to handle the second shop.
 Matrix B2 now has *two* columns for prices, for Shop#1 and Shop#2.
 Multiplication takes each column in B2 and does the same weighted-column-addition with A2. Hence two columns of answers in C2.
 
-::: callout-important
-### Matrix Multiplication in 4 ways
-As shown in Gilbert Strang's book, there are 4 ways of thinking about matrix multiplication:
-
-- Our method of weighting *columns* in A using *columns* B and adding
-- Weighting *rows* in B using *rows* in A and adding
-- Multiplying *individual values* from *rows* in A and *columns* in B and adding up, for each location in C. ( This is the common textbook method)
-- Multiplying rows in A and columns in B. ( A *vectorized* version of the previous method).
-
-For now, this one method should suffice. 
-:::
 
 ## References
 
 1. Gilbert Strang. Linear Algebra and its Applications. Thomson/Brooks-Cole.
 1. Glenn Henshaw.(Sep 28, 2019) *Three Ways to Understand Matrix Multiplication*. <https://ghenshaw-work.medium.com/3-ways-to-understand-matrix-multiplication-fe8a007d7b26>
+
+## Additional Reading
+
+1. Oliver Knill (June 7, 2009, last update, July 24, 2014).*When was Matrix Multiplication invented?*.<https://people.math.harvard.edu/~knill/history/matrix/index.html>
 
 

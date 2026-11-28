@@ -26,45 +26,57 @@
     "items": [
       "/content/courses/MathArtDesign/Modules/05-Maths/10-ComplexNumbers/index.html",
       "/content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html",
+      "/content/courses/MathArtDesign/Modules/05-Maths/30-Orthogonality/index.html",
       "/content/courses/MathArtDesign/Modules/05-Maths/50-Matrices/index.html",
-      "/content/courses/MathArtDesign/Modules/05-Maths/60-Orthogonality/index.html"
+      "/content/courses/MathArtDesign/Modules/05-Maths/55-MatMult/index.html",
+      "/content/courses/MathArtDesign/Modules/05-Maths/65-LinTrans/index.html"
     ]
   },
   {
-    "listing": "/content/courses/MathArtDesign/Modules/20-Systems/listing.html",
+    "listing": "/content/courses/MathArtDesign/Modules/100-AI/listing.html",
     "items": [
-      "/content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html",
-      "/content/courses/MathArtDesign/Modules/20-Systems/15-PhasorDiagrams/index.html",
-      "/content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.html",
-      "/content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.html",
-      "/content/courses/MathArtDesign/Modules/20-Systems/30-Filters/index.html",
-      "/content/courses/MathArtDesign/Modules/20-Systems/80-Convolution/index.html",
-      "/content/courses/MathArtDesign/Modules/20-Systems/90-Modulation/index.html",
-      "/content/courses/MathArtDesign/Modules/20-Systems/120-Kalman/index.html"
+      "/content/courses/MathArtDesign/Modules/100-AI/10-NeuralNets/index.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/20-Perceptron/index.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/30-MLP/index.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/40-BackProp/index.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/50-GradientDescent/index.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/55-HandCalculation/index.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/60-Convnet/index.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/200-LLMs/index.html"
     ]
   },
   {
-    "listing": "/content/courses/ComputationalWorlds/listing.html",
-    "items": []
-  },
-  {
-    "listing": "/content/courses/listing.html",
-    "items": []
-  },
-  {
-    "listing": "/content/courses/MathArtDesign/listing.html",
+    "listing": "/content/courses/MathArtDesign/Modules/40-Iteration/listing.html",
     "items": [
-      "/content/courses/MathArtDesign/Modules/05-Maths/listing.html",
-      "/content/courses/MathArtDesign/Modules/10-Physics/listing.html",
-      "/content/courses/MathArtDesign/Modules/20-Systems/listing.html",
-      "/content/courses/MathArtDesign/Modules/40-Iteration/listing.html",
-      "/content/courses/MathArtDesign/Modules/30-Symmetry/listing.html",
-      "/content/courses/MathArtDesign/Modules/50-Uncertainty/listing.html",
-      "/content/courses/MathArtDesign/Modules/60-Connection/listing.html",
-      "/content/courses/MathArtDesign/Modules/70-Media/listing.html",
-      "/content/courses/MathArtDesign/Modules/100-AI/listing.html",
-      "/content/courses/MathArtDesign/Modules/500-Tech/listing.html",
-      "/content/courses/MathArtDesign/Modules/1000-Projects/index.html"
+      "/content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/index.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/03-iterative-functions-symmetry.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/02-randomness-chaos-games.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/MathArtDesign/Modules/50-Uncertainty/listing.html",
+    "items": [
+      "/content/courses/MathArtDesign/Modules/50-Uncertainty/10-Chance/index.html",
+      "/content/courses/MathArtDesign/Modules/50-Uncertainty/100-Gaussian/index.html",
+      "/content/courses/MathArtDesign/Modules/50-Uncertainty/50-Thoughts/index.html",
+      "/content/courses/MathArtDesign/Modules/50-Uncertainty/20-Chaos/index.html",
+      "/content/courses/MathArtDesign/Modules/50-Uncertainty/30-Agents/index.html",
+      "/content/courses/MathArtDesign/Modules/50-Uncertainty/40-Time/index.html"
+    ]
+  },
+  {
+    "listing": "/content/courses/MathArtDesign/Modules/70-Media/listing.html",
+    "items": [
+      "/content/courses/MathArtDesign/Modules/70-Media/50-AdditiveSynth/index.html",
+      "/content/courses/MathArtDesign/Modules/70-Media/60-FMSynth/index.html",
+      "/content/courses/MathArtDesign/Modules/70-Media/70-MakingNoise/index.html",
+      "/content/courses/MathArtDesign/Modules/70-Media/100-KarplusStrong/index.html",
+      "/content/courses/MathArtDesign/Modules/70-Media/1000-SoundGlossary/index.html"
     ]
   },
   {
@@ -83,50 +95,41 @@
     ]
   },
   {
-    "listing": "/content/courses/MathArtDesign/Modules/70-Media/listing.html",
+    "listing": "/content/courses/MathArtDesign/listing.html",
     "items": [
-      "/content/courses/MathArtDesign/Modules/70-Media/50-AdditiveSynth/index.html",
-      "/content/courses/MathArtDesign/Modules/70-Media/60-FMSynth/index.html",
-      "/content/courses/MathArtDesign/Modules/70-Media/70-MakingNoise/index.html",
-      "/content/courses/MathArtDesign/Modules/70-Media/100-KarplusStrong/index.html",
-      "/content/courses/MathArtDesign/Modules/70-Media/1000-SoundGlossary/index.html"
+      "/content/courses/MathArtDesign/Modules/05-Maths/listing.html",
+      "/content/courses/MathArtDesign/Modules/10-Physics/listing.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/listing.html",
+      "/content/courses/MathArtDesign/Modules/40-Iteration/listing.html",
+      "/content/courses/MathArtDesign/Modules/30-Symmetry/listing.html",
+      "/content/courses/MathArtDesign/Modules/50-Uncertainty/listing.html",
+      "/content/courses/MathArtDesign/Modules/60-Connection/listing.html",
+      "/content/courses/MathArtDesign/Modules/70-Media/listing.html",
+      "/content/courses/MathArtDesign/Modules/100-AI/listing.html",
+      "/content/courses/MathArtDesign/Modules/500-Tech/listing.html",
+      "/content/courses/MathArtDesign/Modules/1000-Projects/index.html"
     ]
   },
   {
-    "listing": "/content/courses/MathArtDesign/Modules/50-Uncertainty/listing.html",
-    "items": [
-      "/content/courses/MathArtDesign/Modules/50-Uncertainty/10-Chance/index.html",
-      "/content/courses/MathArtDesign/Modules/50-Uncertainty/100-Gaussian/index.html",
-      "/content/courses/MathArtDesign/Modules/50-Uncertainty/50-Thoughts/index.html",
-      "/content/courses/MathArtDesign/Modules/50-Uncertainty/20-Chaos/index.html",
-      "/content/courses/MathArtDesign/Modules/50-Uncertainty/30-Agents/index.html",
-      "/content/courses/MathArtDesign/Modules/50-Uncertainty/40-Time/index.html"
-    ]
+    "listing": "/content/courses/listing.html",
+    "items": []
   },
   {
-    "listing": "/content/courses/MathArtDesign/Modules/40-Iteration/listing.html",
-    "items": [
-      "/content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html",
-      "/content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index.html",
-      "/content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/index.html",
-      "/content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.html",
-      "/content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html",
-      "/content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/03-iterative-functions-symmetry.html",
-      "/content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/02-randomness-chaos-games.html",
-      "/content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html"
-    ]
+    "listing": "/content/courses/ComputationalWorlds/listing.html",
+    "items": []
   },
   {
-    "listing": "/content/courses/MathArtDesign/Modules/100-AI/listing.html",
+    "listing": "/content/courses/MathArtDesign/Modules/20-Systems/listing.html",
     "items": [
-      "/content/courses/MathArtDesign/Modules/100-AI/10-NeuralNets/index.html",
-      "/content/courses/MathArtDesign/Modules/100-AI/20-Perceptron/index.html",
-      "/content/courses/MathArtDesign/Modules/100-AI/30-MLP/index.html",
-      "/content/courses/MathArtDesign/Modules/100-AI/40-BackProp/index.html",
-      "/content/courses/MathArtDesign/Modules/100-AI/50-GradientDescent/index.html",
-      "/content/courses/MathArtDesign/Modules/100-AI/55-HandCalculation/index.html",
-      "/content/courses/MathArtDesign/Modules/100-AI/60-Convnet/index.html",
-      "/content/courses/MathArtDesign/Modules/100-AI/200-LLMs/index.html"
+      "/content/courses/MathArtDesign/Modules/20-Systems/05-SineWaves/index.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/15-PhasorDiagrams/index.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/30-Filters/index.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/80-Convolution/index.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/90-Modulation/index.html",
+      "/content/courses/MathArtDesign/Modules/20-Systems/120-Kalman/index.html"
     ]
   },
   {

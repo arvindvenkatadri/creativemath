@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.11.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2025-04-12">
-<title>  Things at Right Angles – Applied Math for Makers and Artists</title>
+<meta name="dcterms.date" content="2026-11-27">
+<title>Why Sine Waves? – Applied Math for Makers and Artists</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../../../">
-<link href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/listing.html" rel="next">
-<link href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/50-Matrices/index.html" rel="prev">
+<link href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" rel="next">
+<link href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/listing.html" rel="prev">
 <link href="../../../../../../content/materials/icon-park-twotone--concept-sharing.svg" rel="icon" type="image/svg+xml">
 <script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -80,36 +80,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-<meta property="og:title" content=" Things at Right Angles – Applied Math for Makers and Artists">
+<meta property="og:title" content="Why Sine Waves? – Applied Math for Makers and Artists">
 <meta property="og:description" content="Arvind V.’s website for teaching mathematics and systems to artists and designers who want to use mathematics as a tool for making artifacts and experiences.">
 <meta property="og:site_name" content="Applied Math for Makers and Artists">
-<meta name="twitter:title" content=" Things at Right Angles – Applied Math for Makers and Artists">
+<meta name="twitter:title" content="Why Sine Waves? – Applied Math for Makers and Artists">
 <meta name="twitter:description" content="Arvind V.’s website for teaching mathematics and systems to artists and designers who want to use mathematics as a tool for making artifacts and experiences.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -167,7 +141,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/listing.html">Course Modules</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/listing.html">Math Basics</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/60-Orthogonality/index.html"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/listing.html">Course Modules</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/05-SineWaves/index.html">Why Sine Waves?</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -247,11 +221,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/listing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text" id="quarto-sidebar-section-3-label">Math Basics</span></a>
-            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section: Math Basics">
+            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section: Math Basics">
               <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
             </button> 
       </div>
-      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth2 show">
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth2 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/10-ComplexNumbers/index.html" class="sidebar-item-text sidebar-link">
@@ -261,7 +235,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Algebra Whirlwind Tour</span></a>
+ <span class="menu-text"><iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Spaces Whirlwind Tour</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/30-Orthogonality/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -272,8 +252,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/60-Orthogonality/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</span></a>
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/55-MatMult/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon>Matrix Multiplication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/65-LinTrans/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Linear Transformations</span></a>
   </div>
 </li>
       </ul>
@@ -447,12 +433,18 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/listing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text" id="quarto-sidebar-section-7-label">Systems</span></a>
-            <button type="button" class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section: Systems">
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section: Systems">
               <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
             </button> 
       </div>
-      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 ">
+      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 show">
 <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/05-SineWaves/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Why Sine Waves?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Frequency and Time Domains</span></a>
@@ -629,40 +621,20 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-<li><a href="#physics" id="toc-physics" class="nav-link" data-scroll-target="#physics">Physics</a></li>
-  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry">Geometry</a></li>
-  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
-  <li><a href="#waveforms" id="toc-waveforms" class="nav-link" data-scroll-target="#waveforms">Waveforms</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#uses-of-orthogonality" id="toc-uses-of-orthogonality" class="nav-link" data-scroll-target="#uses-of-orthogonality">Uses of Orthogonality</a>
-  <ul class="collapse">
-<li><a href="#fourier-series-and-laplace-transforms" id="toc-fourier-series-and-laplace-transforms" class="nav-link" data-scroll-target="#fourier-series-and-laplace-transforms">Fourier Series and Laplace Transforms</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a></li>
-  <li><a href="#machine-learning-and-deep-learning" id="toc-machine-learning-and-deep-learning" class="nav-link" data-scroll-target="#machine-learning-and-deep-learning">Machine Learning and Deep Learning</a></li>
-  <li><a href="#technology" id="toc-technology" class="nav-link" data-scroll-target="#technology">Technology</a></li>
-  <li><a href="#hr" id="toc-hr" class="nav-link" data-scroll-target="#hr">HR</a></li>
-  </ul>
-</li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings">Readings</a></li>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#time-domain" id="toc-time-domain" class="nav-link" data-scroll-target="#time-domain">Time Domain</a></li>
+  <li><a href="#frequency-domain" id="toc-frequency-domain" class="nav-link" data-scroll-target="#frequency-domain">Frequency Domain</a></li>
+  <li><a href="#how-are-these-useful" id="toc-how-are-these-useful" class="nav-link" data-scroll-target="#how-are-these-useful">How are these Useful?</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why"><iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion"><iconify-icon inline="" icon="fluent-mdl2:decision-solid" aria-label="Icon decision-solid from fluent-mdl2 Iconify.design set." title="Icon decision-solid from fluent-mdl2 Iconify.design set."></iconify-icon> Conclusion</a></li>
+  <li><a href="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" id="toc-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" class="nav-link" data-scroll-target="#b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references"><iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/listing.html">Course Modules</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/listing.html">Math Basics</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/60-Orthogonality/index.html"><iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<iconify-icon icon="mdi:angle-right" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Things at Right Angles</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Orthogonality</div>
-    <div class="quarto-category">Perpendicular</div>
-    <div class="quarto-category">Vector</div>
-    <div class="quarto-category">Dot Product</div>
-  </div>
-  </div>
+<main class="content column-body" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/listing.html">Course Modules</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/listing.html">Systems</a></li><li class="breadcrumb-item"><a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/05-SineWaves/index.html">Why Sine Waves?</a></li></ol></nav><div class="quarto-title">
+<h1 class="title">Why Sine Waves?</h1>
+</div>
 
 
 
@@ -672,14 +644,14 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 12, 2025</p>
+      <p class="date">November 27, 2026</p>
     </div>
   </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 24, 2026</p>
+      <p class="date-modified">November 28, 2026</p>
     </div>
   </div>
     
@@ -687,50 +659,56 @@ window.Quarto = {
   
 
 
-</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Human beings since old seem to have had an affinity for things at right angles. The Pythagoras theorem is of course testament to that. And Eratosthenes’ method of measuring the radius/circumference of the earth. But why does this angle seem “right” to us? And where does it show up in our lives?</p>
-<p>In this brief module we will examine the idea of “right-ness” in several different natural phenomena, and application areas, to develop an intuition for how this an essential property that is supremely useful.</p>
-<p>So where do we see this idea popping up?</p>
-<section id="physics" class="level3"><h3 class="anchored" data-anchor-id="physics">Physics</h3>
+</header><hr>
+<section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Why does the world seem full of sine waves? Or is it just our fevered imagination that we see what we feared in high school??</p>
+<p>We have seen what is the <code>amplitude</code> and <code>period</code> of a waveform or signal.</p>
+<p>Now, there is more than one way of looking at waveform. Depending upon the problem of interest (more shortly), we can look at the signal in two main ways:</p>
 <ul>
-<li>In <strong>free space</strong> electromagnetic wave propagation, we have electric and magnetic fields making up the two components of the radiated wave. These are at right angles.</li>
-<li>An object casts a near-zero shadow when the light source illuminating it is right above it, at 90 degrees from the horizontal (i.e perpendicular).</li>
-</ul></section><section id="geometry" class="level3"><h3 class="anchored" data-anchor-id="geometry">Geometry</h3>
-<ul>
-<li>Right-angled triangles and the Pythagoras theorem</li>
-<li>When we draw a graph in Cartesian coordinates, we wish to represent quantities <span class="math inline">\((x,y)\)</span> on a set of axes, which are usually drawn perpendicular to each other, to ensure that the variations along each axis <strong><em>does not cast a shadow</em></strong> on the other axis, and are therefore <strong><em>independent</em></strong>.</li>
-</ul></section><section id="vectors" class="level3"><h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
-<ul>
-<li>When vectors are right angles, their <strong>dot-product</strong> / <strong>inner product</strong> is zero.</li>
-<li>When we compute the <strong>cross product / outer product</strong> of two vectors, the resultant vector is perpendicular to the <strong>plane</strong> containing the two vectors.</li>
-<li>If we have a family of vectors in 2 or more dimensions such that they are all mutually perpendicular to any other vector in the family, these are called an <strong><em>orthogonal basis set</em></strong> of vectors. Such vectors can be used to create a coordinate space of their own, and any other vector can be generated as a <strong>weighted sum</strong> of these basis vectors.</li>
-</ul></section><section id="waveforms" class="level3"><h3 class="anchored" data-anchor-id="waveforms">Waveforms</h3>
-<ul>
-<li>When two (or more!) waveforms are multiplied together, and the product averaged over time, we obtain a <strong>time correlation</strong> of the two. If this happens to be zero, we classify the waveforms as being <strong>orthogonal</strong>. This is, sort of, the calculation of the “shadow” each waveform casts on the other.</li>
-<li>When we have a <strong>family</strong> of time functions which are <strong><em>each mutually orthogonal</em></strong> to any other waveform from the family, we have what is called an <strong><em>orthogonal basis set</em></strong> of waveforms. Such waveforms can be used to create a <strong>waveform space</strong> of their own, and any other waveform can be generated as a <strong>weighted sum</strong> of these basis waveforms.</li>
-</ul></section></section><section id="uses-of-orthogonality" class="level2"><h2 class="anchored" data-anchor-id="uses-of-orthogonality">Uses of Orthogonality</h2>
-<section id="fourier-series-and-laplace-transforms" class="level3"><h3 class="anchored" data-anchor-id="fourier-series-and-laplace-transforms">Fourier Series and Laplace Transforms</h3>
-</section><section id="data-visualization" class="level3"><h3 class="anchored" data-anchor-id="data-visualization">Data Visualization</h3>
-<p>Why are axes in data visualization at right angles?</p>
-<p>What if they weren’t? Are there any visualizations where the variables are not mapped to ( a set of) orthogonal axes?</p>
-</section><section id="machine-learning-and-deep-learning" class="level3"><h3 class="anchored" data-anchor-id="machine-learning-and-deep-learning">Machine Learning and Deep Learning</h3>
-<ul>
-<li>In a <a href="../../../../../../content/courses/MathArtDesign/Modules/100-AI/20-Perceptron/index.html">Perceptron</a>, we have a <code>vector dot product</code> between the input and the weight vectors.</li>
-<li>In an ML-Classification problem, we consider a dataset of points containing say two classes. Each row in the data is a vector, with <span class="math inline">\(length = n(columns)\)</span>. We take a <code>vector</code> of <strong><em>weights</em></strong> of the same length, and take the vector dot-product of this fixed weight vector with each of the rwo-observations. The result of this operation is one dot-product number per observation in the data.<br>
-</li>
-<li>Now consider the values of these dot products. Is the dot product negative, or positive in value? Can we use that polarity to decide on which observation belongs to which class? This is at the heart of an ML algorithm called <a href="">Support Vector Machines</a>.</li>
-</ul></section><section id="technology" class="level3"><h3 class="anchored" data-anchor-id="technology">Technology</h3>
-<ul>
-<li>GPS / CDMA: See here for a quick intro to <a href="https://arvindvenkatadri.com/teaching/3-order-and-chaos/modules/5b-voronoi/#proximities-in-the-gps-system-1">GPS</a>. The codes used in GPS are a <em>family</em> of digital sequences called <strong>Gold codes</strong>. These are also an orthogonal set with near-zero cross-correlation between any pair of sequences from the set.</li>
-<li>Bluetooth</li>
-</ul></section><section id="hr" class="level3"><h3 class="anchored" data-anchor-id="hr">HR</h3>
-<ul>
-<li>Brainstorming: If all members of a team <strong>sit together</strong> to brainstorm, <strong>GroupThink</strong> ensues very quickly, and people will be <em>aligning</em> themselves with each other, by way of opinion or ideas.</li>
-<li>In a team, we need to have people who are <strong>orthogonal</strong> to each other, in the sense that they have different skill sets, and different ways of looking at the same problem. This is what makes a team effective.</li>
-</ul></section></section><section id="references" class="level2"><h2 class="anchored" data-anchor-id="references">References</h2>
-</section><section id="readings" class="level2"><h2 class="anchored" data-anchor-id="readings">Readings</h2>
+<li>Amplitude vs Time</li>
+<li>Amplitude vs Frequency</li>
+</ul>
+<p>These two ways of looking at the same signal are called the <strong>Time Domain</strong> and the <strong>Frequency Domain</strong> representations of the signal.</p>
+</section><section id="time-domain" class="level2"><h2 class="anchored" data-anchor-id="time-domain">Time Domain</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills" style="background: whitesmoke; ">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><iconify-icon inline="" icon="skill-icons:p5js" aria-label="Icon p5js from skill-icons Iconify.design set." title="Icon p5js from skill-icons Iconify.design set."></iconify-icon> p5.js</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><iconify-icon inline="" icon="la:r-project" aria-label="Icon r-project from la Iconify.design set." title="Icon r-project from la Iconify.design set."></iconify-icon> R</a></li>
+</ul>
+<div class="tab-content nav-pills" style="background: whitesmoke; ">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+
+</div>
+</div>
+</div>
+</section><section id="frequency-domain" class="level2"><h2 class="anchored" data-anchor-id="frequency-domain">Frequency Domain</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills" style="background: whitesmoke; ">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href=""><iconify-icon inline="" icon="skill-icons:p5js" aria-label="Icon p5js from skill-icons Iconify.design set." title="Icon p5js from skill-icons Iconify.design set."></iconify-icon> p5.js</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href=""><iconify-icon inline="" icon="la:r-project" aria-label="Icon r-project from la Iconify.design set." title="Icon r-project from la Iconify.design set."></iconify-icon> R</a></li>
+</ul>
+<div class="tab-content nav-pills" style="background: whitesmoke; ">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+
+</div>
+</div>
+</div>
+</section><section id="how-are-these-useful" class="level2"><h2 class="anchored" data-anchor-id="how-are-these-useful">How are these Useful?</h2>
+</section><section id="your-turn" class="level2"><h2 class="anchored" data-anchor-id="your-turn">Your Turn</h2>
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206d696e67637574652074686f756768742d6c696e65203e7d7d-wait-but-why">
+<iconify-icon inline="" icon="mingcute:thought-line" aria-label="Icon thought-line from mingcute Iconify.design set." title="Icon thought-line from mingcute Iconify.design set."></iconify-icon> Wait, But Why?</h2>
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e69667920666c75656e742d6d646c32206465636973696f6e2d736f6c6964203e7d7d-conclusion">
+<iconify-icon inline="" icon="fluent-mdl2:decision-solid" aria-label="Icon decision-solid from fluent-mdl2 Iconify.design set." title="Icon decision-solid from fluent-mdl2 Iconify.design set."></iconify-icon> Conclusion</h2>
+</section><section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references" class="level2"><h2 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2069636f6e696679206f6f7569207265666572656e6365732d6c7472203e7d7d-references">
+<iconify-icon inline="" icon="ooui:references-ltr" aria-label="Icon references-ltr from ooui Iconify.design set." title="Icon references-ltr from ooui Iconify.design set."></iconify-icon> References</h2>
 <ol type="1">
-<li>Arvind V on Quora. (2016). <em>What is orthogonality of a signal?</em> <a href="https://qr.ae/pATe4W" class="uri">https://qr.ae/pATe4W</a>
+<li>NEXUS/Physics. <em>Physics for Life Science Students</em>.<a href="https://www.compadre.org/nexusph/course/TOC.cfm" class="uri">https://www.compadre.org/nexusph/course/TOC.cfm</a>
 </li>
 </ol>
 
@@ -1236,13 +1214,13 @@ window.Quarto = {
   </script><script type="application/javascript">
   window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script><nav class="page-navigation column-body" aria-label="Page"><div class="nav-page nav-page-previous">
-      <a href="../../../../../../content/courses/MathArtDesign/Modules/05-Maths/50-Matrices/index.html" class="pagination-link" aria-label="<iconify-icon icon=&quot;mdi:matrix&quot; width=&quot;1.2em&quot; height=&quot;1.2em&quot;></iconify-icon> <iconify-icon icon=&quot;gravity-ui:function&quot; width=&quot;1.2em&quot; height=&quot;1.2em&quot;></iconify-icon> Matrix Algebra Whirlwind Tour">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Matrix Algebra Whirlwind Tour</span>
+      <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/listing.html" class="pagination-link" aria-label="Systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Systems</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../../../../content/courses/MathArtDesign/Modules/30-Symmetry/listing.html" class="pagination-link" aria-label="Symmetry">
-        <span class="nav-page-text">Symmetry</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../../../content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html" class="pagination-link" aria-label="Frequency and Time Domains">
+        <span class="nav-page-text">Frequency and Time Domains</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

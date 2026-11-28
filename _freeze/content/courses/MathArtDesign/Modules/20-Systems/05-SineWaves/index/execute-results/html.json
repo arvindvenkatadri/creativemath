@@ -1,0 +1,15 @@
+{
+  "hash": "e10cb6906e8a3e1451cbef5d3bdd6bba",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Why Sine Waves?\"\norder: 05\ndate: 27/Nov/2026\ndate-modified: today\n---\n\n---\n\n---\n# Course-wide knitr / Quarto defaults.\n# Pages should include this file and then load only the packages that lesson needs.\nknitr:\n  opts_chunk:\n    echo: true\n    warning: false\n    message: false\n    fig-align: center\n    fig-width: 5\n    fig-asp: 0.618\n    dpi: 96\n    out-width: \"75%\"\n    # ragg is fine for points/lines; fonts are registered with systemfonts below\n    # so ggrepel can see the same families. Do not pair ragg with showtext-only fonts.\n    dev: \"ragg_png\"\n---\n\n\n::: {.cell layout-align=\"center\"}\n\n:::\n\n\n\n\n\n::: {.cell layout-align=\"center\"}\n\n:::\n\n\n\n## Introduction\n\nWhy does the world seem full of sine waves? Or is it just our fevered imagination that we see what we feared in high school??\n\nWe have seen what is the `amplitude` and `period` of a waveform or signal. \n\nNow, there is more than one way of looking at  waveform. Depending upon the problem of interest (more shortly), we can look at the signal in two main ways:\n\n- Amplitude vs Time\n- Amplitude vs Frequency\n\nThese two ways of looking at the same signal are called the **Time Domain** and the **Frequency Domain** representations of the signal.\n\n## Time Domain\n\n::: {.panel-tabset .nav-pills style=\"background: whitesmoke; \"}\n\n### {{< iconify skill-icons p5js >}} p5.js\n\n### {{< iconify la r-project >}} R\n\n\n:::\n\n\n## Frequency Domain\n\n::: {.panel-tabset .nav-pills style=\"background: whitesmoke; \"}\n\n### {{< iconify skill-icons p5js >}} p5.js\n\n### {{< iconify la r-project >}} R\n\n\n:::\n\n\n## How are these Useful?\n\n\n\n## Your Turn\n\n\n\n## {{< iconify mingcute thought-line >}} Wait, But Why?\n\n\n\n## {{< iconify fluent-mdl2 decision-solid >}} Conclusion\n\n\n\n## {{< iconify ooui references-ltr >}} References\n\n1. NEXUS/Physics. *Physics for Life Science Students*.<https://www.compadre.org/nexusph/course/TOC.cfm>\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

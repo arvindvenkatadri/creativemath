@@ -1,5 +1,5 @@
 ---
-title: <iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Algebra Whirlwind Tour
+title: <iconify-icon icon="ph:vector-three" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Vector Spaces Whirlwind Tour
 subtitle: ""
 subject: "Shapes and Code"
 abstract: ""
@@ -98,6 +98,7 @@ Apropos, [Why are X, Y, and Z perpendicular / at right angles to one another?](.
 
 Note how the `components`  are all at right angles to one another! It should immediately bring to mind the Pythogoras Theorem: the `vector` is a *hypotenuse* that is based on the components, even in 3D. 
 Hence we can write the magnitude of a vector in terms of its `components` are:
+
 $$
 |v| = \sqrt{v_x^2 + v_y^2 + v_z^2}
 $${#eq-vector-magnitude}
@@ -112,6 +113,24 @@ Here is a math idea: clearly, the vector's `magnitude` and `direction` are the s
 So, the `origin` is "always" part of any `vector`. And the `tip` of the `vector` is specified by `coordinate-s` in the space, which are a pair of *shadow numbers $(x,y)$*. The shadows/`coordinates` and the `vector` are just two views of the same quantity
 
 But then...if we take the @fig-flow-field-2 above, and pile all vectors at $(0,0,0)$, how is that sensible?? Are the `vector`s actually "there"? What if some were located somewhere further along in the `frame of reference`, as in the figures above?
+
+## Vector Spaces
+
+So, with all these concepts and terminology, we now have an idea of a `vector space`: a `frame of reference` with an `origin`, and a set of `vectors` that lie in this space. Each vector has a `magnitude` and a `direction`, and can be represented by its `components` along the axes of the space.
+The **unit vectors** along the X-axis and Y-axis are usually denoted as $\hat{i}$ and $\hat{j}$, respectively. Any vector in the 2D space can be expressed as a linear combination of these unit vectors:
+
+$$
+\overrightarrow{a} = a_x \hat{i} + a_y \hat{j}
+$${#eq-vector-basis}
+
+::: callout-important
+## Vector Basis = Alphabet
+The vectors $\hat{i}$ and $\hat{j}$ are therefore called a `basis` of the `vector space`. This idea will be immensely useful when we get to [Matrices](../50-Matrices/index.qmd) and learn how to [`transform` vectors in a space.](../65-LinTrans/index.qmd).
+
+The `basis vectors` $\hat{i}$ and $\hat{j}$ are like the `alphabet` of the `vector space`. Just as we can write any word in English using the 26 letters of the alphabet, we can express any vector in the 2D space using the basis vectors $\hat{i}$ and $\hat{j}$.
+:::
+
+
 
 ## Vector Math Operations!
 
@@ -362,7 +381,21 @@ $${#eq-dot-product}
 
 from where we see that the `dot product` depends upon both vectors and how close in angle alignment they are. If they are parallel, the `dot product` is simply the product of their magnitudes. 
 
-`p5.js` has ready functions for `dot product` (and the upcoming)`cross product` of vectors, as well as for `vector magnitude` and `normalization`.
+::: callout-important
+### Dot Product with the same Vector
+If in @eq-dot-product, $u$ and $v$ are the same vector, we get an important measure: the idea of the `norm` of the vector. As you can imagine, this becomes:
+$$
+u \cdot u = |u|^2
+$${#eq-norm}
+
+Sometimes we need a `unit vector` [in the direction of an existing one]{style="background-color:yellow;"}. At such times we perform the following operation:
+$$
+\hat{u} = \frac{u}{|u|} = \frac{u}{\sqrt{u \cdot u}}
+$${#eq-normmalization}
+
+This is known as `normalization`. 
+
+:::
 
 ###### Outer, or Cross Product
 
@@ -449,14 +482,12 @@ $${#eq-vector-product}
 
 where $\hat{n}$ is a unit vector perpendicular to the plane of the two vectors.
 
-::: {.content-hidden}
-### Vector Math in `p5.js`
 
-In `p5.js` code ( as we shall see ), The beginning is the `origin`, and the end is a `coordinate` in the space. The coordinate is a pair of numbers, $(x,y)$, that tells us how far along the X-axis and Y-axis the vector's tip lies.
+### Vectors and Vector Math in `p5.js`
 
-We can use functions like `translate` to create  vectors from other initial points, and use the `p5.Vector` data structure, with its associated functions to accomplish all the operations above. 
-:::
+In `p5.js` code the `p5.vector` class of data structures support the creating and manipulation of `vectors`. The beginning is the `origin`, and the end is a pair of `coordinate`-s $(x,y)$, that tells us how far along the X-axis and Y-axis the vector's tip lies. `p5.js` does not automatically `draw` lines and arrows, even for `p5.Vector` data. These need to be drawn separately. 
 
+We can use functions like `translate` to create  vectors from other initial points, and use the `p5.Vector` data structure, with its associated functions to accomplish all the operations above. `p5.js` has ready functions for `dot product` and `cross product` of vectors, as well as for `vector magnitude` and `normalization`.
 
 ## Wait, But Why?
 

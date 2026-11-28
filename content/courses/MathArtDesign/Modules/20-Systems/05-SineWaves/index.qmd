@@ -1,0 +1,82 @@
+---
+title: "Why Sine Waves?"
+order: 05
+date: 27/Nov/2026
+date-modified: today
+---
+
+---
+
+{{< include /_setup_claude_made.qmd >}}
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(ggformula)
+library(mosaicCalc) 
+library(ggdiagram)
+
+```
+
+
+## Introduction
+
+Why does the world seem full of sine waves? Or is it just our fevered imagination that we see what we feared in high school??
+
+We have seen what is the `amplitude` and `period` of a waveform or signal. 
+
+Now, there is more than one way of looking at  waveform. Depending upon the problem of interest (more shortly), we can look at the signal in two main ways:
+
+- Amplitude vs Time
+- Amplitude vs Frequency
+
+These two ways of looking at the same signal are called the **Time Domain** and the **Frequency Domain** representations of the signal.
+
+## Time Domain
+
+::: {.panel-tabset .nav-pills style="background: whitesmoke; "}
+
+### {{< iconify skill-icons p5js >}} p5.js
+
+### {{< iconify la r-project >}} R
+
+
+:::
+
+
+## Frequency Domain
+
+::: {.panel-tabset .nav-pills style="background: whitesmoke; "}
+
+### {{< iconify skill-icons p5js >}} p5.js
+
+### {{< iconify la r-project >}} R
+
+
+:::
+
+
+## How are these Useful?
+
+
+
+## Your Turn
+
+
+
+## {{< iconify mingcute thought-line >}} Wait, But Why?
+
+
+
+## {{< iconify fluent-mdl2 decision-solid >}} Conclusion
+
+
+
+## {{< iconify ooui references-ltr >}} References
+
+1. NEXUS/Physics. *Physics for Life Science Students*.<https://www.compadre.org/nexusph/course/TOC.cfm>
+

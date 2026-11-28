@@ -45,71 +45,167 @@
     <lastmod>2026-11-24T12:04:31.932Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/60-Orthogonality/index.html</loc>
-    <lastmod>2026-11-21T06:00:35.044Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html</loc>
+    <lastmod>2026-11-28T01:06:49.334Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/50-Matrices/index.html</loc>
+    <lastmod>2026-11-27T23:38:49.012Z</lastmod>
   </url>
   <url>
     <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/listing.html</loc>
     <lastmod>2026-11-25T02:27:24.469Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html</loc>
-    <lastmod>2026-11-24T08:43:23.822Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/05-SineWaves/index.html</loc>
+    <lastmod>2026-11-27T05:25:45.652Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/30-Filters/index.html</loc>
-    <lastmod>2026-11-21T06:16:38.728Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.html</loc>
+    <lastmod>2026-11-21T06:11:45.192Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/90-Modulation/index.html</loc>
-    <lastmod>2026-04-08T22:57:57.247Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/15-PhasorDiagrams/index.html</loc>
+    <lastmod>2026-11-21T06:11:05.856Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/120-Kalman/index.html</loc>
-    <lastmod>2026-07-01T00:02:11.012Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/80-Convolution/index.html</loc>
+    <lastmod>2026-11-21T06:19:58.988Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/listing.html</loc>
-    <lastmod>2026-11-25T02:26:57.438Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.html</loc>
+    <lastmod>2026-11-21T06:15:06.919Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/30-MLP/index.html</loc>
-    <lastmod>2026-05-10T01:26:55.684Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/60-Convnet/index.html</loc>
+    <lastmod>2026-11-22T03:58:23.623Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/40-BackProp/index.html</loc>
-    <lastmod>2026-05-10T01:23:43.190Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/55-HandCalculation/index.html</loc>
+    <lastmod>2026-05-10T01:25:55.921Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/20-Perceptron/index.html</loc>
-    <lastmod>2026-05-27T23:38:03.681Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/listing.html</loc>
+    <lastmod>2026-11-25T02:35:17.060Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/200-LLMs/index.html</loc>
-    <lastmod>2026-05-27T23:36:04.296Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/10-NeuralNets/index.html</loc>
+    <lastmod>2026-05-10T01:03:43.275Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/03-iterative-functions-symmetry.html</loc>
-    <lastmod>2026-11-06T01:59:26.083Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/50-GradientDescent/index.html</loc>
+    <lastmod>2026-11-22T03:53:04.870Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index.html</loc>
-    <lastmod>2026-11-24T09:04:56.236Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html</loc>
+    <lastmod>2026-11-24T09:05:46.556Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.html</loc>
-    <lastmod>2026-11-24T09:00:52.401Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html</loc>
+    <lastmod>2026-11-24T09:10:36.247Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html</loc>
-    <lastmod>2026-11-24T09:11:22.005Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/listing.html</loc>
+    <lastmod>2026-11-22T23:45:27.174Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/02-randomness-chaos-games.html</loc>
-    <lastmod>2026-11-23T03:03:26.244Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/index.html</loc>
+    <lastmod>2026-11-24T09:09:42.350Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/30-Agents/index.html</loc>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/100-Gaussian/index.html</loc>
+    <lastmod>2026-07-02T00:08:17.453Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/20-Chaos/index.html</loc>
+    <lastmod>2026-11-22T03:06:59.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/listing.html</loc>
+    <lastmod>2026-11-25T02:34:14.143Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/50-Thoughts/index.html</loc>
+    <lastmod>2025-07-17T14:04:43.378Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/100-KarplusStrong/index.html</loc>
+    <lastmod>2026-04-16T23:28:53.910Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/listing.html</loc>
+    <lastmod>2026-11-25T02:33:08.059Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/70-MakingNoise/index.html</loc>
+    <lastmod>2026-11-18T23:32:04.180Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/500-KolamMath/index.html</loc>
+    <lastmod>2026-11-24T11:50:22.645Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/40-SymmetryAverage/03-symmetry-on-average.html</loc>
+    <lastmod>2026-11-07T02:13:02.444Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/600-VoroKolam/index.html</loc>
+    <lastmod>2026-11-24T11:50:44.560Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/listing.html</loc>
+    <lastmod>2026-11-25T02:30:51.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/200-DualGraphIncidence/index.html</loc>
+    <lastmod>2026-11-24T11:49:15.045Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/listing.html</loc>
+    <lastmod>2026-11-25T03:34:06.373Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/listing.html</loc>
+    <lastmod>2025-07-21T23:14:54.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/400-Kolams/index.html</loc>
+    <lastmod>2026-11-24T11:49:58.538Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html</loc>
+    <lastmod>2026-11-24T09:35:27.564Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/300-LundaGeometry/index.html</loc>
+    <lastmod>2026-11-24T11:49:19.809Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/30-MirrorMatrices/index.html</loc>
+    <lastmod>2026-11-24T11:48:41.276Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/20-Adjacency/index.html</loc>
+    <lastmod>2026-11-24T09:30:26.099Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/100-MirrorMatrix/index.html</loc>
+    <lastmod>2026-11-24T11:49:07.313Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/1000-SoundGlossary/index.html</loc>
+    <lastmod>2026-11-25T02:32:23.662Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/50-AdditiveSynth/index.html</loc>
+    <lastmod>2026-11-22T03:32:28.986Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/60-FMSynth/index.html</loc>
+    <lastmod>2026-11-24T08:35:24.781Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/40-Time/index.html</loc>
     <lastmod>2025-07-17T14:04:43.374Z</lastmod>
   </url>
   <url>
@@ -117,164 +213,80 @@
     <lastmod>2025-07-21T23:42:17.418Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/40-Time/index.html</loc>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/30-Agents/index.html</loc>
     <lastmod>2025-07-17T14:04:43.374Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/60-FMSynth/index.html</loc>
-    <lastmod>2026-11-24T08:35:24.781Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/02-randomness-chaos-games.html</loc>
+    <lastmod>2026-11-23T03:03:26.244Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/50-AdditiveSynth/index.html</loc>
-    <lastmod>2026-11-22T03:32:28.986Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/140-Fractals/index.html</loc>
+    <lastmod>2026-11-24T09:11:22.005Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/1000-SoundGlossary/index.html</loc>
-    <lastmod>2026-11-25T02:32:23.662Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/150-LSystems/index.html</loc>
+    <lastmod>2026-11-24T09:00:52.401Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/100-MirrorMatrix/index.html</loc>
-    <lastmod>2026-11-24T11:49:07.313Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/110-AffineFractals/index.html</loc>
+    <lastmod>2026-11-24T09:04:56.236Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/20-Adjacency/index.html</loc>
-    <lastmod>2026-11-24T09:30:26.099Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/03-iterative-functions-symmetry.html</loc>
+    <lastmod>2026-11-06T01:59:26.083Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/30-MirrorMatrices/index.html</loc>
-    <lastmod>2026-11-24T11:48:41.276Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/200-LLMs/index.html</loc>
+    <lastmod>2026-05-27T23:36:04.296Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/300-LundaGeometry/index.html</loc>
-    <lastmod>2026-11-24T11:49:19.809Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/20-Perceptron/index.html</loc>
+    <lastmod>2026-05-27T23:38:03.681Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/10-GraphNetworks/index.html</loc>
-    <lastmod>2026-11-24T09:35:27.564Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/40-BackProp/index.html</loc>
+    <lastmod>2026-05-10T01:23:43.190Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/400-Kolams/index.html</loc>
-    <lastmod>2026-11-24T11:49:58.538Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/30-MLP/index.html</loc>
+    <lastmod>2026-05-10T01:26:55.684Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/listing.html</loc>
-    <lastmod>2025-07-21T23:14:54.332Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/listing.html</loc>
+    <lastmod>2026-11-25T02:26:57.438Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/listing.html</loc>
-    <lastmod>2026-11-25T03:34:06.373Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/120-Kalman/index.html</loc>
+    <lastmod>2026-07-01T00:02:11.012Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/200-DualGraphIncidence/index.html</loc>
-    <lastmod>2026-11-24T11:49:15.045Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/90-Modulation/index.html</loc>
+    <lastmod>2026-04-08T22:57:57.247Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/listing.html</loc>
-    <lastmod>2026-11-25T02:30:51.738Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/30-Filters/index.html</loc>
+    <lastmod>2026-11-21T06:16:38.728Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/600-VoroKolam/index.html</loc>
-    <lastmod>2026-11-24T11:50:44.560Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/40-SymmetryAverage/03-symmetry-on-average.html</loc>
-    <lastmod>2026-11-07T02:13:02.444Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/60-Connection/500-KolamMath/index.html</loc>
-    <lastmod>2026-11-24T11:50:22.645Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/70-MakingNoise/index.html</loc>
-    <lastmod>2026-11-18T23:32:04.180Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/listing.html</loc>
-    <lastmod>2026-11-25T02:33:08.059Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/70-Media/100-KarplusStrong/index.html</loc>
-    <lastmod>2026-04-16T23:28:53.910Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/50-Thoughts/index.html</loc>
-    <lastmod>2025-07-17T14:04:43.378Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/listing.html</loc>
-    <lastmod>2026-11-25T02:34:14.143Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/20-Chaos/index.html</loc>
-    <lastmod>2026-11-22T03:06:59.710Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/50-Uncertainty/100-Gaussian/index.html</loc>
-    <lastmod>2026-07-02T00:08:17.453Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/120-ChaosGames/index.html</loc>
-    <lastmod>2026-11-24T09:09:42.350Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/listing.html</loc>
-    <lastmod>2026-11-22T23:45:27.174Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/130-SymmetryOnAverage/index.html</loc>
-    <lastmod>2026-11-24T09:10:36.247Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/40-Iteration/100-IteratedFunctions/index.html</loc>
-    <lastmod>2026-11-24T09:05:46.556Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/50-GradientDescent/index.html</loc>
-    <lastmod>2026-11-22T03:53:04.870Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/10-NeuralNets/index.html</loc>
-    <lastmod>2026-05-10T01:03:43.275Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/listing.html</loc>
-    <lastmod>2026-11-25T02:35:17.060Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/55-HandCalculation/index.html</loc>
-    <lastmod>2026-05-10T01:25:55.921Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/100-AI/60-Convnet/index.html</loc>
-    <lastmod>2026-11-22T03:58:23.623Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/25-FourierSeries/index.html</loc>
-    <lastmod>2026-11-21T06:15:06.919Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/80-Convolution/index.html</loc>
-    <lastmod>2026-11-21T06:19:58.988Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/15-PhasorDiagrams/index.html</loc>
-    <lastmod>2026-11-21T06:11:05.856Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/20-SamplingAliasing/index.html</loc>
-    <lastmod>2026-11-21T06:11:45.192Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/20-Systems/10-FrequencyandTimeDomains/index.html</loc>
+    <lastmod>2026-11-24T08:43:23.822Z</lastmod>
   </url>
   <url>
     <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/10-ComplexNumbers/index.html</loc>
     <lastmod>2026-11-24T08:37:38.233Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/50-Matrices/index.html</loc>
-    <lastmod>2026-11-24T08:40:37.544Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/65-LinTrans/index.html</loc>
+    <lastmod>2026-11-28T02:11:58.075Z</lastmod>
   </url>
   <url>
-    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/20-Vectors/index.html</loc>
-    <lastmod>2026-11-26T09:35:03.327Z</lastmod>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/30-Orthogonality/index.html</loc>
+    <lastmod>2026-11-27T23:04:56.735Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/05-Maths/55-MatMult/index.html</loc>
+    <lastmod>2026-11-27T23:44:32.907Z</lastmod>
   </url>
   <url>
     <loc>https://mathformakers.netlify.app/content/courses/MathArtDesign/Modules/10-Physics/01-Movement/index.html</loc>

@@ -1,0 +1,452 @@
+---
+title: <iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon> <iconify-icon icon="gravity-ui:function" width="1.2em" height="1.2em"></iconify-icon> Linear Transformations
+subtitle: "Altering the Shape of Space"
+subject: ""
+abstract: ""
+date: 28/November/2026
+date-modified: today
+order: 65
+code-fold: true
+categories:
+- Vectors
+- Matrices
+- Matrix Multiplication
+- Linear Transformations
+---
+
+{{< include /_setup_claude_made.qmd >}}
+
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggformula)
+library(ggdiagram)
+library(matlib) # Matrix Functions for Teaching and Learning Linear Algebra
+library(symengine) # Maths Engine that does not depend upon Python!
+# pak::pak("seankross/p5")
+library(p5)
+
+```
+
+
+```{r}
+#| label: symengine_helper
+#| include: false
+#| 
+
+library(symengine)
+
+symengine_latex_matrix <- function(
+  A,
+  label = NULL,
+  caption = NULL,
+  inline = FALSE
+) {
+  stopifnot(
+    "`A` must be a matrix or symengine DenseMatrix" =
+      is.matrix(A) || inherits(A, "DenseMatrix")
+  )
+
+  if (inherits(A, "DenseMatrix")) {
+    A <- as.matrix(A)
+  }
+
+  if (length(A) == 0L) {
+    stop("`A` must contain at least one entry.")
+  }
+
+  # Convert every entry to a character string, preserving matrix dimensions.
+  entries <- vapply(
+    A,
+    function(x) as.character(x),
+    FUN.VALUE = character(1),
+    USE.NAMES = FALSE
+  )
+
+  latex_matrix <- sprintf(
+    "\\begin{bmatrix}%s\\end{bmatrix}",
+    paste(
+      apply(matrix(entries, nrow = nrow(A)), 1, paste, collapse = " & "),
+      collapse = " \\\\ "
+    )
+  )
+
+  if (isTRUE(inline)) {
+    return(paste0("$", latex_matrix, "$"))
+  }
+
+  output <- paste0("$$\n", latex_matrix, "\n$$")
+
+  if (!is.null(label)) {
+    output <- paste0(output, " {#", label, "}")
+  }
+
+  if (!is.null(caption)) {
+    output <- paste0(output, "\n\n*", caption, "*")
+  }
+
+  output
+}
+
+```
+
+```{r}
+#| output: asis
+#| eval: false
+#| include: false
+#| 
+m <- matrix(c(1:9), nrow = 3, ncol = 3)
+cat(symengine_latex_matrix(m))
+
+```
+
+
+## Introduction
+
+We have looked at `vectors`, and `matrices`. Now we will see how these two views of number-arrays coalesce and come together in the form of `linear transformations`. This will allow us to conceptualize the idea of shapes created using vectors can be morphed based on *where we stand* and how a POV is everything in Space.
+
+## Basis Vectors in a Matrix?
+
+Recollect our definion of `vectors` and the related ideas of `components` and `coordinates`. We saw that a vector can be represented as a linear combination of basis vectors. 
+
+$$
+\overrightarrow{a} = a_x \hat{i} + a_y \hat{j}
+$${#eq-vector-basis}
+
+Now, since $\hat{i}$ and $\hat{j}$ are *themselves vectors*, we should be able to write `coordinates` and `components` for them!! Can we, for example, in 2D space, the standard `basis vectors` do this?
+
+:::: {.columns}
+
+::: {.column width="45%"}
+$$
+\hat{i} = \mathbf{e_1} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad\\
+\\
+\hat{j} = \mathbf{e_2} = \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \quad
+$$
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+```{r}
+#| label: fig-unit-vectors
+#| fig-cap: Unit Vectors
+#| echo: false
+#| 
+
+# Colours and sizes
+col_i <- "#1f77b4"; col_j <- "#d62728"
+lab_size <- 28
+ah <- ggarrow::arrow_head_wings()
+
+O <- ob_point(0, 0)
+
+# Axes (grey)
+x_axis <- ob_segment(ob_point(-0.6, 0), ob_point(1.6, 0), color = "grey60", linewidth = 0.8)
+y_axis <- ob_segment(ob_point(0, -0.6), ob_point(0, 1.6), color = "grey60", linewidth = 0.8)
+
+# Unit basis vectors
+vec_i <- ob_segment(O, ob_point(1, 0), color = col_i, linewidth = 2, arrow_head = ah)
+vec_j <- ob_segment(O, ob_point(0, 1), color = col_j, linewidth = 2, arrow_head = ah)
+
+# Right-angle marker at the origin (two sides of a small square)
+r <- 0.15
+ra1 <- ob_segment(ob_point(r, 0), ob_point(r, r), color = "black", linewidth = 0.8)
+ra2 <- ob_segment(ob_point(r, r), ob_point(0, r), color = "black", linewidth = 0.8)
+
+# Labels: i-hat below its arrow, j-hat left of its arrow
+lab_i <- ob_label("\u00EE", center = ob_point(0.5, -0.22), color = col_i, size = lab_size)
+lab_j <- ob_label("\u0135", center = ob_point(-0.22, 0.5), color = col_j, size = lab_size)
+
+# Draw
+ggplot() +
+  coord_equal(xlim = c(-0.8, 1.8), ylim = c(-0.8, 1.8)) +
+  theme_void() +
+  x_axis + y_axis +
+  vec_i + vec_j +
+  ra1 + ra2 +
+  lab_i + lab_j
+
+```
+:::
+
+::::
+
+Now, if we stack the basis vectors $\hat{i}$ and $\hat{j}$ as columns of a matrix, we get the `identity matrix`:
+
+$$
+I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+$${#eq-identity-matrix}
+
+And, finally merging `vectors` and `matrices` into one view, we can ***represent the vector*** as a matrix multiplication of `coordinates` and `basis vectors`:
+
+$$
+\begin{align}
+\overrightarrow{a} &= a_x \hat{i} + a_y \hat{j}\\
+\\
+&= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} a_x \\ a_y \end{bmatrix}
+\end{align}
+$${#eq-vectors-matrix-mult}
+
+Of course we expected this; what else can an `identity matrix` do for us, other than tell us what things are? But now let us see if we can mess with the `identity matrix`, and see what happens to the vector $\overrightarrow{a}$. And what it really means to the `frame of reference` and the `point of view` in space.
+
+## Into the Matrix: Changing Identity and Space
+
+Suppose, instead of the `identity matrix`, we use a different matrix, say:
+$$
+I_2 = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}
+$$
+and we naively carry out the matrix multiplication as before, @eq-vectors-matrix-mult):
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+$$
+\begin{align}
+\overrightarrow{a_2} &= I_2 \begin{bmatrix} a_x \\ a_y \end{bmatrix} \\
+\\
+&= \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} a_x \\ a_y \end{bmatrix}\\
+\\
+&= \begin{bmatrix} 2 a_x \\ a_y \end{bmatrix}
+\end{align}
+$${#eq-vectors-matrix-mult-2}
+
+:::
+::: {.column width="10%"}
+:::
+::: {.column width="45%"}
+
+```{r}
+#| label: fig-morph-1
+#| fig-cap: "Vector morphed by a Matrix"
+#| echo: false
+#| 
+# The original vector and the stretched one (x doubled, y unchanged)
+a  <- c(1.5, 2)
+a2 <- c(2 * a[1], a[2])   # (3, 2)
+
+# Colours and sizes
+col_a <- "#1f77b4"; col_a2 <- "#d62728"
+lab_size <- 28
+ah <- ggarrow::arrow_head_wings()
+
+O <- ob_point(0, 0)
+
+# Axes (grey)
+x_axis <- ob_segment(ob_point(-0.5, 0), ob_point(4.2, 0), color = "grey60", linewidth = 0.8)
+y_axis <- ob_segment(ob_point(0, -1.2), ob_point(0, 3), color = "grey60", linewidth = 0.8)
+
+# The two vectors
+vec_a  <- ob_segment(O, ob_point(a[1],  a[2]),  color = col_a,  linewidth = 1.5, arrow_head = ah)
+vec_a2 <- ob_segment(O, ob_point(a2[1], a2[2]), color = col_a2, linewidth = 1.5, arrow_head = ah)
+
+# Dashed horizontal guide between the tips: same height, so y is unchanged
+same_y <- ob_segment(ob_point(a[1], a[2]), ob_point(a2[1], a2[2]),
+                     color = "grey40", linetype = "dashed", linewidth = 0.9)
+
+# Dashed drops from each tip to the x-axis
+drop_a  <- ob_segment(ob_point(a[1],  a[2]),  ob_point(a[1],  0),
+                      color = col_a,  linetype = "dashed", linewidth = 0.7)
+drop_a2 <- ob_segment(ob_point(a2[1], a2[2]), ob_point(a2[1], 0),
+                      color = col_a2, linetype = "dashed", linewidth = 0.7)
+
+# x-components as bars below the axis (a is half as long as a2)
+bar_width <- 14
+ya <- -0.4; ya2 <- -0.95
+bar_a  <- ob_segment(ob_point(0, ya),  ob_point(a[1],  ya),  color = col_a,  linewidth = bar_width)
+bar_a2 <- ob_segment(ob_point(0, ya2), ob_point(a2[1], ya2), color = col_a2, linewidth = bar_width)
+
+# Vector labels, pushed perpendicular to each arrow (side = +1 up-left, -1 down-right)
+lab_beside <- function(txt, p, side, col, off = 0.5, size = lab_size) {
+  d <- p / sqrt(sum(p^2))
+  n <- c(-d[2], d[1])
+  m <- p / 2 + side * off * n
+  ob_label(txt, center = ob_point(m[1], m[2]), color = col, size = size)
+}
+lab_a  <- lab_beside("a",       a,   1, col_a)
+lab_a2 <- lab_beside("a\u2082", a2, -1, col_a2)
+
+# Bar labels (white text on the bar) and the "y unchanged" note
+on_bar <- function(txt, x, y, col) {
+  ob_label(txt, center = ob_point(x, y), color = "white", fill = col, size = 18)
+}
+lab_bar_a  <- on_bar("x",  a[1]  / 2, ya,  col_a)
+lab_bar_a2 <- on_bar("2x", a2[1] / 2, ya2, col_a2)
+lab_same   <- ob_label("same y", center = ob_point(mean(c(a[1], a2[1])), a[2] + 0.35),
+                       color = "grey30", size = 18)
+
+# Draw
+ggplot() +
+  coord_equal(xlim = c(-0.8, 4.4), ylim = c(-1.5, 3.2)) +
+  theme_void() +
+  x_axis + y_axis +
+  same_y + drop_a + drop_a2 +
+  bar_a + bar_a2 +
+  vec_a + vec_a2 +
+  lab_a + lab_a2 +
+  lab_bar_a + lab_bar_a2 + lab_same
+
+```
+:::
+
+::::
+
+What hath God wrought?[^1] It should be immediately apparent that we have *morphed* the vector $\overrightarrow{a}$ into a new vector $\overrightarrow{a_2}$, which is twice as long in the $x$-direction, but unchanged in the $y$-direction. 
+
+[AND: we have a new `vector space` where the `basis vectors` have been transformed from $\hat{i}$ and $\hat{j}$ to $\hat{i_2}$ and $\hat{j_2}$ !!]{style="background-color:yellow;"}. **We have morphed and transformed space itself**!
+
+::: callout-important
+## Morphed Identity Matrices morph Space itself
+This is serious business and an undeniable super-power! A matrix represents in concise form a `transformation`, a `function`, that takes `vector`s as input and gives us new `vectors`. 
+It does so by changing the `basis vectors`. We have changed the [`alphabet`](../20-Vectors/index.qmd#vector-spaces) of the `vector space` itself, and hence the `coordinates` of the `vectors` in that space.
+:::
+
+Let us see what other `identity matrices` we can create, and what they mean and do:
+
+```{r}
+#| echo: false
+#| results: asis
+library(ggplot2); library(ggdiagram); library(ggarrow)
+
+# Common frame for ALL figures, so the transformations can be compared directly
+lim_x <- c(-1.5, 4.5)
+lim_y <- c(-1, 5)
+
+# Basis-vector figure: original i-hat, j-hat (light, thick) and M i-hat, M j-hat (dark, thin)
+basis_plot <- function(M) {
+  ah <- ggarrow::arrow_head_wings(); O <- ob_point(0, 0)
+  col_i <- "#2ca02c"; col_j <- "#9467bd"           # transformed (dark)
+  lt_i  <- "#b5e3b0"; lt_j  <- "#d9c8ea"           # original (light)
+  I <- c(1, 0); J <- c(0, 1)
+  MI <- as.vector(M %*% I); MJ <- as.vector(M %*% J)
+  seg <- function(v, col, lw) ob_segment(O, ob_point(v[1], v[2]), color = col,
+                                         linewidth = lw, arrow_head = ah)
+  lab <- function(txt, p, col) ob_label(txt, center = ob_point(p[1], p[2]),
+                                        color = col, size = 20)
+  beyond <- function(v) v + 0.4 * v / sqrt(sum(v^2))   # label just past the tip
+  ax <- ob_segment(ob_point(lim_x[1], 0), ob_point(lim_x[2], 0), color = "grey60")
+  ay <- ob_segment(ob_point(0, lim_y[1]), ob_point(0, lim_y[2]), color = "grey60")
+  ggplot() + coord_equal(xlim = lim_x, ylim = lim_y) + theme_void() + ax + ay +
+    seg(I, lt_i, 4) + seg(J, lt_j, 4) +               # originals underneath
+    seg(MI, col_i, 1.8) + seg(MJ, col_j, 1.8) +       # transformed on top
+    lab("\u00EE", c(1, -0.45), col_i) + lab("\u0135", c(-0.5, 1), col_j) +
+    lab("M\u00EE", beyond(MI), col_i) + lab("M\u0135", beyond(MJ), col_j)
+}
+
+# Row builder: runs the code, saves two fixed-size figures, writes one table row
+make_row <- function(name, code) {
+  env <- new.env()
+  p   <- eval(parse(text = code), envir = env)   # last line returns the ggplot
+  M   <- env$M
+  f1  <- paste0("fig_", tolower(name), "_vec.png")
+  f2  <- paste0("fig_", tolower(name), "_basis.png")
+  ggsave(f1, p, width = 5, height = 5, dpi = 150)
+  ggsave(f2, basis_plot(M), width = 5, height = 5, dpi = 150)
+  Mr  <- round(M, 3)                             # rounded for display (e.g. 0.707)
+  mat <- sprintf("$\\begin{pmatrix} %g & %g \\\\ %g & %g \\end{pmatrix}$",
+                 Mr[1, 1], Mr[1, 2], Mr[2, 1], Mr[2, 2])
+  paste0("| ", name, " | ", mat, " | ![](", f1, "){width=280px} | ![](", f2, "){width=280px} |")
+}
+
+# Row 1: scale_X
+code_scale_x <- c(
+  'library(ggplot2); library(ggdiagram); library(ggarrow)',
+  'a <- c(1.5, 2); M <- matrix(c(2, 0, 0, 1), nrow = 2, byrow = TRUE); b <- as.vector(M %*% a)',
+  'ah <- ggarrow::arrow_head_wings(); O <- ob_point(0, 0)',
+  'ax <- ob_segment(ob_point(lim_x[1], 0), ob_point(lim_x[2], 0), color = "grey60"); ay <- ob_segment(ob_point(0, lim_y[1]), ob_point(0, lim_y[2]), color = "grey60")',
+  'va <- ob_segment(O, ob_point(a[1], a[2]), color = "#1f77b4", linewidth = 1.5, arrow_head = ah)',
+  'vb <- ob_segment(O, ob_point(b[1], b[2]), color = "#d62728", linewidth = 1.5, arrow_head = ah)',
+  'la <- ob_label("a", center = ob_point(a[1]/2 - 0.4, a[2]/2 + 0.3), color = "#1f77b4", size = 28)',
+  'lb <- ob_label("Ma", center = ob_point(b[1]/2 + 0.3, b[2]/2 - 0.3), color = "#d62728", size = 28)',
+  'ggplot() + coord_equal(xlim = lim_x, ylim = lim_y) + theme_void() + ax + ay + va + vb + la + lb'
+)
+
+# Row 2: scale_Y
+code_scale_y <- c(
+  'library(ggplot2); library(ggdiagram); library(ggarrow)',
+  'a <- c(1.5, 2); M <- matrix(c(1, 0, 0, 2), nrow = 2, byrow = TRUE); b <- as.vector(M %*% a)',
+  'ah <- ggarrow::arrow_head_wings(); O <- ob_point(0, 0)',
+  'ax <- ob_segment(ob_point(lim_x[1], 0), ob_point(lim_x[2], 0), color = "grey60"); ay <- ob_segment(ob_point(0, lim_y[1]), ob_point(0, lim_y[2]), color = "grey60")',
+  'va <- ob_segment(O, ob_point(a[1], a[2]), color = "#1f77b4", linewidth = 1.5, arrow_head = ah)',
+  'vb <- ob_segment(O, ob_point(b[1], b[2]), color = "#d62728", linewidth = 1.5, arrow_head = ah)',
+  'la <- ob_label("a", center = ob_point(a[1]/2 + 0.4, a[2]/2 - 0.3), color = "#1f77b4", size = 28)',
+  'lb <- ob_label("Ma", center = ob_point(b[1]/2 - 0.45, b[2]/2 + 0.2), color = "#d62728", size = 28)',
+  'ggplot() + coord_equal(xlim = lim_x, ylim = lim_y) + theme_void() + ax + ay + va + vb + la + lb'
+)
+
+# Row 3: shear (horizontal: x -> x + 1 y, y unchanged)
+code_shear <- c(
+  'library(ggplot2); library(ggdiagram); library(ggarrow)',
+  'a <- c(1.5, 2); M <- matrix(c(1, 1, 0, 1), nrow = 2, byrow = TRUE); b <- as.vector(M %*% a)',
+  'ah <- ggarrow::arrow_head_wings(); O <- ob_point(0, 0)',
+  'ax <- ob_segment(ob_point(lim_x[1], 0), ob_point(lim_x[2], 0), color = "grey60"); ay <- ob_segment(ob_point(0, lim_y[1]), ob_point(0, lim_y[2]), color = "grey60")',
+  'va <- ob_segment(O, ob_point(a[1], a[2]), color = "#1f77b4", linewidth = 1.5, arrow_head = ah)',
+  'vb <- ob_segment(O, ob_point(b[1], b[2]), color = "#d62728", linewidth = 1.5, arrow_head = ah)',
+  'la <- ob_label("a", center = ob_point(a[1]/2 - 0.4, a[2]/2 + 0.3), color = "#1f77b4", size = 28)',
+  'lb <- ob_label("Ma", center = ob_point(b[1]/2 + 0.35, b[2]/2 - 0.35), color = "#d62728", size = 28)',
+  'ggplot() + coord_equal(xlim = lim_x, ylim = lim_y) + theme_void() + ax + ay + va + vb + la + lb'
+)
+
+# Row 4: rotate (45 degrees counter-clockwise)
+code_rotate <- c(
+  'library(ggplot2); library(ggdiagram); library(ggarrow)',
+  'a <- c(1.5, 2); th <- 45 * pi / 180; M <- matrix(c(cos(th), -sin(th), sin(th), cos(th)), nrow = 2, byrow = TRUE); b <- as.vector(M %*% a)',
+  'ah <- ggarrow::arrow_head_wings(); O <- ob_point(0, 0)',
+  'ax <- ob_segment(ob_point(lim_x[1], 0), ob_point(lim_x[2], 0), color = "grey60"); ay <- ob_segment(ob_point(0, lim_y[1]), ob_point(0, lim_y[2]), color = "grey60")',
+  'va <- ob_segment(O, ob_point(a[1], a[2]), color = "#1f77b4", linewidth = 1.5, arrow_head = ah)',
+  'vb <- ob_segment(O, ob_point(b[1], b[2]), color = "#d62728", linewidth = 1.5, arrow_head = ah)',
+  'la <- ob_label("a", center = ob_point(a[1]/2 + 0.4, a[2]/2 - 0.3), color = "#1f77b4", size = 28)',
+  'lb <- ob_label("Ma", center = ob_point(b[1]/2 - 0.5, b[2]/2 + 0.2), color = "#d62728", size = 28)',
+  'ggplot() + coord_equal(xlim = lim_x, ylim = lim_y) + theme_void() + ax + ay + va + vb + la + lb'
+)
+
+cat("\n| Transformation | Matrix | Vector | Basis vectors |\n",
+    "|:-------|:-----------|:-------------------|:-------------------|\n",
+    make_row("scale_X", code_scale_x), "\n",
+    make_row("scale_Y", code_scale_y), "\n",
+    make_row("shear",   code_shear),   "\n",
+    make_row("rotate",  code_rotate),  "\n", sep = "")
+```
+
+
+So, finally, we are ready for this video by Grant Sanderson, aka 3Blue1Brown:
+
+::: {#fig-matrix-transformation style="text-align: center;"}
+
+{{< video https://youtu.be/kYB8IZa5AuE width="680" height="480" title="Linear Transformations using Matrices" >}}
+
+Linear transformations using matrices.
+
+:::
+
+
+## Wait,  But Why?
+
+- Matrices are a representation of *linear transformations*.
+- *Linear Transformations* are functions that take `vectors` as input and give us new `vectors` as output.
+- The matrix is a compact representation of the `transformation``, and it tells us how the `basis vectors` are transformed.
+- When we multiply a vector by a matrix, we are applying the `transformation` to that `vector`, which results in a new `vector` in the transformed space.
+- A `transformation` is a `matrix` that contains *transformed* `basis vectors`. These guys change first, and then chamge everything else. 
+- This is a powerful concept because it allows us to manipulate and understand geometric transformations in a linear algebraic framework.
+- Algebra and Geometry are not that far apart!!
+
+## Conclusion
+
+- Understanding `matrix multiplication` as a morphing of `unit basis vectors` provides a powerful visualization method.
+- As artists and designers, we can **design** transformations by imagining 2D space as a rubber sheet, and then stretching, compressing, shearing, or rotating it to see how vectors change.
+- The idea of *changing basis vectors* also applies to space in higher dimensions, which is what is done inside [neural networks](../../100-AI/10-NeuralNets/index.qmd) and other machine learning algorithms.
+
+## References
+
+1. Gilbert Strang. Linear Algebra and its Applications. Thomson/Brooks-Cole.
+1. Glenn Henshaw.(Sep 28, 2019) *Three Ways to Understand Matrix Multiplication*. <https://ghenshaw-work.medium.com/3-ways-to-understand-matrix-multiplication-fe8a007d7b26>
+
+## Additional Reading
+
+1. Oliver Knill (June 7, 2009, last update, July 24, 2014).*When was Matrix Multiplication invented?*.<https://people.math.harvard.edu/~knill/history/matrix/index.html>
+
+[^1]: It is best known as the first official message sent by Samuel F. B. Morse over the Washington–Baltimore telegraph line on May 24, 1844. Morse transmitted it in Morse code to Alfred Vail in Baltimore.
+

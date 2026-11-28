@@ -1,0 +1,341 @@
+---
+title: <iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon><iconify-icon icon="mdi:matrix" width="1.2em" height="1.2em"></iconify-icon>Matrix Multiplication
+subtitle: "Many Ways to Understand Matrix Multiplication"
+order: 55
+date: 27/Nov/2026
+date-modified: today
+
+---
+
+## Introduction
+
+This is a re-creating of this article, *3 Ways to Understand Matrix Multiplication*, by Glenn Henshaw on [Medium](https://ghenshaw-work.medium.com/3-ways-to-understand-matrix-multiplication-fe8a007d7b26). And I have added content of my own, based on Grant Sanderson's immensely helpful Linear Algebra videos.
+
+---
+
+## Matrix Multiplication
+
+::: callout-important
+### Matrix Multiplication in 4 ways
+As shown in Gilbert Strang's book, there are 4 ways of thinking about matrix multiplication:
+
+- Our method of weighting *columns* in A using *columns* B and adding
+- Weighting *rows* in B using *rows* in A and adding
+- Multiplying *individual values* from *rows* in A and *columns* in B and adding up, for each location in C. ( This is the common textbook method)
+- Multiplying rows in A and columns in B. ( A *vectorized* version of the previous method).
+
+:::
+
+When I first learned about matrix multiplication I was surprised by how hard it was for me to develop intuition about the operation. The usual definition of matrix multiplication hides a lot of interesting facts that are easier to recognize when you look from different points of view. In this post I will describe matrix multiplication from three points of view: columns, rows, and combinations of both. I will also discuss some simple facts to help test your intuition. After reading you will hopefully gain a deeper understanding of matrix multiplication, rows, and columns. This post was inspired by a linear algebra course taught by the great Gilbert Strang (MIT).
+
+This post lists three ways to interpret matrix multiplication. For each of these interpretations we will discuss the following.
+
+- Interpretation: What does this mean?
+- Why does this work?: How does this interpretation arise from the definition of matrix multiplication?
+- Check your intuition: A list of facts that you can use to check your intuition for the interpretation we are considering.
+
+I occasionally mention the concepts of linear combination, linear dependence, linear independence, dot product. If you would like to quickly refresh your memory on these topics then see my article 3 basic concepts in linear algebra.
+
+Example: Say we have three barflies: Lars, Fatima, and Georgia. On a night out Lars bought 2 beers 1 cocktail, Fatima bought 1 beer 2 cocktails, and Georgia had 4 beers and no cocktails. Beers cost $7 and cocktails cost $10. We can model their spending for the night with matrix multiplication.
+
+$$
+\begin{pmatrix}
+2 & 1 \\
+1 & 2 \\
+4 & 0
+\end{pmatrix}
+\begin{pmatrix}
+7 \\
+10
+\end{pmatrix}
+=
+\begin{pmatrix}
+24 \\
+27 \\
+28
+\end{pmatrix}
+$${#eq-barflies}
+
+How were the numbers on the right computed?
+
+Our goal is to understand the properties of matrix multiplication with more generality so throughout this post we will consider the product of a 3×3 matrix A and a 3×2 matrix B. The result will be a 3×2 matrix C.
+
+$$
+\overset{A}{
+\begin{pmatrix}
+  a_{11} & a_{12} & a_{13} \\
+  a_{21} & a_{22} & a_{23} \\
+  a_{31} & a_{32} & a_{33}
+\end{pmatrix}}
+\overset{B}{
+\begin{pmatrix}
+  b_{11} & b_{12} \\
+  b_{21} & b_{22} \\
+  b_{31} & b_{32}
+\end{pmatrix}}
+=
+\overset{C}{
+\begin{pmatrix}
+  c_{11} & c_{12} \\
+  c_{21} & c_{22} \\
+  c_{31} & c_{32}
+\end{pmatrix}}
+$$
+
+## The "Usual" Method
+
+>Jacques Philippe Marie Binet …recognized as the first to derive the rule for multiplying matrices in 1812. — Oliver Knill
+
+The usual way to define matrix multiplication is as a summation or, more compactly, a `dot product` of rows of A and columns of B. The dot product of row 1 of A and column 1 of B will give the first entry of C.
+
+$$
+c_{11} = row_1(A) \cdot col_1(B) = a_{11}b_{11} + a_{12}b_{21} + a_{13}b_{31}
+$${#eq-matmult-dotprod-1}
+
+In general the `ij-th` entry of C is the `i-th` row of A dotted with the `j-th` column of B.
+
+$$
+c_{ij} = \sum_{k} a_{2k}b_{1k} = a_{21}b_{11} + a_{22}b_{21} + a_{23}b_{31}
+$${#eq-matmult-dotprod-2}
+
+
+Example. Find the third row and second column of the product C.
+
+$$
+\begin{pmatrix}
+  1 & 0 & -2 \\
+  -1 & 4 & 3 \\
+  1 & 2 & 3
+\end{pmatrix}
+\begin{pmatrix}
+  4 & 1 \\
+  0 & 2 \\
+  1 & 1
+\end{pmatrix}
+$$
+
+The answer is $c_{32} = (1)(1)+(2)(2) +(3)(1) = 8$. Try using the definition to find the rest of entries of C.
+
+- Interpretation: An entry of C is the dot product of a row of A and a column of B. Zero entries in C correspond to a row of A and a column of B that are orthogonal (at right angles to each other).
+
+- Check your intuition: From this point of view several facts become clearer.
+
+  - The number of columns of A must equal the number of rows of B. Otherwise the sums in the definition won’t be defined.
+  - The product AB will be a matrix with the same number of columns as A and the same number of rows as B.
+  - A zero entry in C means that the correspond row of A and column of B are orthogonal. Orthogonal vectors are linearly independent. But not all pairs of linearly independent vectors are orthogonal.
+
+
+## The column point of view
+
+The first thing to notice about $AB = C$ is that the columns of the matrix C are related to the columns of the matrix A in an important way.
+
+Interpretation:
+
+Each of the column of C is the matrix A multiplied by a column of B. The effect of this is that the *columns of C* are linear combinations of the *columns of A* with *weights given by columns of B*.
+
+$$
+\left(
+\textcolor{red}{\boxed{\textcolor{black}{
+\begin{matrix}
+  a_{11} & a_{12} & a_{13} \\
+  a_{21} & a_{22} & a_{23} \\
+  a_{31} & a_{32} & a_{33}
+\end{matrix}}}}
+\right)
+\left(
+\textcolor{red}{\boxed{\textcolor{black}{
+\begin{matrix} b_{11} \\ b_{21} \\ b_{31} \end{matrix}}}}
+\begin{matrix} b_{12} \\ b_{22} \\ b_{32} \end{matrix}
+\right)
+=
+\left(
+\textcolor{red}{\boxed{\textcolor{black}{
+\begin{matrix} c_{11} \\ c_{21} \\ c_{31} \end{matrix}}}}
+\begin{matrix} c_{12} \\ c_{22} \\ c_{32} \end{matrix}
+\right)
+$${#eq-column-view}
+
+
+Why does this work? To see why the columns of C are linear combinations of the columns of A let’s take a close look at how we calculate the first column of C.
+
+$$
+\begin{pmatrix} c_{11} \\ c_{21} \\ c_{31} \end{pmatrix}
+=
+\begin{pmatrix}
+  a_{11}b_{11} + a_{12}b_{21} + a_{13}b_{31} \\
+  a_{21}b_{11} + a_{22}b_{21} + a_{23}b_{31} \\
+  a_{31}b_{11} + a_{32}b_{21} + a_{33}b_{31}
+\end{pmatrix}
+=
+\begin{pmatrix} a_{11} \\ a_{21} \\ a_{31} \end{pmatrix} b_{11}
++
+\begin{pmatrix} a_{12} \\ a_{22} \\ a_{32} \end{pmatrix} b_{21}
++
+\begin{pmatrix} a_{13} \\ a_{23} \\ a_{33} \end{pmatrix} b_{31}
+$${#eq-linear-comb-columns}
+
+
+Check your intuition: From this point of view several facts become clearer.
+
+- A matrix multiplied by a vector, Ax, is simply a linear combination of the columns of a by the entries of x. So the columns of A are linearly independent if and only if equation Ax = 0 has only the zero solution.
+- We can view the columns of C as the results of applying a linear transformation, defined by B, to columns of A.
+- Suppose the columns of A are linearly independent. Then, if C has a column of zeros, B must also have a column of zeros.
+- If the columns of C are linearly dependent and the columns of B are linearly independent, then the columns of A are dependent. This follows from that fact that if x is a non-trivial solution of Cx = 0 then Bx is a non-trivial solution of Ax = 0.
+- If the equation Ax = b has no solution then ABx = Cx = b has no solution. After all, the columns of C are just combinations of columns of A.
+- The `span` of the columns of C are contained in the span of the columns of A. Therefore, rank(AB) ≤ rank(A).
+- If B is invertible with inverse B’ then the columns of A and AB have the same `span`. We can prove this from the previous fact, $rank(AB) ≤ rank(A)$, combined with the fact that $rank(A) = rank(AI) = rank(ABB’) ≤ rank(AB)$.
+- So matrix multiplication from the point of view of columns. Now let’s move on to rows?
+
+## The row point of view
+
+Interpretation:
+
+The rows of C are rows of A multiplied by the matrix B. Therefore, the rows of C are linear combinations of the *rows of B* with *weights given by rows of A*.
+
+$$
+\left(
+\begin{matrix}
+  \textcolor{red}{\boxed{\textcolor{black}{\begin{matrix} a_{11} & a_{12} & a_{13} \end{matrix}}}} \\
+  \begin{matrix} a_{21} & a_{22} & a_{23} \end{matrix} \\
+  \begin{matrix} a_{31} & a_{32} & a_{33} \end{matrix}
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+  \textcolor{red}{\boxed{\textcolor{black}{\begin{matrix} b_{11} & b_{12} \end{matrix}}}} \\
+  \textcolor{red}{\boxed{\textcolor{black}{\begin{matrix} b_{21} & b_{22} \end{matrix}}}} \\
+  \textcolor{red}{\boxed{\textcolor{black}{\begin{matrix} b_{31} & b_{32} \end{matrix}}}}
+\end{matrix}
+\right)
+=
+\left(
+\begin{matrix}
+  \textcolor{red}{\boxed{\textcolor{black}{\begin{matrix} c_{11} & c_{12} \end{matrix}}}} \\
+  \begin{matrix} c_{21} & c_{22} \end{matrix} \\
+  \begin{matrix} c_{31} & c_{32} \end{matrix}
+\end{matrix}
+\right)
+$$
+
+Why does this work? To see why the rows of C are linear combinations of the rows of B let’s take a close look at how we calculate the first row of C using the definition of matrix multiplication.
+
+$$
+\begin{aligned}
+\begin{pmatrix} c_{11} & c_{12} \end{pmatrix}
+&=
+\begin{pmatrix}
+  a_{11}b_{11} + a_{12}b_{21} + a_{13}b_{31} & a_{11}b_{12} + a_{12}b_{22} + a_{13}b_{32}
+\end{pmatrix}
+= \\
+&\quad
+\begin{pmatrix} b_{11} & b_{12} \end{pmatrix} a_{11}
++
+\begin{pmatrix} b_{21} & b_{22} \end{pmatrix} a_{12}
++
+\begin{pmatrix} b_{31} & b_{32} \end{pmatrix} a_{13}
+\end{aligned}
+$$
+
+Check your intuition: Once again let’s list some facts about rows that lead from this interpretation of matrix multiplication.
+
+- For AB = C, if the rows of C are linearly independent then so are the rows of B. Warning: the converse is not necessarily true.
+- If A has a row of zeros then AB has a row of zeros.
+- The the span of the rows of B contains the span the rows of C.
+- If E is an invertible n×n matrix and B is any n×m matrix. Then EB has the same row space as E. In particular, elementary row operations preserve the row space.
+- We can use the row and column interpretations the help sketch a proof of an interesting result about the dimension of the row space and column space of an m×n matrix. The dimension of the span of the columns of a matrix is called its rank. The dimension of the span of the rows is called the rowrank.
+
+Claim: The rank and rowrank of an m×n matrix C are equal.
+
+There are many $m×r$ matrices A and $r×n$ matrices B such that C = AB. Choose A and B such that r is minimum. The r columns of A span the column space of C. The r rows of B span the row space of C. Since we chose r to be the smallest such number, the $rank(C) = rowrank(C) = r$.
+
+Claim: If A and B are square matrices and AB = I then BA = I. Therefore B is the inverse of A.
+
+We have $AB = I$. Therefore the columns of A are linearly independent. Therefore the equation $Ax = 0$ has only the trivial solution. multiply the first equation on the right by A to get $ABA = A.$ Then $ABA-A = A(BA-I)=0$. Therefore $BA = I$.
+
+## Columns and rows
+
+Our last interpretation gives us a way to decompose a product of two matrices into a sum of matrices.
+
+Interpretation:
+The matrix C is the sum of matrices that are columns of A multiplied by rows of B. The matrices that make up the sum have columns that are scalar multiples of a column of A.
+
+$$
+\left(
+\textcolor{red}{\boxed{\textcolor{black}{
+\begin{matrix} a_{11} \\ a_{21} \\ a_{31} \end{matrix}}}}
+\begin{matrix}
+  a_{12} & a_{13} \\
+  a_{22} & a_{23} \\
+  a_{32} & a_{33}
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+  \textcolor{red}{\boxed{\textcolor{black}{\begin{matrix} b_{11} & b_{12} \end{matrix}}}} \\
+  \begin{matrix} b_{21} & b_{22} \end{matrix} \\
+  \begin{matrix} b_{31} & b_{32} \end{matrix}
+\end{matrix}
+\right)
+=
+\left(
+\textcolor{red}{\boxed{\textcolor{black}{
+\begin{matrix}
+  a_{11}b_{11} & a_{11}b_{12} \\
+  a_{21}b_{11} & a_{21}b_{12} \\
+  a_{31}b_{11} & a_{31}b_{12}
+\end{matrix}}}}
+\right)
++ \textcolor{red}{\cdots}
+$${#eq-distributed-matrix-mult}
+
+
+Why does this work? To see why this is true consider what happens when you write the matrix A as the sum of matrices and compute AB by
+distributing B.
+
+$$
+\begin{pmatrix}
+  a_{11} & a_{12} & a_{13} \\
+  a_{21} & a_{22} & a_{23} \\
+  a_{31} & a_{32} & a_{33}
+\end{pmatrix}
+=
+\begin{pmatrix}
+  a_{11} & 0 & 0 \\
+  a_{21} & 0 & 0 \\
+  a_{31} & 0 & 0
+\end{pmatrix}
++
+\begin{pmatrix}
+  0 & a_{12} & 0 \\
+  0 & a_{22} & 0 \\
+  0 & a_{32} & 0
+\end{pmatrix}
++
+\begin{pmatrix}
+  0 & 0 & a_{13} \\
+  0 & 0 & a_{23} \\
+  0 & 0 & a_{33}
+\end{pmatrix}
+$$
+
+Check your intuition:
+
+- Each of the matrices in the summand have 1-dimensional column spaces.
+You can interchange two columns of A and get the same product AB as long as you interchange the corresponding rows of B.
+
+## Wait, But Why?
+
+- Matrix Multiplication is perhaps the most fundamental operation in Linear Algebra
+- In our work, we will use it in *Linear Regression*, *Deep Learning*; we can also model much of our *Computational Geometry* work in the language of Matrix Multiplication! We will re-visit this material again as we make progress through this course. 
+
+## Conclusion
+
+We talked about three different ways to understand matrix multiplication.
+
+- A matrix multiplied by columns
+- A rows multiplied by matrices
+- And columns multiplied by rows
+
+We used these different interpretations to review some basic facts about matrix multiplication, independence, and span.
+
+
